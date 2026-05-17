@@ -59,9 +59,6 @@ function App() {
       setActiveLock(tool);
     } else if (tool.href) {
       window.open(tool.href, "_blank", "noopener");
-    } else if (tool.locked) {
-      // Already unlocked, no href — show a faux open state
-      setActiveLock({ ...tool, demo: true });
     }
   };
 
@@ -71,7 +68,7 @@ function App() {
     if (comm.locked && !unlocked.has(comm.id)) {
       setActiveLock(comm);
     } else {
-      window.open("https://kneuralabs.github.io/comm/", "_blank", "noopener");
+      window.open(comm.href, "_blank", "noopener");
     }
   };
 
@@ -85,8 +82,6 @@ function App() {
     // Once access is granted, open the tool's link in a new window
     if (tool.href) {
       setTimeout(() => window.open(tool.href, "_blank", "noopener"), 100);
-    } else if (tool.id === "comm") {
-      setTimeout(() => window.open("https://kneuralabs.github.io/comm/", "_blank", "noopener"), 100);
     }
   };
 
