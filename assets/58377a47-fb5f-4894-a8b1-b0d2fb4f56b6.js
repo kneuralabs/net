@@ -50,7 +50,8 @@ function Nameplate({ now, theme, onThemeChange }) {
     // Volume = days since 2020-01-01 / 30, Issue = day of year
     const start = new Date(2020, 0, 1);
     const days = Math.floor((now - start) / 86400000);
-    return `VOL. ${String(Math.floor(days / 30)).padStart(3, "0")} · ISS. ${String((now.getFullYear() * 1000 + Math.floor((now - new Date(now.getFullYear(),0,0)) / 86400000)) % 1000).padStart(3, "0")}`;
+    const dayOfYear = Math.floor((now - new Date(now.getFullYear(), 0, 0)) / 86400000);
+    return `VOL. ${String(Math.floor(days / 30)).padStart(3, "0")} · ISS. ${String(dayOfYear).padStart(3, "0")}`;
   }, [now]);
   return (
     <header className="nameplate">
@@ -197,12 +198,10 @@ function Welcome({ voice }) {
 function Tile({ tool, idx, unlocked, onActivate }) {
   const isOpen = !tool.locked || unlocked;
   const handleClick = (e) => {
-    if (!isOpen) { e.preventDefault(); onActivate(tool); return; }
-    if (tool.href) {
-      window.open(tool.href, "_blank", "noopener");
-    } else {
-      onActivate(tool); // for unlocked-after-pwd tiles, fire activation too
-    }
+    // Locked + not unlocked: block navigation and open the access modal.
+    // Otherwise let the anchor's native target=_blank handle it (a parallel
+    // window.open here would open the link in a second tab).
+    if (!isOpen) { e.preventDefault(); onActivate(tool); }
   };
   return (
     <a
@@ -475,17 +474,6 @@ function Colophon() {
         <div>Locked tiles require an access word</div>
       </div>
     </footer>
-  );
-}
-
-/* ────────────────────────────────────────────────────────────────
-   Beacon (system pulse, top-right)
-   ──────────────────────────────────────────────────────────────── */
-function Beacon() {
-  return (
-    <div className="beacon">
-      <span className="pulse-dot" /> All systems · operational
-    </div>
   );
 }
 
