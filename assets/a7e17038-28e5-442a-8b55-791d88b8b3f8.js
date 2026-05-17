@@ -82,8 +82,10 @@ function App() {
       return next;
     });
     setActiveLock(null);
-    // If they unlocked KneuraCOMM, immediately open it
-    if (tool.id === "comm") {
+    // Once access is granted, open the tool's link in a new window
+    if (tool.href) {
+      setTimeout(() => window.open(tool.href, "_blank", "noopener"), 100);
+    } else if (tool.id === "comm") {
       setTimeout(() => window.open("https://kneuralabs.github.io/comm/", "_blank", "noopener"), 100);
     }
   };
