@@ -344,6 +344,85 @@ function LockModal({ tool, onClose, onSuccess }) {
 }
 
 /* ────────────────────────────────────────────────────────────────
+   Weekly Brief — rotates every ISO week
+   ──────────────────────────────────────────────────────────────── */
+const WEEKLY_BRIEFS = [
+  "The audit is the artefact.",
+  "Governance without teeth is theatre.",
+  "Explainability is not optional.",
+  "Trust is infrastructure.",
+  "Alignment begins before deployment.",
+  "The model is only as honest as its training.",
+  "Accountability demands a paper trail.",
+  "Safety and capability are not opposites.",
+  "Who owns the output owns the risk.",
+  "Red-teaming is a form of respect.",
+  "Transparency is a feature, not a bug.",
+  "Every dataset encodes a worldview.",
+  "The edge case is where ethics live.",
+  "Humans in the loop, not just on the form.",
+  "Regulation lags, but it arrives.",
+  "Consent is the foundation of trust.",
+  "A model that cannot say no is dangerous.",
+  "The benchmark is not the goal.",
+  "Bias audits are not a one-time event.",
+  "Power without oversight is liability.",
+  "The question before the answer.",
+  "Interpretability is an act of humility.",
+  "Incident response is a governance muscle.",
+  "Ethics cannot be bolted on afterwards.",
+  "The supply chain includes the model card.",
+  "Fairness is context-dependent.",
+  "Autonomy requires reversibility.",
+  "Documentation is the first line of defence.",
+  "High stakes demand higher scrutiny.",
+  "The future of AI is a policy decision.",
+  "Uncertainty should be communicated, not hidden.",
+  "Harm reduction is not risk elimination.",
+  "Provenance matters as much as performance.",
+  "The users are the stakeholders.",
+  "An unmonitored system drifts.",
+  "Consent forms are not consent.",
+  "Robustness is tested at the margins.",
+  "Feedback loops require feedback channels.",
+  "Governance is a living document.",
+  "The model learns what you reward.",
+  "Privacy by design, not by disclaimer.",
+  "Impact assessments prevent impact.",
+  "The right to explanation is a right.",
+  "Oversight scales with stakes.",
+  "Deployment is not the finish line.",
+  "Every heuristic has a blind spot.",
+  "Shared vocabulary precedes shared standards.",
+  "The algorithm reflects its authors.",
+  "Accountability without authority is hollow.",
+  "Iteration without evaluation is drift.",
+  "Efficiency must not outrun accountability.",
+  "The hardest safety problem is overconfidence.",
+];
+
+function getISOWeek(date) {
+  const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+  d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay() || 7));
+  const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+  return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+}
+
+function getWeeklyBrief() {
+  const now = new Date();
+  const week = getISOWeek(now);
+  const year = now.getFullYear();
+  // Deterministic index: spread across the quote list, resets each year
+  const idx = (week - 1) % WEEKLY_BRIEFS.length;
+  // Brief number: weeks elapsed since 2025-W01
+  const briefNum = (year - 2025) * 52 + week;
+  return {
+    quote: WEEKLY_BRIEFS[idx],
+    num: String(briefNum).padStart(3, "0"),
+  };
+}
+
+/* ────────────────────────────────────────────────────────────────
    News feed
    ──────────────────────────────────────────────────────────────── */
 const LI_SEED = 184;            // last known count — shown until a live fetch succeeds
@@ -445,8 +524,8 @@ function FeedSection() {
           </div>
           <div className="aside__poster">
             <span className="smallcaps">Weekly Read</span>
-            <h3>The audit is the artefact.</h3>
-            <div className="poster-stamp">Brief № 042</div>
+            <h3>{getWeeklyBrief().quote}</h3>
+            <div className="poster-stamp">Brief № {getWeeklyBrief().num}</div>
           </div>
         </aside>
       </div>
