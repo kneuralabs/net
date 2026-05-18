@@ -433,7 +433,14 @@ function FeedSection() {
   const [followers, setFollowers] = useState(() => {
     try {
       const c = JSON.parse(localStorage.getItem(LI_CACHE));
-      if (c && c.n) return c.n;
+      if (c && c.n) {
+        // LI_SEED is always a floor — stale cache can never show a lower count
+        const n = Math.max(c.n, LI_SEED);
+        if (n !== c.n) {
+          try { localStorage.setItem(LI_CACHE, JSON.stringify({ n, ts: Date.now() })); } catch (_) {}
+        }
+        return n;
+      }
     } catch (e) {}
     return LI_SEED;
   });
