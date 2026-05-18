@@ -426,7 +426,7 @@ function getWeeklyBrief() {
 /* ────────────────────────────────────────────────────────────────
    News feed
    ──────────────────────────────────────────────────────────────── */
-const LI_SEED = 184;            // last known count — shown until a live fetch succeeds
+const LI_SEED = 185;            // last known count — shown until a live fetch succeeds
 const LI_CACHE = "kl_li_followers";
 
 function FeedSection() {
