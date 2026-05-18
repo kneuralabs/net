@@ -882,6 +882,25 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   white-space: nowrap;
 }
 
+.nameplate__idcard {
+  font-family: var(--f-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  text-decoration: none;
+  border: 1px solid var(--accent);
+  border-radius: 3px;
+  padding: 3px 8px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background 0.15s, color 0.15s;
+}
+.nameplate__idcard:hover {
+  background: var(--accent);
+  color: var(--paper);
+}
+
 /* Theme toggle inside nameplate — not fixed, sits inline */
 .nameplate .theme-toggle {
   position: static;
@@ -905,9 +924,11 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   .nameplate__bar { gap: 10px; padding-top: 8px; }
   .nameplate__beacon { padding: 5px 9px; font-size: 9.5px; letter-spacing: 0.12em; }
   .nameplate__beacon-lbl::before { content: ""; }
+  .nameplate__idcard { font-size: 9.5px; letter-spacing: 0.12em; padding: 3px 7px; }
 }
 @media (max-width: 380px) {
   .nameplate__beacon-lbl { display: none; }
+  .nameplate__idcard { font-size: 9px; padding: 2px 6px; }
 }
 @media (max-width: 720px) {
   .nameplate { grid-template-columns: 1fr auto; gap: 12px; padding: 16px 0 10px; }

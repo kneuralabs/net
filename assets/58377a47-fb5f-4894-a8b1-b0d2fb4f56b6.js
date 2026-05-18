@@ -70,6 +70,7 @@ function Nameplate({ now, theme, onThemeChange }) {
           <span className="nameplate__beacon-lbl">All systems operational</span>
         </span>
         <span className="nameplate__edition">Trust &amp; Security Edition</span>
+        <a className="nameplate__idcard" href="https://kneuralabs.github.io/ID/" target="_blank" rel="noopener noreferrer">ID Card</a>
         <ThemeToggle theme={theme} onChange={onThemeChange} />
       </div>
       <div className="nameplate__meta">
