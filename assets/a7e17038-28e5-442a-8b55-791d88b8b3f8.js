@@ -1,5 +1,28 @@
 // app.jsx — KNEURALABS Intranet root
 
+/* ── Sunrise / sunset (NOAA algorithm, no external deps) ───────────────────
+   Returns { sunrise: Date, sunset: Date } in local time, or
+   { sunrise: null, sunset: null, polar: "day"|"night" } at extreme latitudes. */
+function getSunTimes(lat, lng, date) {
+  const R = Math.PI / 180;
+  const start = new Date(date.getFullYear(), 0, 0);
+  const doy = Math.round((date - start) / 86400000);
+  const g = (2 * Math.PI / 365) * (doy - 1);
+  const eqT = 229.18 * (0.000075 + 0.001868 * Math.cos(g) - 0.032077 * Math.sin(g)
+               - 0.014615 * Math.cos(2*g) - 0.04089 * Math.sin(2*g));
+  const decl = 0.006918 - 0.399912 * Math.cos(g) + 0.070257 * Math.sin(g)
+               - 0.006758 * Math.cos(2*g) + 0.000907 * Math.sin(2*g)
+               - 0.002697 * Math.cos(3*g) + 0.00148  * Math.sin(3*g);
+  const cosHA = (Math.cos(90.833 * R) - Math.sin(lat * R) * Math.sin(decl))
+                / (Math.cos(lat * R) * Math.cos(decl));
+  if (cosHA < -1) return { sunrise: null, sunset: null, polar: "day" };
+  if (cosHA >  1) return { sunrise: null, sunset: null, polar: "night" };
+  const ha = Math.acos(cosHA) / R;
+  const noon = 720 - 4 * lng - eqT;
+  const toDate = (m) => { const d = new Date(date); d.setUTCHours(0,0,0,0); d.setTime(d.getTime() + m * 60000); return d; };
+  return { sunrise: toDate(noon - 4 * ha), sunset: toDate(noon + 4 * ha), polar: null };
+}
+
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "theme": "brand",
   "typePair": "editorial",
@@ -53,6 +76,53 @@ function App() {
   const [unlocked, setUnlocked] = React.useState(() => new Set());
 
   React.useEffect(() => { applyTokens(t); }, [t.theme, t.tile, t.density, t.motion, t.typePair]);
+
+  // Auto dark/light based on local sunrise & sunset
+  React.useEffect(() => {
+    let timer = null;
+    let cancelled = false;
+
+    const applyAuto = (lat, lng) => {
+      if (cancelled) return;
+      const now = new Date();
+      const { sunrise, sunset, polar } = getSunTimes(lat, lng, now);
+      const isDark = polar === "night" || (!polar && (now < sunrise || now >= sunset));
+      setTweak("theme", isDark ? "authority" : "brand");
+
+      // Schedule the next flip exactly at the upcoming transition
+      let msUntilNext;
+      if (polar) {
+        msUntilNext = 6 * 3600000; // polar — recheck every 6 h in case of travel
+      } else if (now < sunrise) {
+        msUntilNext = sunrise - now + 1000;
+      } else if (now < sunset) {
+        msUntilNext = sunset - now + 1000;
+      } else {
+        // After sunset: next transition is tomorrow's sunrise
+        const tomorrow = new Date(now); tomorrow.setDate(tomorrow.getDate() + 1);
+        const { sunrise: sr2 } = getSunTimes(lat, lng, tomorrow);
+        msUntilNext = sr2 ? sr2 - now + 1000 : 6 * 3600000;
+      }
+      timer = setTimeout(() => applyAuto(lat, lng), msUntilNext);
+    };
+
+    const fallback = () => {
+      const lng = -(new Date().getTimezoneOffset() / 60) * 15;
+      applyAuto(35, lng); // 35° lat covers most populated latitudes reasonably
+    };
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        ({ coords }) => applyAuto(coords.latitude, coords.longitude),
+        fallback,
+        { timeout: 5000 }
+      );
+    } else {
+      fallback();
+    }
+
+    return () => { cancelled = true; clearTimeout(timer); };
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleActivate = (tool) => {
     if (tool.locked && !unlocked.has(tool.id)) {
