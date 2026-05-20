@@ -1,0 +1,87 @@
+name: Update LinkedIn Follower Count
+
+on:
+  schedule:
+    - cron: "0 */4 * * *"   # every 4 hours
+  workflow_dispatch:          # allow manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  fetch-count:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Fetch LinkedIn follower count
+        id: fetch
+        run: |
+          COUNT=""
+
+          # Try multiple LinkedIn page variants and extract follower count
+          for URL in \
+            "https://www.linkedin.com/company/kneuralabs/" \
+            "https://www.linkedin.com/company/kneuralabs/about/"; do
+
+            HTML=$(curl -sL --max-time 15 \
+              -H "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36" \
+              -H "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" \
+              -H "Accept-Language: en-US,en;q=0.9" \
+              -H "Accept-Encoding: gzip, deflate, br" \
+              -H "Cache-Control: no-cache" \
+              -H "Pragma: no-cache" \
+              --compressed \
+              "$URL" 2>/dev/null) || continue
+
+            # Try multiple JSON key patterns
+            for PATTERN in \
+              '"followerCount":[[:space:]]*([0-9]+)' \
+              '"followersCount":[[:space:]]*([0-9]+)' \
+              '"numberOfFollowers":[[:space:]]*([0-9]+)' \
+              '"numFollowers":[[:space:]]*([0-9]+)'; do
+              MATCH=$(echo "$HTML" | grep -oP "${PATTERN}" | head -1 | grep -oP '[0-9]+$')
+              if [ -n "$MATCH" ] && [ "$MATCH" -gt 10 ] 2>/dev/null; then
+                COUNT="$MATCH"
+                break 2
+              fi
+            done
+
+            # Plain-text follower pattern (e.g. "215 followers")
+            MATCH=$(echo "$HTML" | grep -oP '[0-9,]+ followers' | head -1 | tr -d ',' | grep -oP '^[0-9]+')
+            if [ -n "$MATCH" ] && [ "$MATCH" -gt 10 ] 2>/dev/null; then
+              COUNT="$MATCH"
+              break
+            fi
+          done
+
+          if [ -z "$COUNT" ]; then
+            echo "Could not parse follower count — keeping existing value"
+            echo "count=" >> "$GITHUB_OUTPUT"
+          else
+            echo "Fetched count: $COUNT"
+            echo "count=$COUNT" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Write linkedin.json
+        if: steps.fetch.outputs.count != ''
+        run: |
+          COUNT="${{ steps.fetch.outputs.count }}"
+          TS=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          echo "{\"count\":$COUNT,\"ts\":\"$TS\"}" > assets/linkedin.json
+          echo "Wrote assets/linkedin.json: count=$COUNT ts=$TS"
+
+      - name: Commit if changed
+        if: steps.fetch.outputs.count != ''
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add assets/linkedin.json
+          if git diff --cached --quiet; then
+            echo "No change in follower count — nothing to commit"
+          else
+            git commit -m "chore: update LinkedIn follower count to ${{ steps.fetch.outputs.count }}"
+            git push origin main
+          fi

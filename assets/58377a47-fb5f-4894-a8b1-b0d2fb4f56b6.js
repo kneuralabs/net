@@ -467,12 +467,12 @@ function getWeeklyBrief() {
 /* ────────────────────────────────────────────────────────────────
    News feed + LinkedIn follower counter
    ──────────────────────────────────────────────────────────────── */
-const LI_SEED = 210;            // floor — cache/live supersede this
+const LI_SEED = 210;
 const LI_CACHE = "kl_li_followers";
 const LI_TARGET = "https://www.linkedin.com/company/kneuralabs/";
+const LI_JSON   = "assets/linkedin.json";   // written by GitHub Actions every 4 h
 
-// Ordered list of CORS proxies tried in sequence until one succeeds.
-// Each entry is a function(url) → fetch URL string.
+// CORS proxy waterfall — tried only when the static JSON is stale / unavailable
 const LI_PROXIES = [
   (u) => "https://corsproxy.io/?" + encodeURIComponent(u),
   (u) => "https://api.allorigins.win/get?url=" + encodeURIComponent(u),
@@ -480,16 +480,14 @@ const LI_PROXIES = [
 ];
 
 function parseLinkedInCount(payload) {
-  // allorigins returns { contents: "..." }; others return raw HTML
   const html = (payload && typeof payload === "object" && payload.contents)
-    ? payload.contents
-    : String(payload || "");
+    ? payload.contents : String(payload || "");
   for (const p of [
     /"followerCount"\s*:\s*(\d+)/,
     /"followersCount"\s*:\s*(\d+)/,
     /"numberOfFollowers"\s*:\s*(\d+)/,
-    /(\d[\d,]+)\s+follower/i,
     /"numFollowers"\s*:\s*(\d+)/,
+    /(\d[\d,]+)\s+follower/i,
   ]) {
     const m = html.match(p);
     if (m && m[1]) {
@@ -500,7 +498,24 @@ function parseLinkedInCount(payload) {
   return null;
 }
 
-async function fetchLinkedInCount() {
+async function fetchLinkedInCount(setStatus) {
+  // 1. Try the repo-local JSON written by the GitHub Action (no CORS, always fresh)
+  try {
+    const res = await fetch(LI_JSON + "?_=" + Math.floor(Date.now() / 3600000), { cache: "no-store" });
+    if (res.ok) {
+      const data = await res.json();
+      if (data && data.count > 10) {
+        // Consider stale if older than 6 hours — still show it, but keep trying proxies
+        const ageMs = Date.now() - new Date(data.ts || 0).getTime();
+        const stale = ageMs > 6 * 3600000;
+        if (!stale) return { n: data.count, source: "live" };
+        // Stale — return the value but signal we want to try proxies too
+        return { n: data.count, source: "cached" };
+      }
+    }
+  } catch (_) {}
+
+  // 2. Proxy waterfall (best-effort; LinkedIn may block)
   for (const makeUrl of LI_PROXIES) {
     try {
       const res = await fetch(makeUrl(LI_TARGET), {
@@ -511,7 +526,7 @@ async function fetchLinkedInCount() {
       const ct = res.headers.get("content-type") || "";
       const payload = ct.includes("json") ? await res.json() : await res.text();
       const n = parseLinkedInCount(payload);
-      if (n) return n;
+      if (n) return { n, source: "live" };
     } catch (_) {}
   }
   return null;
@@ -521,11 +536,7 @@ function FeedSection() {
   const [followers, setFollowers] = useState(() => {
     try {
       const c = JSON.parse(localStorage.getItem(LI_CACHE));
-      if (c && c.n) {
-        const n = Math.max(c.n, LI_SEED);
-        if (n !== c.n) try { localStorage.setItem(LI_CACHE, JSON.stringify({ n, ts: Date.now() })); } catch (_) {}
-        return n;
-      }
+      if (c && c.n) return Math.max(c.n, LI_SEED);
     } catch (_) {}
     return LI_SEED;
   });
@@ -536,12 +547,12 @@ function FeedSection() {
 
     const refresh = async () => {
       if (!cancelled) setStatus("loading");
-      const n = await fetchLinkedInCount();
+      const result = await fetchLinkedInCount();
       if (cancelled) return;
-      if (n) {
-        const saved = Math.max(n, LI_SEED);
+      if (result) {
+        const saved = Math.max(result.n, LI_SEED);
         setFollowers(saved);
-        setStatus("live");
+        setStatus(result.source);
         try { localStorage.setItem(LI_CACHE, JSON.stringify({ n: saved, ts: Date.now() })); } catch (_) {}
       } else {
         setStatus("static");
