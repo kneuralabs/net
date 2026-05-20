@@ -16,76 +16,103 @@ jobs:
         with:
           ref: main
 
-      - name: Fetch LinkedIn follower count
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Playwright
+        run: npx --yes playwright install chromium --with-deps 2>&1 | tail -5
+
+      - name: Fetch LinkedIn follower count via Playwright
         id: fetch
         run: |
-          COUNT=""
+          COUNT=$(node - << 'JSEOF'
+          const { chromium } = require('playwright');
 
-          extract_count() {
-            local HTML="$1"
-            for PATTERN in \
-              '"followerCount":[[:space:]]*([0-9]+)' \
-              '"followersCount":[[:space:]]*([0-9]+)' \
-              '"numberOfFollowers":[[:space:]]*([0-9]+)' \
-              '"numFollowers":[[:space:]]*([0-9]+)' \
-              '"followerCount":"([0-9]+)"' \
-              'followers_count[^0-9]*([0-9]+)'; do
-              MATCH=$(echo "$HTML" | grep -oP "${PATTERN}" | head -1 | grep -oP '[0-9]+$')
-              if [ -n "$MATCH" ] && [ "$MATCH" -gt 10 ] 2>/dev/null; then
-                echo "$MATCH"; return
-              fi
-            done
-            # Plain-text "215 followers"
-            MATCH=$(echo "$HTML" | grep -oP '[0-9,]+ followers' | head -1 | tr -d ',' | grep -oP '^[0-9]+')
-            if [ -n "$MATCH" ] && [ "$MATCH" -gt 10 ] 2>/dev/null; then
-              echo "$MATCH"; return
-            fi
+          const PATTERNS = [
+            /"followerCount"\s*:\s*(\d+)/,
+            /"followersCount"\s*:\s*(\d+)/,
+            /"numberOfFollowers"\s*:\s*(\d+)/,
+            /"numFollowers"\s*:\s*(\d+)/,
+            /(\d[\d,]+)\s+followers/i,
+          ];
+
+          function extractCount(text) {
+            for (const p of PATTERNS) {
+              const m = text.match(p);
+              if (m) {
+                const n = parseInt(m[1].replace(/,/g, ''), 10);
+                if (!isNaN(n) && n > 10 && n < 1e8) return n;
+              }
+            }
+            return null;
           }
 
-          # Attempt 1: direct page fetch with full browser headers + cookie jar
-          for URL in \
-            "https://www.linkedin.com/company/kneuralabs/" \
-            "https://www.linkedin.com/company/kneuralabs/about/"; do
-            HTML=$(curl -sL --max-time 20 \
-              -b /tmp/li_cookies.txt -c /tmp/li_cookies.txt \
-              -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36" \
-              -H "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8" \
-              -H "Accept-Language: en-US,en;q=0.9" \
-              -H "Accept-Encoding: gzip, deflate, br" \
-              -H "Sec-Fetch-Dest: document" \
-              -H "Sec-Fetch-Mode: navigate" \
-              -H "Sec-Fetch-Site: none" \
-              -H "Cache-Control: max-age=0" \
-              --compressed \
-              "$URL" 2>/dev/null) || continue
-            MATCH=$(extract_count "$HTML")
-            if [ -n "$MATCH" ]; then COUNT="$MATCH"; break; fi
-          done
+          (async () => {
+            const browser = await chromium.launch({
+              args: ['--no-sandbox', '--disable-setuid-sandbox',
+                     '--disable-blink-features=AutomationControlled'],
+            });
+            const ctx = await browser.newContext({
+              userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+              locale: 'en-US',
+              timezoneId: 'America/New_York',
+              viewport: { width: 1280, height: 800 },
+              extraHTTPHeaders: {
+                'Accept-Language': 'en-US,en;q=0.9',
+                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+              },
+            });
 
-          # Attempt 2: CORS proxy services
+            // Mask headless fingerprints
+            await ctx.addInitScript(() => {
+              Object.defineProperty(navigator, 'webdriver', { get: () => undefined });
+              Object.defineProperty(navigator, 'plugins', { get: () => [1, 2, 3] });
+              window.chrome = { runtime: {} };
+            });
+
+            const page = await ctx.newPage();
+
+            for (const url of [
+              'https://www.linkedin.com/company/kneuralabs/',
+              'https://www.linkedin.com/company/kneuralabs/about/',
+            ]) {
+              try {
+                await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 });
+                await page.waitForTimeout(2500);
+                const html = await page.content();
+                const n = extractCount(html);
+                if (n) { process.stdout.write(String(n)); break; }
+              } catch (_) {}
+            }
+
+            await browser.close();
+          })();
+          JSEOF
+          )
+
+          # Fallback: curl with realistic headers if Playwright found nothing
           if [ -z "$COUNT" ]; then
-            ENCODED=$(python3 -c "import urllib.parse; print(urllib.parse.quote('https://www.linkedin.com/company/kneuralabs/'))")
-            for PROXY in \
-              "https://api.allorigins.win/get?url=${ENCODED}" \
-              "https://corsproxy.io/?${ENCODED}"; do
-              RESP=$(curl -sL --max-time 15 "$PROXY" 2>/dev/null) || continue
-              # allorigins wraps in {"contents":"..."}
-              INNER=$(echo "$RESP" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('contents',''))" 2>/dev/null || echo "$RESP")
-              MATCH=$(extract_count "$INNER")
-              if [ -n "$MATCH" ]; then COUNT="$MATCH"; break; fi
+            extract_count() {
+              echo "$1" | grep -oP '"followerCount"\s*:\s*\K[0-9]+|[0-9,]+ followers' \
+                | head -1 | tr -d ',' | grep -oP '[0-9]+'
+            }
+            for URL in \
+              "https://www.linkedin.com/company/kneuralabs/" \
+              "https://www.linkedin.com/company/kneuralabs/about/"; do
+              HTML=$(curl -sL --max-time 20 \
+                -b /tmp/li_cookies.txt -c /tmp/li_cookies.txt \
+                -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36" \
+                -H "Accept-Language: en-US,en;q=0.9" \
+                -H "Accept-Encoding: gzip, deflate, br" \
+                -H "Sec-Fetch-Dest: document" -H "Sec-Fetch-Mode: navigate" \
+                --compressed "$URL" 2>/dev/null) || continue
+              MATCH=$(extract_count "$HTML")
+              if [ -n "$MATCH" ] && [ "$MATCH" -gt 10 ] 2>/dev/null; then COUNT="$MATCH"; break; fi
             done
           fi
 
-          # Attempt 3: LinkedIn public API (no auth required for basic company info)
-          if [ -z "$COUNT" ]; then
-            RESP=$(curl -sL --max-time 15 \
-              -H "User-Agent: Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)" \
-              "https://www.linkedin.com/company/kneuralabs/" 2>/dev/null)
-            MATCH=$(extract_count "$RESP")
-            if [ -n "$MATCH" ]; then COUNT="$MATCH"; fi
-          fi
-
-          if [ -z "$COUNT" ]; then
+          if [ -z "$COUNT" ] || [ "$COUNT" -le 10 ] 2>/dev/null; then
             echo "Could not parse follower count — keeping existing value"
             echo "count=" >> "$GITHUB_OUTPUT"
           else
@@ -98,7 +125,7 @@ jobs:
         run: |
           COUNT="${{ steps.fetch.outputs.count }}"
           TS=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-          echo "{\"count\":$COUNT,\"ts\":\"$TS\"}" > assets/linkedin.json
+          printf '{"count":%s,"ts":"%s"}\n' "$COUNT" "$TS" > assets/linkedin.json
           echo "Wrote assets/linkedin.json: count=$COUNT ts=$TS"
 
       - name: Commit if changed
