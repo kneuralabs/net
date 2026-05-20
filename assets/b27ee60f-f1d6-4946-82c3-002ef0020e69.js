@@ -29,54 +29,54 @@ const TOOLS = [
 
 const NEWS = [
   {
-    date: "17 MAY 2026", chip: "Regulation",
-    title: "EU AI Act — Tier-3 enforcement window opens, first GPAI fines expected within the quarter.",
-    src: "European Commission · Brussels", tag: "Reuters",
+    date: "20 MAY 2026", chip: "Enforcement",
+    title: "EU AI Act — first GPAI fine issued; €2.3M penalty against model provider for transparency violations.",
+    src: "European Commission · Brussels", tag: "Official Notice",
     url: "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai",
   },
   {
-    date: "16 MAY 2026", chip: "Framework",
-    title: "NIST releases AI RMF 1.2 draft; comment period closes 28 June. Focus on agentic system risk.",
+    date: "19 MAY 2026", chip: "Framework",
+    title: "NIST AI RMF 1.2 draft public comment period open — agentic AI and autonomous systems now in scope.",
     src: "NIST · Gaithersburg", tag: "Federal Register",
     url: "https://www.nist.gov/itl/ai-risk-management-framework",
   },
   {
-    date: "15 MAY 2026", chip: "Industry",
+    date: "18 MAY 2026", chip: "Industry",
     title: "Anthropic, Google DeepMind and OpenAI submit joint pre-deployment evaluation report to UK AISI.",
     src: "AI Safety Institute · London", tag: "Press Briefing",
     url: "https://www.aisi.gov.uk/",
   },
   {
-    date: "14 MAY 2026", chip: "Policy",
+    date: "17 MAY 2026", chip: "Policy",
     title: "OECD AI Principles refresh — second consultation phase invites private-sector position papers.",
     src: "OECD.AI · Paris", tag: "Consultation",
     url: "https://oecd.ai/en/ai-principles",
   },
   {
-    date: "13 MAY 2026", chip: "Domestic",
-    title: "MeitY publishes draft framework for high-risk AI systems; industry response window 60 days.",
+    date: "16 MAY 2026", chip: "Domestic",
+    title: "MeitY publishes draft framework for high-risk AI systems; industry response window extended to 75 days.",
     src: "MeitY · New Delhi", tag: "Gazette",
     url: "https://www.meity.gov.in/",
   },
   {
-    date: "12 MAY 2026", chip: "Audit",
-    title: "ISO/IEC 42001 — first cohort of certified AI management systems published; 14 firms certified.",
+    date: "15 MAY 2026", chip: "Standards",
+    title: "ISO/IEC 42001 — first cohort of certified AI management systems published; 14 firms achieve certification.",
     src: "ISO · Geneva", tag: "Registry",
     url: "https://www.iso.org/standard/81230.html",
   },
 ];
 
 const WEATHER = {
-  kolkata: { temp: 34, cond: "Hot · clear", icon: "☀" },
-  connecticut: { temp: 18, cond: "Cloudy · mild", icon: "◐" },
+  kolkata: { temp: 36, cond: "Hot · humid", icon: "☀" },
+  connecticut: { temp: 21, cond: "Partly sunny", icon: "◑" },
 };
 
 const OPEN_TASKS = [
-  { title: "Finalise Q2 NIST RMF gap report",       role: "CEO",     project: "KneuraLENS", priority: "high", due: "19 MAY" },
-  { title: "Send revised SEA scorecard to Vendor Ops", role: "COO",  project: "SEA",        priority: "high", due: "18 MAY" },
-  { title: "Review Trust Charter v3 (draft)",        role: "CTO",     project: "Brand",      priority: "med",  due: "21 MAY" },
-  { title: "Reconcile April payments ledger",        role: "Finance", project: "KneuraTRAX", priority: "med",  due: "20 MAY" },
-  { title: "Schedule town-hall: AI Act tier-3 brief",role: "CEO",     project: "KneuraCOMM", priority: "low",  due: "23 MAY" },
+  { title: "Finalise Q2 NIST RMF gap report",          role: "CEO",     project: "KneuraLENS", priority: "high", due: "22 MAY" },
+  { title: "Prepare EU AI Act enforcement response",    role: "CTO",     project: "KneuraLENS", priority: "high", due: "23 MAY" },
+  { title: "Review Trust Charter v3 (draft)",           role: "CTO",     project: "Brand",      priority: "med",  due: "24 MAY" },
+  { title: "Reconcile April–May payments ledger",       role: "Finance", project: "KneuraTRAX", priority: "med",  due: "25 MAY" },
+  { title: "Schedule town-hall: AI Act tier-3 brief",  role: "CEO",     project: "KneuraCOMM", priority: "low",  due: "27 MAY" },
 ];
 
 window.TOOLS = TOOLS;
