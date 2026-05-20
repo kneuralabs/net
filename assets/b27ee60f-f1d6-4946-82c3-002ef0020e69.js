@@ -10,7 +10,7 @@ const TOOLS = [
   { id: "sea",      cat: "Supplier Evaluation",   name: "SEA",                  tm: "™",   desc: "Vendor risk & supplier scoring.",
     locked: true, word: "sea", href: "https://kneuralabs.github.io/sea/", seal: "◇" },
   { id: "scope",    cat: "AI Readiness",          name: "KneuraSCOPE",          tm: "™",   desc: "AI maturity & readiness audit.",
-    locked: true, word: "kneurascope", href: "https://kneuralabs.github.io/scope/", seal: "◉" },
+    locked: true, word: "scope", href: "https://kneuralabs.github.io/scope/", seal: "◉" },
   { id: "lens",     cat: "Governance Deployment", name: "KneuraLENS",           tm: "™",   desc: "Frameworks, controls & rollout.",
     locked: true, word: "s1ogger$", href: "https://kneuralabs.github.io/lens/", seal: "◬" },
   { id: "audit",    cat: "Audit & Records",       name: "KneurAUDIT",           tm: "™",   desc: "Audit trail & retention ledger.",
