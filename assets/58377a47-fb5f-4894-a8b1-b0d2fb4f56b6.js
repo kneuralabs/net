@@ -472,11 +472,13 @@ const LI_CACHE = "kl_li_followers";
 const LI_TARGET = "https://www.linkedin.com/company/kneuralabs/";
 const LI_JSON   = "assets/linkedin.json";   // written by GitHub Actions every 4 h
 
-// CORS proxy waterfall — tried only when the static JSON is stale / unavailable
+// CORS proxy waterfall — tried when the static JSON is stale / unavailable
 const LI_PROXIES = [
   (u) => "https://corsproxy.io/?" + encodeURIComponent(u),
   (u) => "https://api.allorigins.win/get?url=" + encodeURIComponent(u),
   (u) => "https://api.codetabs.com/v1/proxy?quest=" + encodeURIComponent(u),
+  (u) => "https://thingproxy.freeboard.io/fetch/" + encodeURIComponent(u),
+  (u) => "https://cors-anywhere.herokuapp.com/" + u,
 ];
 
 function parseLinkedInCount(payload) {
@@ -499,18 +501,19 @@ function parseLinkedInCount(payload) {
 }
 
 async function fetchLinkedInCount(setStatus) {
+  let cachedFallback = null;
+
   // 1. Try the repo-local JSON written by the GitHub Action (no CORS, always fresh)
   try {
     const res = await fetch(LI_JSON + "?_=" + Math.floor(Date.now() / 3600000), { cache: "no-store" });
     if (res.ok) {
       const data = await res.json();
       if (data && data.count > 10) {
-        // Consider stale if older than 6 hours — still show it, but keep trying proxies
         const ageMs = Date.now() - new Date(data.ts || 0).getTime();
         const stale = ageMs > 6 * 3600000;
         if (!stale) return { n: data.count, source: "live" };
-        // Stale — return the value but signal we want to try proxies too
-        return { n: data.count, source: "cached" };
+        // Stale — save as fallback and fall through to try proxies for fresh data
+        cachedFallback = data.count;
       }
     }
   } catch (_) {}
@@ -529,7 +532,7 @@ async function fetchLinkedInCount(setStatus) {
       if (n) return { n, source: "live" };
     } catch (_) {}
   }
-  return null;
+  return cachedFallback ? { n: cachedFallback, source: "cached" } : null;
 }
 
 function FeedSection() {
