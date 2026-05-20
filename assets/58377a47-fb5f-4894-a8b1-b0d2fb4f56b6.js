@@ -102,12 +102,47 @@ function ClockCell({ city, code, tz, weather, now }) {
     </div>
   );
 }
+const US_HOLIDAYS_2026 = [
+  { date: "2026-01-01", name: "New Year's Day" },
+  { date: "2026-01-19", name: "MLK Jr. Day" },
+  { date: "2026-02-16", name: "Presidents' Day" },
+  { date: "2026-05-25", name: "Memorial Day" },
+  { date: "2026-06-19", name: "Juneteenth" },
+  { date: "2026-07-04", name: "Independence Day" },
+  { date: "2026-09-07", name: "Labor Day" },
+  { date: "2026-11-11", name: "Veterans Day" },
+  { date: "2026-11-26", name: "Thanksgiving" },
+  { date: "2026-12-25", name: "Christmas" },
+];
+
+function getHolidayInfo(now) {
+  const today = now.toISOString().slice(0, 10);
+  const todayHol = US_HOLIDAYS_2026.find(h => h.date === today);
+  if (todayHol) return { today: todayHol.name, next: null };
+  const future = US_HOLIDAYS_2026.filter(h => h.date > today);
+  const next = future[0] || null;
+  return {
+    today: null,
+    next: next
+      ? next.name + " · " + new Intl.DateTimeFormat("en-US", { day: "numeric", month: "short" }).format(new Date(next.date + "T12:00:00"))
+      : null,
+  };
+}
+
 function StatusStrip({ now }) {
+  const holInfo = useMemo(() => getHolidayInfo(now), [
+    now.getFullYear(), now.getMonth(), now.getDate()
+  ]);
+  const syncTime = useMemo(() => fmtTime(now, "Asia/Kolkata"), [
+    Math.floor(now.getTime() / 60000)
+  ]);
+  const toolCount = window.TOOLS ? window.TOOLS.length : 12;
+
   return (
     <section className="strip">
       <ClockCell city="Kolkata" code="IST · UTC+5:30" tz="Asia/Kolkata"
                  weather={window.WEATHER.kolkata} now={now} />
-      <ClockCell city="Connecticut" code="EDT · America/New_York" tz="America/New_York"
+      <ClockCell city="Connecticut" code="EDT · UTC−4" tz="America/New_York"
                  weather={window.WEATHER.connecticut} now={now} />
       <div className="strip__cell">
         <div className="strip__lbl">
@@ -115,9 +150,15 @@ function StatusStrip({ now }) {
           <span>US</span>
         </div>
         <div className="strip__big" style={{ fontSize: 22, letterSpacing: "-0.02em", fontWeight: 600 }}>
-          No&nbsp;holiday
+          {holInfo.today ? holInfo.today : "No holiday"}
         </div>
-        <div className="strip__sub">Next observed · Memorial Day · 25 May</div>
+        <div className="strip__sub">
+          {holInfo.today
+            ? "Federal holiday — offices closed"
+            : holInfo.next
+              ? "Next observed · " + holInfo.next
+              : "No upcoming holidays"}
+        </div>
       </div>
       <div className="strip__cell">
         <div className="strip__lbl">
@@ -127,7 +168,7 @@ function StatusStrip({ now }) {
         <div className="strip__big" style={{ fontSize: 22, letterSpacing: "-0.02em", fontWeight: 600 }}>
           Operational
         </div>
-        <div className="strip__sub">12 tools online · 0 incidents · last sync 00:14</div>
+        <div className="strip__sub">{toolCount} tools online · 0 incidents · synced {syncTime} IST</div>
       </div>
     </section>
   );
@@ -424,75 +465,91 @@ function getWeeklyBrief() {
 }
 
 /* ────────────────────────────────────────────────────────────────
-   News feed
+   News feed + LinkedIn follower counter
    ──────────────────────────────────────────────────────────────── */
-const LI_SEED = 185;            // last known count — shown until a live fetch succeeds
+const LI_SEED = 210;            // floor — cache/live supersede this
 const LI_CACHE = "kl_li_followers";
+const LI_TARGET = "https://www.linkedin.com/company/kneuralabs/";
+
+// Ordered list of CORS proxies tried in sequence until one succeeds.
+// Each entry is a function(url) → fetch URL string.
+const LI_PROXIES = [
+  (u) => "https://corsproxy.io/?" + encodeURIComponent(u),
+  (u) => "https://api.allorigins.win/get?url=" + encodeURIComponent(u),
+  (u) => "https://api.codetabs.com/v1/proxy?quest=" + encodeURIComponent(u),
+];
+
+function parseLinkedInCount(payload) {
+  // allorigins returns { contents: "..." }; others return raw HTML
+  const html = (payload && typeof payload === "object" && payload.contents)
+    ? payload.contents
+    : String(payload || "");
+  for (const p of [
+    /"followerCount"\s*:\s*(\d+)/,
+    /"followersCount"\s*:\s*(\d+)/,
+    /"numberOfFollowers"\s*:\s*(\d+)/,
+    /(\d[\d,]+)\s+follower/i,
+    /"numFollowers"\s*:\s*(\d+)/,
+  ]) {
+    const m = html.match(p);
+    if (m && m[1]) {
+      const n = parseInt(m[1].replace(/[^0-9]/g, ""), 10);
+      if (!Number.isNaN(n) && n > 10 && n < 1e8) return n;
+    }
+  }
+  return null;
+}
+
+async function fetchLinkedInCount() {
+  for (const makeUrl of LI_PROXIES) {
+    try {
+      const res = await fetch(makeUrl(LI_TARGET), {
+        headers: { Accept: "text/html,application/json" },
+        signal: AbortSignal.timeout ? AbortSignal.timeout(8000) : undefined,
+      });
+      if (!res.ok) continue;
+      const ct = res.headers.get("content-type") || "";
+      const payload = ct.includes("json") ? await res.json() : await res.text();
+      const n = parseLinkedInCount(payload);
+      if (n) return n;
+    } catch (_) {}
+  }
+  return null;
+}
 
 function FeedSection() {
   const [followers, setFollowers] = useState(() => {
     try {
       const c = JSON.parse(localStorage.getItem(LI_CACHE));
       if (c && c.n) {
-        // LI_SEED is always a floor — stale cache can never show a lower count
         const n = Math.max(c.n, LI_SEED);
-        if (n !== c.n) {
-          try { localStorage.setItem(LI_CACHE, JSON.stringify({ n, ts: Date.now() })); } catch (_) {}
-        }
+        if (n !== c.n) try { localStorage.setItem(LI_CACHE, JSON.stringify({ n, ts: Date.now() })); } catch (_) {}
         return n;
       }
-    } catch (e) {}
+    } catch (_) {}
     return LI_SEED;
   });
-  const [status, setStatus] = useState("static"); // static | live | loading
+  const [status, setStatus] = useState("static");
 
   useEffect(() => {
-    // Ported from the inline site: cached value/seed shows immediately, a
-    // best-effort live scrape via a public CORS proxy refreshes it and
-    // persists to localStorage, then re-checks every 10 minutes.
     let cancelled = false;
-
-    const PROXY = "https://corsproxy.io/?";
-    const TARGET = "https://www.linkedin.com/company/kneuralabs/";
-
-    const parseCount = (html) => {
-      for (const p of [
-        /"followerCount"\s*:\s*(\d+)/,
-        /"followersCount"\s*:\s*(\d+)/,
-        /"numberOfFollowers"\s*:\s*(\d+)/,
-        /(\d[\d,]+)\s*followers/i,
-      ]) {
-        const m = html.match(p);
-        if (m && m[1]) {
-          const n = parseInt(m[1].replace(/[^0-9]/g, ""), 10);
-          if (!Number.isNaN(n) && n > 0 && n < 1e9) return n;
-        }
-      }
-      return null;
-    };
 
     const refresh = async () => {
       if (!cancelled) setStatus("loading");
-      try {
-        const res = await fetch(PROXY + encodeURIComponent(TARGET), {
-          headers: { "Accept": "text/html" },
-        });
-        if (!res.ok) throw new Error("proxy " + res.status);
-        const html = await res.text();
-        const n = parseCount(html);
-        if (n) {
-          if (!cancelled) { setFollowers(n); setStatus("live"); }
-          try { localStorage.setItem(LI_CACHE, JSON.stringify({ n, ts: Date.now() })); } catch (e) {}
-          return;
-        }
-        throw new Error("pattern not found");
-      } catch (e) {
-        if (!cancelled) setStatus("static");
+      const n = await fetchLinkedInCount();
+      if (cancelled) return;
+      if (n) {
+        const saved = Math.max(n, LI_SEED);
+        setFollowers(saved);
+        setStatus("live");
+        try { localStorage.setItem(LI_CACHE, JSON.stringify({ n: saved, ts: Date.now() })); } catch (_) {}
+      } else {
+        setStatus("static");
       }
     };
 
     refresh();
-    const id = setInterval(refresh, 10 * 60 * 1000);
+    const id = setInterval(refresh, 12 * 60 * 1000);
     return () => { cancelled = true; clearInterval(id); };
   }, []);
 
@@ -519,15 +576,15 @@ function FeedSection() {
         <aside className="aside">
           <div className="aside__card">
             <h4>
-              Follow on LinkedIn
+              LinkedIn Followers
               <span className={"aside__live " + (status === "live" ? "is-live" : status === "loading" ? "is-loading" : "is-static")}>
-                {status === "live" ? "● live" : status === "loading" ? "○ loading" : "○ cached"}
+                {status === "live" ? "● live" : status === "loading" ? "○ syncing" : "○ cached"}
               </span>
             </h4>
             <div className="aside__bigfig">{followers.toLocaleString()}</div>
-            <div className="aside__sub">Followers tracking AI governance research from the team.</div>
+            <div className="aside__sub">Followers tracking KNEURALABS · AI governance practice.</div>
             <a className="aside__link" href="https://www.linkedin.com/company/kneuralabs" target="_blank" rel="noopener">
-              View on LinkedIn →
+              Follow on LinkedIn →
             </a>
           </div>
           <div className="aside__poster">
@@ -564,9 +621,6 @@ function Colophon() {
   );
 }
 
-/* ────────────────────────────────────────────────────────────────
-   Open Tasks block — high-contrast attention magnet
-   ──────────────────────────────────────────────────────────────── */
 /* ────────────────────────────────────────────────────────────────
    KneuraCOMM live queue — fetch + minimal XLSX reader (no deps)
    Pulls https://kneuralabs.github.io/comm/data.xlsx, parses the
