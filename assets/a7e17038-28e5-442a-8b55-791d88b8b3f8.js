@@ -1,7 +1,8 @@
 // app.jsx — KNEURALABS Intranet root
 
+const _h = new Date().getHours();
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-  "theme": "brand",
+  "theme": (_h >= 18 || _h < 6) ? "authority" : "brand",
   "typePair": "editorial",
   "tile": "bordered",
   "density": "comfortable",
@@ -87,8 +88,9 @@ function App() {
 
   return (
     <React.Fragment>
+      <ThemeToggle theme={t.theme} onChange={(v) => setTweak("theme", v)} />
       <div className="page">
-        <Nameplate now={now} theme={t.theme} onThemeChange={(v) => setTweak("theme", v)} />
+        <Nameplate now={now} />
         <StatusStrip now={now} />
         <OpenTasks onOpenCommand={handleOpenCommand} />
         <Welcome voice={t.voice} />

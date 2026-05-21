@@ -40,7 +40,7 @@ function fmtDayOfWeek(date, tz) {
 /* ────────────────────────────────────────────────────────────────
    Nameplate header
    ──────────────────────────────────────────────────────────────── */
-function Nameplate({ now, theme, onThemeChange }) {
+function Nameplate({ now }) {
   const dateStr = useMemo(() => {
     return new Intl.DateTimeFormat("en-US", {
       weekday: "long", day: "numeric", month: "long", year: "numeric",
@@ -71,7 +71,6 @@ function Nameplate({ now, theme, onThemeChange }) {
         </span>
         <span className="nameplate__edition">Trust &amp; Security Edition</span>
         <a className="nameplate__idcard" href="https://kneuralabs.github.io/ID/" target="_blank" rel="noopener noreferrer">ID Card</a>
-        <ThemeToggle theme={theme} onChange={onThemeChange} />
       </div>
       <div className="nameplate__meta">
         <div><b>{dateStr}</b></div>

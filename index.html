@@ -901,13 +901,6 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   color: var(--paper);
 }
 
-/* Theme toggle inside nameplate — not fixed, sits inline */
-.nameplate .theme-toggle {
-  position: static;
-  top: auto;
-  right: auto;
-  z-index: auto;
-}
 
 @media (max-width: 900px) {
   .nameplate__bar {
@@ -1812,49 +1805,34 @@ html[data-motion="playful"] .tile:hover {
 .nowrap { white-space: nowrap; }
 
 /* ============================================================
-   Theme toggle (light / dark) — pinned top-right
+   Theme toggle — ultra-minimalist floating circle, bottom-right
    ============================================================ */
 .theme-toggle {
   position: fixed;
-  top: 12px;
-  right: 12px;
+  bottom: 22px;
+  right: 22px;
   z-index: 51;
-  display: inline-flex;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
   background: var(--paper);
   color: var(--ink);
   border: 1px solid var(--rule);
-  padding: 7px 12px 7px 10px;
-  font-family: var(--f-mono);
-  font-size: 10.5px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
   cursor: pointer;
-  transition: background var(--t-fast) var(--ease),
-              color var(--t-fast) var(--ease),
-              border-color var(--t-fast) var(--ease);
+  opacity: 0.65;
+  transition: opacity 0.18s ease, background 0.18s ease, transform 0.18s ease;
+  padding: 0;
 }
-.theme-toggle:hover {
-  background: var(--accent-ink);
-  color: var(--paper);
-  border-color: var(--accent-ink);
-}
-.theme-toggle__icon {
-  display: block;
-  transition: transform var(--t-med) var(--ease);
-}
-.theme-toggle:hover .theme-toggle__icon { transform: rotate(-12deg); }
-.theme-toggle__lbl {
-  display: inline;
-  font-weight: 500;
-}
+.theme-toggle:hover { opacity: 1; transform: scale(1.08); }
+.theme-toggle__icon { display: block; flex-shrink: 0; }
+.theme-toggle__lbl { display: none; }
 @media (max-width: 480px) {
-  .theme-toggle { top: 10px; right: 10px; padding: 6px 10px 6px 8px; }
-  .theme-toggle__lbl { display: none; }
+  .theme-toggle { bottom: 16px; right: 16px; width: 34px; height: 34px; }
 }
 
-/* Move the beacon to the left of the toggle so they don't overlap */
 .beacon {
   right: auto;
   left: 12px;
