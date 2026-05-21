@@ -427,48 +427,6 @@ function getWeeklyBrief() {
    News feed
    ──────────────────────────────────────────────────────────────── */
 function FeedSection() {
-  const [followers, setFollowers] = useState(184); // fallback known count
-  const [status, setStatus] = useState("static"); // static | live | loading
-
-  useEffect(() => {
-    let cancelled = false;
-    setStatus("loading");
-
-    const PROXY = "https://corsproxy.io/?";
-    const TARGET = "https://www.linkedin.com/company/kneuralabs/";
-
-    const fetchCount = async () => {
-      try {
-        const res = await fetch(PROXY + encodeURIComponent(TARGET), {
-          headers: { "Accept": "text/html" },
-        });
-        if (!res.ok) throw new Error("proxy " + res.status);
-        const html = await res.text();
-        const patterns = [
-          /([0-9][0-9,\.]*)\s*followers/i,
-          /"followerCount"\s*:\s*([0-9]+)/i,
-          /content="[^"]*?([0-9][0-9,\.]*)\s*followers/i,
-        ];
-        for (const re of patterns) {
-          const m = html.match(re);
-          if (m && m[1]) {
-            const n = parseInt(m[1].replace(/[^0-9]/g, ""), 10);
-            if (!Number.isNaN(n) && n > 0 && n < 1e9) {
-              if (!cancelled) { setFollowers(n); setStatus("live"); }
-              return;
-            }
-          }
-        }
-        throw new Error("pattern not found");
-      } catch (e) {
-        if (!cancelled) setStatus("static");
-      }
-    };
-
-    fetchCount();
-    return () => { cancelled = true; };
-  }, []);
-
   return (
     <section className="section" id="feed">
       <div className="section__head">
@@ -490,19 +448,6 @@ function FeedSection() {
           ))}
         </div>
         <aside className="aside">
-          <div className="aside__card">
-            <h4>
-              Follow on LinkedIn
-              <span className={"aside__live " + (status === "live" ? "is-live" : status === "loading" ? "is-loading" : "is-static")}>
-                {status === "live" ? "● live" : status === "loading" ? "○ loading" : "○ cached"}
-              </span>
-            </h4>
-            <div className="aside__bigfig">{followers.toLocaleString()}</div>
-            <div className="aside__sub">Followers tracking AI governance research from the team.</div>
-            <a className="aside__link" href="https://www.linkedin.com/company/kneuralabs" target="_blank" rel="noopener">
-              View on LinkedIn →
-            </a>
-          </div>
           <div className="aside__poster">
             <span className="smallcaps">Weekly Read</span>
             <h3>{getWeeklyBrief().quote}</h3>
