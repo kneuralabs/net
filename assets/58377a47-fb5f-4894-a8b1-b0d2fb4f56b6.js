@@ -426,57 +426,38 @@ function getWeeklyBrief() {
 /* ────────────────────────────────────────────────────────────────
    News feed
    ──────────────────────────────────────────────────────────────── */
-const LI_SEED = 184;            // last known count — shown until a live fetch succeeds
-const LI_CACHE = "kl_li_followers";
-
 function FeedSection() {
-  const [followers, setFollowers] = useState(() => {
-    try {
-      const c = JSON.parse(localStorage.getItem(LI_CACHE));
-      if (c && c.n) return c.n;
-    } catch (e) {}
-    return LI_SEED;
-  });
+  const [followers, setFollowers] = useState(184); // fallback known count
   const [status, setStatus] = useState("static"); // static | live | loading
 
   useEffect(() => {
-    // Ported from the inline site: cached value/seed shows immediately, a
-    // best-effort live scrape via a public CORS proxy refreshes it and
-    // persists to localStorage, then re-checks every 10 minutes.
     let cancelled = false;
+    setStatus("loading");
 
     const PROXY = "https://corsproxy.io/?";
     const TARGET = "https://www.linkedin.com/company/kneuralabs/";
 
-    const parseCount = (html) => {
-      for (const p of [
-        /"followerCount"\s*:\s*(\d+)/,
-        /"followersCount"\s*:\s*(\d+)/,
-        /"numberOfFollowers"\s*:\s*(\d+)/,
-        /(\d[\d,]+)\s*followers/i,
-      ]) {
-        const m = html.match(p);
-        if (m && m[1]) {
-          const n = parseInt(m[1].replace(/[^0-9]/g, ""), 10);
-          if (!Number.isNaN(n) && n > 0 && n < 1e9) return n;
-        }
-      }
-      return null;
-    };
-
-    const refresh = async () => {
-      if (!cancelled) setStatus("loading");
+    const fetchCount = async () => {
       try {
         const res = await fetch(PROXY + encodeURIComponent(TARGET), {
           headers: { "Accept": "text/html" },
         });
         if (!res.ok) throw new Error("proxy " + res.status);
         const html = await res.text();
-        const n = parseCount(html);
-        if (n) {
-          if (!cancelled) { setFollowers(n); setStatus("live"); }
-          try { localStorage.setItem(LI_CACHE, JSON.stringify({ n, ts: Date.now() })); } catch (e) {}
-          return;
+        const patterns = [
+          /([0-9][0-9,\.]*)\s*followers/i,
+          /"followerCount"\s*:\s*([0-9]+)/i,
+          /content="[^"]*?([0-9][0-9,\.]*)\s*followers/i,
+        ];
+        for (const re of patterns) {
+          const m = html.match(re);
+          if (m && m[1]) {
+            const n = parseInt(m[1].replace(/[^0-9]/g, ""), 10);
+            if (!Number.isNaN(n) && n > 0 && n < 1e9) {
+              if (!cancelled) { setFollowers(n); setStatus("live"); }
+              return;
+            }
+          }
         }
         throw new Error("pattern not found");
       } catch (e) {
@@ -484,9 +465,8 @@ function FeedSection() {
       }
     };
 
-    refresh();
-    const id = setInterval(refresh, 10 * 60 * 1000);
-    return () => { cancelled = true; clearInterval(id); };
+    fetchCount();
+    return () => { cancelled = true; };
   }, []);
 
   return (
