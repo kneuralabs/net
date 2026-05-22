@@ -198,14 +198,15 @@ function Welcome({ voice }) {
 function Tile({ tool, idx, unlocked, onActivate }) {
   const isOpen = !tool.locked || unlocked;
   const handleClick = (e) => {
-    // Locked + not unlocked: block navigation and open the access modal.
-    // Otherwise let the anchor's native target=_blank handle it (a parallel
-    // window.open here would open the link in a second tab).
-    if (!isOpen) { e.preventDefault(); onActivate(tool); }
+    if (tool.locked) {
+      e.preventDefault();
+      const ssoUrl = "https://sso.kneuralabs.com/?redirect=" + encodeURIComponent(tool.href || "");
+      window.open(ssoUrl, "_blank", "noopener");
+    }
   };
   return (
     <a
-      className={"tile" + (tool.locked && !unlocked ? " tile--locked" : "")}
+      className={"tile" + (tool.locked ? " tile--locked" : "")}
       href={isOpen && tool.href ? tool.href : "#"}
       target={isOpen && tool.href ? "_blank" : undefined}
       rel="noopener"
@@ -214,8 +215,8 @@ function Tile({ tool, idx, unlocked, onActivate }) {
     >
       <div className="tile__top">
         <span className="tile__idx">№ {String(idx + 1).padStart(2, "0")}</span>
-        <span className={"tile__state" + (tool.locked && !unlocked ? " tile__state--locked" : "")}>
-          {tool.locked && !unlocked ? "Locked" : "Open"}
+        <span className={"tile__state" + (tool.locked ? " tile__state--locked" : "")}>
+          {tool.locked ? "SSO" : "Open"}
         </span>
       </div>
       <div className="tile__body">
@@ -235,7 +236,7 @@ function ToolsSection({ unlockedSet, onActivate }) {
       <div className="section__head">
         <span className="section__num">№ I — Tools</span>
         <h2 className="section__title">Workspace</h2>
-        <span className="section__meta">{window.TOOLS.length} apps · {window.TOOLS.filter(t => t.locked).length} require access</span>
+        <span className="section__meta">{window.TOOLS.length} apps · {window.TOOLS.filter(t => t.locked).length} via SSO</span>
       </div>
       <div className="tools">
         {window.TOOLS.map((t, i) => (

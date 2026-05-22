@@ -56,8 +56,8 @@ function App() {
   React.useEffect(() => { applyTokens(t); }, [t.theme, t.tile, t.density, t.motion, t.typePair]);
 
   const handleActivate = (tool) => {
-    if (tool.locked && !unlocked.has(tool.id)) {
-      setActiveLock(tool);
+    if (tool.locked) {
+      window.open("https://sso.kneuralabs.com/?redirect=" + encodeURIComponent(tool.href || ""), "_blank", "noopener");
     } else if (tool.href) {
       window.open(tool.href, "_blank", "noopener");
     }
@@ -66,8 +66,8 @@ function App() {
   const handleOpenCommand = () => {
     const comm = window.TOOLS.find(t => t.id === "comm");
     if (!comm) return;
-    if (comm.locked && !unlocked.has(comm.id)) {
-      setActiveLock(comm);
+    if (comm.locked) {
+      window.open("https://sso.kneuralabs.com/?redirect=" + encodeURIComponent(comm.href || ""), "_blank", "noopener");
     } else {
       window.open(comm.href, "_blank", "noopener");
     }
