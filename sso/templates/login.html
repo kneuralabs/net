@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KneuraLabs — Sign In</title>
+  <title>KneuraLabs — Single Sign-On</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -75,6 +75,22 @@
       margin-top: 4px;
     }
 
+    .sso-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 8px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      background: rgba(99,102,241,.12);
+      border: 1px solid rgba(99,102,241,.25);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .5px;
+      color: #a5b4fc;
+      text-transform: uppercase;
+    }
+
     .divider {
       height: 1px;
       background: linear-gradient(90deg, transparent, rgba(99,102,241,.3), transparent);
@@ -106,7 +122,8 @@
       margin-bottom: 8px;
     }
 
-    input {
+    input[type="text"],
+    input[type="password"] {
       width: 100%;
       padding: 12px 16px;
       background: rgba(255,255,255,.04);
@@ -188,7 +205,8 @@
     <div class="logo">
       <div class="logo-mark">K</div>
       <h1>KneuraLabs</h1>
-      <p>Employee Intranet</p>
+      <p>Centralised Identity</p>
+      <span class="sso-badge">&#128274; Single Sign-On</span>
     </div>
 
     <div class="divider"></div>
@@ -206,10 +224,12 @@
       {% endif %}
     {% endwith %}
 
-    <h2>Welcome back</h2>
-    <p class="subtitle">Sign in with your Employee ID</p>
+    <h2>Sign in</h2>
+    <p class="subtitle">Your credentials work across all KneuraLabs services</p>
 
     <form method="POST" action="/login">
+      <input type="hidden" name="callback" value="{{ callback }}" />
+
       <div class="field">
         <label for="employee_id">Employee ID</label>
         <input
@@ -234,17 +254,12 @@
         />
       </div>
 
-      <button type="submit" class="btn">Sign In</button>
+      <button type="submit" class="btn">Continue</button>
     </form>
 
     <div class="footer">
-      First login? Use your Employee ID &amp; default password.<br/>
-      Contact IT if you need access.
-      <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(99,102,241,.15);">
-        <a href="/" style="color:#6366f1;text-decoration:none;font-size:12px;">
-          &#8617; Sign in with SSO instead
-        </a>
-      </div>
+      First login? Use your default password.<br/>
+      Contact IT for access issues.
     </div>
   </div>
 </body>

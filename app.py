@@ -10,6 +10,7 @@ from functools import wraps
 from cryptography.fernet import Fernet
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
+from itsdangerous import URLSafeTimedSerializer, BadSignature, SignatureExpired
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 
 app = Flask(__name__)
@@ -19,6 +20,11 @@ EXCEL_PASSWORD = os.environ.get('EXCEL_PASSWORD', 'KneuraExcel@2026')
 DATA_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'DATA.xlsx')
 EMPLOYEE_DATA_URL = 'https://raw.githubusercontent.com/kneuralabs/ID/main/EmployeeData.xlsx'
 DEFAULT_PASSWORD = 'Kneuralabs@2026'
+
+# SSO configuration
+SSO_URL = os.environ.get('SSO_URL', 'https://sso.kneuralabs.com')
+SSO_SHARED_SECRET = os.environ.get('SSO_SHARED_SECRET', 'kneura-sso-shared-secret-change-in-prod')
+_SSO_TOKEN_MAX_AGE = 300  # seconds
 
 _SALT = b'kneura_labs_2026'
 
@@ -144,13 +150,27 @@ def check_employee_roster(employee_id):
         return 'error'
 
 
+# ── SSO helpers ────────────────────────────────────────────────────────────────
+
+def _sso_login_url():
+    callback = url_for('sso_callback', _external=True)
+    return f'{SSO_URL}/login?callback={callback}'
+
+
+def _verify_sso_token(token):
+    """Returns employee_id string or raises BadSignature/SignatureExpired."""
+    s = URLSafeTimedSerializer(SSO_SHARED_SECRET)
+    data = s.loads(token, salt='sso-callback', max_age=_SSO_TOKEN_MAX_AGE)
+    return data['employee_id']
+
+
 # ── Auth decorator ─────────────────────────────────────────────────────────────
 
 def login_required(f):
     @wraps(f)
     def decorated(*args, **kwargs):
         if 'employee_id' not in session:
-            return redirect(url_for('login'))
+            return redirect(_sso_login_url())
         return f(*args, **kwargs)
     return decorated
 
@@ -161,7 +181,7 @@ def login_required(f):
 def index():
     if 'employee_id' in session:
         return redirect(url_for('dashboard'))
-    return redirect(url_for('login'))
+    return redirect(_sso_login_url())
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -265,10 +285,42 @@ def change_password():
     return render_template('change_password.html', first_login=first_login)
 
 
+@app.route('/sso/callback')
+def sso_callback():
+    token = request.args.get('token', '')
+    if not token:
+        flash('SSO authentication failed. Please try again.', 'error')
+        return redirect(_sso_login_url())
+
+    try:
+        employee_id = _verify_sso_token(token)
+    except SignatureExpired:
+        flash('SSO session expired. Please sign in again.', 'error')
+        return redirect(_sso_login_url())
+    except BadSignature:
+        flash('Invalid SSO token. Please sign in again.', 'error')
+        return redirect(_sso_login_url())
+
+    session['employee_id'] = employee_id
+    user = get_user(employee_id)
+
+    if user is None:
+        # First time through SSO — create local record with hashed default password
+        hashed = bcrypt.hashpw(DEFAULT_PASSWORD.encode(), bcrypt.gensalt()).decode()
+        upsert_user(employee_id, hashed)
+        session['first_login'] = True
+        flash('Welcome! Please change your default password.', 'info')
+        return redirect(url_for('change_password'))
+
+    session['first_login'] = False
+    update_last_login(employee_id)
+    return redirect(url_for('dashboard'))
+
+
 @app.route('/logout')
 def logout():
     session.clear()
-    return redirect(url_for('login'))
+    return redirect(_sso_login_url())
 
 
 if __name__ == '__main__':
