@@ -11,7 +11,7 @@
   <script>
     window.parent.postMessage(
       { type: 'sso_success', url: {{ redirect_url | tojson }} },
-      'https://intranet.kneuralabs.com'
+      '*'
     );
   </script>
 </body>
