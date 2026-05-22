@@ -32,6 +32,22 @@ _ALLOWED_HOSTS = set(
     if h.strip()
 )
 
+# Hosts allowed for direct (no-token) post-login redirects
+_ALLOWED_REDIRECT_HOSTS = set(
+    h.strip() for h in
+    os.environ.get('ALLOWED_REDIRECT_HOSTS', 'kneuralabs.github.io').split(',')
+    if h.strip()
+)
+
+
+def _is_valid_redirect(url):
+    """Allow HTTPS redirects to whitelisted widget hosts."""
+    try:
+        p = urlparse(url)
+        return p.scheme == 'https' and p.netloc in _ALLOWED_REDIRECT_HOSTS
+    except Exception:
+        return False
+
 _SALT = b'kneura_labs_2026'
 
 
@@ -98,17 +114,22 @@ def _make_token(employee_id):
 @app.route('/')
 def index():
     callback = request.args.get('callback', '')
+    redirect_url = request.args.get('redirect', '')
+    if redirect_url:
+        return redirect(f'/login?redirect={redirect_url}')
     return redirect(f'/login?callback={callback}' if callback else '/login')
 
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     callback = request.args.get('callback', '').strip()
+    redirect_url = request.args.get('redirect', '').strip()
 
     if request.method == 'POST':
         employee_id = request.form.get('employee_id', '').strip()
         password = request.form.get('password', '').strip()
         callback = request.form.get('callback', '').strip()
+        redirect_url = request.form.get('redirect_url', '').strip()
 
         if not employee_id or not password:
             flash('Please enter both Employee ID and password.', 'error')
@@ -140,6 +161,9 @@ def login():
             flash('Invalid credentials.', 'error')
             return render_template('login.html', callback=callback)
 
+        if redirect_url and _is_valid_redirect(redirect_url):
+            return redirect(redirect_url)
+
         if callback and _is_valid_callback(callback):
             token = _make_token(employee_id)
             sep = '&' if '?' in callback else '?'
@@ -147,9 +171,9 @@ def login():
 
         # No valid callback — show confirmation in place
         flash('Sign-in successful. Return to the intranet.', 'success')
-        return render_template('login.html', callback=callback)
+        return render_template('login.html', callback=callback, redirect_url='')
 
-    return render_template('login.html', callback=callback)
+    return render_template('login.html', callback=callback, redirect_url=redirect_url)
 
 
 if __name__ == '__main__':
