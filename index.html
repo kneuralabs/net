@@ -1593,56 +1593,33 @@ html[data-motion="playful"] .tile:hover {
 }
 .lock-hint b { color: var(--accent-ink); font-family: var(--f-mono); }
 .sso-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(20, 17, 13, 0.55);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  display: grid;
-  place-items: center;
-  z-index: 200;
-  animation: fade-in 200ms var(--ease);
+  position: fixed; inset: 0;
+  background: rgba(20,17,13,.55);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  display: grid; place-items: center;
+  z-index: 200; animation: fade-in 200ms var(--ease);
 }
 .sso-modal {
   width: min(480px, calc(100vw - 32px));
-  background: var(--paper);
-  border: 1px solid var(--ink);
-  display: flex;
-  flex-direction: column;
-  animation: modal-in 320ms var(--ease);
-  overflow: hidden;
+  background: var(--paper); border: 1px solid var(--ink);
+  display: flex; flex-direction: column;
+  animation: modal-in 320ms var(--ease); overflow: hidden;
 }
 .sso-modal__head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 16px;
-  border-bottom: 1px solid var(--ink);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 16px; border-bottom: 1px solid var(--ink);
 }
 .sso-modal__title {
-  font-family: var(--f-mono);
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ink);
+  font-family: var(--f-mono); font-size: 12px;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--ink);
 }
 .sso-modal__close {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: var(--ink);
-  font-size: 14px;
-  padding: 2px 6px;
-  opacity: 0.6;
-  line-height: 1;
+  background: none; border: none; cursor: pointer;
+  color: var(--ink); font-size: 14px; padding: 2px 6px;
+  opacity: .6; line-height: 1;
 }
 .sso-modal__close:hover { opacity: 1; }
-.sso-modal__frame {
-  width: 100%;
-  height: 520px;
-  border: none;
-  display: block;
-}
+.sso-modal__frame { width: 100%; height: 520px; border: none; display: block; }
 .btn {
   font-family: var(--f-mono);
   font-size: 11px;
