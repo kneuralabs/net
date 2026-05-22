@@ -162,7 +162,7 @@ def login():
             return render_template('login.html', callback=callback)
 
         if redirect_url and _is_valid_redirect(redirect_url):
-            return redirect(redirect_url)
+            return render_template('sso_success.html', redirect_url=redirect_url)
 
         if callback and _is_valid_callback(callback):
             token = _make_token(employee_id)
