@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KneuraLabs — Dashboard</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0a0a0f; color: #e8e8ee;
+      min-height: 100vh; display: flex; flex-direction: column;
+    }
+
+    .bg-grid {
+      position: fixed; inset: 0; z-index: 0;
+      background-image:
+        linear-gradient(rgba(99,102,241,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99,102,241,.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    header {
+      position: relative; z-index: 1;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 32px;
+      border-bottom: 1px solid rgba(99,102,241,.15);
+      background: rgba(10,10,15,.8);
+      backdrop-filter: blur(12px);
+    }
+
+    .brand { display: flex; align-items: center; gap: 12px; }
+
+    .logo-mark {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 16px; color: #fff;
+    }
+
+    .brand-name { font-size: 16px; font-weight: 700; color: #f0f0fa; }
+
+    .nav-right { display: flex; align-items: center; gap: 16px; }
+
+    .emp-badge {
+      font-size: 12px; color: #7070a0;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.08);
+      padding: 5px 12px; border-radius: 20px;
+    }
+
+    .nav-btn {
+      padding: 7px 14px; border-radius: 7px;
+      font-size: 13px; font-weight: 500;
+      cursor: pointer; text-decoration: none;
+      transition: background .2s;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid rgba(99,102,241,.4);
+      color: #a5a5f5;
+    }
+    .btn-outline:hover { background: rgba(99,102,241,.1); }
+
+    .btn-danger {
+      background: rgba(239,68,68,.1);
+      border: 1px solid rgba(239,68,68,.3);
+      color: #f87171;
+    }
+    .btn-danger:hover { background: rgba(239,68,68,.18); }
+
+    main {
+      position: relative; z-index: 1;
+      flex: 1; display: flex; align-items: center; justify-content: center;
+      padding: 40px 20px;
+    }
+
+    .welcome {
+      text-align: center;
+      max-width: 500px;
+    }
+
+    .avatar {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px; font-weight: 800; color: #fff;
+      margin: 0 auto 24px;
+      box-shadow: 0 8px 32px rgba(99,102,241,.35);
+    }
+
+    .welcome h2 { font-size: 26px; font-weight: 700; color: #f0f0fa; margin-bottom: 8px; }
+    .welcome p  { font-size: 15px; color: #7070a0; margin-bottom: 32px; }
+
+    .actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+    .action-card {
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      padding: 20px 28px;
+      background: rgba(16,16,24,.8);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 12px;
+      text-decoration: none;
+      color: #c0c0e0;
+      font-size: 13px; font-weight: 500;
+      transition: border-color .2s, background .2s;
+      min-width: 120px;
+    }
+    .action-card:hover { border-color: rgba(99,102,241,.4); background: rgba(99,102,241,.07); }
+    .action-card .icon { font-size: 24px; }
+  </style>
+</head>
+<body>
+  <div class="bg-grid"></div>
+
+  <header>
+    <div class="brand">
+      <div class="logo-mark">K</div>
+      <span class="brand-name">KneuraLabs Intranet</span>
+    </div>
+    <div class="nav-right">
+      <span class="emp-badge">{{ employee_id }}</span>
+      <a href="/change-password" class="nav-btn btn-outline">Change Password</a>
+      <a href="/logout" class="nav-btn btn-danger">Sign Out</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="welcome">
+      <div class="avatar">{{ employee_id[0] | upper }}</div>
+      <h2>Welcome, {{ employee_id }}</h2>
+      <p>You are signed in to the KneuraLabs Employee Intranet.</p>
+
+      <div class="actions">
+        <a href="/change-password" class="action-card">
+          <span class="icon">&#128274;</span>
+          Change Password
+        </a>
+        <a href="/logout" class="action-card">
+          <span class="icon">&#128682;</span>
+          Sign Out
+        </a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
