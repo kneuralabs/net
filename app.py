@@ -23,6 +23,7 @@ DEFAULT_PASSWORD = 'Kneuralabs@2026'
 
 # SSO configuration
 SSO_URL = os.environ.get('SSO_URL', 'https://sso.kneuralabs.com')
+INTRANET_BASE_URL = os.environ.get('INTRANET_BASE_URL', 'https://intranet.kneuralabs.com')
 SSO_SHARED_SECRET = os.environ.get('SSO_SHARED_SECRET', 'kneura-sso-shared-secret-change-in-prod')
 _SSO_TOKEN_MAX_AGE = 300  # seconds
 
@@ -153,7 +154,7 @@ def check_employee_roster(employee_id):
 # ── SSO helpers ────────────────────────────────────────────────────────────────
 
 def _sso_login_url():
-    callback = url_for('sso_callback', _external=True)
+    callback = f'{INTRANET_BASE_URL}/sso/callback'
     return f'{SSO_URL}/login?callback={callback}'
 
 
@@ -186,52 +187,7 @@ def index():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    if 'employee_id' in session:
-        return redirect(url_for('dashboard'))
-
-    if request.method == 'POST':
-        employee_id = request.form.get('employee_id', '').strip()
-        password = request.form.get('password', '').strip()
-
-        if not employee_id or not password:
-            flash('Please enter both Employee ID and password.', 'error')
-            return render_template('login.html')
-
-        user = get_user(employee_id)
-
-        if user:
-            # Existing user in DATA.xlsx
-            if not bcrypt.checkpw(password.encode(), user['password_hash'].encode()):
-                flash('Invalid credentials.', 'error')
-                return render_template('login.html')
-            update_last_login(employee_id)
-            session['employee_id'] = employee_id
-            session['first_login'] = False
-            return redirect(url_for('dashboard'))
-        else:
-            # First-time user — check employee roster
-            roster_status = check_employee_roster(employee_id)
-
-            if roster_status in ('not_found', 'revoked'):
-                flash('Employee not found.', 'error')
-                return render_template('login.html')
-            elif roster_status == 'error':
-                flash('Unable to verify employee. Please try again later.', 'error')
-                return render_template('login.html')
-
-            if password != DEFAULT_PASSWORD:
-                flash('Invalid credentials.', 'error')
-                return render_template('login.html')
-
-            hashed = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
-            upsert_user(employee_id, hashed)
-            update_last_login(employee_id)
-            session['employee_id'] = employee_id
-            session['first_login'] = True
-            flash('Welcome! Please change your default password.', 'info')
-            return redirect(url_for('change_password'))
-
-    return render_template('login.html')
+    return redirect(_sso_login_url())
 
 
 @app.route('/dashboard')

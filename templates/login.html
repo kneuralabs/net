@@ -206,46 +206,18 @@
       {% endif %}
     {% endwith %}
 
-    <h2>Welcome back</h2>
-    <p class="subtitle">Sign in with your Employee ID</p>
+    <h2>Redirecting to SSO&hellip;</h2>
+    <p class="subtitle">You will be redirected to the KneuraLabs sign-in page.</p>
 
-    <form method="POST" action="/login">
-      <div class="field">
-        <label for="employee_id">Employee ID</label>
-        <input
-          type="text"
-          id="employee_id"
-          name="employee_id"
-          placeholder="e.g. KNL-1001"
-          autocomplete="username"
-          required
-        />
-      </div>
-
-      <div class="field">
-        <label for="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="Enter your password"
-          autocomplete="current-password"
-          required
-        />
-      </div>
-
-      <button type="submit" class="btn">Sign In</button>
-    </form>
+    <a href="/" class="btn" style="display:block;text-align:center;text-decoration:none;padding-top:14px;">
+      Continue to Sign In
+    </a>
 
     <div class="footer">
-      First login? Use your Employee ID &amp; default password.<br/>
       Contact IT if you need access.
-      <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(99,102,241,.15);">
-        <a href="/" style="color:#6366f1;text-decoration:none;font-size:12px;">
-          &#8617; Sign in with SSO instead
-        </a>
-      </div>
     </div>
+
+    <script>window.location.replace('/');</script>
   </div>
 </body>
 </html>
