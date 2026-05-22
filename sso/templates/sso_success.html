@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    body { margin: 0; background: #0a0a0f; display: flex; align-items: center; justify-content: center; min-height: 100vh; font-family: -apple-system, sans-serif; color: #4ade80; font-size: 15px; gap: 8px; }
+  </style>
+</head>
+<body>
+  <span>&#10003;</span><span>Access granted — opening…</span>
+  <script>
+    window.parent.postMessage(
+      { type: 'sso_success', url: {{ redirect_url | tojson }} },
+      'https://intranet.kneuralabs.com'
+    );
+  </script>
+</body>
+</html>

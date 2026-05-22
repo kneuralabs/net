@@ -200,8 +200,7 @@ function Tile({ tool, idx, unlocked, onActivate }) {
   const handleClick = (e) => {
     if (tool.locked) {
       e.preventDefault();
-      const ssoUrl = "https://sso.kneuralabs.com/?redirect=" + encodeURIComponent(tool.href || "");
-      window.open(ssoUrl, "_blank", "noopener");
+      onActivate(tool);
     }
   };
   return (
@@ -339,6 +338,36 @@ function LockModal({ tool, onClose, onSuccess }) {
             <button className="btn" onClick={submit} disabled={state === "checking"}>Open</button>
           </div>
         </div>
+      </div>
+    </div>
+  );
+}
+
+/* ────────────────────────────────────────────────────────────────
+   SSO iframe modal
+   ──────────────────────────────────────────────────────────────── */
+function SsoModal({ tool, onClose }) {
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === "Escape") onClose(); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onClose]);
+
+  if (!tool) return null;
+  const src = "https://sso.kneuralabs.com/?redirect=" + encodeURIComponent(tool.href || "");
+  return (
+    <div className="sso-overlay" onClick={(e) => { if (e.target.classList.contains("sso-overlay")) onClose(); }}>
+      <div className="sso-modal">
+        <div className="sso-modal__head">
+          <span className="sso-modal__title">{tool.name}</span>
+          <button className="sso-modal__close" onClick={onClose} aria-label="Close">✕</button>
+        </div>
+        <iframe
+          src={src}
+          className="sso-modal__frame"
+          title="KneuraLabs SSO"
+          allow="forms"
+        />
       </div>
     </div>
   );
