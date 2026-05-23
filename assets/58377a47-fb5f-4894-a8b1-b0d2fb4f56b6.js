@@ -70,7 +70,7 @@ function Nameplate({ now }) {
           <span className="nameplate__beacon-lbl">All systems operational</span>
         </span>
         <span className="nameplate__edition">Trust &amp; Security Edition</span>
-        <a className="nameplate__idcard" href="https://kneuralabs.github.io/ID/" target="_blank" rel="noopener noreferrer">ID Card</a>
+        <a className="nameplate__idcard" href="https://db.kneuralabs.com" target="_blank" rel="noopener noreferrer">ID Card</a>
       </div>
       <div className="nameplate__meta">
         <div><b>{dateStr}</b></div>
