@@ -1,12 +1,13 @@
 import os
 import io
 import base64
-import subprocess
+import warnings
 import bcrypt
 import openpyxl
 import requests
 from datetime import datetime
 from functools import wraps
+from threading import Lock
 from cryptography.fernet import Fernet
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
@@ -14,48 +15,94 @@ from itsdangerous import URLSafeTimedSerializer, BadSignature, SignatureExpired
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 
 app = Flask(__name__)
-app.secret_key = os.environ.get('SECRET_KEY', 'kneura-secret-change-in-prod-2026')
+
+# ── Secrets ────────────────────────────────────────────────────────────────────
+# Fail loudly when insecure defaults reach any environment.
+_SECRET_KEY = os.environ.get('SECRET_KEY', '')
+if not _SECRET_KEY:
+    warnings.warn(
+        'SECRET_KEY is not set — sessions are insecure. '
+        'Set the SECRET_KEY environment variable before deploying.',
+        RuntimeWarning, stacklevel=1,
+    )
+    # Per-process random fallback: sessions die on restart (unusable for prod)
+    _SECRET_KEY = 'insecure-dev-' + os.urandom(16).hex()
+app.secret_key = _SECRET_KEY
 
 EXCEL_PASSWORD = os.environ.get('EXCEL_PASSWORD', 'KneuraExcel@2026')
 DATA_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'DATA.xlsx')
 EMPLOYEE_DATA_URL = 'https://raw.githubusercontent.com/kneuralabs/ID/main/EmployeeData.xlsx'
-DEFAULT_PASSWORD = 'Kneuralabs@2026'
+DEFAULT_PASSWORD  = 'Kneuralabs@2026'
 
 # SSO configuration
-SSO_URL = os.environ.get('SSO_URL', 'https://sso.kneuralabs.com')
-INTRANET_BASE_URL = os.environ.get('INTRANET_BASE_URL', 'https://intranet.kneuralabs.com')
-SSO_SHARED_SECRET = os.environ.get('SSO_SHARED_SECRET', 'kneura-sso-shared-secret-change-in-prod')
+SSO_URL            = os.environ.get('SSO_URL',            'https://sso.kneuralabs.com')
+INTRANET_BASE_URL  = os.environ.get('INTRANET_BASE_URL',  'https://intranet.kneuralabs.com')
+SSO_SHARED_SECRET  = os.environ.get('SSO_SHARED_SECRET',  '')
+if not SSO_SHARED_SECRET:
+    warnings.warn(
+        'SSO_SHARED_SECRET is not set — SSO callbacks cannot be verified. '
+        'Set the SSO_SHARED_SECRET environment variable.',
+        RuntimeWarning, stacklevel=1,
+    )
+    SSO_SHARED_SECRET = 'insecure-dev-' + os.urandom(16).hex()
 _SSO_TOKEN_MAX_AGE = 300  # seconds
 
-_SALT = b'kneura_labs_2026'
+# Application-specific KDF salt for the XLSX encryption key.
+# This is a domain-separation constant, NOT a password salt — it intentionally
+# stays fixed so the same EXCEL_PASSWORD always produces the same Fernet key.
+_KDF_SALT = b'kneura_net_v2'
 
 
-def _fernet():
+def _fernet() -> Fernet:
     kdf = PBKDF2HMAC(
         algorithm=hashes.SHA256(),
         length=32,
-        salt=_SALT,
-        iterations=390000,
+        salt=_KDF_SALT,
+        iterations=390_000,
     )
     key = base64.urlsafe_b64encode(kdf.derive(EXCEL_PASSWORD.encode()))
     return Fernet(key)
 
 
-# ── Excel helpers ──────────────────────────────────────────────────────────────
+# ── In-memory workbook cache ───────────────────────────────────────────────────
+# Avoids re-decrypting and re-parsing the XLSX on every request.
+# Invalidated by mtime change whenever the file is written.
+_wb_cache: dict = {'wb': None, 'mtime': 0.0}
+_wb_lock  = Lock()   # guards both the cache dict and read-modify-write XLSX ops
 
-def _load_wb():
-    if not os.path.exists(DATA_FILE) or os.path.getsize(DATA_FILE) == 0:
-        return _blank_wb()
+
+def _load_wb() -> openpyxl.Workbook:
+    """Return the cached workbook, re-loading from disk only when the file changed.
+    Caller must NOT hold _wb_lock (this function acquires it internally)."""
+    with _wb_lock:
+        return _load_wb_locked()
+
+
+def _load_wb_locked() -> openpyxl.Workbook:
+    """Internal: load/return workbook. Caller MUST hold _wb_lock."""
     try:
-        with open(DATA_FILE, 'rb') as f:
-            raw = f.read()
-        decrypted = _fernet().decrypt(raw)
-        return openpyxl.load_workbook(io.BytesIO(decrypted))
-    except Exception:
-        return _blank_wb()
+        mtime = os.path.getmtime(DATA_FILE) if os.path.exists(DATA_FILE) else 0.0
+    except OSError:
+        mtime = 0.0
+
+    if _wb_cache['wb'] is not None and _wb_cache['mtime'] == mtime:
+        return _wb_cache['wb']
+
+    if not os.path.exists(DATA_FILE) or os.path.getsize(DATA_FILE) == 0:
+        wb = _blank_wb()
+    else:
+        try:
+            with open(DATA_FILE, 'rb') as f:
+                raw = f.read()
+            wb = openpyxl.load_workbook(io.BytesIO(_fernet().decrypt(raw)))
+        except Exception:
+            wb = _blank_wb()
+
+    _wb_cache.update({'wb': wb, 'mtime': mtime})
+    return wb
 
 
-def _blank_wb():
+def _blank_wb() -> openpyxl.Workbook:
     wb = openpyxl.Workbook()
     ws = wb.active
     ws.title = 'Users'
@@ -63,87 +110,86 @@ def _blank_wb():
     return wb
 
 
-def _save_wb(wb):
+def _save_wb_locked(wb: openpyxl.Workbook) -> None:
+    """Persist workbook to disk. Caller MUST hold _wb_lock."""
     buf = io.BytesIO()
     wb.save(buf)
     buf.seek(0)
     encrypted = _fernet().encrypt(buf.read())
     with open(DATA_FILE, 'wb') as f:
         f.write(encrypted)
-    _git_commit()
-
-
-def _git_commit():
+    # Refresh cache so subsequent reads don't re-parse from disk
     try:
-        base = os.path.dirname(DATA_FILE)
-        subprocess.run(['git', 'add', 'DATA.xlsx'], cwd=base, capture_output=True, timeout=10)
-        subprocess.run(
-            ['git', 'commit', '-m', 'chore: update credentials store'],
-            cwd=base, capture_output=True, timeout=10
-        )
-    except Exception:
-        pass
+        mtime = os.path.getmtime(DATA_FILE)
+    except OSError:
+        mtime = 0.0
+    _wb_cache.update({'wb': wb, 'mtime': mtime})
+    # NOTE: git commit deliberately removed.
+    # Persist DATA.xlsx through your CI/CD pipeline, not from inside the web process.
 
 
 # ── User operations ────────────────────────────────────────────────────────────
 
-def get_user(employee_id):
+def get_user(employee_id: str) -> dict | None:
+    """Read-only lookup; uses cached workbook."""
     wb = _load_wb()
-    ws = wb.active
-    for row in ws.iter_rows(min_row=2, values_only=True):
+    for row in wb.active.iter_rows(min_row=2, values_only=True):
         if row[0] is not None and str(row[0]).strip() == str(employee_id).strip():
             return {
-                'id': row[0],
+                'id':            row[0],
                 'password_hash': row[1],
-                'status': row[2],
-                'last_login': row[3],
-                'created_at': row[4],
+                'status':        row[2],
+                'last_login':    row[3],
+                'created_at':    row[4],
             }
     return None
 
 
-def upsert_user(employee_id, password_hash, status='active'):
-    wb = _load_wb()
-    ws = wb.active
+def upsert_user(employee_id: str, password_hash: str, status: str = 'active') -> None:
+    """Insert or update a user row; holds lock for full read-modify-write."""
     now = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    for row in ws.iter_rows(min_row=2):
-        if row[0].value is not None and str(row[0].value).strip() == str(employee_id).strip():
-            row[1].value = password_hash
-            row[2].value = status
-            row[3].value = now
-            _save_wb(wb)
-            return
-    ws.append([str(employee_id), password_hash, status, now, now])
-    _save_wb(wb)
+    with _wb_lock:
+        wb = _load_wb_locked()
+        ws = wb.active
+        for row in ws.iter_rows(min_row=2):
+            if row[0].value is not None and str(row[0].value).strip() == str(employee_id).strip():
+                row[1].value = password_hash
+                row[2].value = status
+                row[3].value = now
+                _save_wb_locked(wb)
+                return
+        ws.append([str(employee_id), password_hash, status, now, now])
+        _save_wb_locked(wb)
 
 
-def update_last_login(employee_id):
-    wb = _load_wb()
-    ws = wb.active
+def update_last_login(employee_id: str) -> None:
+    """Stamp last-login timestamp; holds lock for full read-modify-write."""
     now = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    for row in ws.iter_rows(min_row=2):
-        if row[0].value is not None and str(row[0].value).strip() == str(employee_id).strip():
-            row[3].value = now
-            _save_wb(wb)
-            return
+    with _wb_lock:
+        wb = _load_wb_locked()
+        for row in wb.active.iter_rows(min_row=2):
+            if row[0].value is not None and str(row[0].value).strip() == str(employee_id).strip():
+                row[3].value = now
+                _save_wb_locked(wb)
+                return
 
 
 # ── Employee validation ────────────────────────────────────────────────────────
 
-def check_employee_roster(employee_id):
+def check_employee_roster(employee_id: str) -> str:
     """Returns 'found', 'revoked', or 'not_found'."""
     try:
         resp = requests.get(EMPLOYEE_DATA_URL, timeout=10)
         resp.raise_for_status()
         wb = openpyxl.load_workbook(io.BytesIO(resp.content))
         ws = wb.active
-        revoke_keywords = {'revok', 'inactive', 'terminat', 'disabled', 'suspended'}
+        revoke_kw = {'revok', 'inactive', 'terminat', 'disabled', 'suspended'}
         for row in ws.iter_rows(min_row=2, values_only=True):
             if not row or row[0] is None:
                 continue
             if str(row[0]).strip() == str(employee_id).strip():
                 for cell in row[1:]:
-                    if cell and any(k in str(cell).lower() for k in revoke_keywords):
+                    if cell and any(k in str(cell).lower() for k in revoke_kw):
                         return 'revoked'
                 return 'found'
         return 'not_found'
@@ -153,13 +199,13 @@ def check_employee_roster(employee_id):
 
 # ── SSO helpers ────────────────────────────────────────────────────────────────
 
-def _sso_login_url():
+def _sso_login_url() -> str:
     callback = f'{INTRANET_BASE_URL}/sso/callback'
-    return f'{SSO_URL}/login?callback={callback}'
+    return f'{SSO_URL}/?redirect={callback}'
 
 
-def _verify_sso_token(token):
-    """Returns employee_id string or raises BadSignature/SignatureExpired."""
+def _verify_sso_token(token: str) -> str:
+    """Returns employee_id or raises BadSignature / SignatureExpired."""
     s = URLSafeTimedSerializer(SSO_SHARED_SECRET)
     data = s.loads(token, salt='sso-callback', max_age=_SSO_TOKEN_MAX_AGE)
     return data['employee_id']
@@ -178,14 +224,14 @@ def login_required(f):
 
 # ── Routes ─────────────────────────────────────────────────────────────────────
 
-@app.route('/', methods=['GET'])
+@app.route('/')
 def index():
     if 'employee_id' in session:
         return redirect(url_for('dashboard'))
     return redirect(_sso_login_url())
 
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/login')
 def login():
     return redirect(_sso_login_url())
 
@@ -203,9 +249,9 @@ def change_password():
     first_login = session.get('first_login', False)
 
     if request.method == 'POST':
-        current_pw = request.form.get('current_password', '').strip()
-        new_pw = request.form.get('new_password', '').strip()
-        confirm_pw = request.form.get('confirm_password', '').strip()
+        current_pw  = request.form.get('current_password', '').strip()
+        new_pw      = request.form.get('new_password',      '').strip()
+        confirm_pw  = request.form.get('confirm_password',  '').strip()
 
         if not current_pw or not new_pw or not confirm_pw:
             flash('All fields are required.', 'error')
@@ -232,7 +278,7 @@ def change_password():
             flash('You cannot reuse the default password.', 'error')
             return render_template('change_password.html', first_login=first_login)
 
-        new_hash = bcrypt.hashpw(new_pw.encode(), bcrypt.gensalt()).decode()
+        new_hash = bcrypt.hashpw(new_pw.encode(), bcrypt.gensalt(rounds=12)).decode()
         upsert_user(employee_id, new_hash)
         session['first_login'] = False
         flash('Password changed successfully.', 'success')
@@ -261,8 +307,7 @@ def sso_callback():
     user = get_user(employee_id)
 
     if user is None:
-        # First time through SSO — create local record with hashed default password
-        hashed = bcrypt.hashpw(DEFAULT_PASSWORD.encode(), bcrypt.gensalt()).decode()
+        hashed = bcrypt.hashpw(DEFAULT_PASSWORD.encode(), bcrypt.gensalt(rounds=12)).decode()
         upsert_user(employee_id, hashed)
         session['first_login'] = True
         flash('Welcome! Please change your default password.', 'info')
