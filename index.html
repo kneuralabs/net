@@ -2132,8 +2132,8 @@ html[data-motion="playful"] .tile:hover {
     const ctx = cv.getContext('2d');
     let W, H;
 
-    function nodeCount(){ return Math.min(Math.floor(W * H / 14000) + 30, 120); }
-    function linkDist(){ return Math.min(W, H) * 0.22; }
+    function nodeCount(){ return Math.min(Math.floor(W * H / 40000) + 12, 40); }
+    function linkDist(){ return Math.min(W, H) * 0.28; }
 
     let nodes = [], edges = [], pulses = [];
 
@@ -2146,7 +2146,7 @@ html[data-motion="playful"] .tile:hover {
           y: Math.random() * H,
           r: 1.8 + Math.random() * 2,
           charge: Math.random(),        /* 0–1 charging phase */
-          chargeSpeed: 0.003 + Math.random() * 0.006,
+          chargeSpeed: 0.0004 + Math.random() * 0.0008,
           glow: 0,                       /* extra glow on fire */
           hue: 200 + Math.random() * 60  /* blue-purple range */
         });
@@ -2225,7 +2225,7 @@ html[data-motion="playful"] .tile:hover {
           /* fire pulses on connected edges */
           for(const [i, j] of edges){
             if(i === nodes.indexOf(n) || j === nodes.indexOf(n)){
-              if(Math.random() < 0.6) firePulse(i, j);
+              if(Math.random() < 0.25) firePulse(i, j);
             }
           }
         }
