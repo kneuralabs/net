@@ -516,15 +516,15 @@ function FeedSection() {
         <div className="feed__list">
           {window.NEWS.map((n, i) => (
             <a key={i} className="feed__item" href={n.url} target="_blank" rel="noopener noreferrer">
-              <div className="feed__date">{n.date}</div>
+              <div className="feed__date">
+                {n.date}
+                {i === 0 && <span style={{display:"block",fontSize:"10px",fontWeight:700,padding:"2px 6px",marginTop:4,borderRadius:3,background:"rgba(239,68,68,0.15)",color:"#f87171",border:"1px solid rgba(239,68,68,0.35)",animation:"just-in-pulse 2s ease-in-out infinite",textAlign:"center"}}>⚡ Just In</span>}
+              </div>
               <div>
                 <h3 className="feed__title">{n.title}</h3>
                 <div className="feed__src">{n.src} · <b>{n.tag}</b></div>
               </div>
-              <span className="feed__chip">
-                {i === 0 && <span style={{display:"inline-block",fontSize:"10px",fontWeight:700,padding:"2px 6px",marginRight:6,borderRadius:3,background:"rgba(239,68,68,0.15)",color:"#f87171",border:"1px solid rgba(239,68,68,0.35)",animation:"just-in-pulse 2s ease-in-out infinite",verticalAlign:"middle"}}>⚡ Just In</span>}
-                {n.chip} <span className="feed__arrow" aria-hidden="true">↗</span>
-              </span>
+              <span className="feed__chip">{n.chip} <span className="feed__arrow" aria-hidden="true">↗</span></span>
             </a>
           ))}
         </div>
