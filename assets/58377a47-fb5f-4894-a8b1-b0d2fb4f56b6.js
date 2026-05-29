@@ -101,6 +101,64 @@ function ClockCell({ city, code, tz, weather, now }) {
     </div>
   );
 }
+/* ── Holiday helpers ── */
+function _nthWeekday(year, month, weekday, n) {
+  const d = new Date(year, month - 1, 1);
+  let count = 0;
+  while (true) { if (d.getDay() === weekday) { count++; if (count === n) return new Date(d); } d.setDate(d.getDate() + 1); }
+}
+function _lastWeekday(year, month, weekday) {
+  const d = new Date(year, month, 0);
+  while (d.getDay() !== weekday) d.setDate(d.getDate() - 1);
+  return new Date(d);
+}
+function _allHolidays(year) {
+  const list = [
+    { name: "New Year's Day",  date: new Date(year, 0, 1) },
+    { name: "MLK Day",         date: _nthWeekday(year, 1, 1, 3) },
+    { name: "Presidents' Day", date: _nthWeekday(year, 2, 1, 3) },
+    { name: "Memorial Day",    date: _lastWeekday(year, 5, 1) },
+    { name: "Independence Day",date: new Date(year, 6, 4) },
+    { name: "Labor Day",       date: _nthWeekday(year, 9, 1, 1) },
+    { name: "Thanksgiving",    date: _nthWeekday(year, 11, 4, 4) },
+    { name: "Christmas Day",   date: new Date(year, 11, 25) },
+  ];
+  if (year >= 2026) list.push({ name: "Kneuralabs Day ✦", date: new Date(year, 1, 19) });
+  return list.sort((a, b) => a.date - b.date);
+}
+const _MON_SHORT = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+function _fmtHol(d) { return d.getDate() + " " + _MON_SHORT[d.getMonth()]; }
+
+function HolidayCell({ now }) {
+  const today = useMemo(() => { const d = new Date(now); d.setHours(0,0,0,0); return d; }, [now]);
+  const { todayHol, next } = useMemo(() => {
+    const yr = today.getFullYear();
+    const all = [..._allHolidays(yr), ..._allHolidays(yr + 1)];
+    const todayHol = all.find(h => h.date.getTime() === today.getTime()) || null;
+    const next = all.filter(h => h.date > today)[0] || null;
+    return { todayHol, next };
+  }, [today]);
+
+  const daysUntil = next ? Math.round((next.date - today) / 86400000) : null;
+
+  return (
+    <div className="strip__cell">
+      <div className="strip__lbl">
+        <span>Today · Federal</span>
+        <span>US</span>
+      </div>
+      <div className="strip__big" style={{ fontSize: 22, letterSpacing: "-0.02em", fontWeight: 600 }}>
+        {todayHol ? todayHol.name : "No holiday"}
+      </div>
+      <div className="strip__sub">
+        {next
+          ? `Next observed · ${next.name} · ${_fmtHol(next.date)} · in ${daysUntil}d`
+          : "No upcoming holidays found"}
+      </div>
+    </div>
+  );
+}
+
 function StatusStrip({ now }) {
   return (
     <section className="strip">
@@ -108,16 +166,7 @@ function StatusStrip({ now }) {
                  weather={window.WEATHER.kolkata} now={now} />
       <ClockCell city="Connecticut" code="EDT · America/New_York" tz="America/New_York"
                  weather={window.WEATHER.connecticut} now={now} />
-      <div className="strip__cell">
-        <div className="strip__lbl">
-          <span>Today · Federal</span>
-          <span>US</span>
-        </div>
-        <div className="strip__big" style={{ fontSize: 22, letterSpacing: "-0.02em", fontWeight: 600 }}>
-          No&nbsp;holiday
-        </div>
-        <div className="strip__sub">Next observed · Memorial Day · 25 May</div>
-      </div>
+      <HolidayCell now={now} />
       <div className="strip__cell">
         <div className="strip__lbl">
           <span>System</span>
@@ -467,7 +516,10 @@ function FeedSection() {
         <div className="feed__list">
           {window.NEWS.map((n, i) => (
             <a key={i} className="feed__item" href={n.url} target="_blank" rel="noopener noreferrer">
-              <div className="feed__date">{n.date}</div>
+              <div className="feed__date">
+                {i === 0 && <span style={{display:"inline-block",fontSize:"10px",fontWeight:700,padding:"2px 6px",marginRight:6,borderRadius:3,background:"rgba(239,68,68,0.15)",color:"#f87171",border:"1px solid rgba(239,68,68,0.35)",animation:"just-in-pulse 2s ease-in-out infinite",verticalAlign:"middle"}}>⚡ Just In</span>}
+                {n.date}
+              </div>
               <div>
                 <h3 className="feed__title">{n.title}</h3>
                 <div className="feed__src">{n.src} · <b>{n.tag}</b></div>
