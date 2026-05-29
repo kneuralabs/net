@@ -2120,85 +2120,133 @@ html[data-motion="playful"] .tile:hover {
   <script type="text/babel" src="assets/58377a47-fb5f-4894-a8b1-b0d2fb4f56b6.js?v=2"></script>
   <script type="text/babel" src="assets/a7e17038-28e5-442a-8b55-791d88b8b3f8.js?v=2"></script>
 
-  <!-- Neural network globe background -->
-  <canvas id="kn-globe" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;pointer-events:none;"></canvas>
+  <!-- Digital neuron firing background -->
+  <canvas id="kn-neurons" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;pointer-events:none;"></canvas>
   <style>
     @keyframes just-in-pulse { 0%,100%{opacity:1} 50%{opacity:.5} }
     body > .page, body > .theme-toggle, body > .lock-overlay, body > .sso-overlay { position:relative; z-index:1; }
   </style>
   <script>
   (function(){
-    const cv = document.getElementById('kn-globe');
+    const cv = document.getElementById('kn-neurons');
     const ctx = cv.getContext('2d');
-    let W,H,cx,cy,R;
+    let W, H;
+
+    function nodeCount(){ return Math.min(Math.floor(W * H / 14000) + 30, 120); }
+    function linkDist(){ return Math.min(W, H) * 0.22; }
+
+    let nodes = [], edges = [], pulses = [];
+
+    function buildGraph(){
+      const N = nodeCount();
+      nodes = [];
+      for(let i = 0; i < N; i++){
+        nodes.push({
+          x: Math.random() * W,
+          y: Math.random() * H,
+          r: 1.8 + Math.random() * 2,
+          charge: Math.random(),        /* 0–1 charging phase */
+          chargeSpeed: 0.003 + Math.random() * 0.006,
+          glow: 0,                       /* extra glow on fire */
+          hue: 200 + Math.random() * 60  /* blue-purple range */
+        });
+      }
+      edges = [];
+      const D2 = linkDist() ** 2;
+      for(let i = 0; i < N; i++) for(let j = i+1; j < N; j++){
+        const dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y;
+        if(dx*dx + dy*dy < D2) edges.push([i, j, 0]); /* third element = pulse opacity */
+      }
+      pulses = [];
+    }
+
     function resize(){
-      W = cv.width = window.innerWidth;
+      W = cv.width  = window.innerWidth;
       H = cv.height = window.innerHeight;
-      /* Globe fills the left half and covers full height — large enough to bleed off-screen */
-      const isMobile = W < 600;
-      const isTablet = W >= 600 && W < 1024;
-      /* R: on mobile portrait cover most of screen width, landscape/tablet/desktop fill left half */
-      if(isMobile && H > W){ R = W * 0.7; } /* mobile portrait */
-      else if(isMobile){ R = H * 0.7; }     /* mobile landscape */
-      else if(isTablet){ R = Math.max(W,H) * 0.52; }
-      else { R = Math.max(W * 0.48, H * 0.65); } /* desktop: always covers full height */
-      /* Centre globe on left quarter of screen so it sits left */
-      cx = isMobile ? W * 0.3 : W * 0.28;
-      cy = H * 0.5;
+      buildGraph();
     }
-    resize(); window.addEventListener('resize',resize);
+    resize();
+    window.addEventListener('resize', resize);
 
-    const N=160, nodes=[];
-    const COLORS=['red','blue'];
-    for(let i=0;i<N;i++) nodes.push({lat:(Math.random()-.5)*Math.PI, lon:Math.random()*2*Math.PI, r:1.5+Math.random()*2, col:COLORS[i%2]});
-    const edges=[];
-    for(let i=0;i<N;i++) for(let j=i+1;j<N;j++){
-      const dl=nodes[i].lat-nodes[j].lat, dn=nodes[i].lon-nodes[j].lon;
-      if(dl*dl+dn*dn<0.5) edges.push([i,j]);
+    function firePulse(i, j){
+      pulses.push({ i, j, t: 0, speed: 0.012 + Math.random() * 0.012 });
     }
-    /* Dense grid: every 10° lat, every 10° lon → very round appearance */
-    const LATS=Array.from({length:17},(_,i)=>(-80+i*10)*Math.PI/180);
-    const LONS=Array.from({length:36},(_,i)=>i*10*Math.PI/180);
-    let angle=0;
-
-    function proj(lat,lon){ const a=lon+angle; return {x:cx+R*Math.cos(lat)*Math.sin(a), y:cy-R*Math.sin(lat), z:Math.cos(lat)*Math.cos(a)}; }
 
     function draw(){
-      ctx.clearRect(0,0,W,H);
-      const g=ctx.createRadialGradient(cx,cy,R*.05,cx,cy,R*1.1);
-      g.addColorStop(0,'rgba(80,100,240,0.13)'); g.addColorStop(1,'transparent');
-      ctx.fillStyle=g; ctx.beginPath(); ctx.arc(cx,cy,R*1.1,0,Math.PI*2); ctx.fill();
+      ctx.clearRect(0, 0, W, H);
 
-      ctx.lineWidth=0.7;
-      for(const lat of LATS){
-        ctx.beginPath(); let first=true;
-        for(let l=0;l<=360;l+=1){ const p=proj(lat,l*Math.PI/180); if(p.z<0){first=true;continue;} ctx.strokeStyle=`rgba(110,120,255,${p.z*.45})`; first?(ctx.moveTo(p.x,p.y),first=false):ctx.lineTo(p.x,p.y); }
+      /* faint background vignette */
+      const vg = ctx.createRadialGradient(W*.5, H*.5, 0, W*.5, H*.5, Math.max(W,H)*.7);
+      vg.addColorStop(0, 'rgba(30,20,60,0.18)');
+      vg.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = vg; ctx.fillRect(0, 0, W, H);
+
+      /* edges */
+      for(const [i, j] of edges){
+        const a = nodes[i], b = nodes[j];
+        const dx = b.x-a.x, dy = b.y-a.y;
+        const dist = Math.sqrt(dx*dx+dy*dy);
+        const maxD = linkDist();
+        const fade = 1 - dist/maxD;
+        const baseAlpha = fade * 0.12;
+        ctx.beginPath();
+        ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
+        ctx.strokeStyle = `rgba(120,140,255,${baseAlpha})`;
+        ctx.lineWidth = 0.6;
         ctx.stroke();
       }
-      for(const lon of LONS){
-        ctx.beginPath(); let first=true;
-        for(let i=-90;i<=90;i+=1){ const p=proj(i*Math.PI/180,lon); if(p.z<0){first=true;continue;} ctx.strokeStyle=`rgba(150,90,255,${p.z*.45})`; first?(ctx.moveTo(p.x,p.y),first=false):ctx.lineTo(p.x,p.y); }
-        ctx.stroke();
+
+      /* pulses traveling along edges */
+      for(let k = pulses.length - 1; k >= 0; k--){
+        const p = pulses[k];
+        p.t += p.speed;
+        if(p.t > 1){ pulses.splice(k, 1); continue; }
+        const a = nodes[p.i], b = nodes[p.j];
+        const px = a.x + (b.x-a.x)*p.t, py = a.y + (b.y-a.y)*p.t;
+        const alpha = Math.sin(p.t * Math.PI) * 0.85;
+        /* bright streak */
+        const sg = ctx.createRadialGradient(px, py, 0, px, py, 6);
+        sg.addColorStop(0, `rgba(180,210,255,${alpha})`);
+        sg.addColorStop(1, 'rgba(100,140,255,0)');
+        ctx.fillStyle = sg; ctx.beginPath(); ctx.arc(px, py, 6, 0, Math.PI*2); ctx.fill();
+        /* trail line from origin to pulse */
+        ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(px, py);
+        ctx.strokeStyle = `rgba(140,180,255,${alpha*0.3})`;
+        ctx.lineWidth = 1; ctx.stroke();
       }
-      for(const [i,j] of edges){
-        const a=proj(nodes[i].lat,nodes[i].lon), b=proj(nodes[j].lat,nodes[j].lon);
-        if(a.z<0&&b.z<0) continue;
-        const v=Math.max(0,(a.z+b.z)/2);
-        ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y);
-        ctx.strokeStyle=`rgba(180,130,255,${v*.5})`; ctx.lineWidth=1; ctx.stroke();
-      }
+
+      /* nodes */
       for(const n of nodes){
-        const p=proj(n.lat,n.lon); if(p.z<0) continue;
-        const isRed=n.col==='red';
-        const gc=isRed?`rgba(255,80,80,${p.z*.45})`:`rgba(80,120,255,${p.z*.45})`;
-        const fc=isRed?`rgba(255,120,120,${p.z*.9})`:`rgba(120,160,255,${p.z*.9})`;
-        const h=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,n.r*4*p.z);
-        h.addColorStop(0,gc); h.addColorStop(1,'transparent');
-        ctx.fillStyle=h; ctx.beginPath(); ctx.arc(p.x,p.y,n.r*4*p.z,0,Math.PI*2); ctx.fill();
-        ctx.fillStyle=fc; ctx.beginPath(); ctx.arc(p.x,p.y,n.r*p.z,0,Math.PI*2); ctx.fill();
+        /* advance charge */
+        n.charge += n.chargeSpeed;
+        if(n.charge >= 1){
+          n.charge = 0;
+          n.glow = 1;
+          /* fire pulses on connected edges */
+          for(const [i, j] of edges){
+            if(i === nodes.indexOf(n) || j === nodes.indexOf(n)){
+              if(Math.random() < 0.6) firePulse(i, j);
+            }
+          }
+        }
+        n.glow *= 0.92; /* decay */
+
+        const alpha = 0.25 + n.charge * 0.55 + n.glow * 0.2;
+        const radius = n.r * (1 + n.glow * 2.5);
+
+        /* outer glow halo */
+        const halo = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, radius * 5);
+        halo.addColorStop(0, `hsla(${n.hue},90%,70%,${alpha * 0.35})`);
+        halo.addColorStop(1, 'transparent');
+        ctx.fillStyle = halo; ctx.beginPath(); ctx.arc(n.x, n.y, radius*5, 0, Math.PI*2); ctx.fill();
+
+        /* core dot */
+        ctx.fillStyle = `hsla(${n.hue},95%,80%,${alpha})`;
+        ctx.beginPath(); ctx.arc(n.x, n.y, radius, 0, Math.PI*2); ctx.fill();
       }
     }
-    function loop(){ angle+=0.0014; draw(); requestAnimationFrame(loop); }
+
+    function loop(){ draw(); requestAnimationFrame(loop); }
     loop();
   })();
   </script>
