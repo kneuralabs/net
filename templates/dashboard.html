@@ -13,16 +13,22 @@
       min-height: 100vh; display: flex; flex-direction: column;
     }
 
-    .bg-grid {
+    #globe-canvas {
       position: fixed; inset: 0; z-index: 0;
+      pointer-events: none;
+    }
+
+    .bg-grid {
+      position: fixed; inset: 0; z-index: 1;
       background-image:
         linear-gradient(rgba(99,102,241,.04) 1px, transparent 1px),
         linear-gradient(90deg, rgba(99,102,241,.04) 1px, transparent 1px);
       background-size: 40px 40px;
+      pointer-events: none;
     }
 
     header {
-      position: relative; z-index: 1;
+      position: relative; z-index: 2;
       display: flex; align-items: center; justify-content: space-between;
       padding: 18px 32px;
       border-bottom: 1px solid rgba(99,102,241,.15);
@@ -72,9 +78,10 @@
     .btn-danger:hover { background: rgba(239,68,68,.18); }
 
     main {
-      position: relative; z-index: 1;
-      flex: 1; display: flex; align-items: center; justify-content: center;
-      padding: 40px 20px;
+      position: relative; z-index: 2;
+      flex: 1; display: flex; flex-direction: column; align-items: center;
+      padding: 40px 20px 60px;
+      gap: 40px;
     }
 
     .welcome {
@@ -110,9 +117,125 @@
     }
     .action-card:hover { border-color: rgba(99,102,241,.4); background: rgba(99,102,241,.07); }
     .action-card .icon { font-size: 24px; }
+
+    /* ── Widgets row ── */
+    .widgets {
+      display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;
+      width: 100%; max-width: 1100px;
+    }
+
+    .widget {
+      background: rgba(14,14,22,.85);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 14px;
+      padding: 22px 24px;
+      backdrop-filter: blur(10px);
+      flex: 1; min-width: 280px; max-width: 420px;
+    }
+
+    .widget-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .widget-title {
+      font-size: 13px; font-weight: 600; color: #8080b0;
+      text-transform: uppercase; letter-spacing: .06em;
+    }
+
+    .widget-date {
+      font-size: 11px; color: #50507a;
+    }
+
+    /* Holiday widget */
+    .holiday-today {
+      font-size: 12px; color: #50e0a0; font-weight: 600;
+      background: rgba(80,224,160,.08);
+      border: 1px solid rgba(80,224,160,.2);
+      border-radius: 6px; padding: 3px 9px; margin-bottom: 12px;
+      display: inline-block;
+    }
+
+    .holiday-row {
+      display: flex; flex-direction: column; gap: 12px;
+    }
+
+    .holiday-item {
+      display: flex; align-items: flex-start; gap: 12px;
+    }
+
+    .holiday-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      margin-top: 5px; flex-shrink: 0;
+    }
+    .holiday-dot.today-dot { background: #50e0a0; box-shadow: 0 0 6px #50e0a0; }
+    .holiday-dot.next-dot  { background: #6366f1; box-shadow: 0 0 6px #6366f1; }
+    .holiday-dot.knl-dot   { background: #f59e0b; box-shadow: 0 0 6px #f59e0b; }
+
+    .holiday-name { font-size: 14px; font-weight: 600; color: #d0d0f0; }
+    .holiday-meta { font-size: 12px; color: #60607a; margin-top: 2px; }
+
+    .knl-badge {
+      display: inline-block; font-size: 10px; font-weight: 700;
+      background: rgba(245,158,11,.15); color: #f59e0b;
+      border: 1px solid rgba(245,158,11,.3);
+      border-radius: 4px; padding: 1px 6px; margin-left: 6px;
+      vertical-align: middle;
+    }
+
+    /* Governance Brief */
+    .brief-item {
+      border-left: 2px solid rgba(99,102,241,.3);
+      padding: 8px 0 8px 14px;
+      margin-bottom: 12px;
+    }
+    .brief-item:last-child { margin-bottom: 0; }
+
+    .brief-tag {
+      display: inline-block; font-size: 10px; font-weight: 700;
+      padding: 2px 7px; border-radius: 4px; margin-bottom: 5px;
+    }
+
+    .tag-justin {
+      background: rgba(239,68,68,.15); color: #f87171;
+      border: 1px solid rgba(239,68,68,.3);
+      animation: pulse-tag 2s ease-in-out infinite;
+    }
+    .tag-today {
+      background: rgba(99,102,241,.15); color: #a5a5f5;
+      border: 1px solid rgba(99,102,241,.3);
+    }
+    .tag-recent {
+      background: rgba(255,255,255,.06); color: #70709a;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    @keyframes pulse-tag {
+      0%,100% { opacity: 1; }
+      50%      { opacity: .6; }
+    }
+
+    .brief-headline {
+      font-size: 13px; font-weight: 600; color: #d0d0f0; line-height: 1.4;
+      margin-bottom: 3px;
+    }
+    .brief-source {
+      font-size: 11px; color: #50507a;
+    }
+
+    .brief-updated {
+      font-size: 11px; color: #50507a; margin-top: 14px;
+      display: flex; align-items: center; gap: 5px;
+    }
+    .live-dot {
+      width: 6px; height: 6px; border-radius: 50%; background: #50e0a0;
+      animation: blink 1.5s ease-in-out infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0;} }
   </style>
 </head>
 <body>
+  <canvas id="globe-canvas"></canvas>
   <div class="bg-grid"></div>
 
   <header>
@@ -144,6 +267,326 @@
         </a>
       </div>
     </div>
+
+    <!-- Widgets -->
+    <div class="widgets">
+
+      <!-- Holiday Widget -->
+      <div class="widget" id="holiday-widget">
+        <div class="widget-header">
+          <span class="widget-title">&#128197; Holidays</span>
+          <span class="widget-date" id="today-label"></span>
+        </div>
+        <div id="holiday-body"></div>
+      </div>
+
+      <!-- Governance Brief -->
+      <div class="widget">
+        <div class="widget-header">
+          <span class="widget-title">&#128240; Governance Brief</span>
+          <span class="widget-date" id="brief-date"></span>
+        </div>
+        <div id="brief-body"></div>
+        <div class="brief-updated">
+          <span class="live-dot"></span>
+          <span id="brief-updated-text"></span>
+        </div>
+      </div>
+
+    </div>
   </main>
+
+  <!-- ── Globe background animation ── -->
+  <script>
+  (function(){
+    const canvas = document.getElementById('globe-canvas');
+    const ctx = canvas.getContext('2d');
+    let W, H, cx, cy, R;
+
+    function resize(){
+      W = canvas.width  = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+      cx = W * 0.72; cy = H * 0.45;
+      R  = Math.min(W, H) * 0.30;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    // Neural nodes on sphere surface (lat/lon in radians)
+    const NODE_COUNT = 52;
+    const nodes = [];
+    for(let i=0; i<NODE_COUNT; i++){
+      const lat = (Math.random()-0.5)*Math.PI;      // -π/2 .. π/2
+      const lon = Math.random()*2*Math.PI;           // 0 .. 2π
+      nodes.push({lat, lon, r: 2+Math.random()*2});
+    }
+
+    // Build edges between nearby nodes
+    const edges = [];
+    for(let i=0; i<nodes.length; i++){
+      for(let j=i+1; j<nodes.length; j++){
+        const dlat = nodes[i].lat - nodes[j].lat;
+        const dlon = nodes[i].lon - nodes[j].lon;
+        const dist = Math.sqrt(dlat*dlat + dlon*dlon);
+        if(dist < 0.95) edges.push([i,j]);
+      }
+    }
+
+    let angle = 0;
+
+    function project(lat, lon){
+      const a = lon + angle;
+      const x = cx + R * Math.cos(lat) * Math.sin(a);
+      const y = cy - R * Math.sin(lat);
+      const z = Math.cos(lat) * Math.cos(a);   // +1 = front, -1 = back
+      return {x, y, z};
+    }
+
+    // lat/lon grid lines
+    const LATS = [-60,-40,-20,0,20,40,60].map(d=>d*Math.PI/180);
+    const LONS = Array.from({length:18},(_,i)=>i*20*Math.PI/180);
+
+    function drawGlobe(){
+      ctx.clearRect(0,0,W,H);
+
+      // Subtle glow behind globe
+      const grd = ctx.createRadialGradient(cx,cy,R*0.1, cx,cy,R*1.2);
+      grd.addColorStop(0,'rgba(99,102,241,0.07)');
+      grd.addColorStop(1,'transparent');
+      ctx.fillStyle = grd;
+      ctx.beginPath(); ctx.arc(cx,cy,R*1.2,0,Math.PI*2); ctx.fill();
+
+      // Lat lines (visible half)
+      for(const lat of LATS){
+        ctx.beginPath();
+        let first = true;
+        for(let l=0; l<=360; l+=3){
+          const lon = l*Math.PI/180;
+          const p = project(lat, lon);
+          if(p.z < -0.05) { first=true; continue; }
+          const alpha = Math.max(0, p.z)*0.18;
+          ctx.strokeStyle = `rgba(99,102,241,${alpha})`;
+          if(first){ ctx.moveTo(p.x,p.y); first=false; }
+          else ctx.lineTo(p.x,p.y);
+        }
+        ctx.stroke();
+      }
+
+      // Lon lines
+      for(const lon of LONS){
+        ctx.beginPath();
+        let first = true;
+        for(let i=-90; i<=90; i+=3){
+          const lat = i*Math.PI/180;
+          const p = project(lat, lon);
+          if(p.z < -0.05) { first=true; continue; }
+          const alpha = Math.max(0,p.z)*0.18;
+          ctx.strokeStyle = `rgba(139,92,246,${alpha})`;
+          if(first){ ctx.moveTo(p.x,p.y); first=false; }
+          else ctx.lineTo(p.x,p.y);
+        }
+        ctx.stroke();
+      }
+
+      // Edges (neural connections)
+      for(const [i,j] of edges){
+        const a = project(nodes[i].lat, nodes[i].lon);
+        const b = project(nodes[j].lat, nodes[j].lon);
+        if(a.z < 0 && b.z < 0) continue;
+        const vis = Math.max(0, (a.z+b.z)/2);
+        ctx.beginPath();
+        ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y);
+        ctx.strokeStyle = `rgba(139,92,246,${vis*0.35})`;
+        ctx.lineWidth = 0.8;
+        ctx.stroke();
+      }
+
+      // Nodes
+      for(const n of nodes){
+        const p = project(n.lat, n.lon);
+        if(p.z < 0) continue;
+        const alpha = p.z;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, n.r * p.z, 0, Math.PI*2);
+        ctx.fillStyle = `rgba(165,165,245,${alpha*0.8})`;
+        ctx.fill();
+        // glow
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, n.r*2.5*p.z, 0, Math.PI*2);
+        ctx.fillStyle = `rgba(99,102,241,${alpha*0.15})`;
+        ctx.fill();
+      }
+    }
+
+    function loop(){
+      angle += 0.0018;
+      drawGlobe();
+      requestAnimationFrame(loop);
+    }
+    loop();
+  })();
+  </script>
+
+  <!-- ── Holiday widget ── -->
+  <script>
+  (function(){
+    // All holidays (month is 1-based)
+    const FIXED = [
+      {name:"New Year's Day",      m:1,  d:1},
+      {name:"Kneuralabs Day",      m:2,  d:19, knl:true},
+      {name:"Independence Day",    m:7,  d:4},
+      {name:"Christmas Day",       m:12, d:25},
+    ];
+
+    // US floating holidays (computed per year)
+    function nthWeekday(year, month, weekday, n){
+      // weekday: 0=Sun..6=Sat, n: 1-based
+      const d = new Date(year, month-1, 1);
+      let count=0;
+      while(true){
+        if(d.getDay()===weekday){ count++; if(count===n) return new Date(d); }
+        d.setDate(d.getDate()+1);
+      }
+    }
+    function lastWeekday(year, month, weekday){
+      const d = new Date(year, month, 0); // last day of month
+      while(d.getDay()!==weekday) d.setDate(d.getDate()-1);
+      return new Date(d);
+    }
+
+    function floatingHolidays(year){
+      return [
+        {name:"MLK Day",          date: nthWeekday(year,1,1,3)},
+        {name:"Presidents' Day",  date: nthWeekday(year,2,1,3)},
+        {name:"Memorial Day",     date: lastWeekday(year,5,1)},
+        {name:"Labor Day",        date: nthWeekday(year,9,1,1)},
+        {name:"Thanksgiving Day", date: nthWeekday(year,11,4,4)},
+      ];
+    }
+
+    function allHolidaysForYear(year){
+      const list = [];
+      for(const h of FIXED){
+        // Kneuralabs Day starts 2026
+        if(h.knl && year < 2026) continue;
+        list.push({name:h.name, date:new Date(year, h.m-1, h.d), knl:!!h.knl});
+      }
+      for(const h of floatingHolidays(year)){
+        list.push({name:h.name, date:h.date, knl:false});
+      }
+      list.sort((a,b)=>a.date-b.date);
+      return list;
+    }
+
+    const today = new Date();
+    today.setHours(0,0,0,0);
+
+    document.getElementById('today-label').textContent =
+      today.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+
+    // Collect holidays this year + next for wrap-around
+    let holidays = [
+      ...allHolidaysForYear(today.getFullYear()),
+      ...allHolidaysForYear(today.getFullYear()+1),
+    ];
+
+    const fmt = d => d.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});
+
+    // Is today a holiday?
+    const todayHol = holidays.find(h => h.date.getTime()===today.getTime());
+
+    // Next holiday strictly after today
+    const upcoming = holidays.filter(h => h.date > today);
+    const next1 = upcoming[0];
+    const next2 = upcoming[1];
+
+    let html = '';
+
+    if(todayHol){
+      html += `<div class="holiday-today">Today is a Holiday!</div>`;
+      html += `<div class="holiday-row">`;
+      html += `<div class="holiday-item">
+        <div class="holiday-dot today-dot"></div>
+        <div>
+          <div class="holiday-name">${todayHol.name}${todayHol.knl?'<span class="knl-badge">KNL</span>':''}</div>
+          <div class="holiday-meta">Today · ${fmt(todayHol.date)}</div>
+        </div></div>`;
+    } else {
+      html += `<div class="holiday-row">`;
+    }
+
+    const labelNext = todayHol ? 'Next' : 'Next observed';
+
+    if(next1){
+      const daysUntil = Math.round((next1.date - today)/(1000*60*60*24));
+      html += `<div class="holiday-item">
+        <div class="holiday-dot next-dot"></div>
+        <div>
+          <div class="holiday-name">${next1.name}${next1.knl?'<span class="knl-badge">KNL</span>':''}</div>
+          <div class="holiday-meta">${labelNext} · ${fmt(next1.date)} · in ${daysUntil} day${daysUntil!==1?'s':''}</div>
+        </div></div>`;
+    }
+    if(next2){
+      html += `<div class="holiday-item">
+        <div class="holiday-dot knl-dot"></div>
+        <div>
+          <div class="holiday-name">${next2.name}${next2.knl?'<span class="knl-badge">KNL</span>':''}</div>
+          <div class="holiday-meta">${fmt(next2.date)}</div>
+        </div></div>`;
+    }
+
+    html += `</div>`;
+    document.getElementById('holiday-body').innerHTML = html;
+  })();
+  </script>
+
+  <!-- ── Governance Brief ── -->
+  <script>
+  (function(){
+    const today = new Date();
+    const dateStr = today.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
+    document.getElementById('brief-date').textContent = dateStr;
+    document.getElementById('brief-updated-text').textContent = 'Updated daily · ' + today.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
+
+    // Governance briefs pool — rotated daily based on day-of-year
+    const pool = [
+      {headline:"SEC finalises AI-model disclosure rules for financial institutions",  source:"SEC · Federal Register"},
+      {headline:"White House issues executive memo on federal AI procurement standards", source:"OMB · Office of Management and Budget"},
+      {headline:"FTC opens comment period on algorithmic accountability framework",      source:"FTC · Bureau of Consumer Protection"},
+      {headline:"NIST releases updated Cybersecurity Framework 2.1 draft for review",   source:"NIST · Information Technology Lab"},
+      {headline:"Senate Commerce Committee advances AI liability amendment",             source:"U.S. Senate · Committee on Commerce"},
+      {headline:"DOJ publishes guidance on cross-border data transfer compliance",       source:"DOJ · National Security Division"},
+      {headline:"CISA updates critical infrastructure cyber resilience benchmarks",      source:"CISA · Cybersecurity Advisory"},
+      {headline:"Federal Reserve issues circular on AI risk in banking supervision",     source:"Federal Reserve · Supervisory Letter"},
+      {headline:"DOD releases updated policy on autonomous systems decision authority",  source:"DOD · Office of the Undersecretary"},
+      {headline:"Congress introduces bipartisan bill on federal employee AI training",   source:"House · Committee on Oversight"},
+    ];
+
+    // Pick 3 items seeded by day-of-year so they rotate daily
+    const dayOfYear = Math.floor((today - new Date(today.getFullYear(),0,0))/(1000*60*60*24));
+    const picked = [];
+    for(let i=0;i<3;i++) picked.push(pool[(dayOfYear + i) % pool.length]);
+
+    let html = '';
+    picked.forEach((item, idx) => {
+      let tagClass, tagLabel;
+      if(idx === 0){
+        tagClass = 'tag-justin'; tagLabel = '⚡ Just In';
+      } else if(idx === 1){
+        tagClass = 'tag-today'; tagLabel = 'Today';
+      } else {
+        tagClass = 'tag-recent'; tagLabel = 'Recent';
+      }
+      html += `<div class="brief-item">
+        <div class="brief-tag ${tagClass}">${tagLabel}</div>
+        <div class="brief-headline">${item.headline}</div>
+        <div class="brief-source">${item.source}</div>
+      </div>`;
+    });
+
+    document.getElementById('brief-body').innerHTML = html;
+  })();
+  </script>
+
 </body>
 </html>
