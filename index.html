@@ -2138,15 +2138,16 @@ html[data-motion="playful"] .tile:hover {
     }
     resize(); window.addEventListener('resize',resize);
 
-    const N=60, nodes=[];
-    for(let i=0;i<N;i++) nodes.push({lat:(Math.random()-.5)*Math.PI, lon:Math.random()*2*Math.PI, r:1.5+Math.random()*2});
+    const N=120, nodes=[];
+    const COLORS=['red','blue'];
+    for(let i=0;i<N;i++) nodes.push({lat:(Math.random()-.5)*Math.PI, lon:Math.random()*2*Math.PI, r:1.5+Math.random()*2, col:COLORS[i%2]});
     const edges=[];
     for(let i=0;i<N;i++) for(let j=i+1;j<N;j++){
       const dl=nodes[i].lat-nodes[j].lat, dn=nodes[i].lon-nodes[j].lon;
-      if(dl*dl+dn*dn<0.8) edges.push([i,j]);
+      if(dl*dl+dn*dn<0.6) edges.push([i,j]);
     }
-    const LATS=[-60,-40,-20,0,20,40,60].map(d=>d*Math.PI/180);
-    const LONS=Array.from({length:18},(_,i)=>i*20*Math.PI/180);
+    const LATS=[-75,-60,-45,-30,-15,0,15,30,45,60,75].map(d=>d*Math.PI/180);
+    const LONS=Array.from({length:24},(_,i)=>i*15*Math.PI/180);
     let angle=0;
 
     function proj(lat,lon){ const a=lon+angle; return {x:cx+R*Math.cos(lat)*Math.sin(a), y:cy-R*Math.sin(lat), z:Math.cos(lat)*Math.cos(a)}; }
@@ -2177,10 +2178,13 @@ html[data-motion="playful"] .tile:hover {
       }
       for(const n of nodes){
         const p=proj(n.lat,n.lon); if(p.z<0) continue;
+        const isRed=n.col==='red';
+        const gc=isRed?`rgba(255,80,80,${p.z*.45})`:`rgba(80,120,255,${p.z*.45})`;
+        const fc=isRed?`rgba(255,120,120,${p.z*.9})`:`rgba(120,160,255,${p.z*.9})`;
         const h=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,n.r*4*p.z);
-        h.addColorStop(0,`rgba(190,160,255,${p.z*.45})`); h.addColorStop(1,'transparent');
+        h.addColorStop(0,gc); h.addColorStop(1,'transparent');
         ctx.fillStyle=h; ctx.beginPath(); ctx.arc(p.x,p.y,n.r*4*p.z,0,Math.PI*2); ctx.fill();
-        ctx.fillStyle=`rgba(220,200,255,${p.z*.9})`; ctx.beginPath(); ctx.arc(p.x,p.y,n.r*p.z,0,Math.PI*2); ctx.fill();
+        ctx.fillStyle=fc; ctx.beginPath(); ctx.arc(p.x,p.y,n.r*p.z,0,Math.PI*2); ctx.fill();
       }
     }
     function loop(){ angle+=0.0016; draw(); requestAnimationFrame(loop); }
