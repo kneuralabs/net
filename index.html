@@ -2267,6 +2267,8 @@ html[data-motion="playful"] .tile:hover {
     html[data-theme="authority"] #kn-neurons,
     html[data-theme="navy"]      #kn-neurons { opacity: 0.80; }
     @keyframes just-in-pulse { 0%,100%{opacity:1} 50%{opacity:.5} }
+    @keyframes all-green-blink { 0%,100%{opacity:1} 50%{opacity:0.15} }
+    .all-green-lbl { animation: all-green-blink 1.8s ease-in-out infinite; }
     body > .page, body > .theme-toggle, body > .lock-overlay, body > .sso-overlay { position:relative; z-index:1; }
   </style>
   <script>
@@ -2275,28 +2277,28 @@ html[data-motion="playful"] .tile:hover {
     const ctx = cv.getContext('2d');
     let W, H, frame = 0;
 
-    /* ── Adaptive palette: dark = authority / navy; else light ── */
+    /* ── Palette: grey resting network · blue pulse · red firing node ── */
     function pal(){
       const theme = document.documentElement.getAttribute('data-theme');
       const dark  = theme === 'authority' || theme === 'navy';
       return dark ? {
-        /* light strokes/glows on dark bg */
-        edgeRest:  'rgba(120,180,255,',
-        edgeActive:'rgba(150,210,255,',
-        nodeRest:  'rgba(110,170,245,',
-        nodeFire:  'rgba(190,235,255,',
-        nodeHalo:  'rgba(110,185,255,',
-        pulseHead: 'rgba(225,248,255,',
-        pulseTail: 'rgba(150,215,255,'
+        /* on dark backgrounds — keep colours luminous but not harsh */
+        edgeRest:  'rgba(160,168,182,',   /* grey axons at rest */
+        edgeActive:'rgba(100,160,255,',   /* blue axon when carrying signal */
+        nodeRest:  'rgba(150,158,172,',   /* grey soma at rest */
+        nodeFire:  'rgba(255,80,80,',     /* red soma when firing */
+        nodeHalo:  'rgba(255,60,60,',     /* red outer glow on fire */
+        pulseHead: 'rgba(120,185,255,',   /* blue leading pulse */
+        pulseTail: 'rgba(90,150,240,'     /* blue fading trail */
       } : {
-        /* dark strokes/glows on light bg */
-        edgeRest:  'rgba(50,90,170,',
-        edgeActive:'rgba(35,75,190,',
-        nodeRest:  'rgba(60,100,180,',
-        nodeFire:  'rgba(25,65,165,',
-        nodeHalo:  'rgba(55,100,195,',
-        pulseHead: 'rgba(20,55,155,',
-        pulseTail: 'rgba(45,85,175,'
+        /* on light backgrounds — slightly deeper tones for contrast */
+        edgeRest:  'rgba(110,118,135,',
+        edgeActive:'rgba(40,90,200,',
+        nodeRest:  'rgba(105,112,128,',
+        nodeFire:  'rgba(210,40,40,',
+        nodeHalo:  'rgba(200,30,30,',
+        pulseHead: 'rgba(35,85,195,',
+        pulseTail: 'rgba(55,100,200,'
       };
     }
 

@@ -170,7 +170,7 @@ function StatusStrip({ now }) {
       <div className="strip__cell">
         <div className="strip__lbl">
           <span>System</span>
-          <span>All Green</span>
+          <span className="all-green-lbl">All Green</span>
         </div>
         <div className="strip__big" style={{ fontSize: 22, letterSpacing: "-0.02em", fontWeight: 600 }}>
           Operational
@@ -599,7 +599,7 @@ function Colophon() {
   return (
     <footer className="colophon rule-thin">
       <div className="colophon__col">
-        <div><b>Kneuralabs Pvt. Ltd.</b></div>
+        <div><b>Kneuralabs LLC</b></div>
         <div>Kolkata · Connecticut</div>
         <div>Trust & Security Practice</div>
       </div>
