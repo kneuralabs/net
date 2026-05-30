@@ -638,7 +638,7 @@
   --c-charcoal:    #141414;   /* H1, display, body */
   --c-cyan-dim:    #00B8C9;   /* hover, secondary borders */
   --c-cyan-ghost:  #D6FBFF;   /* callouts */
-  --c-steel:       #8A9BB5;   /* captions, metadata */
+  --c-steel:       #5C6F88;   /* captions, metadata — AA-compliant on white */
   --c-smoke:       #EEF1F5;   /* alt rows, secondary bg */
   --c-emerald:     #00B871;   /* status: compliant */
   --c-alert-red:   #E53E3E;   /* status: non-compliant */
@@ -2260,9 +2260,12 @@ html[data-motion="playful"] .tile:hover {
   <script type="text/babel" src="assets/58377a47-fb5f-4894-a8b1-b0d2fb4f56b6.js?v=2"></script>
   <script type="text/babel" src="assets/a7e17038-28e5-442a-8b55-791d88b8b3f8.js?v=2"></script>
 
-  <!-- Digital neuron firing background -->
-  <canvas id="kn-neurons" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;pointer-events:none;opacity:0.82;"></canvas>
+  <!-- Neuron firing background -->
+  <canvas id="kn-neurons" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;pointer-events:none;opacity:0.75;"></canvas>
   <style>
+    /* Tone down canvas on light themes so it never competes with text */
+    html[data-theme="authority"] #kn-neurons,
+    html[data-theme="navy"]      #kn-neurons { opacity: 0.80; }
     @keyframes just-in-pulse { 0%,100%{opacity:1} 50%{opacity:.5} }
     body > .page, body > .theme-toggle, body > .lock-overlay, body > .sso-overlay { position:relative; z-index:1; }
   </style>
@@ -2272,58 +2275,72 @@ html[data-motion="playful"] .tile:hover {
     const ctx = cv.getContext('2d');
     let W, H, frame = 0;
 
-    /* layers: background slow nodes, foreground faster nodes */
-    const LAYERS = [
-      { depth: 0, count: 18, speedMul: 0.45, rMul: 0.8,  alpha: 0.55, linkFrac: 0.22 },
-      { depth: 1, count: 28, speedMul: 1.0,  rMul: 1.0,  alpha: 1.0,  linkFrac: 0.30 },
-      { depth: 2, count: 10, speedMul: 1.8,  rMul: 1.6,  alpha: 0.70, linkFrac: 0.20 }
-    ];
+    /* ── Adaptive palette: dark = authority / navy; else light ── */
+    function pal(){
+      const theme = document.documentElement.getAttribute('data-theme');
+      const dark  = theme === 'authority' || theme === 'navy';
+      return dark ? {
+        /* light strokes/glows on dark bg */
+        edgeRest:  'rgba(120,180,255,',
+        edgeActive:'rgba(150,210,255,',
+        nodeRest:  'rgba(110,170,245,',
+        nodeFire:  'rgba(190,235,255,',
+        nodeHalo:  'rgba(110,185,255,',
+        pulseHead: 'rgba(225,248,255,',
+        pulseTail: 'rgba(150,215,255,'
+      } : {
+        /* dark strokes/glows on light bg */
+        edgeRest:  'rgba(50,90,170,',
+        edgeActive:'rgba(35,75,190,',
+        nodeRest:  'rgba(60,100,180,',
+        nodeFire:  'rgba(25,65,165,',
+        nodeHalo:  'rgba(55,100,195,',
+        pulseHead: 'rgba(20,55,155,',
+        pulseTail: 'rgba(45,85,175,'
+      };
+    }
 
-    let nodes = [], edges = [], pulses = [], ripples = [], sparks = [];
-
-    /* hue palette: deep blue → cyan → violet → teal */
-    function randHue(){ return [200, 185, 220, 260, 175][Math.floor(Math.random()*5)] + Math.random()*25; }
+    /* ── Graph ── */
+    const NODE_COUNT = 16;
+    let nodes = [], edges = [], pulses = [];
 
     function buildGraph(){
-      nodes = []; edges = []; pulses = []; ripples = []; sparks = [];
-      for(const L of LAYERS){
-        const N = Math.min(Math.floor(W * H / 38000 * L.count / 18) + L.count, L.count + 14);
-        for(let i = 0; i < N; i++){
-          nodes.push({
-            x: Math.random() * W,
-            y: Math.random() * H,
-            vx: (Math.random()-0.5) * 0.18 * L.speedMul,
-            vy: (Math.random()-0.5) * 0.18 * L.speedMul,
-            r:  1.5 + Math.random() * 2.2 * L.rMul,
-            charge: Math.random(),
-            chargeSpeed: (0.0003 + Math.random() * 0.0007) * L.speedMul,
-            glow: 0,
-            hue: randHue(),
-            layer: L.depth,
-            alphaScale: L.alpha,
-            linkFrac: L.linkFrac,
-            idx: nodes.length   /* will be set below */
-          });
-        }
+      nodes = []; edges = []; pulses = [];
+      for(let i = 0; i < NODE_COUNT; i++){
+        nodes.push({
+          x: W * 0.08 + Math.random() * W * 0.84,
+          y: H * 0.08 + Math.random() * H * 0.84,
+          vx: (Math.random()-0.5) * 0.06,
+          vy: (Math.random()-0.5) * 0.06,
+          r: 2.5 + Math.random() * 2,
+          glow: 0,
+          refract: Math.floor(Math.random() * 180), /* stagger initial fires */
+          charge: Math.random() * 0.6,
+          chargeSpeed: 0.00035 + Math.random() * 0.00045,
+          idx: i
+        });
       }
-      /* assign stable indices */
-      nodes.forEach((n, i) => n.idx = i);
 
-      /* build edges within each layer by distance */
+      /* Sparse graph — connect nodes within ~28% of min(W,H) */
+      const maxD = Math.min(W, H) * 0.30;
       for(let i = 0; i < nodes.length; i++){
         for(let j = i+1; j < nodes.length; j++){
-          if(nodes[i].layer !== nodes[j].layer) continue;
-          const D = Math.min(W, H) * nodes[i].linkFrac;
           const dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y;
-          if(dx*dx + dy*dy < D*D) edges.push([i, j]);
+          if(dx*dx + dy*dy < maxD*maxD) edges.push([i, j]);
         }
       }
-      /* occasional cross-layer long-range connections */
+
+      /* Guarantee every node has at least one connection */
       for(let i = 0; i < nodes.length; i++){
-        if(Math.random() < 0.06){
-          const j = Math.floor(Math.random() * nodes.length);
-          if(j !== i) edges.push([i, j]);
+        if(edges.some(([a,b]) => a===i || b===i)) continue;
+        let bestJ = -1, bestD = Infinity;
+        for(let j = 0; j < nodes.length; j++){
+          if(j===i) continue;
+          const dx=nodes[i].x-nodes[j].x, dy=nodes[i].y-nodes[j].y;
+          const d=dx*dx+dy*dy;
+          if(d<bestD){ bestD=d; bestJ=j; }
         }
+        if(bestJ>=0) edges.push([i, bestJ]);
       }
     }
 
@@ -2335,169 +2352,138 @@ html[data-motion="playful"] .tile:hover {
     resize();
     window.addEventListener('resize', resize);
 
-    /* precompute per-node edge list */
-    function nodeEdges(idx){
-      return edges.filter(([a,b]) => a === idx || b === idx);
-    }
-
-    function firePulse(i, j, hue, fast){
-      const speed = (fast ? 0.022 : 0.008) + Math.random() * 0.014;
-      pulses.push({ i, j, t: 0, speed, hue: hue || nodes[i].hue, w: 1 + Math.random() * 2 });
-    }
-
-    function addRipple(x, y, hue){
-      ripples.push({ x, y, r: 0, maxR: 28 + Math.random()*22, hue, life: 1 });
-    }
-
-    function addSparks(x, y, hue, count){
-      for(let s = 0; s < count; s++){
-        const angle = Math.random() * Math.PI * 2;
-        const spd = 0.5 + Math.random() * 1.5;
-        sparks.push({ x, y, vx: Math.cos(angle)*spd, vy: Math.sin(angle)*spd, life: 1, hue });
+    /* ── Fire a node: launch pulses along its axons ── */
+    function fireNode(idx){
+      const n = nodes[idx];
+      if(!n || n.refract > 0) return;
+      n.glow    = 1;
+      n.refract = 200 + Math.floor(Math.random() * 160); /* ~3-4 s refractory */
+      const ne = edges.filter(([a,b]) => a===idx || b===idx);
+      for(const [a,b] of ne){
+        if(Math.random() < 0.55){
+          const target = a===idx ? b : a;
+          const speed  = 0.005 + Math.random() * 0.007;
+          pulses.push({ from: idx, to: target, t: 0, speed });
+        }
       }
     }
 
     function draw(){
       ctx.clearRect(0, 0, W, H);
+      const p = pal();
 
-      /* deep-space vignette — subtle purple core */
-      const vg = ctx.createRadialGradient(W*.5, H*.5, 0, W*.5, H*.5, Math.max(W,H)*.72);
-      vg.addColorStop(0, 'rgba(18,10,45,0.22)');
-      vg.addColorStop(0.6, 'rgba(8,4,20,0.12)');
-      vg.addColorStop(1, 'rgba(0,0,0,0)');
-      ctx.fillStyle = vg; ctx.fillRect(0, 0, W, H);
-
-      /* ── EDGES ── */
-      for(const [i, j] of edges){
-        const a = nodes[i], b = nodes[j];
-        const dx = b.x-a.x, dy = b.y-a.y;
-        const dist = Math.sqrt(dx*dx+dy*dy);
-        const D = Math.min(W,H) * a.linkFrac;
-        const fade = Math.max(0, 1 - dist/D);
-        if(fade <= 0) continue;
-        const avgHue = (a.hue + b.hue) / 2;
-        const baseAlpha = fade * 0.10 * a.alphaScale;
-        /* gradient edge for depth */
-        const eg = ctx.createLinearGradient(a.x, a.y, b.x, b.y);
-        eg.addColorStop(0, `hsla(${a.hue},80%,70%,${baseAlpha})`);
-        eg.addColorStop(1, `hsla(${b.hue},80%,70%,${baseAlpha})`);
+      /* ── RESTING EDGES ── thin axon/dendrite lines */
+      for(const [i,j] of edges){
+        const a=nodes[i], b=nodes[j];
+        const lit = a.glow > 0.05 || b.glow > 0.05;
         ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
-        ctx.strokeStyle = eg;
-        ctx.lineWidth = 0.5 + fade * 0.7;
+        ctx.strokeStyle = lit ? `${p.edgeRest}0.14)` : `${p.edgeRest}0.06)`;
+        ctx.lineWidth = 0.6;
         ctx.stroke();
       }
 
-      /* ── PULSES ── */
-      for(let k = pulses.length - 1; k >= 0; k--){
-        const p = pulses[k];
-        p.t += p.speed;
-        if(p.t > 1){ pulses.splice(k, 1); continue; }
-        const a = nodes[p.i], b = nodes[p.j];
-        const px = a.x + (b.x-a.x)*p.t, py = a.y + (b.y-a.y)*p.t;
-        const alpha = Math.sin(p.t * Math.PI) * 0.95;
+      /* ── PULSES ── electrochemical signal travelling along axon */
+      for(let k = pulses.length-1; k >= 0; k--){
+        const pl = pulses[k];
+        pl.t += pl.speed;
 
-        /* comet head glow */
-        const sg = ctx.createRadialGradient(px, py, 0, px, py, 9);
-        sg.addColorStop(0, `hsla(${p.hue},100%,90%,${alpha})`);
-        sg.addColorStop(0.4, `hsla(${p.hue},90%,70%,${alpha*0.5})`);
-        sg.addColorStop(1, `hsla(${p.hue},80%,60%,0)`);
+        if(pl.t >= 1){
+          pulses.splice(k, 1);
+          /* cascade: target may fire after a brief synaptic delay */
+          const tgt = nodes[pl.to];
+          if(tgt && tgt.refract <= 0 && Math.random() < 0.50){
+            tgt.pendingFire = 18 + Math.floor(Math.random() * 22); /* ~0.3 s delay */
+          }
+          continue;
+        }
+
+        const a=nodes[pl.from], b=nodes[pl.to];
+        const px = a.x + (b.x-a.x)*pl.t;
+        const py = a.y + (b.y-a.y)*pl.t;
+        const alpha = Math.sin(pl.t * Math.PI); /* arc: 0→1→0 */
+
+        /* Lit axon segment behind the pulse */
+        ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
+        ctx.strokeStyle = `${p.edgeActive}${alpha * 0.28})`;
+        ctx.lineWidth = 0.9;
+        ctx.stroke();
+
+        /* Short soft tail */
+        const tailT = Math.max(0, pl.t - 0.18);
+        const tx = a.x + (b.x-a.x)*tailT, ty = a.y + (b.y-a.y)*tailT;
+        ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(tx, ty);
+        ctx.strokeStyle = `${p.pulseTail}${alpha * 0.55})`;
+        ctx.lineWidth = 1.4;
+        ctx.stroke();
+
+        /* Pulse head — small soft glow, not a firework */
+        const sg = ctx.createRadialGradient(px, py, 0, px, py, 5);
+        sg.addColorStop(0, `${p.pulseHead}${alpha * 0.90})`);
+        sg.addColorStop(1, `${p.pulseHead}0)`);
         ctx.fillStyle = sg;
-        ctx.beginPath(); ctx.arc(px, py, 9, 0, Math.PI*2); ctx.fill();
-
-        /* trail — graduated opacity segments */
-        const segs = 10;
-        for(let s = 0; s < segs; s++){
-          const tf = Math.max(0, p.t - p.speed * (s + 1) * 3.5);
-          const tx = a.x + (b.x-a.x)*tf, ty = a.y + (b.y-a.y)*tf;
-          const ta = alpha * (1 - s/segs) * 0.45;
-          ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(tx, ty);
-          ctx.strokeStyle = `hsla(${p.hue},90%,75%,${ta})`;
-          ctx.lineWidth = p.w * (1 - s/segs);
-          ctx.stroke();
-        }
+        ctx.beginPath(); ctx.arc(px, py, 5, 0, Math.PI*2); ctx.fill();
       }
 
-      /* ── RIPPLES ── */
-      for(let k = ripples.length - 1; k >= 0; k--){
-        const rp = ripples[k];
-        rp.r += (rp.maxR - rp.r) * 0.07;
-        rp.life *= 0.91;
-        if(rp.life < 0.015){ ripples.splice(k, 1); continue; }
-        ctx.beginPath(); ctx.arc(rp.x, rp.y, rp.r, 0, Math.PI*2);
-        ctx.strokeStyle = `hsla(${rp.hue},90%,75%,${rp.life * 0.55})`;
-        ctx.lineWidth = 1.5 * rp.life;
-        ctx.stroke();
-      }
-
-      /* ── SPARKS ── */
-      for(let k = sparks.length - 1; k >= 0; k--){
-        const sp = sparks[k];
-        sp.x += sp.vx; sp.y += sp.vy;
-        sp.vx *= 0.93; sp.vy *= 0.93;
-        sp.life *= 0.88;
-        if(sp.life < 0.02){ sparks.splice(k, 1); continue; }
-        ctx.beginPath(); ctx.arc(sp.x, sp.y, 1.2 * sp.life, 0, Math.PI*2);
-        ctx.fillStyle = `hsla(${sp.hue},95%,85%,${sp.life})`;
-        ctx.fill();
-      }
-
-      /* ── NODES ── */
+      /* ── NODES ── soma: only visually prominent when firing ── */
       for(const n of nodes){
-        /* drift — wrap at boundaries */
+        /* slow drift, bounce off margins */
         n.x += n.vx; n.y += n.vy;
-        if(n.x < -30) n.x = W+30; if(n.x > W+30) n.x = -30;
-        if(n.y < -30) n.y = H+30; if(n.y > H+30) n.y = -30;
-        /* gentle random steer */
-        n.vx += (Math.random()-0.5)*0.006; n.vy += (Math.random()-0.5)*0.006;
-        const maxV = 0.22 * (1 + n.layer * 0.6);
-        const spd = Math.sqrt(n.vx*n.vx + n.vy*n.vy);
-        if(spd > maxV){ n.vx *= maxV/spd; n.vy *= maxV/spd; }
+        if(n.x < 20){ n.x=20; n.vx*=-1; }
+        if(n.x > W-20){ n.x=W-20; n.vx*=-1; }
+        if(n.y < 20){ n.y=20; n.vy*=-1; }
+        if(n.y > H-20){ n.y=H-20; n.vy*=-1; }
+        n.vx += (Math.random()-0.5)*0.002;
+        n.vy += (Math.random()-0.5)*0.002;
+        const spd = Math.sqrt(n.vx*n.vx+n.vy*n.vy);
+        if(spd > 0.10){ n.vx *= 0.10/spd; n.vy *= 0.10/spd; }
 
-        /* charge cycle */
-        n.charge += n.chargeSpeed;
-        if(n.charge >= 1){
-          n.charge = 0;
-          n.glow = 1;
-          addRipple(n.x, n.y, n.hue);
-          addSparks(n.x, n.y, n.hue, 4 + Math.floor(Math.random()*5));
-          /* cascade fire */
-          const ne = nodeEdges(n.idx);
-          for(const [ei, ej] of ne){
-            if(Math.random() < 0.38) firePulse(ei, ej, n.hue, false);
-          }
-          /* occasional fast long-range burst */
-          if(Math.random() < 0.18){
-            const rndEdge = edges[Math.floor(Math.random()*edges.length)];
-            if(rndEdge) firePulse(rndEdge[0], rndEdge[1], n.hue, true);
-          }
+        /* refractory countdown */
+        if(n.refract > 0){ n.refract--; }
+
+        /* synaptic delay fire */
+        if(n.pendingFire > 0){
+          n.pendingFire--;
+          if(n.pendingFire === 0) fireNode(n.idx);
         }
-        n.glow *= 0.88;
 
-        const alpha = (0.22 + n.charge * 0.58 + n.glow * 0.20) * n.alphaScale;
-        const radius = n.r * (1 + n.glow * 3.2);
+        /* autonomous charge build-up */
+        if(n.refract <= 0){
+          n.charge += n.chargeSpeed;
+          if(n.charge >= 1){ n.charge = 0; fireNode(n.idx); }
+        }
 
-        /* double-ring halo */
-        const halo = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, radius * 7);
-        halo.addColorStop(0,   `hsla(${n.hue},95%,80%,${alpha * 0.5})`);
-        halo.addColorStop(0.4, `hsla(${n.hue+15},85%,65%,${alpha * 0.2})`);
-        halo.addColorStop(1,   'transparent');
-        ctx.fillStyle = halo;
-        ctx.beginPath(); ctx.arc(n.x, n.y, radius*7, 0, Math.PI*2); ctx.fill();
+        n.glow *= 0.93; /* decay */
 
-        /* bright core with inner white-hot centre */
-        const core = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, radius);
-        core.addColorStop(0,   `hsla(${n.hue},60%,97%,${alpha})`);
-        core.addColorStop(0.5, `hsla(${n.hue},90%,75%,${alpha})`);
-        core.addColorStop(1,   `hsla(${n.hue},95%,55%,${alpha * 0.6})`);
-        ctx.fillStyle = core;
-        ctx.beginPath(); ctx.arc(n.x, n.y, radius, 0, Math.PI*2); ctx.fill();
+        const firing = n.glow > 0.05;
+        const radius  = n.r * (firing ? 1 + n.glow * 1.8 : 1);
+
+        if(firing){
+          /* outer halo — very soft, contained */
+          const halo = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, radius*5);
+          halo.addColorStop(0, `${p.nodeHalo}${n.glow * 0.30})`);
+          halo.addColorStop(1, `${p.nodeHalo}0)`);
+          ctx.fillStyle = halo;
+          ctx.beginPath(); ctx.arc(n.x, n.y, radius*5, 0, Math.PI*2); ctx.fill();
+
+          /* bright soma core */
+          ctx.beginPath(); ctx.arc(n.x, n.y, radius, 0, Math.PI*2);
+          ctx.fillStyle = `${p.nodeFire}${Math.min(1, n.glow + 0.5)})`;
+          ctx.fill();
+        } else {
+          /* resting soma — tiny, faint dot */
+          ctx.beginPath(); ctx.arc(n.x, n.y, n.r * 0.7, 0, Math.PI*2);
+          ctx.fillStyle = `${p.nodeRest}0.18)`;
+          ctx.fill();
+        }
       }
 
-      /* ── periodic spontaneous cascade every ~3 s ── */
+      /* ── Spontaneous pacemaker fire every ~2 s ── */
       frame++;
-      if(frame % 190 === 0 && nodes.length){
-        const hub = nodes[Math.floor(Math.random() * nodes.length)];
-        hub.charge = 1.0; /* force immediate fire next tick */
+      if(frame % 130 === 0){
+        const eligible = nodes.filter(n => n.refract <= 0 && !n.pendingFire);
+        if(eligible.length){
+          fireNode(eligible[Math.floor(Math.random()*eligible.length)].idx);
+        }
       }
     }
 
