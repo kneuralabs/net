@@ -550,7 +550,7 @@ function FeedSection() {
                  style={{ background: fp.bg, borderTopColor: fp.border }}>
                 <div className="feed__date">
                   {n.date}
-                  {i === 0 && <span style={{display:"block",fontSize:"10px",fontWeight:700,padding:"2px 6px",marginTop:4,borderRadius:3,background:"rgba(239,68,68,0.15)",color:"#f87171",border:"1px solid rgba(239,68,68,0.35)",animation:"just-in-pulse 2s ease-in-out infinite",textAlign:"center"}}>⚡ Just In</span>}
+                  {i === 0 && <span style={{display:"block",fontSize:"9px",fontWeight:700,letterSpacing:"0.14em",padding:"2px 6px",marginTop:5,background:"rgba(239,68,68,0.12)",color:"#f87171",border:"1px solid rgba(239,68,68,0.30)",animation:"just-in-pulse 2s ease-in-out infinite",textAlign:"center",textTransform:"uppercase",fontFamily:"var(--f-mono)"}}>Just In</span>}
                 </div>
                 <div>
                   <h3 className="feed__title">{n.title}</h3>
