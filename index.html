@@ -1834,32 +1834,35 @@ html[data-motion="playful"] .tile:hover {
    Apple-grade feed & aside animations
    ============================================================ */
 
-/* Feed list — fade up on load */
+/* Feed list — elegant fade + scale entrance */
 @keyframes feed-list-in {
-  from { opacity: 0; transform: translateY(14px); filter: blur(2px); }
-  to   { opacity: 1; transform: translateY(0);    filter: blur(0); }
+  0%   { opacity: 0; transform: scale(0.985) translateY(8px); filter: blur(4px); }
+  100% { opacity: 1; transform: scale(1)     translateY(0);   filter: blur(0); }
 }
 .feed__list {
-  animation: feed-list-in 680ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-  animation-delay: 80ms;
+  animation: feed-list-in 600ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 60ms;
 }
 
-/* Feed items — staggered cascade: each row rises from below with spring overshoot */
-@keyframes feed-item-cascade {
-  0%   { opacity: 0; transform: translateY(20px) scaleY(0.94); }
-  65%  { opacity: 1; transform: translateY(-3px)  scaleY(1.015); }
-  100% { opacity: 1; transform: translateY(0)     scaleY(1); }
+/* Feed items — staggered unfold: rows reveal from scaleY(0) so overflow:hidden
+   never clips them (scale shrinks in place, no translateY overflow needed) */
+@keyframes feed-item-unfold {
+  0%   { opacity: 0; transform: scaleY(0.4)  translateZ(0); clip-path: inset(0 0 60% 0); }
+  50%  { opacity: 1; }
+  80%  { transform: scaleY(1.02) translateZ(0); clip-path: inset(0 0 0 0); }
+  100% { transform: scaleY(1)    translateZ(0); clip-path: inset(0 0 0 0); }
 }
 .feed__item {
-  animation: feed-item-cascade 500ms cubic-bezier(0.34, 1.3, 0.64, 1) both;
-  transform-origin: bottom center;
+  animation: feed-item-unfold 480ms cubic-bezier(0.34, 1.4, 0.64, 1) both;
+  transform-origin: top center;
+  will-change: transform, opacity;
 }
-.feed__item:nth-child(1) { animation-delay: 100ms; }
-.feed__item:nth-child(2) { animation-delay: 190ms; }
-.feed__item:nth-child(3) { animation-delay: 280ms; }
-.feed__item:nth-child(4) { animation-delay: 370ms; }
-.feed__item:nth-child(5) { animation-delay: 460ms; }
-.feed__item:nth-child(6) { animation-delay: 550ms; }
+.feed__item:nth-child(1) { animation-delay: 120ms; }
+.feed__item:nth-child(2) { animation-delay: 210ms; }
+.feed__item:nth-child(3) { animation-delay: 300ms; }
+.feed__item:nth-child(4) { animation-delay: 390ms; }
+.feed__item:nth-child(5) { animation-delay: 480ms; }
+.feed__item:nth-child(6) { animation-delay: 570ms; }
 
 /* Feed item hover — spring margin/padding */
 .feed__item {
@@ -1875,14 +1878,15 @@ html[data-motion="playful"] .tile:hover {
               color var(--t-fast) var(--ease);
 }
 
-/* Aside poster — bloom entrance */
+/* Aside poster — deep bloom: scale up from a dark blur, saturate into full colour */
 @keyframes poster-bloom {
-  from { opacity: 0; transform: translateY(18px) scale(0.96); filter: blur(6px); }
-  to   { opacity: 1; transform: translateY(0)    scale(1);    filter: blur(0); }
+  0%   { opacity: 0; transform: scale(0.92) translateY(24px); filter: blur(12px) saturate(0); }
+  50%  { opacity: 1; filter: blur(2px) saturate(0.7); }
+  100% { opacity: 1; transform: scale(1)    translateY(0);    filter: blur(0)    saturate(1); }
 }
 .aside__poster {
-  animation: poster-bloom 800ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-  animation-delay: 320ms;
+  animation: poster-bloom 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 280ms;
   transition: box-shadow 400ms ease, border-color 400ms ease;
 }
 .aside__poster:hover {
@@ -1935,65 +1939,74 @@ html[data-motion="playful"] .tile:hover {
    Widget entrance animations
    ============================================================ */
 
-/* Strip cells — slide in from top with stagger */
+/* Strip cells — sharp drop-in with micro-bounce, fast stagger */
 @keyframes strip-cell-in {
-  from { opacity: 0; transform: translateY(-12px); }
-  to   { opacity: 1; transform: translateY(0); }
+  0%   { opacity: 0; transform: translateY(-10px) scale(0.97); }
+  70%  { opacity: 1; transform: translateY(2px)   scale(1.005); }
+  100% { opacity: 1; transform: translateY(0)     scale(1); }
 }
 .strip__cell {
-  animation: strip-cell-in 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: strip-cell-in 380ms cubic-bezier(0.34, 1.5, 0.64, 1) both;
+  will-change: transform, opacity;
 }
 .strip__cell:nth-child(1) { animation-delay: 0ms; }
-.strip__cell:nth-child(2) { animation-delay: 80ms; }
-.strip__cell:nth-child(3) { animation-delay: 160ms; }
+.strip__cell:nth-child(2) { animation-delay: 70ms; }
+.strip__cell:nth-child(3) { animation-delay: 140ms; }
+.strip__cell:nth-child(4) { animation-delay: 210ms; }
 
-/* Welcome card — fade up with slight scale */
+/* Welcome card — cinematic reveal: scale + blur dissolve */
 @keyframes welcome-in {
-  from { opacity: 0; transform: translateY(24px) scale(0.98); filter: blur(3px); }
-  to   { opacity: 1; transform: translateY(0)    scale(1);    filter: blur(0); }
+  0%   { opacity: 0; transform: scale(0.96) translateY(20px); filter: blur(8px) saturate(0.6); }
+  60%  { opacity: 1; filter: blur(0)        saturate(1); }
+  100% { opacity: 1; transform: scale(1)    translateY(0); filter: blur(0) saturate(1); }
 }
 .welcome {
-  animation: welcome-in 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-  animation-delay: 60ms;
+  animation: welcome-in 800ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 80ms;
 }
 
-/* Tool tiles — staggered pop-up from below */
+/* Tool tiles — staggered float-up with spring pop */
 @keyframes tile-in {
-  from { opacity: 0; transform: translateY(18px) scale(0.95); }
-  to   { opacity: 1; transform: translateY(0)    scale(1); }
+  0%   { opacity: 0; transform: translateY(22px) scale(0.93) rotateX(4deg); }
+  70%  { opacity: 1; transform: translateY(-3px) scale(1.01) rotateX(0deg); }
+  100% { opacity: 1; transform: translateY(0)    scale(1)    rotateX(0deg); }
 }
 .tile {
-  animation: tile-in 440ms cubic-bezier(0.34, 1.2, 0.64, 1) both;
+  animation: tile-in 460ms cubic-bezier(0.34, 1.3, 0.64, 1) both;
+  will-change: transform, opacity;
+  perspective: 800px;
 }
-.tile:nth-child(1)  { animation-delay: 40ms; }
-.tile:nth-child(2)  { animation-delay: 90ms; }
-.tile:nth-child(3)  { animation-delay: 140ms; }
-.tile:nth-child(4)  { animation-delay: 190ms; }
-.tile:nth-child(5)  { animation-delay: 240ms; }
-.tile:nth-child(6)  { animation-delay: 290ms; }
-.tile:nth-child(7)  { animation-delay: 340ms; }
-.tile:nth-child(8)  { animation-delay: 390ms; }
-.tile:nth-child(9)  { animation-delay: 440ms; }
-.tile:nth-child(10) { animation-delay: 490ms; }
-.tile:nth-child(11) { animation-delay: 540ms; }
-.tile:nth-child(12) { animation-delay: 590ms; }
+.tile:nth-child(1)  { animation-delay: 50ms; }
+.tile:nth-child(2)  { animation-delay: 100ms; }
+.tile:nth-child(3)  { animation-delay: 150ms; }
+.tile:nth-child(4)  { animation-delay: 200ms; }
+.tile:nth-child(5)  { animation-delay: 250ms; }
+.tile:nth-child(6)  { animation-delay: 300ms; }
+.tile:nth-child(7)  { animation-delay: 350ms; }
+.tile:nth-child(8)  { animation-delay: 400ms; }
+.tile:nth-child(9)  { animation-delay: 450ms; }
+.tile:nth-child(10) { animation-delay: 500ms; }
+.tile:nth-child(11) { animation-delay: 550ms; }
+.tile:nth-child(12) { animation-delay: 600ms; }
 
-/* Open tasks rows — cascade in from left */
+/* Open tasks rows — silky wipe-in from left using clip-path (no overflow issues) */
 @keyframes task-row-in {
-  from { opacity: 0; transform: translateX(-16px); }
-  to   { opacity: 1; transform: translateX(0); }
+  0%   { opacity: 0; clip-path: inset(0 100% 0 0); transform: translateX(-8px); }
+  40%  { opacity: 1; }
+  100% { opacity: 1; clip-path: inset(0 0% 0 0);   transform: translateX(0); }
 }
 .opentasks__row {
-  animation: task-row-in 400ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: task-row-in 420ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: clip-path, transform, opacity;
 }
-.opentasks__row:nth-child(1) { animation-delay: 120ms; }
-.opentasks__row:nth-child(2) { animation-delay: 200ms; }
-.opentasks__row:nth-child(3) { animation-delay: 280ms; }
-.opentasks__row:nth-child(4) { animation-delay: 360ms; }
-.opentasks__row:nth-child(5) { animation-delay: 440ms; }
-.opentasks__row:nth-child(6) { animation-delay: 520ms; }
-.opentasks__row:nth-child(7) { animation-delay: 600ms; }
-.opentasks__row:nth-child(8) { animation-delay: 680ms; }
+.opentasks__row:nth-child(1) { animation-delay: 100ms; }
+.opentasks__row:nth-child(2) { animation-delay: 175ms; }
+.opentasks__row:nth-child(3) { animation-delay: 250ms; }
+.opentasks__row:nth-child(4) { animation-delay: 325ms; }
+.opentasks__row:nth-child(5) { animation-delay: 400ms; }
+.opentasks__row:nth-child(6) { animation-delay: 475ms; }
+.opentasks__row:nth-child(7) { animation-delay: 550ms; }
+.opentasks__row:nth-child(8) { animation-delay: 625ms; }
 
 /* ============================================================
    Footer colophon
@@ -2253,7 +2266,7 @@ html[data-motion="playful"] .tile:hover {
 /* Touch input — increase hit areas */
 @media (hover: none) and (pointer: coarse) {
   .tile { min-height: 180px; }
-  .feed__item { padding: 18px 0; }
+  .feed__item { padding: 18px 14px; }
   .btn { padding: 12px 18px; }
   .opentasks__row { padding: 16px 0; }
   .lock-input { padding: 14px 0 14px; font-size: 20px; }
