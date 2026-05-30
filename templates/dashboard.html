@@ -234,6 +234,103 @@
       animation: blink 1.5s ease-in-out infinite;
     }
     @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0;} }
+
+    /* ── Apple-grade entrance & interaction animations ── */
+
+    /* Widget entrance — staggered fade + lift */
+    @keyframes widget-rise {
+      from { opacity: 0; transform: translateY(20px) scale(0.97); filter: blur(3px); }
+      to   { opacity: 1; transform: translateY(0)   scale(1);    filter: blur(0); }
+    }
+    .widget {
+      animation: widget-rise 640ms cubic-bezier(0.34, 1.15, 0.64, 1) both;
+      transition: transform 320ms cubic-bezier(0.34, 1.25, 0.64, 1),
+                  box-shadow 320ms ease,
+                  border-color 320ms ease;
+      will-change: transform;
+    }
+    .widget:nth-child(1) { animation-delay:  80ms; }
+    .widget:nth-child(2) { animation-delay: 180ms; }
+    .widget:nth-child(3) { animation-delay: 280ms; }
+
+    /* Widget hover lift */
+    .widget:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(99,102,241,0.16), 0 0 0 1px rgba(99,102,241,0.18);
+      border-color: rgba(99,102,241,0.28);
+    }
+
+    /* Governance Brief items — slide in from left, staggered */
+    @keyframes brief-slide-in {
+      from { opacity: 0; transform: translateX(-10px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    .brief-item {
+      animation: brief-slide-in 420ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+      transition: border-left-color 250ms ease,
+                  background 250ms ease,
+                  border-radius 250ms ease;
+    }
+    .brief-item:nth-child(1) { animation-delay: 260ms; }
+    .brief-item:nth-child(2) { animation-delay: 350ms; }
+    .brief-item:nth-child(3) { animation-delay: 440ms; }
+    .brief-item:nth-child(4) { animation-delay: 530ms; }
+    .brief-item:nth-child(5) { animation-delay: 620ms; }
+    .brief-item:hover {
+      border-left-color: rgba(99,102,241,0.75);
+      background: rgba(99,102,241,0.05);
+      border-radius: 0 8px 8px 0;
+    }
+
+    /* Holiday items — slide in from left */
+    @keyframes holiday-slide-in {
+      from { opacity: 0; transform: translateX(-8px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    .holiday-item {
+      animation: holiday-slide-in 400ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    }
+    .holiday-item:nth-child(1) { animation-delay: 160ms; }
+    .holiday-item:nth-child(2) { animation-delay: 240ms; }
+    .holiday-item:nth-child(3) { animation-delay: 320ms; }
+
+    /* Holiday dot — gentle glow pulse */
+    @keyframes dot-glow {
+      0%, 100% { transform: scale(1);   opacity: 1; }
+      50%       { transform: scale(1.5); opacity: 0.65; }
+    }
+    .holiday-dot.today-dot { animation: dot-glow 2.4s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
+
+    /* Live dot — breathe with scale */
+    @keyframes live-breathe {
+      0%, 100% { transform: scale(1);   opacity: 1; }
+      50%       { transform: scale(1.6); opacity: 0.35; }
+    }
+    .live-dot { animation: live-breathe 2s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
+
+    /* Pulse tag — subtle scale + fade */
+    @keyframes pulse-tag {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.65; transform: scale(0.96); }
+    }
+
+    /* Brief headline hover underline sweep */
+    .brief-headline {
+      background-image: linear-gradient(currentColor, currentColor);
+      background-size: 0% 1px;
+      background-position: 0 100%;
+      background-repeat: no-repeat;
+      transition: background-size 300ms ease, color 200ms ease;
+    }
+    .brief-item:hover .brief-headline {
+      background-size: 100% 1px;
+      color: #e0e0ff;
+    }
+
+    /* Widget header border shimmer on hover */
+    .widget-header {
+      transition: border-color 300ms ease;
+    }
   </style>
 </head>
 <body>
