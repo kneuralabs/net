@@ -1777,26 +1777,7 @@ html[data-motion="playful"] .tile:hover {
   flex-direction: column;
   justify-content: space-between;
 }
-.aside__poster::before {
-  content: "";
-  position: absolute;
-  inset: -20% -10% auto auto;
-  width: 60%; aspect-ratio: 1;
-  background: radial-gradient(circle, rgba(28,92,170,0.75) 0%, rgba(74,139,200,0.35) 60%, transparent 100%);
-  border-radius: 50%;
-  opacity: 0.7;
-  filter: blur(2px);
-}
-.aside__poster::after {
-  content: "";
-  position: absolute;
-  bottom: -15%;
-  left: -10%;
-  width: 50%; aspect-ratio: 1;
-  background: radial-gradient(circle, rgba(200,40,30,0.30) 0%, transparent 70%);
-  border-radius: 50%;
-  filter: blur(3px);
-}
+/* orb glows are rendered as JSX divs in FeedSection for weekly colour rotation */
 .aside__poster h3 {
   font-family: var(--f-display);
   font-size: 36px;

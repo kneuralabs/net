@@ -244,8 +244,29 @@ function Welcome({ voice }) {
 /* ────────────────────────────────────────────────────────────────
    Tool tile + grid
    ──────────────────────────────────────────────────────────────── */
+/* ── KN brand palette for per-tile/feed colouring ──────────── */
+const KN_TILE_PALETTE = [
+  { bg: 'rgba(28,92,170,0.10)',   border: 'rgba(28,92,170,0.28)',   shadow: '0 2px 18px rgba(13,46,90,0.10)',  accent: '#1C5CAA' },  // Royal Blue
+  { bg: 'rgba(13,46,90,0.12)',    border: 'rgba(13,46,90,0.30)',    shadow: '0 2px 18px rgba(13,46,90,0.12)',  accent: '#0D2E5A' },  // Deep Navy
+  { bg: 'rgba(200,40,30,0.07)',   border: 'rgba(200,40,30,0.25)',   shadow: '0 2px 18px rgba(200,40,30,0.08)', accent: '#C8281E' },  // Precision Red
+  { bg: 'rgba(74,139,200,0.10)',  border: 'rgba(74,139,200,0.28)',  shadow: '0 2px 18px rgba(74,139,200,0.10)',accent: '#4A8BC8' },  // Sky Blue
+  { bg: 'rgba(139,26,18,0.07)',   border: 'rgba(139,26,18,0.24)',   shadow: '0 2px 18px rgba(139,26,18,0.08)', accent: '#8B1A12' },  // Crimson Depth
+  { bg: 'rgba(208,210,214,0.22)', border: 'rgba(107,114,128,0.28)', shadow: '0 2px 18px rgba(107,114,128,0.08)',accent:'#6B7280' }, // Structural Silver
+  { bg: 'rgba(28,92,170,0.07)',   border: 'rgba(74,139,200,0.26)',  shadow: '0 2px 18px rgba(28,92,170,0.08)', accent: '#4A8BC8' },  // Sky tint
+];
+
+/* Weekly poster palette — cycles each ISO week */
+const KN_POSTER_PALETTE = [
+  { bg: 'rgba(13,46,90,0.78)',   border: 'rgba(74,139,200,0.32)',  orb1: 'rgba(28,92,170,0.80)',  orb2: 'rgba(200,40,30,0.32)'  },
+  { bg: 'rgba(28,92,170,0.78)',  border: 'rgba(208,210,214,0.32)', orb1: 'rgba(74,139,200,0.80)', orb2: 'rgba(13,46,90,0.42)'   },
+  { bg: 'rgba(139,26,18,0.78)',  border: 'rgba(200,40,30,0.38)',   orb1: 'rgba(200,40,30,0.80)',  orb2: 'rgba(13,46,90,0.42)'   },
+  { bg: 'rgba(13,46,90,0.85)',   border: 'rgba(28,92,170,0.38)',   orb1: 'rgba(28,92,170,0.85)',  orb2: 'rgba(139,26,18,0.30)'  },
+  { bg: 'rgba(74,139,200,0.72)', border: 'rgba(13,46,90,0.30)',    orb1: 'rgba(13,46,90,0.80)',   orb2: 'rgba(200,40,30,0.28)'  },
+];
+
 function Tile({ tool, idx, unlocked, onActivate }) {
   const isOpen = !tool.locked || unlocked;
+  const pal = KN_TILE_PALETTE[idx % KN_TILE_PALETTE.length];
   const handleClick = (e) => {
     if (tool.locked) {
       e.preventDefault();
@@ -259,7 +280,12 @@ function Tile({ tool, idx, unlocked, onActivate }) {
       target={isOpen && tool.href ? "_blank" : undefined}
       rel="noopener"
       onClick={handleClick}
-      style={{ animationDelay: `${Math.min(idx, 11) * 40}ms` }}
+      style={{
+        animationDelay: `${Math.min(idx, 11) * 40}ms`,
+        background: pal.bg,
+        borderColor: pal.border,
+        boxShadow: pal.shadow + ', inset 0 1px 0 rgba(255,255,255,0.65)',
+      }}
     >
       <div className="tile__top">
         <span className="tile__idx">№ {String(idx + 1).padStart(2, "0")}</span>
@@ -505,6 +531,9 @@ function getWeeklyBrief() {
    News feed
    ──────────────────────────────────────────────────────────────── */
 function FeedSection() {
+  const brief = getWeeklyBrief();
+  const week = getISOWeek(new Date());
+  const posterPal = KN_POSTER_PALETTE[week % KN_POSTER_PALETTE.length];
   return (
     <section className="section" id="feed">
       <div className="section__head">
@@ -514,25 +543,48 @@ function FeedSection() {
       </div>
       <div className="feed">
         <div className="feed__list">
-          {window.NEWS.map((n, i) => (
-            <a key={i} className="feed__item" href={n.url} target="_blank" rel="noopener noreferrer">
-              <div className="feed__date">
-                {n.date}
-                {i === 0 && <span style={{display:"block",fontSize:"10px",fontWeight:700,padding:"2px 6px",marginTop:4,borderRadius:3,background:"rgba(239,68,68,0.15)",color:"#f87171",border:"1px solid rgba(239,68,68,0.35)",animation:"just-in-pulse 2s ease-in-out infinite",textAlign:"center"}}>⚡ Just In</span>}
-              </div>
-              <div>
-                <h3 className="feed__title">{n.title}</h3>
-                <div className="feed__src">{n.src} · <b>{n.tag}</b></div>
-              </div>
-              <span className="feed__chip">{n.chip} <span className="feed__arrow" aria-hidden="true">↗</span></span>
-            </a>
-          ))}
+          {window.NEWS.map((n, i) => {
+            const fp = KN_TILE_PALETTE[i % KN_TILE_PALETTE.length];
+            return (
+              <a key={i} className="feed__item" href={n.url} target="_blank" rel="noopener noreferrer"
+                 style={{ background: fp.bg, borderTopColor: fp.border }}>
+                <div className="feed__date">
+                  {n.date}
+                  {i === 0 && <span style={{display:"block",fontSize:"10px",fontWeight:700,padding:"2px 6px",marginTop:4,borderRadius:3,background:"rgba(239,68,68,0.15)",color:"#f87171",border:"1px solid rgba(239,68,68,0.35)",animation:"just-in-pulse 2s ease-in-out infinite",textAlign:"center"}}>⚡ Just In</span>}
+                </div>
+                <div>
+                  <h3 className="feed__title">{n.title}</h3>
+                  <div className="feed__src" style={{ color: fp.accent }}>{n.src} · <b style={{ color: fp.accent }}>{n.tag}</b></div>
+                </div>
+                <span className="feed__chip" style={{ borderColor: fp.border, color: fp.accent, background: fp.bg }}>
+                  {n.chip} <span className="feed__arrow" aria-hidden="true">↗</span>
+                </span>
+              </a>
+            );
+          })}
         </div>
         <aside className="aside">
-          <div className="aside__poster">
-            <span className="smallcaps">Weekly Read</span>
-            <h3>{getWeeklyBrief().quote}</h3>
-            <div className="poster-stamp">Brief № {getWeeklyBrief().num}</div>
+          <div className="aside__poster" style={{
+            background: posterPal.bg,
+            borderColor: posterPal.border,
+          }}>
+            {/* orb 1 — top right */}
+            <div style={{
+              position:'absolute', inset:'-20% -10% auto auto',
+              width:'60%', aspectRatio:'1',
+              background: `radial-gradient(circle, ${posterPal.orb1} 0%, rgba(74,139,200,0.3) 60%, transparent 100%)`,
+              borderRadius:'50%', opacity:0.75, filter:'blur(2px)', pointerEvents:'none',
+            }} />
+            {/* orb 2 — bottom left */}
+            <div style={{
+              position:'absolute', bottom:'-15%', left:'-10%',
+              width:'50%', aspectRatio:'1',
+              background: `radial-gradient(circle, ${posterPal.orb2} 0%, transparent 70%)`,
+              borderRadius:'50%', filter:'blur(3px)', pointerEvents:'none',
+            }} />
+            <span className="smallcaps" style={{ position:'relative' }}>Weekly Read</span>
+            <h3 style={{ position:'relative' }}>{brief.quote}</h3>
+            <div className="poster-stamp" style={{ position:'relative' }}>Brief № {brief.num}</div>
           </div>
         </aside>
       </div>
