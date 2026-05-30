@@ -721,6 +721,28 @@ html[data-theme="smoke"] {
   --accent-ink:var(--c-deep-navy);
 }
 
+/* Dark-theme feed row contrast overrides */
+html[data-theme="authority"] .feed__item,
+html[data-theme="navy"] .feed__item {
+  background: rgba(20, 30, 50, 0.55);
+  border-top-color: rgba(0, 240, 255, 0.12);
+}
+html[data-theme="authority"] .feed__item:last-child,
+html[data-theme="navy"] .feed__item:last-child {
+  border-bottom-color: rgba(0, 240, 255, 0.12);
+}
+html[data-theme="authority"] .feed__title,
+html[data-theme="navy"] .feed__title { color: rgba(255,255,255,0.92); }
+html[data-theme="authority"] .feed__date,
+html[data-theme="navy"] .feed__date  { color: rgba(255,255,255,0.50); }
+html[data-theme="authority"] .feed__src,
+html[data-theme="navy"] .feed__src   { color: rgba(255,255,255,0.45); }
+html[data-theme="authority"] .feed__list,
+html[data-theme="navy"] .feed__list  {
+  background: rgba(10,20,40,0.40);
+  border-color: rgba(0,240,255,0.14);
+}
+
 /* Density tweak */
 html[data-density="compact"] {
   --pad-card: 16px;
@@ -2151,7 +2173,7 @@ html[data-motion="playful"] .tile:hover {
   .lock-modal__head { flex-direction: column; align-items: flex-start; gap: 8px; }
   .lock-actions { flex-wrap: wrap; }
   .lock-hint { width: 100%; order: 2; margin-top: 4px; }
-  .feed__item { padding: 16px 0; }
+  .feed__item { padding: 16px 14px; }
 }
 
 /* Tablet portrait (iPad mini ~744 / iPad ~810) */
