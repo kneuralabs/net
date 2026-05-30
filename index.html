@@ -1313,11 +1313,28 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 @media (max-width: 780px)  { .tools { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 480px)  { .tools { grid-template-columns: repeat(2, 1fr); } }
 
+/* ── KN Brand colour tokens ──────────────────────────────── */
+:root {
+  --kn-royal:   #1C5CAA;
+  --kn-navy:    #0D2E5A;
+  --kn-red:     #C8281E;
+  --kn-sky:     #4A8BC8;
+  --kn-silver:  #D0D2D6;
+  --kn-canvas:  #F7F8FA;
+  --kn-frost:   #E0E4EA;
+  --kn-charcoal:#1A1D23;
+  --kn-slate:   #6B7280;
+  --kn-crimson: #8B1A12;
+}
+
 /* tile — bordered (default) */
 .tile {
   position: relative;
-  background: var(--paper);
-  border: 1px solid var(--rule);
+  background: rgba(247,248,250,0.55);
+  backdrop-filter: blur(14px) saturate(1.4);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  border: 1px solid rgba(28,92,170,0.18);
+  box-shadow: 0 2px 18px rgba(13,46,90,0.08), inset 0 1px 0 rgba(255,255,255,0.7);
   min-height: var(--tile-h);
   padding: var(--pad-card);
   display: flex;
@@ -1331,10 +1348,12 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   isolation: isolate;
 }
 .tile:hover {
-  border-color: var(--ink);
+  border-color: rgba(28,92,170,0.48);
+  background: rgba(247,248,250,0.72);
+  box-shadow: 0 6px 28px rgba(13,46,90,0.14), inset 0 1px 0 rgba(255,255,255,0.85);
   transform: translateY(-2px);
 }
-.tile--locked:hover { transform: translateY(-2px); border-color: var(--accent-ink); }
+.tile--locked:hover { transform: translateY(-2px); border-color: var(--kn-royal,#1C5CAA); }
 
 .tile__top {
   display: flex;
@@ -1403,13 +1422,15 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 
 /* tile style variants */
 html[data-tile="filled"] .tile {
-  background: var(--paper-2);
-  border-color: transparent;
+  background: rgba(28,92,170,0.08);
+  border-color: rgba(28,92,170,0.14);
+  backdrop-filter: blur(14px) saturate(1.4);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
 }
 html[data-tile="filled"] .tile:hover {
-  background: var(--ink);
-  color: var(--paper);
-  border-color: var(--ink);
+  background: rgba(13,46,90,0.82);
+  color: #F7F8FA;
+  border-color: rgba(13,46,90,0.9);
 }
 html[data-tile="filled"] .tile:hover .tile__name,
 html[data-tile="filled"] .tile:hover .tile__desc,
@@ -1648,23 +1669,41 @@ html[data-motion="playful"] .tile:hover {
 @media (max-width: 860px) {
   .feed { grid-template-columns: 1fr; gap: 24px; }
 }
-.feed__list { display: flex; flex-direction: column; }
+.feed__list {
+  display: flex;
+  flex-direction: column;
+  background: rgba(247,248,250,0.30);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(28,92,170,0.10);
+  border-radius: 2px;
+  overflow: hidden;
+}
 .feed__item {
   display: grid;
   grid-template-columns: 92px 1fr auto;
   gap: 24px;
-  padding: 20px 0;
-  border-top: 1px solid var(--rule);
+  padding: 20px 12px;
+  border-top: 1px solid rgba(28,92,170,0.14);
   align-items: baseline;
   cursor: default;
   text-decoration: none;
   color: inherit;
-  transition: background var(--t-fast) var(--ease);
+  transition: background var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease);
+  background: rgba(247,248,250,0.42);
+  backdrop-filter: blur(10px) saturate(1.3);
+  -webkit-backdrop-filter: blur(10px) saturate(1.3);
 }
-.feed__item:hover { background: var(--paper-2); margin: 0 -12px; padding-left: 12px; padding-right: 12px; }
-.feed__item:hover .feed__title { color: var(--accent-ink); }
-.feed__item:hover .feed__arrow { transform: translate(2px, -2px); color: var(--accent-ink); }
-.feed__item:last-child { border-bottom: 1px solid var(--rule); }
+.feed__item:hover {
+  background: rgba(28,92,170,0.08);
+  margin: 0 -4px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-top-color: rgba(28,92,170,0.30);
+}
+.feed__item:hover .feed__title { color: var(--kn-royal,#1C5CAA); }
+.feed__item:hover .feed__arrow { transform: translate(2px, -2px); color: var(--kn-royal,#1C5CAA); }
+.feed__item:last-child { border-bottom: 1px solid rgba(28,92,170,0.14); }
 .feed__arrow {
   display: inline-block;
   margin-left: 6px;
@@ -1696,14 +1735,15 @@ html[data-motion="playful"] .tile:hover {
   text-transform: uppercase;
   color: var(--muted);
 }
-.feed__src b { color: var(--accent-ink); font-family: var(--f-mono); font-weight: 500; }
+.feed__src b { color: var(--kn-royal,#1C5CAA); font-family: var(--f-mono); font-weight: 500; }
 .feed__chip {
   font-family: var(--f-mono);
   font-size: 9.5px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--muted);
-  border: 1px solid var(--rule);
+  color: var(--kn-royal,#1C5CAA);
+  border: 1px solid rgba(28,92,170,0.30);
+  background: rgba(28,92,170,0.06);
   padding: 3px 8px;
   white-space: nowrap;
   align-self: start;
@@ -1723,7 +1763,11 @@ html[data-motion="playful"] .tile:hover {
 }
 
 .aside__poster {
-  background: var(--c-near-black);
+  background: rgba(13,46,90,0.72);
+  backdrop-filter: blur(18px) saturate(1.6);
+  -webkit-backdrop-filter: blur(18px) saturate(1.6);
+  border: 1px solid rgba(74,139,200,0.30);
+  box-shadow: 0 4px 32px rgba(13,46,90,0.22), inset 0 1px 0 rgba(74,139,200,0.20);
   color: #FFFFFF;
   padding: 22px;
   position: relative;
@@ -1738,10 +1782,20 @@ html[data-motion="playful"] .tile:hover {
   position: absolute;
   inset: -20% -10% auto auto;
   width: 60%; aspect-ratio: 1;
-  background: var(--c-cyan);
+  background: radial-gradient(circle, rgba(28,92,170,0.75) 0%, rgba(74,139,200,0.35) 60%, transparent 100%);
   border-radius: 50%;
-  opacity: 0.55;
-  filter: blur(1px);
+  opacity: 0.7;
+  filter: blur(2px);
+}
+.aside__poster::after {
+  content: "";
+  position: absolute;
+  bottom: -15%;
+  left: -10%;
+  width: 50%; aspect-ratio: 1;
+  background: radial-gradient(circle, rgba(200,40,30,0.30) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(3px);
 }
 .aside__poster h3 {
   font-family: var(--f-display);
@@ -1762,9 +1816,12 @@ html[data-motion="playful"] .tile:hover {
   font-size: 10px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  border: 1px solid #FFFFFF;
+  border: 1px solid rgba(74,139,200,0.55);
+  background: rgba(28,92,170,0.25);
   padding: 6px 10px;
-  color: #FFFFFF;
+  color: rgba(255,255,255,0.90);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 
 /* ============================================================
