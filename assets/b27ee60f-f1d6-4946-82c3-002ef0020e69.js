@@ -35,44 +35,7 @@ const TOOLS = [
     locked: true, word: "s1ogger$", href: "https://nimbus.kneuralabs.com", seal: "☁" },
 ];
 
-const NEWS = [
-  {
-    date: "30 MAY 2026", chip: "Regulation",
-    title: "White House signs Executive Order on federal AI procurement standards; agencies have 90 days to comply.",
-    src: "OMB · Washington D.C.", tag: "Federal Register",
-    url: "https://www.whitehouse.gov/ostp/",
-  },
-  {
-    date: "29 MAY 2026", chip: "Framework",
-    title: "EU AI Act — Tier-3 enforcement window opens, first GPAI fines expected within the quarter.",
-    src: "European Commission · Brussels", tag: "Reuters",
-    url: "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai",
-  },
-  {
-    date: "28 MAY 2026", chip: "Framework",
-    title: "NIST releases AI RMF 1.2 draft; comment period closes 28 June. Focus on agentic system risk.",
-    src: "NIST · Gaithersburg", tag: "Federal Register",
-    url: "https://www.nist.gov/itl/ai-risk-management-framework",
-  },
-  {
-    date: "27 MAY 2026", chip: "Industry",
-    title: "Anthropic, Google DeepMind and OpenAI submit joint pre-deployment evaluation report to UK AISI.",
-    src: "AI Safety Institute · London", tag: "Press Briefing",
-    url: "https://www.aisi.gov.uk/",
-  },
-  {
-    date: "26 MAY 2026", chip: "Policy",
-    title: "OECD AI Principles refresh — second consultation phase invites private-sector position papers.",
-    src: "OECD.AI · Paris", tag: "Consultation",
-    url: "https://oecd.ai/en/ai-principles",
-  },
-  {
-    date: "25 MAY 2026", chip: "Domestic",
-    title: "MeitY publishes draft framework for high-risk AI systems; industry response window 60 days.",
-    src: "MeitY · New Delhi", tag: "Gazette",
-    url: "https://www.meity.gov.in/",
-  },
-];
+const NEWS = [];  // Populated at runtime from assets/news.json (authentic, refreshed daily by CI).
 
 const WEATHER = {
   kolkata: { temp: 34, cond: "Hot · clear", icon: "☀" },

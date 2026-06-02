@@ -588,6 +588,23 @@ async function fetchGovernanceNews() {
 }
 window.fetchGovernanceNews = fetchGovernanceNews;
 
+// Loads the Brief: committed authentic feed (refreshed daily by CI) first,
+// then live client-side RSS as a fallback. Both sources are real news.
+async function fetchBriefData() {
+  try {
+    const cb = new Date().toISOString().slice(0, 10);
+    const r = await fetch("assets/news.json?d=" + cb, { cache: "no-store" });
+    if (r.ok) {
+      const items = await r.json();
+      if (Array.isArray(items) && items.length) return items.slice(0, 6);
+    }
+  } catch (e) {
+    console.warn("[Brief] news.json unavailable, trying live RSS:", e);
+  }
+  return await fetchGovernanceNews();
+}
+window.fetchBriefData = fetchBriefData;
+
 function FeedSection() {
   const brief = getWeeklyBrief();
   const week = getISOWeek(new Date());
@@ -595,7 +612,7 @@ function FeedSection() {
   const [feed, setFeed] = useState(() => ({ items: window.NEWS || [], status: "loading" }));
   useEffect(() => {
     let alive = true;
-    fetchGovernanceNews()
+    fetchBriefData()
       .then((items) => {
         if (!alive) return;
         if (items && items.length) setFeed({ items, status: "live" });
@@ -620,6 +637,18 @@ function FeedSection() {
       </div>
       <div className="feed">
         <div className="feed__list">
+          {feed.items.length === 0 && (
+            <div className="feed__item" style={{ opacity: 0.75 }}>
+              <div className="feed__date">—</div>
+              <div>
+                <h3 className="feed__title">
+                  {feed.status === "loading"
+                    ? "Loading the latest governance headlines…"
+                    : "Live brief syncing — authentic headlines will appear shortly."}
+                </h3>
+              </div>
+            </div>
+          )}
           {feed.items.map((n, i) => {
             const fp = KN_TILE_PALETTE[i % KN_TILE_PALETTE.length];
             return (
