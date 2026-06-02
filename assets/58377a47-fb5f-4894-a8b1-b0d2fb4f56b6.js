@@ -528,22 +528,99 @@ function getWeeklyBrief() {
 }
 
 /* ────────────────────────────────────────────────────────────────
-   News feed
+   News feed — live governance brief (daily, client-side RSS)
    ──────────────────────────────────────────────────────────────── */
+const _BRIEF_MON = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
+function _briefDate(d) {
+  return String(d.getDate()).padStart(2, "0") + " " + _BRIEF_MON[d.getMonth()] + " " + d.getFullYear();
+}
+function _briefChip(title) {
+  const s = String(title).toLowerCase();
+  if (/regulat|\bact\b|\blaw\b|\bbill\b|legislat/.test(s)) return "Regulation";
+  if (/framework|standard|\bnist\b|\biso\b|guideline/.test(s)) return "Framework";
+  if (/fine|enforce|penalt|lawsuit|\bban\b/.test(s)) return "Enforcement";
+  if (/\beu\b|brussels|white house|federal|government|ministry|meity|oecd/.test(s)) return "Policy";
+  return "Industry";
+}
+// AI-governance / policy headlines, freshest first.
+const BRIEF_FEED = "https://news.google.com/rss/search?q=%22AI%20governance%22%20OR%20%22AI%20regulation%22%20OR%20%22AI%20policy%22&hl=en-US&gl=US&ceid=US:en";
+// CORS proxies tried in order (Google News RSS sends no CORS headers).
+const BRIEF_SOURCES = [
+  "https://api.allorigins.win/raw?url=" + encodeURIComponent(BRIEF_FEED),
+  "https://corsproxy.io/?url=" + encodeURIComponent(BRIEF_FEED),
+];
+async function fetchGovernanceNews() {
+  let lastErr;
+  for (const url of BRIEF_SOURCES) {
+    try {
+      const res = await fetch(url, { mode: "cors", cache: "no-store" });
+      if (!res.ok) throw new Error("HTTP " + res.status + " · " + url);
+      const xml = await res.text();
+      const doc = new DOMParser().parseFromString(xml, "text/xml");
+      if (doc.querySelector("parsererror")) throw new Error("bad XML · " + url);
+      const out = [];
+      doc.querySelectorAll("item").forEach((it) => {
+        if (out.length >= 6) return;
+        const link = (it.querySelector("link")?.textContent || "").trim();
+        let title = (it.querySelector("title")?.textContent || "").trim();
+        if (!title || !link) return;
+        const src = (it.querySelector("source")?.textContent || "").trim();
+        // Google News titles read "Headline - Publisher"; trim the publisher.
+        if (src && title.endsWith(" - " + src)) title = title.slice(0, -(src.length + 3)).trim();
+        const pub = it.querySelector("pubDate")?.textContent;
+        const d = pub ? new Date(pub) : new Date();
+        out.push({
+          date: _briefDate(isNaN(d) ? new Date() : d),
+          chip: _briefChip(title),
+          title,
+          src: src || "Newswire",
+          tag: "Google News",
+          url: link,
+        });
+      });
+      if (!out.length) throw new Error("no items · " + url);
+      return out;
+    } catch (e) {
+      lastErr = e;
+    }
+  }
+  throw lastErr || new Error("no source reachable");
+}
+window.fetchGovernanceNews = fetchGovernanceNews;
+
 function FeedSection() {
   const brief = getWeeklyBrief();
   const week = getISOWeek(new Date());
   const posterPal = KN_POSTER_PALETTE[week % KN_POSTER_PALETTE.length];
+  const [feed, setFeed] = useState(() => ({ items: window.NEWS || [], status: "loading" }));
+  useEffect(() => {
+    let alive = true;
+    fetchGovernanceNews()
+      .then((items) => {
+        if (!alive) return;
+        if (items && items.length) setFeed({ items, status: "live" });
+        else setFeed((f) => ({ items: f.items, status: "cached" }));
+      })
+      .catch((e) => {
+        console.error("[Brief] live feed unavailable:", e);
+        if (alive) setFeed((f) => ({ items: f.items, status: "cached" }));
+      });
+    return () => { alive = false; };
+  }, []);
+  const meta =
+    feed.status === "live"    ? "Live · refreshed daily · IST"
+    : feed.status === "loading" ? "Syncing · IST"
+    :                             "Cached · IST";
   return (
     <section className="section" id="feed">
       <div className="section__head">
         <span className="section__num">№ II — Daily</span>
         <h2 className="section__title">Governance <em>Brief</em></h2>
-        <span className="section__meta">Updated hourly · IST</span>
+        <span className="section__meta">{meta}</span>
       </div>
       <div className="feed">
         <div className="feed__list">
-          {window.NEWS.map((n, i) => {
+          {feed.items.map((n, i) => {
             const fp = KN_TILE_PALETTE[i % KN_TILE_PALETTE.length];
             return (
               <a key={i} className="feed__item" href={n.url} target="_blank" rel="noopener noreferrer"
