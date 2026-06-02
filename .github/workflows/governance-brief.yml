@@ -1,0 +1,40 @@
+name: Daily Governance Brief
+
+# Pulls authentic AI-governance headlines once a day and commits them to
+# assets/news.json, which the intranet Brief reads at page load.
+on:
+  schedule:
+    - cron: "20 6 * * *"   # 06:20 UTC daily (~11:50 IST)
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: governance-brief
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Fetch authentic governance news
+        run: python3 scripts/fetch_governance_news.py
+
+      - name: Commit if changed
+        run: |
+          if git diff --quiet -- assets/news.json; then
+            echo "No change to assets/news.json."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/news.json
+          git commit -m "chore: refresh Daily Governance Brief"
+          git push
