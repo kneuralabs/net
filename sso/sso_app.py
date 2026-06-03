@@ -25,18 +25,46 @@ DATA_FILE = os.environ.get(
     os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'DATA.xlsx')
 )
 
-# Only redirect back to these hosts (comma-separated)
-_ALLOWED_HOSTS = set(
-    h.strip() for h in
-    os.environ.get('ALLOWED_CALLBACK_HOSTS', 'intranet.kneuralabs.com').split(',')
-    if h.strip()
+def _parse_hosts(raw):
+    """Parse a comma-separated host allow-list into a normalised set."""
+    return set(h.strip().lower() for h in raw.split(',') if h.strip())
+
+
+def _host_allowed(netloc, allowed):
+    """True when a URL's netloc matches an allow-list entry.
+
+    Entries are either exact hosts ("intranet.kneuralabs.com") or a
+    wildcard ("*.kneuralabs.com") that matches the apex domain and any
+    subdomain depth. Any userinfo and port in netloc are ignored. Wildcard
+    matching is anchored on a leading dot, so look-alikes such as
+    "kneuralabs.com.evil.com" and "evilkneuralabs.com" are rejected.
+    """
+    host = netloc.split('@')[-1].split(':')[0].strip('.').lower()
+    if not host:
+        return False
+    for entry in allowed:
+        if entry.startswith('*.'):
+            base = entry[2:]
+            if host == base or host.endswith('.' + base):
+                return True
+        elif host == entry:
+            return True
+    return False
+
+
+# Hosts allowed for token-bearing callbacks (server-side intranet session).
+_ALLOWED_HOSTS = _parse_hosts(
+    os.environ.get('ALLOWED_CALLBACK_HOSTS', 'intranet.kneuralabs.com')
 )
 
-# Hosts allowed for direct (no-token) post-login redirects
-_ALLOWED_REDIRECT_HOSTS = set(
-    h.strip() for h in
-    os.environ.get('ALLOWED_REDIRECT_HOSTS', 'kneuralabs.github.io').split(',')
-    if h.strip()
+# Hosts allowed for direct (no-token) post-login redirects.
+# Every workspace widget now lives on a *.kneuralabs.com subdomain, so the
+# allow-list tracks the apex + all subdomains rather than a fixed list that
+# silently breaks each time a tool is added or its URL changes. The legacy
+# kneuralabs.github.io host is kept for backward compatibility.
+_ALLOWED_REDIRECT_HOSTS = _parse_hosts(
+    os.environ.get('ALLOWED_REDIRECT_HOSTS',
+                   '*.kneuralabs.com,kneuralabs.com,kneuralabs.github.io')
 )
 
 
@@ -44,7 +72,7 @@ def _is_valid_redirect(url):
     """Allow HTTPS redirects to whitelisted widget hosts."""
     try:
         p = urlparse(url)
-        return p.scheme == 'https' and p.netloc in _ALLOWED_REDIRECT_HOSTS
+        return p.scheme == 'https' and _host_allowed(p.netloc, _ALLOWED_REDIRECT_HOSTS)
     except Exception:
         return False
 
@@ -101,7 +129,7 @@ def _is_valid_callback(url):
     """Only allow HTTPS callbacks to whitelisted intranet hosts."""
     try:
         p = urlparse(url)
-        return p.scheme == 'https' and p.netloc in _ALLOWED_HOSTS
+        return p.scheme == 'https' and _host_allowed(p.netloc, _ALLOWED_HOSTS)
     except Exception:
         return False
 
