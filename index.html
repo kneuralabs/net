@@ -1400,13 +1400,14 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   display: flex; align-items: center; gap: 6px;
 }
 .tile__icon {
-  width: 32px; height: 32px; border-radius: 8px;
+  width: 48px; height: 48px; border-radius: 12px;
   display: inline-flex; align-items: center; justify-content: center;
-  font-size: 15px; line-height: 1;
-  color: #fff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.22), inset 0 1px 0 rgba(255,255,255,0.18);
+  font-size: 26px; line-height: 1;
+  border: 1px solid transparent;
   flex-shrink: 0;
+  transition: transform 0.2s ease;
 }
+.tile:hover .tile__icon { transform: scale(1.08) rotate(-2deg); }
 .tile__state--locked { color: var(--c-amber); }
 .tile__state::before {
   content: "";
@@ -2317,6 +2318,7 @@ html[data-motion="playful"] .tile:hover {
   .tile:hover { transform: none; border-color: var(--rule); }
   html[data-tile="filled"] .tile:hover { background: var(--paper-2); }
   .tile__top { gap: 8px; }
+  .tile__icon { width: 40px; height: 40px; border-radius: 10px; font-size: 22px; }
   .tile__idx { font-size: 9.5px; letter-spacing: 0.06em; }
   .tile__state { font-size: 8.5px; letter-spacing: 0.1em; gap: 4px; }
   .tile__state::before { width: 4px; height: 4px; }
@@ -2368,8 +2370,8 @@ html[data-motion="playful"] .tile:hover {
   <div id="root"></div>
 
   <script type="text/babel" src="assets/c18bcef9-cfc3-4b1a-a660-7f23df295f1b.js?v=2"></script>
-  <script type="text/babel" src="assets/b27ee60f-f1d6-4946-82c3-002ef0020e69.js?v=4"></script>
-  <script type="text/babel" src="assets/58377a47-fb5f-4894-a8b1-b0d2fb4f56b6.js?v=5"></script>
+  <script type="text/babel" src="assets/b27ee60f-f1d6-4946-82c3-002ef0020e69.js?v=6"></script>
+  <script type="text/babel" src="assets/58377a47-fb5f-4894-a8b1-b0d2fb4f56b6.js?v=6"></script>
   <script type="text/babel" src="assets/a7e17038-28e5-442a-8b55-791d88b8b3f8.js?v=4"></script>
 
   <!-- Neuron firing background -->
