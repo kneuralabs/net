@@ -70,7 +70,14 @@ function Nameplate({ now }) {
           <span className="nameplate__beacon-lbl">All systems operational</span>
         </span>
         <span className="nameplate__edition">Trust &amp; Security Edition</span>
-        <a className="nameplate__idcard" href="https://db.kneuralabs.com" target="_blank" rel="noopener noreferrer">ID Card</a>
+        <a className="nameplate__idcard" href="https://db.kneuralabs.com" target="_blank" rel="noopener noreferrer" aria-label="ID Card" title="ID Card">
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <rect x="2.5" y="5" width="19" height="14" rx="2.2"></rect>
+            <circle cx="8" cy="11" r="2.2"></circle>
+            <path d="M4.8 16.2c.5-1.6 1.9-2.4 3.2-2.4s2.7.8 3.2 2.4"></path>
+            <path d="M14.5 9.5h4.2M14.5 12.5h4.2M14.5 15.5h2.6"></path>
+          </svg>
+        </a>
       </div>
       <div className="nameplate__meta">
         <div><b>{dateStr}</b></div>
