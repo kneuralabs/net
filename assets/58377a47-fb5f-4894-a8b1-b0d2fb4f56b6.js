@@ -265,21 +265,13 @@ const KN_POSTER_PALETTE = [
 ];
 
 function Tile({ tool, idx, unlocked, onActivate }) {
-  const isOpen = !tool.locked || unlocked;
   const pal = KN_TILE_PALETTE[idx % KN_TILE_PALETTE.length];
-  const handleClick = (e) => {
-    if (tool.locked) {
-      e.preventDefault();
-      onActivate(tool);
-    }
-  };
   return (
     <a
-      className={"tile" + (tool.locked ? " tile--locked" : "")}
-      href={isOpen && tool.href ? tool.href : "#"}
-      target={isOpen && tool.href ? "_blank" : undefined}
+      className="tile"
+      href={tool.href || "#"}
+      target={tool.href ? "_blank" : undefined}
       rel="noopener"
-      onClick={handleClick}
       style={{
         animationDelay: `${Math.min(idx, 11) * 40}ms`,
         background: pal.bg,
@@ -289,9 +281,7 @@ function Tile({ tool, idx, unlocked, onActivate }) {
     >
       <div className="tile__top">
         <span className="tile__idx">№ {String(idx + 1).padStart(2, "0")}</span>
-        <span className={"tile__state" + (tool.locked ? " tile__state--locked" : "")}>
-          {tool.locked ? "SSO" : "Open"}
-        </span>
+        <span className="tile__state">Open</span>
       </div>
       <div className="tile__body">
         <div className="tile__cat">{tool.cat}</div>
@@ -310,7 +300,7 @@ function ToolsSection({ unlockedSet, onActivate }) {
       <div className="section__head">
         <span className="section__num">№ I — Tools</span>
         <h2 className="section__title">Workspace</h2>
-        <span className="section__meta">{window.TOOLS.length} apps · {window.TOOLS.filter(t => t.locked).length} via SSO</span>
+        <span className="section__meta">{window.TOOLS.length} apps</span>
       </div>
       <div className="tools">
         {window.TOOLS.map((t, i) => (
@@ -413,36 +403,6 @@ function LockModal({ tool, onClose, onSuccess }) {
             <button className="btn" onClick={submit} disabled={state === "checking"}>Open</button>
           </div>
         </div>
-      </div>
-    </div>
-  );
-}
-
-/* ────────────────────────────────────────────────────────────────
-   SSO iframe modal
-   ──────────────────────────────────────────────────────────────── */
-function SsoModal({ tool, onClose }) {
-  useEffect(() => {
-    const onKey = (e) => { if (e.key === "Escape") onClose(); };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [onClose]);
-
-  if (!tool) return null;
-  const src = "https://sso.kneuralabs.com/?redirect=" + encodeURIComponent(tool.href || "");
-  return (
-    <div className="sso-overlay" onClick={(e) => { if (e.target.classList.contains("sso-overlay")) onClose(); }}>
-      <div className="sso-modal">
-        <div className="sso-modal__head">
-          <span className="sso-modal__title">{tool.name}</span>
-          <button className="sso-modal__close" onClick={onClose} aria-label="Close">✕</button>
-        </div>
-        <iframe
-          src={src}
-          className="sso-modal__frame"
-          title="KneuraLabs SSO"
-          allow="forms"
-        />
       </div>
     </div>
   );

@@ -51,27 +51,12 @@ function App() {
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
   const now = useNow(1000);
   const [activeLock, setActiveLock] = React.useState(null);
-  const [activeSso, setActiveSso] = React.useState(null);
   const [unlocked, setUnlocked] = React.useState(() => new Set());
 
   React.useEffect(() => { applyTokens(t); }, [t.theme, t.tile, t.density, t.motion, t.typePair]);
 
-  React.useEffect(() => {
-    const onMsg = (e) => {
-      if (e.origin !== "https://sso.kneuralabs.com") return;
-      if (e.data && e.data.type === "sso_success" && e.data.url) {
-        setActiveSso(null);
-        window.open(e.data.url, "_blank", "noopener");
-      }
-    };
-    window.addEventListener("message", onMsg);
-    return () => window.removeEventListener("message", onMsg);
-  }, []);
-
   const handleActivate = (tool) => {
-    if (tool.locked) {
-      setActiveSso(tool);
-    } else if (tool.href) {
+    if (tool.href) {
       window.open(tool.href, "_blank", "noopener");
     }
   };
@@ -79,11 +64,7 @@ function App() {
   const handleOpenCommand = () => {
     const comm = window.TOOLS.find(t => t.id === "comm");
     if (!comm) return;
-    if (comm.locked) {
-      setActiveSso(comm);
-    } else {
-      window.open(comm.href, "_blank", "noopener");
-    }
+    window.open(comm.href, "_blank", "noopener");
   };
 
   const handleSuccess = (tool) => {
@@ -114,13 +95,6 @@ function App() {
         <FeedSection />
         <Colophon />
       </div>
-      {activeSso && (
-        <SsoModal
-          tool={activeSso}
-          onClose={() => setActiveSso(null)}
-        />
-      )}
-
       <TweaksPanel title="Tweaks">
         <TweakSection label="Theme" />
         <TweakColor
