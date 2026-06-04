@@ -47,15 +47,60 @@ function applyTokens(t) {
   root.style.setProperty("--f-mono", pair.mono);
 }
 
+/* Read the SSO auth token stored after sign-in */
+function _getAuth() {
+  try { return JSON.parse(sessionStorage.getItem('kn-auth') || 'null'); } catch { return null; }
+}
+
+/* Returns true if this user is allowed to open the given tool */
+function _canAccess(auth, tool) {
+  if (!auth) return false;
+  if (auth.role === 'admin') return true;
+  // If the auth token carries no apps array, allow all (legacy / pre-access-control accounts)
+  if (!Array.isArray(auth.apps)) return true;
+  return auth.apps.includes(tool.id);
+}
+
+/* Floating "no access" toast shown when a restricted tile is clicked */
+function AccessDeniedToast({ visible, appName, onDone }) {
+  React.useEffect(() => {
+    if (!visible) return;
+    const t = setTimeout(onDone, 3200);
+    return () => clearTimeout(t);
+  }, [visible]);
+  return (
+    <div style={{
+      position: 'fixed', bottom: '1.5rem', right: '1.5rem',
+      background: '#8B1A12', color: '#fff',
+      padding: '.75rem 1.125rem', borderRadius: '8px',
+      fontSize: '.8125rem', fontWeight: 500,
+      opacity: visible ? 1 : 0,
+      transform: visible ? 'translateY(0)' : 'translateY(8px)',
+      transition: 'opacity .28s, transform .28s',
+      pointerEvents: 'none', zIndex: 9999,
+      maxWidth: '280px', lineHeight: 1.45,
+      boxShadow: '0 4px 24px rgba(0,0,0,.35)',
+    }}>
+      🔒 No access to <strong>{appName}</strong>. Contact your administrator.
+    </div>
+  );
+}
+
 function App() {
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
   const now = useNow(1000);
   const [activeLock, setActiveLock] = React.useState(null);
   const [unlocked, setUnlocked] = React.useState(() => new Set());
+  const [denyToast, setDenyToast] = React.useState({ visible: false, appName: '' });
 
   React.useEffect(() => { applyTokens(t); }, [t.theme, t.tile, t.density, t.motion, t.typePair]);
 
   const handleActivate = (tool) => {
+    const auth = _getAuth();
+    if (!_canAccess(auth, tool)) {
+      setDenyToast({ visible: true, appName: tool.name });
+      return;
+    }
     if (tool.href) {
       window.open(tool.href, "_blank", "noopener");
     }
@@ -64,6 +109,11 @@ function App() {
   const handleOpenCommand = () => {
     const comm = window.TOOLS.find(t => t.id === "comm");
     if (!comm) return;
+    const auth = _getAuth();
+    if (!_canAccess(auth, comm)) {
+      setDenyToast({ visible: true, appName: comm.name });
+      return;
+    }
     window.open(comm.href, "_blank", "noopener");
   };
 
@@ -80,6 +130,15 @@ function App() {
     }
   };
 
+  /* Compute which tool IDs this user may access, for visual hint on tiles */
+  const auth = _getAuth();
+  const allowedIds = React.useMemo(() => {
+    if (!auth) return new Set();
+    if (auth.role === 'admin') return null; // null = all allowed
+    if (!Array.isArray(auth.apps)) return null; // null = all allowed (legacy)
+    return new Set(auth.apps);
+  }, [auth?.role, JSON.stringify(auth?.apps)]);
+
   return (
     <React.Fragment>
       <ThemeToggle theme={t.theme} onChange={(v) => setTweak("theme", v)} />
@@ -90,6 +149,7 @@ function App() {
         <Welcome voice={t.voice} />
         <ToolsSection
           unlockedSet={unlocked}
+          allowedIds={allowedIds}
           onActivate={handleActivate}
         />
         <FeedSection />
@@ -161,6 +221,11 @@ function App() {
           onClick={() => setUnlocked(new Set())}
         />
       </TweaksPanel>
+      <AccessDeniedToast
+        visible={denyToast.visible}
+        appName={denyToast.appName}
+        onDone={() => setDenyToast(d => ({ ...d, visible: false }))}
+      />
     </React.Fragment>
   );
 }
