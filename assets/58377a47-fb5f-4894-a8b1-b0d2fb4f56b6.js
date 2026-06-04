@@ -48,7 +48,7 @@ function Nameplate({ now }) {
   }, [now]);
   const volume = useMemo(() => {
     // Volume = days since 2020-01-01 / 30, Issue = day of year
-    const start = new Date(2020, 0, 1);
+    const start = new Date(2026, 0, 1);
     const days = Math.floor((now - start) / 86400000);
     const dayOfYear = Math.floor((now - new Date(now.getFullYear(), 0, 0)) / 86400000);
     return `VOL. ${String(Math.floor(days / 30)).padStart(3, "0")} · ISS. ${String(dayOfYear).padStart(3, "0")}`;
@@ -62,7 +62,7 @@ function Nameplate({ now }) {
             Kneuralabs<em>.</em>
           </div>
         </div>
-        <div className="nameplate__sub">Internal Portal · Established 2020</div>
+        <div className="nameplate__sub">Internal Portal · Established 2026</div>
       </div>
       <div className="nameplate__bar">
         <span className="nameplate__beacon">
