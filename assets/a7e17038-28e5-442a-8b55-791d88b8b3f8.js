@@ -56,8 +56,9 @@ function _getAuth() {
 function _canAccess(auth, tool) {
   if (!auth) return false;
   if (auth.role === 'admin') return true;
-  // If the auth token carries no apps array, allow all (legacy / pre-access-control accounts)
-  if (!Array.isArray(auth.apps)) return true;
+  // Default-deny: employees only see apps explicitly granted in SSO. A missing
+  // apps array (e.g. a stale pre-access-control token) grants nothing.
+  if (!Array.isArray(auth.apps)) return false;
   return auth.apps.includes(tool.id);
 }
 
@@ -135,7 +136,7 @@ function App() {
   const allowedIds = React.useMemo(() => {
     if (!auth) return new Set();
     if (auth.role === 'admin') return null; // null = all allowed
-    if (!Array.isArray(auth.apps)) return null; // null = all allowed (legacy)
+    if (!Array.isArray(auth.apps)) return new Set(); // default-deny: nothing granted
     return new Set(auth.apps);
   }, [auth?.role, JSON.stringify(auth?.apps)]);
 
