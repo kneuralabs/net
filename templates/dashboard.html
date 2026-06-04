@@ -103,22 +103,23 @@
     .welcome h2 { font-size: 26px; font-weight: 700; color: #f0f0fa; margin-bottom: 8px; }
     .welcome p  { font-size: 15px; color: #7070a0; margin-bottom: 32px; }
 
-    .actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .actions { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
 
     .action-card {
-      display: flex; flex-direction: column; align-items: center; gap: 8px;
-      padding: 20px 28px;
-      background: rgba(16,16,24,.8);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 12px;
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
       text-decoration: none;
-      color: #c0c0e0;
-      font-size: 13px; font-weight: 500;
-      transition: border-color .2s, background .2s;
-      min-width: 120px;
+      color: #9090b8;
+      font-size: 12px; font-weight: 500;
+      transition: transform 220ms cubic-bezier(0.34,1.25,0.64,1), opacity .2s;
+      letter-spacing: .01em;
     }
-    .action-card:hover { border-color: rgba(99,102,241,.4); background: rgba(99,102,241,.07); }
-    .action-card .icon { font-size: 24px; }
+    .action-card:hover { transform: scale(1.08); opacity: .9; }
+    .action-card:active { transform: scale(0.95); }
+    .action-card .icon {
+      width: 64px; height: 64px; border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 16px rgba(0,0,0,.35), 0 1px 3px rgba(0,0,0,.2);
+    }
 
     /* ── Widgets row ── */
     .widgets {
@@ -365,26 +366,22 @@
 
       <div class="actions">
         <a href="/change-password" class="action-card">
-          <span class="icon">
-            <span class="w-icon" style="background:linear-gradient(135deg,#f59e0b,#f97316);width:36px;height:36px;border-radius:10px">
-              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="3" y="8" width="12" height="9" rx="2" stroke="white" stroke-width="1.5" fill="none"/>
-                <path d="M5.5 8V5.5a3.5 3.5 0 0 1 7 0V8" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-                <circle cx="9" cy="12.5" r="1.5" fill="white"/>
-              </svg>
-            </span>
+          <span class="icon" style="background:linear-gradient(145deg,#fbbf24,#f97316)">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="6" y="14" width="18" height="13" rx="3" stroke="white" stroke-width="2" fill="none"/>
+              <path d="M10 14V10a5 5 0 0 1 10 0v4" stroke="white" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="15" cy="20.5" r="2" fill="white"/>
+            </svg>
           </span>
           Change Password
         </a>
         <a href="/logout" class="action-card">
-          <span class="icon">
-            <span class="w-icon" style="background:linear-gradient(135deg,#f87171,#ef4444);width:36px;height:36px;border-radius:10px">
-              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M7 3H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-                <path d="M12 5.5l3.5 3.5-3.5 3.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                <line x1="7" y1="9" x2="15.5" y2="9" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-              </svg>
-            </span>
+          <span class="icon" style="background:linear-gradient(145deg,#f87171,#dc2626)">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 7H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h4" stroke="white" stroke-width="2" stroke-linecap="round"/>
+              <path d="M20 10l5 5-5 5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="12" y1="15" x2="25" y2="15" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            </svg>
           </span>
           Sign Out
         </a>
