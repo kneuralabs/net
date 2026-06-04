@@ -294,16 +294,19 @@ function Tile({ tool, idx, unlocked, onActivate }) {
   );
 }
 
-function ToolsSection({ unlockedSet, onActivate }) {
+function ToolsSection({ unlockedSet, allowedIds, onActivate }) {
+  // allowedIds === null  -> all apps allowed (admin / legacy)
+  // allowedIds === Set    -> only show apps explicitly granted to this user
+  const tools = allowedIds ? window.TOOLS.filter(t => allowedIds.has(t.id)) : window.TOOLS;
   return (
     <section className="section" id="tools">
       <div className="section__head">
         <span className="section__num">№ I — Tools</span>
         <h2 className="section__title">Workspace</h2>
-        <span className="section__meta">{window.TOOLS.length} apps</span>
+        <span className="section__meta">{tools.length} apps</span>
       </div>
       <div className="tools">
-        {window.TOOLS.map((t, i) => (
+        {tools.map((t, i) => (
           <Tile
             key={t.id}
             tool={t}
