@@ -2363,7 +2363,7 @@ html[data-motion="playful"] .tile:hover {
   <script src="assets/ddba9398-1614-4797-bb5a-61a24845ecf4.js"></script>
 </head>
 <body>
-<div id="sso-overlay" style="position:fixed;inset:0;z-index:99999;background:#fff"><iframe id="sso-frame" src="https://sso.kneuralabs.com?redirect=postmessage" style="width:100%;height:100%;border:none;display:block" title="Sign in to Kneuralabs"></iframe></div>
+<div id="sso-overlay" style="position:fixed;inset:0;z-index:99999;background:#fff"><iframe id="sso-frame" src="https://sso.kneuralabs.com?redirect=postmessage&v=3" style="width:100%;height:100%;border:none;display:block" title="Sign in to Kneuralabs"></iframe></div>
 <script>(function(){var s=sessionStorage.getItem('kn-auth');var ok=false;if(s){try{var a=JSON.parse(s);ok=a&&(a.role==='admin'||Array.isArray(a.apps));}catch(_){}if(!ok)sessionStorage.removeItem('kn-auth');}if(ok){var o=document.getElementById('sso-overlay');o.style.display='none';}window.addEventListener('message',function(e){if(e.origin!=='https://sso.kneuralabs.com')return;if(!e.data||e.data.type!=='kn-auth')return;sessionStorage.setItem('kn-auth',JSON.stringify(e.data));var o=document.getElementById('sso-overlay');o.style.transition='opacity .4s';o.style.opacity='0';setTimeout(function(){o.style.display='none';},420);});}());</script>
   <div id="root"></div>
 
