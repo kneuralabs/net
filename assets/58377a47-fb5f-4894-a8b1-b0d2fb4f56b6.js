@@ -175,7 +175,7 @@ function StatusStrip({ now }) {
         <div className="strip__big" style={{ fontSize: 22, letterSpacing: "-0.02em", fontWeight: 600 }}>
           Operational
         </div>
-        <div className="strip__sub">12 tools online · 0 incidents · last sync 00:14</div>
+        <div className="strip__sub">{window.TOOLS.length} tools online · 0 incidents · last sync 00:14</div>
       </div>
     </section>
   );
