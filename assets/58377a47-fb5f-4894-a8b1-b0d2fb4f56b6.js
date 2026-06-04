@@ -281,7 +281,11 @@ function Tile({ tool, idx, unlocked, onActivate }) {
     >
       <div className="tile__top">
         <span className="tile__idx">№ {String(idx + 1).padStart(2, "0")}</span>
-        <span className="tile__icon" style={{ background: pal.accent }}>{tool.seal}</span>
+        <span className="tile__icon" style={{
+          background: (tool.accent || pal.accent) + "1F",
+          borderColor: (tool.accent || pal.accent) + "59",
+          boxShadow: "0 4px 14px " + (tool.accent || pal.accent) + "33, inset 0 1px 0 rgba(255,255,255,0.45)",
+        }}>{tool.seal}</span>
       </div>
       <div className="tile__body">
         <div className="tile__cat">{tool.cat}</div>
