@@ -33,6 +33,12 @@ const TOOLS = [
     locked: true, word: "s1ogger$", href: "https://stratos.kneuralabs.com", seal: "△" },
   { id: "nimbus",   cat: "Cloud Storage",         name: "Nimbus",               tm: "",    desc: "Files, assets & storage.",
     locked: true, word: "s1ogger$", href: "https://nimbus.kneuralabs.com", seal: "☁" },
+  { id: "pmo",      cat: "Project Management",    name: "PMO",                  tm: "",    desc: "Project Management Office of Kneuralabs.",
+    locked: false, href: "https://pmo.kneuralabs.com", seal: "◫" },
+  { id: "hire",     cat: "Human Resources",       name: "Hire",                 tm: "",    desc: "HR Hiring Portal for Kneuralabs.",
+    locked: false, href: "https://hire.kneuralabs.com", seal: "✦" },
+  { id: "db",       cat: "People & Vendors",      name: "PeopleBase",           tm: "",    desc: "Employee & Vendor Registry.",
+    locked: false, href: "https://db.kneuralabs.com", seal: "◈" },
 ];
 
 const NEWS = [];  // Populated at runtime from assets/news.json (authentic, refreshed daily by CI).

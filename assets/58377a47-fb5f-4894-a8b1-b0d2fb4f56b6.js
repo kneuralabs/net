@@ -281,7 +281,7 @@ function Tile({ tool, idx, unlocked, onActivate }) {
     >
       <div className="tile__top">
         <span className="tile__idx">№ {String(idx + 1).padStart(2, "0")}</span>
-        <span className="tile__state">Open</span>
+        <span className="tile__state"></span>
       </div>
       <div className="tile__body">
         <div className="tile__cat">{tool.cat}</div>
