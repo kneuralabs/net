@@ -143,7 +143,15 @@
     .widget-title {
       font-size: 13px; font-weight: 600; color: #8080b0;
       text-transform: uppercase; letter-spacing: .06em;
+      display: flex; align-items: center; gap: 9px;
     }
+
+    .w-icon {
+      width: 28px; height: 28px; border-radius: 7px;
+      display: inline-flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .w-icon svg { display: block; }
 
     .widget-date {
       font-size: 11px; color: #50507a;
@@ -357,11 +365,27 @@
 
       <div class="actions">
         <a href="/change-password" class="action-card">
-          <span class="icon">&#128274;</span>
+          <span class="icon">
+            <span class="w-icon" style="background:linear-gradient(135deg,#f59e0b,#f97316);width:36px;height:36px;border-radius:10px">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="8" width="12" height="9" rx="2" stroke="white" stroke-width="1.5" fill="none"/>
+                <path d="M5.5 8V5.5a3.5 3.5 0 0 1 7 0V8" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                <circle cx="9" cy="12.5" r="1.5" fill="white"/>
+              </svg>
+            </span>
+          </span>
           Change Password
         </a>
         <a href="/logout" class="action-card">
-          <span class="icon">&#128682;</span>
+          <span class="icon">
+            <span class="w-icon" style="background:linear-gradient(135deg,#f87171,#ef4444);width:36px;height:36px;border-radius:10px">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7 3H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M12 5.5l3.5 3.5-3.5 3.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="7" y1="9" x2="15.5" y2="9" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </span>
+          </span>
           Sign Out
         </a>
       </div>
@@ -373,7 +397,20 @@
       <!-- Holiday Widget -->
       <div class="widget" id="holiday-widget">
         <div class="widget-header">
-          <span class="widget-title">&#128197; Holidays</span>
+          <span class="widget-title">
+            <span class="w-icon" style="background:linear-gradient(135deg,#34d399,#06b6d4)">
+              <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="1" y="3" width="13" height="11" rx="2" stroke="white" stroke-width="1.4" fill="none"/>
+                <path d="M1 6.5h13" stroke="white" stroke-width="1.4"/>
+                <line x1="4.5" y1="1.5" x2="4.5" y2="4.5" stroke="white" stroke-width="1.4" stroke-linecap="round"/>
+                <line x1="10.5" y1="1.5" x2="10.5" y2="4.5" stroke="white" stroke-width="1.4" stroke-linecap="round"/>
+                <circle cx="4.5" cy="9.5" r="1" fill="white"/>
+                <circle cx="7.5" cy="9.5" r="1" fill="white"/>
+                <circle cx="10.5" cy="9.5" r="1" fill="white"/>
+              </svg>
+            </span>
+            Holidays
+          </span>
           <span class="widget-date" id="today-label"></span>
         </div>
         <div id="holiday-body"></div>
@@ -382,7 +419,17 @@
       <!-- Governance Brief -->
       <div class="widget">
         <div class="widget-header">
-          <span class="widget-title">&#128240; Governance Brief</span>
+          <span class="widget-title">
+            <span class="w-icon" style="background:linear-gradient(135deg,#a78bfa,#6366f1)">
+              <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="1.5" width="11" height="12" rx="2" stroke="white" stroke-width="1.4" fill="none"/>
+                <line x1="4.5" y1="5" x2="10.5" y2="5" stroke="white" stroke-width="1.4" stroke-linecap="round"/>
+                <line x1="4.5" y1="7.5" x2="10.5" y2="7.5" stroke="white" stroke-width="1.4" stroke-linecap="round"/>
+                <line x1="4.5" y1="10" x2="8" y2="10" stroke="white" stroke-width="1.4" stroke-linecap="round"/>
+              </svg>
+            </span>
+            Governance Brief
+          </span>
           <span class="widget-date" id="brief-date"></span>
         </div>
         <div id="brief-body"></div>
