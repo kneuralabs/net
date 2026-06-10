@@ -1,9 +1,13 @@
 import os
 import io
+import time
 import base64
+import logging
+import warnings
 import bcrypt
 import openpyxl
 import requests
+from threading import Lock
 from urllib.parse import urlparse
 from cryptography.fernet import Fernet
 from cryptography.hazmat.primitives import hashes
@@ -11,13 +15,92 @@ from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from itsdangerous import URLSafeTimedSerializer
 from flask import Flask, render_template, request, redirect, flash
 
-app = Flask(__name__)
-app.secret_key = os.environ.get('SSO_APP_SECRET', 'kneura-sso-app-secret-change-in-prod')
+logger = logging.getLogger(__name__)
 
-SSO_SHARED_SECRET = os.environ.get('SSO_SHARED_SECRET', 'kneura-sso-shared-secret-change-in-prod')
-EXCEL_PASSWORD = os.environ.get('EXCEL_PASSWORD', 'KneuraExcel@2026')
+app = Flask(__name__)
+
+# ── Secrets ────────────────────────────────────────────────────────────────────
+# Production (the default) requires all secrets via the environment and fails
+# fast otherwise. Dev mode is an explicit opt-in (NET_DEV=1 / FLASK_DEBUG /
+# FLASK_ENV=development); legacy committed defaults additionally require
+# NET_ALLOW_INSECURE_DEFAULTS=1 and emit a loud warning.
+
+def _is_dev_mode():
+    return (
+        os.environ.get('NET_DEV', '') == '1'
+        or os.environ.get('FLASK_DEBUG', '').lower() in ('1', 'true')
+        or os.environ.get('FLASK_ENV', '').lower() == 'development'
+    )
+
+
+def _allow_insecure_defaults():
+    return os.environ.get('NET_ALLOW_INSECURE_DEFAULTS', '') == '1'
+
+
+if not _is_dev_mode():
+    _missing = [name for name in ('SSO_SHARED_SECRET', 'EXCEL_PASSWORD')
+                if not os.environ.get(name)]
+    if _missing:
+        raise RuntimeError(
+            'Refusing to start in production without required secrets. '
+            'Missing environment variables: ' + ', '.join(_missing) + '. '
+            'Set them, or set NET_DEV=1 for local development.'
+        )
+
+_app_secret = os.environ.get('SSO_APP_SECRET', '')
+if not _app_secret:
+    warnings.warn(
+        'SSO_APP_SECRET is not set — using a random per-process key. '
+        'Flash messages/sessions will not survive a restart.',
+        RuntimeWarning, stacklevel=1,
+    )
+    _app_secret = 'insecure-dev-' + os.urandom(32).hex()
+app.secret_key = _app_secret
+
+SSO_SHARED_SECRET = os.environ.get('SSO_SHARED_SECRET', '')
+if not SSO_SHARED_SECRET:
+    # Dev mode only (production raised above).
+    warnings.warn(
+        'SSO_SHARED_SECRET is not set — issued tokens cannot be verified by '
+        'the intranet. Set the SSO_SHARED_SECRET environment variable.',
+        RuntimeWarning, stacklevel=1,
+    )
+    SSO_SHARED_SECRET = 'insecure-dev-' + os.urandom(32).hex()
+
+EXCEL_PASSWORD = os.environ.get('EXCEL_PASSWORD', '')
+if not EXCEL_PASSWORD:
+    if _allow_insecure_defaults():
+        warnings.warn(
+            'NET_ALLOW_INSECURE_DEFAULTS=1: using the legacy INSECURE dev '
+            'EXCEL_PASSWORD. Never use this outside local development.',
+            RuntimeWarning, stacklevel=1,
+        )
+        EXCEL_PASSWORD = 'KneuraExcel@2026'
+    else:
+        raise RuntimeError(
+            'EXCEL_PASSWORD is not set. It is required to open DATA.xlsx. '
+            'Set the EXCEL_PASSWORD environment variable (or, for local dev '
+            'only, also set NET_ALLOW_INSECURE_DEFAULTS=1).'
+        )
+
 EMPLOYEE_DATA_URL = 'https://raw.githubusercontent.com/kneuralabs/ID/main/EmployeeData.xlsx'
-DEFAULT_PASSWORD = 'Kneuralabs@2026'
+
+# Initial password accepted for first-time users (changed on first login).
+DEFAULT_PASSWORD = os.environ.get('DEFAULT_USER_PASSWORD', '')
+if not DEFAULT_PASSWORD:
+    if _allow_insecure_defaults():
+        warnings.warn(
+            'NET_ALLOW_INSECURE_DEFAULTS=1: using the legacy INSECURE default '
+            'user onboarding password. Set DEFAULT_USER_PASSWORD instead.',
+            RuntimeWarning, stacklevel=1,
+        )
+        DEFAULT_PASSWORD = 'Kneuralabs@2026'
+    else:
+        raise RuntimeError(
+            'DEFAULT_USER_PASSWORD is not set. It is required for first-login '
+            'onboarding. Set the DEFAULT_USER_PASSWORD environment variable '
+            '(or, for local dev only, NET_ALLOW_INSECURE_DEFAULTS=1).'
+        )
 
 # DATA.xlsx is shared with the intranet; configure the path via env var
 DATA_FILE = os.environ.get(
@@ -106,23 +189,62 @@ def _get_user(employee_id):
     return None
 
 
+# ── Roster cache ───────────────────────────────────────────────────────────────
+# The EmployeeData.xlsx roster is fetched from GitHub at most once per hour.
+# On fetch failure we fall back to the last good copy (with a warning) so
+# logins keep working through brief GitHub outages.
+_ROSTER_TTL = 3600  # seconds
+_roster_lock = Lock()
+_roster_cache = {'rows': None, 'fetched_at': 0.0}
+
+
+def _fetch_roster_rows():
+    """Download the roster and return its data rows as a list of tuples."""
+    resp = requests.get(EMPLOYEE_DATA_URL, timeout=10)
+    resp.raise_for_status()
+    wb = openpyxl.load_workbook(io.BytesIO(resp.content))
+    return list(wb.active.iter_rows(min_row=2, values_only=True))
+
+
+def _get_roster_rows():
+    """Return cached roster rows, refreshing at most every _ROSTER_TTL seconds.
+
+    Returns None only when no fetch has ever succeeded."""
+    with _roster_lock:
+        now = time.time()
+        fresh = (_roster_cache['rows'] is not None
+                 and now - _roster_cache['fetched_at'] < _ROSTER_TTL)
+        if not fresh:
+            try:
+                _roster_cache['rows'] = _fetch_roster_rows()
+                _roster_cache['fetched_at'] = now
+            except Exception as exc:
+                if _roster_cache['rows'] is not None:
+                    logger.warning(
+                        'Roster refresh failed (%s); falling back to cached '
+                        'copy from %.0f seconds ago.',
+                        exc, now - _roster_cache['fetched_at'],
+                    )
+                else:
+                    logger.warning('Roster fetch failed and no cached copy '
+                                   'is available: %s', exc)
+        return _roster_cache['rows']
+
+
 def _check_roster(employee_id):
-    try:
-        resp = requests.get(EMPLOYEE_DATA_URL, timeout=10)
-        resp.raise_for_status()
-        wb = openpyxl.load_workbook(io.BytesIO(resp.content))
-        revoke_kw = {'revok', 'inactive', 'terminat', 'disabled', 'suspended'}
-        for row in wb.active.iter_rows(min_row=2, values_only=True):
-            if not row or row[0] is None:
-                continue
-            if str(row[0]).strip() == str(employee_id).strip():
-                for cell in row[1:]:
-                    if cell and any(k in str(cell).lower() for k in revoke_kw):
-                        return 'revoked'
-                return 'found'
-        return 'not_found'
-    except Exception:
+    rows = _get_roster_rows()
+    if rows is None:
         return 'error'
+    revoke_kw = {'revok', 'inactive', 'terminat', 'disabled', 'suspended'}
+    for row in rows:
+        if not row or row[0] is None:
+            continue
+        if str(row[0]).strip() == str(employee_id).strip():
+            for cell in row[1:]:
+                if cell and any(k in str(cell).lower() for k in revoke_kw):
+                    return 'revoked'
+            return 'found'
+    return 'not_found'
 
 
 def _is_valid_callback(url):

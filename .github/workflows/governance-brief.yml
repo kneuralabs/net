@@ -24,6 +24,9 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Validate fetch script
+        run: python3 -m py_compile scripts/fetch_governance_news.py
+
       - name: Fetch authentic governance news
         run: python3 scripts/fetch_governance_news.py
 

@@ -17,34 +17,96 @@ from flask import Flask, render_template, request, redirect, url_for, session, f
 app = Flask(__name__)
 
 # ── Secrets ────────────────────────────────────────────────────────────────────
-# Fail loudly when insecure defaults reach any environment.
+# In production (the default) all secrets MUST come from the environment and
+# the app refuses to start otherwise. Dev mode must be opted into explicitly
+# via NET_DEV=1 (or FLASK_DEBUG / FLASK_ENV=development).
+
+def _is_dev_mode() -> bool:
+    return (
+        os.environ.get('NET_DEV', '') == '1'
+        or os.environ.get('FLASK_DEBUG', '').lower() in ('1', 'true')
+        or os.environ.get('FLASK_ENV', '').lower() == 'development'
+    )
+
+
+def _allow_insecure_defaults() -> bool:
+    return os.environ.get('NET_ALLOW_INSECURE_DEFAULTS', '') == '1'
+
+
+_DEV_MODE = _is_dev_mode()
+
+if not _DEV_MODE:
+    _missing = [name for name in ('SECRET_KEY', 'SSO_SHARED_SECRET', 'EXCEL_PASSWORD')
+                if not os.environ.get(name)]
+    if _missing:
+        raise RuntimeError(
+            'Refusing to start in production without required secrets. '
+            'Missing environment variables: ' + ', '.join(_missing) + '. '
+            'Set them, or set NET_DEV=1 for local development.'
+        )
+
 _SECRET_KEY = os.environ.get('SECRET_KEY', '')
 if not _SECRET_KEY:
+    # Dev mode only (production raised above): per-process random key.
     warnings.warn(
-        'SECRET_KEY is not set — sessions are insecure. '
-        'Set the SECRET_KEY environment variable before deploying.',
+        'SECRET_KEY is not set — using a random per-process dev key. '
+        'Sessions will not survive a restart. Set SECRET_KEY before deploying.',
         RuntimeWarning, stacklevel=1,
     )
-    # Per-process random fallback: sessions die on restart (unusable for prod)
-    _SECRET_KEY = 'insecure-dev-' + os.urandom(16).hex()
+    _SECRET_KEY = 'insecure-dev-' + os.urandom(32).hex()
 app.secret_key = _SECRET_KEY
 
-EXCEL_PASSWORD = os.environ.get('EXCEL_PASSWORD', 'KneuraExcel@2026')
+EXCEL_PASSWORD = os.environ.get('EXCEL_PASSWORD', '')
+if not EXCEL_PASSWORD:
+    # Dev mode only. The legacy committed password is gated behind an
+    # explicit opt-in so it can never be a *silent* fallback.
+    if _allow_insecure_defaults():
+        warnings.warn(
+            'NET_ALLOW_INSECURE_DEFAULTS=1: using the legacy INSECURE dev '
+            'EXCEL_PASSWORD. Never use this outside local development.',
+            RuntimeWarning, stacklevel=1,
+        )
+        EXCEL_PASSWORD = 'KneuraExcel@2026'
+    else:
+        raise RuntimeError(
+            'EXCEL_PASSWORD is not set. It is required to open DATA.xlsx. '
+            'Set the EXCEL_PASSWORD environment variable (or, for local dev '
+            'only, also set NET_ALLOW_INSECURE_DEFAULTS=1 to use the legacy '
+            'default).'
+        )
+
 DATA_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'DATA.xlsx')
 EMPLOYEE_DATA_URL = 'https://raw.githubusercontent.com/kneuralabs/ID/main/EmployeeData.xlsx'
-DEFAULT_PASSWORD  = 'Kneuralabs@2026'
+# Initial password issued to first-time users (must be changed on first login).
+DEFAULT_PASSWORD = os.environ.get('DEFAULT_USER_PASSWORD', '')
+if not DEFAULT_PASSWORD:
+    if _allow_insecure_defaults():
+        warnings.warn(
+            'NET_ALLOW_INSECURE_DEFAULTS=1: using the legacy INSECURE default '
+            'user onboarding password. Set DEFAULT_USER_PASSWORD instead.',
+            RuntimeWarning, stacklevel=1,
+        )
+        DEFAULT_PASSWORD = 'Kneuralabs@2026'
+    else:
+        raise RuntimeError(
+            'DEFAULT_USER_PASSWORD is not set. It is required for first-login '
+            'onboarding. Set the DEFAULT_USER_PASSWORD environment variable '
+            '(or, for local dev only, NET_ALLOW_INSECURE_DEFAULTS=1 to use '
+            'the legacy default).'
+        )
 
 # SSO configuration
 SSO_URL            = os.environ.get('SSO_URL',            'https://sso.kneuralabs.com')
 INTRANET_BASE_URL  = os.environ.get('INTRANET_BASE_URL',  'https://intranet.kneuralabs.com')
 SSO_SHARED_SECRET  = os.environ.get('SSO_SHARED_SECRET',  '')
 if not SSO_SHARED_SECRET:
+    # Dev mode only (production raised above).
     warnings.warn(
         'SSO_SHARED_SECRET is not set — SSO callbacks cannot be verified. '
         'Set the SSO_SHARED_SECRET environment variable.',
         RuntimeWarning, stacklevel=1,
     )
-    SSO_SHARED_SECRET = 'insecure-dev-' + os.urandom(16).hex()
+    SSO_SHARED_SECRET = 'insecure-dev-' + os.urandom(32).hex()
 _SSO_TOKEN_MAX_AGE = 300  # seconds
 
 # Application-specific KDF salt for the XLSX encryption key.
@@ -265,6 +327,10 @@ def change_password():
             flash('Password must be at least 8 characters.', 'error')
             return render_template('change_password.html', first_login=first_login)
 
+        if not any(c.isalpha() for c in new_pw) or not any(c.isdigit() for c in new_pw):
+            flash('Password must contain at least one letter and one digit.', 'error')
+            return render_template('change_password.html', first_login=first_login)
+
         user = get_user(employee_id)
         if not user:
             flash('User not found.', 'error')
@@ -274,7 +340,9 @@ def change_password():
             flash('Current password is incorrect.', 'error')
             return render_template('change_password.html', first_login=first_login)
 
-        if new_pw == DEFAULT_PASSWORD:
+        # Deny-list: the configured onboarding password and the well-known
+        # legacy default (kept here purely as a denied value, not a credential).
+        if new_pw == DEFAULT_PASSWORD or new_pw == 'Kneuralabs@2026':
             flash('You cannot reuse the default password.', 'error')
             return render_template('change_password.html', first_login=first_login)
 
