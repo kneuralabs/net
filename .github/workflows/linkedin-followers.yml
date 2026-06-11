@@ -1,11 +1,12 @@
-name: Daily LinkedIn Followers
+name: LinkedIn Followers
 
-# Pulls the Kneuralabs LinkedIn company-page follower count once a day and
-# commits it to assets/linkedin.json, which the intranet LinkedIn widget
-# reads at page load.
+# Pulls the Kneuralabs LinkedIn company-page follower count every six hours
+# and commits it to assets/linkedin.json, which the intranet LinkedIn widget
+# reads at page load. Each push to main also redeploys GitHub Pages, so the
+# live site reflects increases and decreases automatically.
 on:
   schedule:
-    - cron: "35 6 * * *"   # 06:35 UTC daily (~12:05 IST)
+    - cron: "35 */6 * * *"   # every 6 hours at :35 (00:35/06:35/12:35/18:35 UTC)
   workflow_dispatch: {}
   push:
     branches:
