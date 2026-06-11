@@ -682,6 +682,12 @@ function Colophon() {
         <div><b>Kneuralabs LLC</b></div>
         <div>Kolkata · Connecticut</div>
         <div>Trust & Security Practice</div>
+        <div>
+          <a href="https://www.linkedin.com/company/kneuralabs/" target="_blank" rel="noopener"
+             style={{ color: 'inherit', textDecoration: 'underline', textUnderlineOffset: '2px' }}>
+            LinkedIn ↗
+          </a>
+        </div>
       </div>
       <div className="colophon__mark">
         <img src={window.__resources.logo} alt="Kneuralabs" />

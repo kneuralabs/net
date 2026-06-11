@@ -41,6 +41,10 @@ const TOOLS = [
     locked: false, href: "https://hire.kneuralabs.com", seal: "🤝", accent: "#65A30D" },
   { id: "db",       cat: "People & Vendors",      name: "PeopleBase",           tm: "",    desc: "Employee & Vendor Registry.",
     locked: false, href: "https://db.kneuralabs.com", seal: "👥", accent: "#C026D3" },
+  { id: "design",   cat: "Design Studio",         name: "Design",               tm: "",    desc: "Creative assets & design workspace.",
+    locked: false, href: "https://design.kneuralabs.com", seal: "✏️", accent: "#F59E0B" },
+  { id: "synapse",  cat: "AI Workspace",          name: "Synapse",              tm: "",    desc: "Internal AI assistant & knowledge hub.",
+    locked: false, href: "https://synapse.kneuralabs.com", seal: "🧠", accent: "#6366F1" },
 ];
 
 const NEWS = [];  // Populated at runtime from assets/news.json (authentic, refreshed daily by CI).
