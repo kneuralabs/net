@@ -8,12 +8,6 @@ on:
   schedule:
     - cron: "35 */6 * * *"   # every 6 hours at :35 (00:35/06:35/12:35/18:35 UTC)
   workflow_dispatch: {}
-  push:
-    branches:
-      - claude/kind-davinci-pg2cnn   # run on the feature branch to seed the count pre-merge
-    paths:
-      - scripts/fetch_linkedin_followers.py
-      - .github/workflows/linkedin-followers.yml
 
 permissions:
   contents: write
