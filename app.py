@@ -268,27 +268,50 @@ def check_employee_roster(employee_id: str) -> str:
 # hit LinkedIn at most once per TTL regardless of dashboard traffic.
 
 LINKEDIN_COMPANY_URL = 'https://www.linkedin.com/company/kneuralabs/'
+LINKEDIN_COMPANY_ID = '112376100'
+# The pages-extensions follow-button endpoint is built for anonymous embedding
+# and is far less likely to be authwalled than the company page itself.
+_LI_SOURCE_URLS = (
+    f'https://www.linkedin.com/pages-extensions/FollowCompany'
+    f'?id={LINKEDIN_COMPANY_ID}&counter=bottom',
+    LINKEDIN_COMPANY_URL,
+)
 _LI_CACHE_TTL = 6 * 3600  # seconds
 _li_cache = {'followers': None, 'fetched_at': 0.0}
 _li_lock = Lock()
 
 
-def _fetch_linkedin_followers() -> int | None:
-    resp = requests.get(
-        LINKEDIN_COMPANY_URL,
-        timeout=10,
-        headers={
-            'User-Agent': ('Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
-                           'AppleWebKit/537.36 (KHTML, like Gecko) '
-                           'Chrome/124.0 Safari/537.36'),
-            'Accept-Language': 'en-US,en;q=0.9',
-        },
-    )
-    resp.raise_for_status()
-    match = re.search(r'([\d][\d,.]*)\s+followers', resp.text, re.IGNORECASE)
+def _parse_linkedin_followers(html: str) -> int | None:
+    match = re.search(r'([\d][\d,.]*)\s+followers', html, re.IGNORECASE)
+    if not match:
+        # Follow-button markup carries a bare number in a follower-count element.
+        match = re.search(r'follower[^>]*>\s*([\d][\d,.]*)\s*<', html,
+                          re.IGNORECASE)
     if not match:
         return None
     return int(re.sub(r'\D', '', match.group(1)))
+
+
+def _fetch_linkedin_followers() -> int | None:
+    for url in _LI_SOURCE_URLS:
+        try:
+            resp = requests.get(
+                url,
+                timeout=10,
+                headers={
+                    'User-Agent': ('Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
+                                   'AppleWebKit/537.36 (KHTML, like Gecko) '
+                                   'Chrome/124.0 Safari/537.36'),
+                    'Accept-Language': 'en-US,en;q=0.9',
+                },
+            )
+            resp.raise_for_status()
+        except requests.RequestException:
+            continue
+        followers = _parse_linkedin_followers(resp.text)
+        if followers is not None:
+            return followers
+    return None
 
 
 # ── SSO helpers ────────────────────────────────────────────────────────────────

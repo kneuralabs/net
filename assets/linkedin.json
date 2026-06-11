@@ -1,6 +1,5 @@
 {
-  "followers": null,
-  "fetched": null,
-  "source": "https://www.linkedin.com/company/kneuralabs/",
-  "note": "Refreshed daily by .github/workflows/linkedin-followers.yml. Set followers to a number to override manually."
+  "followers": 213,
+  "fetched": "2026-06-11T14:41:55+00:00",
+  "source": "https://www.linkedin.com/company/kneuralabs/"
 }
