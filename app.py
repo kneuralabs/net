@@ -1,5 +1,7 @@
 import os
 import io
+import re
+import time
 import base64
 import warnings
 import bcrypt
@@ -12,7 +14,7 @@ from cryptography.fernet import Fernet
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from itsdangerous import URLSafeTimedSerializer, BadSignature, SignatureExpired
-from flask import Flask, render_template, request, redirect, url_for, session, flash
+from flask import Flask, render_template, request, redirect, url_for, session, flash, jsonify
 
 app = Flask(__name__)
 
@@ -259,6 +261,36 @@ def check_employee_roster(employee_id: str) -> str:
         return 'error'
 
 
+# ── LinkedIn followers ─────────────────────────────────────────────────────────
+# The public company page embeds the follower count in its meta description
+# ("KneuraLabs | 1,234 followers on LinkedIn"). Fetched server-side because
+# linkedin.com does not allow cross-origin browser requests, and cached so we
+# hit LinkedIn at most once per TTL regardless of dashboard traffic.
+
+LINKEDIN_COMPANY_URL = 'https://www.linkedin.com/company/kneuralabs/'
+_LI_CACHE_TTL = 6 * 3600  # seconds
+_li_cache = {'followers': None, 'fetched_at': 0.0}
+_li_lock = Lock()
+
+
+def _fetch_linkedin_followers() -> int | None:
+    resp = requests.get(
+        LINKEDIN_COMPANY_URL,
+        timeout=10,
+        headers={
+            'User-Agent': ('Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
+                           'AppleWebKit/537.36 (KHTML, like Gecko) '
+                           'Chrome/124.0 Safari/537.36'),
+            'Accept-Language': 'en-US,en;q=0.9',
+        },
+    )
+    resp.raise_for_status()
+    match = re.search(r'([\d][\d,.]*)\s+followers', resp.text, re.IGNORECASE)
+    if not match:
+        return None
+    return int(re.sub(r'\D', '', match.group(1)))
+
+
 # ── SSO helpers ────────────────────────────────────────────────────────────────
 
 def _sso_login_url() -> str:
@@ -353,6 +385,32 @@ def change_password():
         return redirect(url_for('dashboard'))
 
     return render_template('change_password.html', first_login=first_login)
+
+
+@app.route('/api/linkedin-followers')
+@login_required
+def linkedin_followers():
+    now = time.time()
+    with _li_lock:
+        cached = _li_cache['followers']
+        fresh = cached is not None and (now - _li_cache['fetched_at']) < _LI_CACHE_TTL
+    if fresh:
+        return jsonify({'followers': cached})
+
+    try:
+        count = _fetch_linkedin_followers()
+    except Exception:
+        count = None
+
+    if count is not None:
+        with _li_lock:
+            _li_cache.update({'followers': count, 'fetched_at': now})
+        return jsonify({'followers': count})
+
+    # Fetch failed — serve the stale value if we have one rather than nothing.
+    if cached is not None:
+        return jsonify({'followers': cached, 'stale': True})
+    return jsonify({'followers': None}), 503
 
 
 @app.route('/sso/callback')
