@@ -1,0 +1,44 @@
+name: Daily LinkedIn Followers
+
+# Pulls the Kneuralabs LinkedIn company-page follower count once a day and
+# commits it to assets/linkedin.json, which the intranet LinkedIn widget
+# reads at page load.
+on:
+  schedule:
+    - cron: "35 6 * * *"   # 06:35 UTC daily (~12:05 IST)
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: linkedin-followers
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Validate fetch script
+        run: python3 -m py_compile scripts/fetch_linkedin_followers.py
+
+      - name: Fetch follower count
+        run: python3 scripts/fetch_linkedin_followers.py
+
+      - name: Commit if changed
+        run: |
+          git add assets/linkedin.json
+          if git diff --cached --quiet; then
+            echo "No change to assets/linkedin.json."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: refresh LinkedIn follower count"
+          git push

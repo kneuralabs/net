@@ -666,9 +666,77 @@ function FeedSection() {
             <h3 style={{ position:'relative' }}>{brief.quote}</h3>
             <div className="poster-stamp" style={{ position:'relative' }}>Brief № {brief.num}</div>
           </div>
+          <LinkedInCard />
         </aside>
       </div>
     </section>
+  );
+}
+
+/* ────────────────────────────────────────────────────────────────
+   LinkedIn widget — company page follower count
+   Reads the committed snapshot (assets/linkedin.json, refreshed
+   daily by CI) first, then falls back to fetching the public page
+   through the same CORS proxies the Brief uses.
+   ──────────────────────────────────────────────────────────────── */
+const LINKEDIN_PAGE_URL = "https://www.linkedin.com/company/kneuralabs/";
+
+async function fetchLinkedInFollowers() {
+  // 1 · Committed snapshot, refreshed daily by CI (same pattern as news.json)
+  try {
+    const cb = new Date().toISOString().slice(0, 10);
+    const r = await fetch("assets/linkedin.json?d=" + cb, { cache: "no-store" });
+    if (r.ok) {
+      const data = await r.json();
+      if (data && typeof data.followers === "number") return data.followers;
+    }
+  } catch (e) {
+    console.warn("[LinkedIn] linkedin.json unavailable, trying live page:", e);
+  }
+  // 2 · Live public page via CORS proxies
+  const proxies = [
+    "https://api.allorigins.win/raw?url=" + encodeURIComponent(LINKEDIN_PAGE_URL),
+    "https://corsproxy.io/?url=" + encodeURIComponent(LINKEDIN_PAGE_URL),
+  ];
+  for (const url of proxies) {
+    try {
+      const res = await fetch(url, { mode: "cors", cache: "no-store" });
+      if (!res.ok) continue;
+      const html = await res.text();
+      const m = /([\d][\d,.]*)\s+followers/i.exec(html);
+      if (m) return parseInt(m[1].replace(/\D/g, ""), 10);
+    } catch (e) { /* try next proxy */ }
+  }
+  return null;
+}
+window.fetchLinkedInFollowers = fetchLinkedInFollowers;
+
+function LinkedInCard() {
+  const [followers, setFollowers] = useState(null);
+  useEffect(() => {
+    let alive = true;
+    fetchLinkedInFollowers().then(n => { if (alive) setFollowers(n); });
+    return () => { alive = false; };
+  }, []);
+  return (
+    <div className="li-card">
+      <div className="li-card__lbl">
+        <span>Company Page</span>
+        <span>LinkedIn</span>
+      </div>
+      <div className="li-card__row">
+        <a className="li-card__logo" href={LINKEDIN_PAGE_URL} target="_blank" rel="noopener noreferrer"
+           aria-label="Open the Kneuralabs LinkedIn page" title="Open Kneuralabs on LinkedIn">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M20.447 20.452H17.05v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.667V9h3.238v1.561h.046c.45-.855 1.549-1.756 3.188-1.756 3.41 0 4.039 2.244 4.039 5.162v6.485zM5.337 7.433a1.875 1.875 0 1 1 0-3.75 1.875 1.875 0 0 1 0 3.75zM6.957 20.452H3.717V9h3.24v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+        </a>
+        <div>
+          <div className="li-card__count">{followers == null ? "—" : followers.toLocaleString("en-US")}</div>
+          <div className="li-card__sub">Total followers</div>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -682,12 +750,6 @@ function Colophon() {
         <div><b>Kneuralabs LLC</b></div>
         <div>Kolkata · Connecticut</div>
         <div>Trust & Security Practice</div>
-        <div>
-          <a href="https://www.linkedin.com/company/kneuralabs/" target="_blank" rel="noopener"
-             style={{ color: 'inherit', textDecoration: 'underline', textUnderlineOffset: '2px' }}>
-            LinkedIn ↗
-          </a>
-        </div>
       </div>
       <div className="colophon__mark">
         <img src={window.__resources.logo} alt="Kneuralabs" />
