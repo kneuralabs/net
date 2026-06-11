@@ -52,6 +52,28 @@ function _getAuth() {
   try { return JSON.parse(sessionStorage.getItem('kn-auth') || 'null'); } catch { return null; }
 }
 
+/* Shared per-user app grants (same Supabase table the SSO admin writes).
+   Queried directly so the workspace renders the grants of record even when
+   the sign-in payload carried a stale or empty local fallback — and so
+   admin re-assignments reach every device on the next page load. */
+const SB_URL = 'https://brysartqcjylgqwmnjkk.supabase.co';
+const SB_KEY = 'sb_publishable_C5e5ViwIlW9dV14ZLi4O0A_ipIXhTB5';
+
+/* Returns the granted app ids, or null when no grant row exists / the
+   backend is unreachable — callers keep the sign-in payload's copy then. */
+async function _fetchGrantedApps(empId) {
+  try {
+    const res = await fetch(
+      SB_URL + '/rest/v1/kn_app_access?select=apps&employee_id=eq.' + encodeURIComponent(empId),
+      { headers: { apikey: SB_KEY, Authorization: 'Bearer ' + SB_KEY } }
+    );
+    if (!res.ok) return null;
+    const rows = await res.json();
+    if (!rows.length) return null;
+    return Array.isArray(rows[0].apps) ? rows[0].apps : [];
+  } catch { return null; }
+}
+
 /* Returns true if this user is allowed to open the given tool */
 function _canAccess(auth, tool) {
   if (!auth) return false;
@@ -131,8 +153,42 @@ function App() {
     }
   };
 
+  /* Auth lives in state so the workspace updates the moment sign-in lands,
+     instead of depending on an unrelated re-render to re-read storage */
+  const [auth, setAuthState] = React.useState(_getAuth);
+
+  /* Pick up the SSO's kn-auth postMessage (the inline boot script stores it
+     in sessionStorage before this listener runs) */
+  React.useEffect(() => {
+    const onMsg = (e) => {
+      if (e.origin !== 'https://sso.kneuralabs.com') return;
+      if (!e.data || e.data.type !== 'kn-auth') return;
+      setAuthState(_getAuth());
+    };
+    window.addEventListener('message', onMsg);
+    // Re-sync once after subscribing: covers a sign-in that completed between
+    // the initial state read and this listener attaching (the inline boot
+    // script will already have stored it).
+    setAuthState(_getAuth());
+    return () => window.removeEventListener('message', onMsg);
+  }, []);
+
+  /* Refresh this user's grants from the shared backend so assigned apps show
+     on every device, even when the sign-in payload's apps were stale/empty */
+  React.useEffect(() => {
+    if (!auth || auth.role === 'admin' || !auth.id) return;
+    let alive = true;
+    _fetchGrantedApps(auth.id).then((apps) => {
+      if (!alive || apps === null) return;
+      if (JSON.stringify(apps) === JSON.stringify(auth.apps || [])) return;
+      const next = { ...auth, apps };
+      try { sessionStorage.setItem('kn-auth', JSON.stringify(next)); } catch (e) {}
+      setAuthState(next);
+    });
+    return () => { alive = false; };
+  }, [auth?.id, auth?.role]);
+
   /* Compute which tool IDs this user may access, for visual hint on tiles */
-  const auth = _getAuth();
   const allowedIds = React.useMemo(() => {
     if (!auth) return new Set();
     if (auth.role === 'admin') return null; // null = all allowed
