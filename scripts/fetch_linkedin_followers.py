@@ -20,6 +20,13 @@ from pathlib import Path
 OUT = Path(__file__).resolve().parent.parent / "assets" / "linkedin.json"
 
 PAGE_URL = "https://www.linkedin.com/company/kneuralabs/"
+COMPANY_ID = "112376100"
+# Tried in order. The pages-extensions follow-button endpoint is built for
+# anonymous embedding and is far less likely to be authwalled than the page.
+SOURCE_URLS = [
+    f"https://www.linkedin.com/pages-extensions/FollowCompany?id={COMPANY_ID}&counter=bottom",
+    PAGE_URL,
+]
 
 HEADERS = {
     "User-Agent": ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -38,22 +45,32 @@ def fetch(url: str) -> str:
 
 def parse_followers(html: str) -> int | None:
     m = re.search(r"([\d][\d,.]*)\s+followers", html, re.IGNORECASE)
-    if not m:
-        return None
-    return int(re.sub(r"\D", "", m.group(1)))
+    if m:
+        return int(re.sub(r"\D", "", m.group(1)))
+    # Follow-button markup carries a bare number in a follower-count element.
+    m = re.search(r'follower[^>]*>\s*([\d][\d,.]*)\s*<', html, re.IGNORECASE)
+    if m:
+        return int(re.sub(r"\D", "", m.group(1)))
+    return None
 
 
 def main() -> int:
-    try:
-        followers = parse_followers(fetch(PAGE_URL))
-    except Exception as e:  # noqa: BLE001 — any failure means "leave file alone"
-        print(f"Fetch failed; leaving linkedin.json untouched: "
-              f"{type(e).__name__}: {e}", file=sys.stderr)
-        return 1
+    followers = None
+    for url in SOURCE_URLS:
+        try:
+            followers = parse_followers(fetch(url))
+        except Exception as e:  # noqa: BLE001 — try the next source
+            print(f"Fetch failed for {url}: {type(e).__name__}: {e}",
+                  file=sys.stderr)
+            continue
+        if followers is not None:
+            break
+        print(f"No follower count found at {url} (auth wall?).",
+              file=sys.stderr)
 
     if followers is None:
-        print("No follower count found in page (auth wall?); "
-              "leaving linkedin.json untouched.", file=sys.stderr)
+        print("All sources failed; leaving linkedin.json untouched.",
+              file=sys.stderr)
         return 1
 
     OUT.parent.mkdir(parents=True, exist_ok=True)

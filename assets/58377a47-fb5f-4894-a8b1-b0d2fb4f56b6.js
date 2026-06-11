@@ -680,6 +680,10 @@ function FeedSection() {
    through the same CORS proxies the Brief uses.
    ──────────────────────────────────────────────────────────────── */
 const LINKEDIN_PAGE_URL = "https://www.linkedin.com/company/kneuralabs/";
+const LINKEDIN_COMPANY_ID = "112376100";
+// Built for anonymous embedding — far less likely to be authwalled than the page.
+const LINKEDIN_FOLLOW_BTN_URL =
+  "https://www.linkedin.com/pages-extensions/FollowCompany?id=" + LINKEDIN_COMPANY_ID + "&counter=bottom";
 
 async function fetchLinkedInFollowers() {
   // 1 · Committed snapshot, refreshed daily by CI (same pattern as news.json)
@@ -693,17 +697,21 @@ async function fetchLinkedInFollowers() {
   } catch (e) {
     console.warn("[LinkedIn] linkedin.json unavailable, trying live page:", e);
   }
-  // 2 · Live public page via CORS proxies
-  const proxies = [
-    "https://api.allorigins.win/raw?url=" + encodeURIComponent(LINKEDIN_PAGE_URL),
-    "https://corsproxy.io/?url=" + encodeURIComponent(LINKEDIN_PAGE_URL),
-  ];
+  // 2 · Live sources via CORS proxies (follow-button endpoint first — it is
+  //     meant for anonymous embedding, unlike the authwalled company page)
+  const targets = [LINKEDIN_FOLLOW_BTN_URL, LINKEDIN_PAGE_URL];
+  const proxies = [];
+  for (const t of targets) {
+    proxies.push("https://api.allorigins.win/raw?url=" + encodeURIComponent(t));
+    proxies.push("https://corsproxy.io/?url=" + encodeURIComponent(t));
+  }
   for (const url of proxies) {
     try {
       const res = await fetch(url, { mode: "cors", cache: "no-store" });
       if (!res.ok) continue;
       const html = await res.text();
-      const m = /([\d][\d,.]*)\s+followers/i.exec(html);
+      const m = /([\d][\d,.]*)\s+followers/i.exec(html) ||
+                /follower[^>]*>\s*([\d][\d,.]*)\s*</i.exec(html);
       if (m) return parseInt(m[1].replace(/\D/g, ""), 10);
     } catch (e) { /* try next proxy */ }
   }
