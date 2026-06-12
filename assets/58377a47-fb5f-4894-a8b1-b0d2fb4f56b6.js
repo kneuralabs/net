@@ -316,6 +316,18 @@ function ToolsSection({ unlockedSet, allowedIds, onActivate }) {
         <h2 className="section__title">Workspace</h2>
         <span className="section__meta">{tools.length} apps</span>
       </div>
+      {tools.length === 0 && (
+        <div style={{
+          border: "1px dashed var(--rule)", borderRadius: 12, padding: "26px 22px",
+          fontFamily: "var(--f-mono)", fontSize: 12, letterSpacing: "0.04em",
+          color: "var(--muted)", lineHeight: 1.7,
+        }}>
+          <b style={{ color: "var(--ink)" }}>No apps are assigned to this account yet.</b><br />
+          Sign-in succeeded, but no applications have been granted to your employee ID.
+          Ask your administrator to assign apps in the SSO admin console — they will
+          appear here automatically on your next page load, on any device.
+        </div>
+      )}
       <div className="tools">
         {tools.map((t, i) => (
           <Tile
