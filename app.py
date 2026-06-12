@@ -58,6 +58,27 @@ if not _SECRET_KEY:
     _SECRET_KEY = 'insecure-dev-' + os.urandom(32).hex()
 app.secret_key = _SECRET_KEY
 
+# Session-cookie hardening. Secure is relaxed only in explicit dev mode,
+# where the app is served over plain HTTP.
+app.config.update(
+    SESSION_COOKIE_HTTPONLY=True,
+    SESSION_COOKIE_SECURE=not _DEV_MODE,
+    SESSION_COOKIE_SAMESITE='Lax',
+    MAX_CONTENT_LENGTH=1 * 1024 * 1024,  # request bodies are small forms only
+)
+
+
+@app.after_request
+def _security_headers(resp):
+    resp.headers.setdefault('X-Content-Type-Options', 'nosniff')
+    resp.headers.setdefault('X-Frame-Options', 'DENY')
+    resp.headers.setdefault('Referrer-Policy', 'strict-origin-when-cross-origin')
+    if not _DEV_MODE:
+        resp.headers.setdefault('Strict-Transport-Security',
+                                'max-age=31536000; includeSubDomains')
+    return resp
+
+
 EXCEL_PASSWORD = os.environ.get('EXCEL_PASSWORD', '')
 if not EXCEL_PASSWORD:
     # Dev mode only. The legacy committed password is gated behind an
@@ -452,6 +473,8 @@ def sso_callback():
         flash('Invalid SSO token. Please sign in again.', 'error')
         return redirect(_sso_login_url())
 
+    # Rotate the session on login to prevent session fixation.
+    session.clear()
     session['employee_id'] = employee_id
     user = get_user(employee_id)
 
