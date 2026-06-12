@@ -57,6 +57,27 @@ if not _app_secret:
     _app_secret = 'insecure-dev-' + os.urandom(32).hex()
 app.secret_key = _app_secret
 
+# Session-cookie hardening. Secure is relaxed only in explicit dev mode,
+# where the app is served over plain HTTP.
+app.config.update(
+    SESSION_COOKIE_HTTPONLY=True,
+    SESSION_COOKIE_SECURE=not _is_dev_mode(),
+    SESSION_COOKIE_SAMESITE='Lax',
+    MAX_CONTENT_LENGTH=1 * 1024 * 1024,  # request bodies are small forms only
+)
+
+
+@app.after_request
+def _security_headers(resp):
+    resp.headers.setdefault('X-Content-Type-Options', 'nosniff')
+    resp.headers.setdefault('X-Frame-Options', 'DENY')
+    resp.headers.setdefault('Referrer-Policy', 'strict-origin-when-cross-origin')
+    if not _is_dev_mode():
+        resp.headers.setdefault('Strict-Transport-Security',
+                                'max-age=31536000; includeSubDomains')
+    return resp
+
+
 SSO_SHARED_SECRET = os.environ.get('SSO_SHARED_SECRET', '')
 if not SSO_SHARED_SECRET:
     # Dev mode only (production raised above).
