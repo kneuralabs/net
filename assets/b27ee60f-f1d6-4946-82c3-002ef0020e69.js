@@ -45,8 +45,8 @@ const TOOLS = [
     locked: false, href: "https://design.kneuralabs.com", seal: "✏️", accent: "#F59E0B" },
   { id: "synapse",  cat: "AI Workspace",          name: "Synapse",              tm: "",    desc: "Internal AI assistant & knowledge hub.",
     locked: false, href: "https://synapse.kneuralabs.com", seal: "🧠", accent: "#6366F1" },
-  { id: "letterz",  cat: "Newsletter",            name: "Letterz",              tm: "",    desc: "Read the latest Letterz newsletter.",
-    locked: false, href: "https://letterz.kneuralabs.com", seal: "✉️", accent: "#6D28D9" },
+  { id: "letterz",  cat: "Document Generation",    name: "Letterz",              tm: "",    desc: "Generate official letters on letterhead.",
+    locked: false, href: "https://letterz.kneuralabs.com", seal: "📝", accent: "#6D28D9" },
 ];
 
 const NEWS = [];  // Populated at runtime from assets/news.json (authentic, refreshed daily by CI).
