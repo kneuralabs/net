@@ -679,6 +679,7 @@ function FeedSection() {
             <div className="poster-stamp" style={{ position:'relative' }}>Brief № {brief.num}</div>
           </div>
           <LinkedInCard />
+          <LetterzCard />
         </aside>
       </div>
     </section>
@@ -757,6 +758,36 @@ function LinkedInCard() {
         </div>
       </div>
     </div>
+  );
+}
+
+/* ────────────────────────────────────────────────────────────────
+   Letterz widget — quick link to the Letterz newsletter app
+   ──────────────────────────────────────────────────────────────── */
+const LETTERZ_URL = "https://letterz.kneuralabs.com";
+
+function LetterzCard() {
+  return (
+    <a className="lz-card" href={LETTERZ_URL} target="_blank" rel="noopener noreferrer"
+       aria-label="Open Letterz" title="Open Letterz">
+      <div className="lz-card__lbl">
+        <span>Newsletter</span>
+        <span>Letterz</span>
+      </div>
+      <div className="lz-card__row">
+        <span className="lz-card__logo" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="2.5" y="4.5" width="19" height="15" rx="2" />
+            <path d="m3 6 9 6 9-6" />
+          </svg>
+        </span>
+        <div>
+          <div className="lz-card__name">Letterz</div>
+          <div className="lz-card__sub">Read the latest ↗</div>
+        </div>
+      </div>
+    </a>
   );
 }
 
