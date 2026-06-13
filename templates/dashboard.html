@@ -548,6 +548,30 @@
         </div>
       </div>
 
+      <!-- Letterz Widget — revealed only when the user is granted the app -->
+      <div class="widget" id="letterz-widget" style="display:none;border-top:2px solid #6D28D9;box-shadow:0 0 0 0 transparent,0 -2px 24px rgba(109,40,217,.12)">
+        <div class="widget-header">
+          <span class="widget-title">
+            <span class="w-icon" style="background:linear-gradient(135deg,#7C3AED,#6D28D9)">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 6 10 7L22 6"/></svg>
+            </span>
+            Letterz
+          </span>
+          <span class="widget-date">Letter Studio</span>
+        </div>
+        <div class="linkedin-body">
+          <a href="https://letterz.kneuralabs.com" target="_blank" rel="noopener"
+             class="linkedin-logo-link" style="color:#7C3AED;background:rgba(109,40,217,.1);border-color:rgba(109,40,217,.3)"
+             aria-label="Open Letterz" title="Open Letterz">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 6 10 7L22 6"/></svg>
+          </a>
+          <div>
+            <div style="font-size:15px;font-weight:600;color:#d0d0f0">Compose &amp; send</div>
+            <div class="linkedin-label">Contracts · offers · NDAs · invoices</div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </main>
 
@@ -909,6 +933,13 @@
     function renderApps(appIds) {
       const section = document.getElementById('app-section');
       const grid    = document.getElementById('app-grid');
+
+      // Reveal the Letterz widget when this user has been granted the app.
+      const letterzWidget = document.getElementById('letterz-widget');
+      if (letterzWidget && Array.isArray(appIds) && appIds.includes('letterz')) {
+        letterzWidget.style.display = '';
+      }
+
       if (!appIds || !appIds.length) return;
 
       const tiles = appIds
