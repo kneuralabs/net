@@ -339,6 +339,7 @@ function ToolsSection({ unlockedSet, allowedIds, onActivate }) {
           />
         ))}
       </div>
+      <SentinelCard />
     </section>
   );
 }
