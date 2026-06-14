@@ -338,8 +338,8 @@ function ToolsSection({ unlockedSet, allowedIds, onActivate }) {
             onActivate={onActivate}
           />
         ))}
+        <SentinelCard idx={tools.length} />
       </div>
-      <SentinelCard />
     </section>
   );
 }
@@ -680,7 +680,6 @@ function FeedSection() {
             <div className="poster-stamp" style={{ position:'relative' }}>Brief № {brief.num}</div>
           </div>
           <LinkedInCard />
-          <SentinelCard />
         </aside>
       </div>
     </section>
@@ -762,27 +761,42 @@ function LinkedInCard() {
   );
 }
 
-function SentinelCard() {
+function SentinelCard({ idx = 0 }) {
+  const accent = '#D97706';
   return (
-    <div className="li-card" style={{borderTopColor:'#D97706',borderColor:'rgba(217,119,6,0.32)',boxShadow:'0 2px 18px rgba(217,119,6,0.10), inset 0 1px 0 rgba(255,255,255,0.45)'}}>
-      <div className="li-card__lbl">
-        <span>Security Platform</span>
-        <span>KneuraLabs</span>
-      </div>
-      <div className="li-card__row">
-        <a className="li-card__logo" href="https://sentinel.kneuralabs.com" target="_blank" rel="noopener noreferrer"
-           aria-label="Open Sentinel" title="Open Sentinel"
-           style={{color:'#D97706',background:'rgba(217,119,6,0.08)',borderColor:'rgba(217,119,6,0.32)'}}>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <a
+      className="tile"
+      href="https://sentinel.kneuralabs.com"
+      target="_blank"
+      rel="noopener"
+      aria-label="Open Sentinel"
+      title="Open Sentinel"
+      style={{
+        animationDelay: `${Math.min(idx, 11) * 40}ms`,
+        background: 'rgba(217,119,6,0.07)',
+        borderColor: 'rgba(217,119,6,0.25)',
+        boxShadow: '0 2px 18px rgba(217,119,6,0.10), inset 0 1px 0 rgba(255,255,255,0.65)',
+      }}
+    >
+      <div className="tile__top">
+        <span className="tile__idx">№ {String(idx + 1).padStart(2, "0")}</span>
+        <span className="tile__icon" style={{
+          background: accent + "1F",
+          borderColor: accent + "59",
+          boxShadow: "0 4px 14px " + accent + "33, inset 0 1px 0 rgba(255,255,255,0.45)",
+          color: accent,
+        }}>
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
           </svg>
-        </a>
-        <div>
-          <div className="li-card__count" style={{fontSize:'15px',fontWeight:600}}>Sentinel</div>
-          <div className="li-card__sub">Monitor &amp; protect</div>
-        </div>
+        </span>
       </div>
-    </div>
+      <div className="tile__body">
+        <div className="tile__cat">Security Platform</div>
+        <div className="tile__name">Sentinel</div>
+        <div className="tile__desc">Monitor &amp; protect</div>
+      </div>
+    </a>
   );
 }
 
