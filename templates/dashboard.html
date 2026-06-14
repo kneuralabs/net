@@ -186,20 +186,35 @@
     }
 
     .widgets {
-      display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
+      display: flex; gap: 28px 22px; flex-wrap: wrap; justify-content: center;
+      align-items: flex-start;
       width: 100%; max-width: 1100px;
     }
 
-    /* Base square tile */
+    /* Home-screen icon: tile + caption below */
+    .w-item {
+      display: flex; flex-direction: column; align-items: center; gap: 11px;
+      width: 150px; flex: none;
+    }
+    .w-cap {
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      font-size: 13px; font-weight: 600; letter-spacing: .01em;
+      color: rgba(255,255,255,.86);
+      text-shadow: 0 1px 3px rgba(0,0,0,.5);
+    }
+    .w-cap .w-status { color: rgba(255,255,255,.4); font-size: 10px; }
+
+    /* Base square icon */
     .widget {
-      width: 192px; height: 192px;
-      border-radius: 28px;
+      width: 150px; height: 150px;
+      border-radius: 34px;
       border: 1px solid rgba(255,255,255,.09);
       backdrop-filter: blur(14px);
       display: flex; flex-direction: column;
       align-items: stretch; justify-content: flex-end;
       overflow: hidden; position: relative;
       flex: none; cursor: pointer; text-decoration: none;
+      box-shadow: 0 12px 30px rgba(0,0,0,.4), 0 2px 6px rgba(0,0,0,.3);
       transition: transform 320ms cubic-bezier(0.34,1.25,0.64,1),
                   box-shadow 320ms ease,
                   border-color 280ms ease;
@@ -229,8 +244,8 @@
     .widget::before {
       content: '';
       position: absolute; top: 0; left: 0; right: 0; height: 55%;
-      background: linear-gradient(180deg, rgba(255,255,255,.07) 0%, transparent 100%);
-      border-radius: 28px 28px 0 0;
+      background: linear-gradient(180deg, rgba(255,255,255,.10) 0%, transparent 100%);
+      border-radius: 34px 34px 0 0;
       pointer-events: none; z-index: 4;
     }
 
@@ -270,23 +285,29 @@
     }
     .w-letterz:hover { border-color: rgba(124,58,237,.45); box-shadow: 0 24px 60px rgba(124,58,237,.18), 0 0 0 1px rgba(124,58,237,.3); }
 
-    /* ── Graphic canvas (fills widget minus footer) ── */
+    /* ── Graphic canvas (fills the whole icon) ── */
     .w-graphic {
       position: absolute;
-      top: 0; left: 0; right: 0; bottom: 54px;
+      top: 0; left: 0; right: 0; bottom: 0;
       display: flex; align-items: center; justify-content: center;
-      padding: 12px 14px 4px;
+      padding: 18px;
       z-index: 1;
     }
     .w-graphic svg { width: 100%; height: 100%; overflow: visible; }
 
-    /* ── Data overlay (sits above graphic, below footer) ── */
+    /* ── Live-data scrim pinned to the icon's lower edge ── */
     .w-data {
       position: absolute;
-      bottom: 58px; left: 0; right: 0;
-      padding: 0 14px;
+      bottom: 0; left: 0; right: 0;
+      padding: 22px 12px 10px;
       text-align: center;
       z-index: 3;
+      pointer-events: none;
+      background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,.45) 70%);
+    }
+    /* Corner status badge */
+    .w-badge {
+      position: absolute; top: 11px; right: 11px; z-index: 6;
       pointer-events: none;
     }
     .w-data-primary {
@@ -418,6 +439,7 @@
       <div class="widgets">
 
         <!-- ① Holiday Widget -->
+        <div class="w-item">
         <div class="widget w-holiday" id="holiday-widget">
           <div class="w-graphic">
             <svg viewBox="0 0 160 138" xmlns="http://www.w3.org/2000/svg">
@@ -460,15 +482,12 @@
             <div class="w-data-primary" id="w-hol-name">Loading…</div>
             <div class="w-data-sub"    id="w-hol-date"></div>
           </div>
-          <div class="w-footer">
-            <span class="w-name">Holidays</span>
-            <span class="w-status">
-              <span class="w-dot local"></span>Local
-            </span>
-          </div>
+        </div>
+        <div class="w-cap"><span class="w-dot local"></span>Holidays</div>
         </div>
 
         <!-- ② Governance Brief -->
+        <div class="w-item">
         <div class="widget w-gov">
           <div class="w-graphic">
             <svg viewBox="0 0 160 138" xmlns="http://www.w3.org/2000/svg">
@@ -503,15 +522,12 @@
           <div class="w-data">
             <div class="w-data-primary" id="w-brief-line">Loading…</div>
           </div>
-          <div class="w-footer">
-            <span class="w-name">Gov Brief</span>
-            <span class="w-status">
-              <span class="w-dot online"></span>Live
-            </span>
-          </div>
+        </div>
+        <div class="w-cap"><span class="w-dot online"></span>Gov Brief</div>
         </div>
 
         <!-- ③ LinkedIn Widget -->
+        <div class="w-item">
         <a href="https://www.linkedin.com/company/kneuralabs/" target="_blank" rel="noopener"
            class="widget w-linkedin">
           <div class="w-graphic">
@@ -536,19 +552,17 @@
               <text x="80" y="127" text-anchor="middle" font-size="11" font-weight="700" fill="rgba(255,255,255,.55)">followers</text>
             </svg>
           </div>
-          <div class="w-data" style="bottom:62px">
+          <div class="w-data">
             <div class="w-data-big" id="w-li-count">—</div>
           </div>
-          <div class="w-footer">
-            <span class="w-name">LinkedIn</span>
-            <span class="w-status">
-              <span class="w-dot pending" id="li-dot"></span>
-              <span id="li-status">—</span>
-            </span>
-          </div>
         </a>
+        <div class="w-cap">
+          <span class="w-dot pending" id="li-dot"></span>LinkedIn<span id="li-status" hidden></span>
+        </div>
+        </div>
 
         <!-- ④ Sentinel Widget -->
+        <div class="w-item">
         <a href="https://sentinel.kneuralabs.com" target="_blank" rel="noopener"
            class="widget w-sentinel">
           <div class="w-graphic">
@@ -587,18 +601,16 @@
               </circle>
             </svg>
           </div>
-          <div class="w-footer">
-            <span class="w-name">Sentinel</span>
-            <span class="w-status">
-              <span class="w-dot pending" id="sentinel-dot"></span>
-              <span id="sentinel-status">Checking…</span>
-            </span>
-          </div>
         </a>
+        <div class="w-cap">
+          <span class="w-dot pending" id="sentinel-dot"></span>Sentinel<span id="sentinel-status" hidden></span>
+        </div>
+        </div>
 
         <!-- ⑤ Letterz Widget — revealed only when user has access -->
+        <div class="w-item" id="letterz-widget" style="display:none">
         <a href="https://letterz.kneuralabs.com" target="_blank" rel="noopener"
-           class="widget w-letterz" id="letterz-widget" style="display:none">
+           class="widget w-letterz">
           <div class="w-graphic">
             <svg viewBox="0 0 160 138" xmlns="http://www.w3.org/2000/svg">
               <!-- Ambient glow -->
@@ -630,14 +642,11 @@
             <div class="w-data-primary">Compose &amp; send</div>
             <div class="w-data-sub">Contracts · Offers · NDAs</div>
           </div>
-          <div class="w-footer">
-            <span class="w-name">Letterz</span>
-            <span class="w-status">
-              <span class="w-dot pending" id="letterz-dot"></span>
-              <span id="letterz-status">Checking…</span>
-            </span>
-          </div>
         </a>
+        <div class="w-cap">
+          <span class="w-dot pending" id="letterz-dot"></span>Letterz<span id="letterz-status" hidden></span>
+        </div>
+        </div>
 
       </div>
     </div>
