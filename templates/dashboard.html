@@ -434,7 +434,7 @@
 
     <!-- № I — Tools Workspace -->
     <div style="width:100%;max-width:1100px">
-      <div class="workspace-label">№ I — Tools Workspace</div>
+      <div class="workspace-label">№ I — Tools Workspace · <span id="widget-count">0</span></div>
 
       <div class="widgets">
 
@@ -973,6 +973,14 @@
       } catch { return null; }
     }
 
+    function updateWidgetCount() {
+      const visible = [...document.querySelectorAll('.widgets .widget')]
+        .filter(w => w.offsetParent !== null).length;
+      const el = document.getElementById('widget-count');
+      if (el) el.textContent = visible;
+    }
+    updateWidgetCount();
+
     function renderApps(appIds) {
       const section = document.getElementById('app-section');
       const grid    = document.getElementById('app-grid');
@@ -981,6 +989,7 @@
       if (letterzWidget && Array.isArray(appIds) && appIds.includes('letterz')) {
         letterzWidget.style.display = '';
       }
+      updateWidgetCount();
 
       if (!appIds || !appIds.length) return;
 
