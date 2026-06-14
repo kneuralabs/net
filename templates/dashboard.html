@@ -174,254 +174,188 @@
       box-shadow: 0 4px 16px rgba(0,0,0,.35), 0 1px 3px rgba(0,0,0,.2);
     }
 
-    /* ── Widgets row ── */
+    /* ─────────────────────────────────────────────
+       № I — TOOLS WORKSPACE  ·  Square Icon Widgets
+       ───────────────────────────────────────────── */
+
+    .workspace-label {
+      font-size: 10px; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; color: #40407a;
+      margin-bottom: 16px; text-align: center;
+      width: 100%;
+    }
+
     .widgets {
-      display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;
+      display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
       width: 100%; max-width: 1100px;
     }
 
+    /* Base square tile */
     .widget {
-      background: rgba(14,14,22,.85);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 14px;
-      padding: 22px 24px;
-      backdrop-filter: blur(10px);
-      flex: 1; min-width: 280px; max-width: 420px;
-    }
-
-    .widget-header {
-      display: flex; align-items: center; justify-content: space-between;
-      margin-bottom: 16px;
-    }
-
-    .widget-title {
-      font-size: 13px; font-weight: 600; color: #8080b0;
-      text-transform: uppercase; letter-spacing: .06em;
-      display: flex; align-items: center; gap: 9px;
-    }
-
-    .w-icon {
-      width: 28px; height: 28px; border-radius: 7px;
-      display: inline-flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
-    .w-icon svg { display: block; }
-
-    .widget-date {
-      font-size: 11px; color: #50507a;
-    }
-
-    /* Holiday widget */
-    .holiday-today {
-      font-size: 12px; color: #50e0a0; font-weight: 600;
-      background: rgba(80,224,160,.08);
-      border: 1px solid rgba(80,224,160,.2);
-      border-radius: 6px; padding: 3px 9px; margin-bottom: 12px;
-      display: inline-block;
-    }
-
-    .holiday-row {
-      display: flex; flex-direction: column; gap: 12px;
-    }
-
-    .holiday-item {
-      display: flex; align-items: flex-start; gap: 12px;
-    }
-
-    .holiday-dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      margin-top: 5px; flex-shrink: 0;
-    }
-    .holiday-dot.today-dot { background: #50e0a0; box-shadow: 0 0 6px #50e0a0; }
-    .holiday-dot.next-dot  { background: #6366f1; box-shadow: 0 0 6px #6366f1; }
-    .holiday-dot.knl-dot   { background: #f59e0b; box-shadow: 0 0 6px #f59e0b; }
-
-    .holiday-name { font-size: 14px; font-weight: 600; color: #d0d0f0; }
-    .holiday-meta { font-size: 12px; color: #60607a; margin-top: 2px; }
-
-    .knl-badge {
-      display: inline-block; font-size: 10px; font-weight: 700;
-      background: rgba(245,158,11,.15); color: #f59e0b;
-      border: 1px solid rgba(245,158,11,.3);
-      border-radius: 4px; padding: 1px 6px; margin-left: 6px;
-      vertical-align: middle;
-    }
-
-    /* Governance Brief */
-    .brief-item {
-      border-left: 2px solid rgba(99,102,241,.3);
-      padding: 8px 0 8px 14px;
-      margin-bottom: 12px;
-    }
-    .brief-item:last-child { margin-bottom: 0; }
-
-    .brief-tag {
-      display: inline-block; font-size: 10px; font-weight: 700;
-      padding: 2px 7px; border-radius: 4px; margin-bottom: 5px;
-    }
-
-    .tag-justin {
-      background: rgba(239,68,68,.15); color: #f87171;
-      border: 1px solid rgba(239,68,68,.3);
-      animation: pulse-tag 2s ease-in-out infinite;
-    }
-    .tag-today {
-      background: rgba(99,102,241,.15); color: #a5a5f5;
-      border: 1px solid rgba(99,102,241,.3);
-    }
-    .tag-recent {
-      background: rgba(255,255,255,.06); color: #70709a;
-      border: 1px solid rgba(255,255,255,.08);
-    }
-
-    @keyframes pulse-tag {
-      0%,100% { opacity: 1; }
-      50%      { opacity: .6; }
-    }
-
-    .brief-headline {
-      font-size: 13px; font-weight: 600; color: #d0d0f0; line-height: 1.4;
-      margin-bottom: 3px;
-    }
-    .brief-source {
-      font-size: 11px; color: #50507a;
-    }
-
-    .brief-updated {
-      font-size: 11px; color: #50507a; margin-top: 14px;
-      display: flex; align-items: center; gap: 5px;
-    }
-    .live-dot {
-      width: 6px; height: 6px; border-radius: 50%; background: #50e0a0;
-      animation: blink 1.5s ease-in-out infinite;
-    }
-    @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0;} }
-
-    /* LinkedIn widget */
-    .linkedin-body {
-      display: flex; align-items: center; gap: 18px;
-      padding: 6px 0 2px;
-    }
-    .linkedin-logo-link {
-      color: #0a66c2;
-      display: inline-flex; align-items: center; justify-content: center;
-      width: 56px; height: 56px; border-radius: 14px;
-      background: rgba(10,102,194,.1);
-      border: 1px solid rgba(10,102,194,.3);
-      transition: transform 220ms cubic-bezier(0.34,1.25,0.64,1),
-                  background .2s, color .2s, box-shadow .2s;
-      flex-shrink: 0;
-    }
-    .linkedin-logo-link:hover {
-      transform: translateY(-2px) scale(1.06);
-      background: rgba(10,102,194,.18);
-      color: #3b9ae8;
-      box-shadow: 0 8px 24px rgba(10,102,194,.25);
-    }
-    .linkedin-logo-link:active { transform: scale(0.95); }
-    .linkedin-count {
-      font-size: 30px; font-weight: 800; color: #f0f0fa;
-      line-height: 1.1; font-variant-numeric: tabular-nums;
-    }
-    .linkedin-label {
-      font-size: 12px; color: #60607a; margin-top: 3px;
-    }
-
-    /* ── Apple-grade entrance & interaction animations ── */
-
-    /* Widget entrance — staggered fade + lift */
-    @keyframes widget-rise {
-      from { opacity: 0; transform: translateY(20px) scale(0.97); filter: blur(3px); }
-      to   { opacity: 1; transform: translateY(0)   scale(1);    filter: blur(0); }
-    }
-    .widget {
-      animation: widget-rise 640ms cubic-bezier(0.34, 1.15, 0.64, 1) both;
-      transition: transform 320ms cubic-bezier(0.34, 1.25, 0.64, 1),
+      width: 192px; height: 192px;
+      border-radius: 28px;
+      border: 1px solid rgba(255,255,255,.09);
+      backdrop-filter: blur(14px);
+      display: flex; flex-direction: column;
+      align-items: stretch; justify-content: flex-end;
+      overflow: hidden; position: relative;
+      flex: none; cursor: pointer; text-decoration: none;
+      transition: transform 320ms cubic-bezier(0.34,1.25,0.64,1),
                   box-shadow 320ms ease,
-                  border-color 320ms ease;
+                  border-color 280ms ease;
       will-change: transform;
     }
-    .widget:nth-child(1) { animation-delay:  80ms; }
-    .widget:nth-child(2) { animation-delay: 180ms; }
-    .widget:nth-child(3) { animation-delay: 280ms; }
 
-    /* Widget hover lift */
+    /* Entrance animation */
+    @keyframes widget-rise {
+      from { opacity: 0; transform: translateY(24px) scale(0.94); filter: blur(4px); }
+      to   { opacity: 1; transform: translateY(0)    scale(1);    filter: blur(0); }
+    }
+    .widget { animation: widget-rise 680ms cubic-bezier(0.34,1.15,0.64,1) both; }
+    .widget:nth-child(1) { animation-delay:  60ms; }
+    .widget:nth-child(2) { animation-delay: 140ms; }
+    .widget:nth-child(3) { animation-delay: 220ms; }
+    .widget:nth-child(4) { animation-delay: 300ms; }
+    .widget:nth-child(5) { animation-delay: 380ms; }
+
     .widget:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 48px rgba(99,102,241,0.16), 0 0 0 1px rgba(99,102,241,0.18);
-      border-color: rgba(99,102,241,0.28);
+      transform: translateY(-6px) scale(1.04);
+      box-shadow: 0 24px 60px rgba(0,0,0,.45),
+                  0 0 0 1px rgba(255,255,255,.12);
+    }
+    .widget:active { transform: scale(0.95) translateY(0); transition-duration: 80ms; }
+
+    /* Specular highlight overlay */
+    .widget::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 55%;
+      background: linear-gradient(180deg, rgba(255,255,255,.07) 0%, transparent 100%);
+      border-radius: 28px 28px 0 0;
+      pointer-events: none; z-index: 4;
     }
 
-    /* Governance Brief items — slide in from left, staggered */
-    @keyframes brief-slide-in {
-      from { opacity: 0; transform: translateX(-10px); }
-      to   { opacity: 1; transform: translateX(0); }
+    /* ── Color themes ── */
+    .w-holiday  {
+      background: linear-gradient(160deg, #012a1a 0%, #053d2a 45%, #076048 100%);
+      border-color: rgba(52,211,153,.22);
+      box-shadow: 0 0 0 0 transparent, 0 -1px 32px rgba(52,211,153,.08);
     }
-    .brief-item {
-      animation: brief-slide-in 420ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-      transition: border-left-color 250ms ease,
-                  background 250ms ease,
-                  border-radius 250ms ease;
+    .w-holiday:hover { border-color: rgba(52,211,153,.4); box-shadow: 0 24px 60px rgba(52,211,153,.15), 0 0 0 1px rgba(52,211,153,.25); }
+
+    .w-gov {
+      background: linear-gradient(160deg, #120630 0%, #200a52 50%, #2a0e6e 100%);
+      border-color: rgba(167,139,250,.2);
+      box-shadow: 0 0 0 0 transparent, 0 -1px 32px rgba(167,139,250,.07);
     }
-    .brief-item:nth-child(1) { animation-delay: 260ms; }
-    .brief-item:nth-child(2) { animation-delay: 350ms; }
-    .brief-item:nth-child(3) { animation-delay: 440ms; }
-    .brief-item:nth-child(4) { animation-delay: 530ms; }
-    .brief-item:nth-child(5) { animation-delay: 620ms; }
-    .brief-item:hover {
-      border-left-color: rgba(99,102,241,0.75);
-      background: rgba(99,102,241,0.05);
-      border-radius: 0 8px 8px 0;
+    .w-gov:hover { border-color: rgba(167,139,250,.4); box-shadow: 0 24px 60px rgba(167,139,250,.15), 0 0 0 1px rgba(167,139,250,.25); }
+
+    .w-linkedin {
+      background: linear-gradient(160deg, #051228 0%, #092244 50%, #0a3868 100%);
+      border-color: rgba(10,102,194,.28);
+      box-shadow: 0 0 0 0 transparent, 0 -1px 32px rgba(10,102,194,.09);
+    }
+    .w-linkedin:hover { border-color: rgba(10,102,194,.5); box-shadow: 0 24px 60px rgba(10,102,194,.18), 0 0 0 1px rgba(10,102,194,.3); }
+
+    .w-sentinel {
+      background: linear-gradient(160deg, #190a00 0%, #2d1400 50%, #441e00 100%);
+      border-color: rgba(217,119,6,.22);
+      box-shadow: 0 0 0 0 transparent, 0 -1px 32px rgba(217,119,6,.07);
+    }
+    .w-sentinel:hover { border-color: rgba(217,119,6,.45); box-shadow: 0 24px 60px rgba(217,119,6,.18), 0 0 0 1px rgba(217,119,6,.28); }
+
+    .w-letterz {
+      background: linear-gradient(160deg, #120030 0%, #230060 50%, #360090 100%);
+      border-color: rgba(124,58,237,.22);
+      box-shadow: 0 0 0 0 transparent, 0 -1px 32px rgba(124,58,237,.08);
+    }
+    .w-letterz:hover { border-color: rgba(124,58,237,.45); box-shadow: 0 24px 60px rgba(124,58,237,.18), 0 0 0 1px rgba(124,58,237,.3); }
+
+    /* ── Graphic canvas (fills widget minus footer) ── */
+    .w-graphic {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 54px;
+      display: flex; align-items: center; justify-content: center;
+      padding: 12px 14px 4px;
+      z-index: 1;
+    }
+    .w-graphic svg { width: 100%; height: 100%; overflow: visible; }
+
+    /* ── Data overlay (sits above graphic, below footer) ── */
+    .w-data {
+      position: absolute;
+      bottom: 58px; left: 0; right: 0;
+      padding: 0 14px;
+      text-align: center;
+      z-index: 3;
+      pointer-events: none;
+    }
+    .w-data-primary {
+      font-size: 11.5px; font-weight: 700;
+      color: rgba(255,255,255,.92);
+      line-height: 1.35;
+      text-shadow: 0 1px 6px rgba(0,0,0,.8);
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+    .w-data-sub {
+      font-size: 10px; color: rgba(255,255,255,.38); margin-top: 2px;
+    }
+    .w-data-big {
+      font-size: 24px; font-weight: 800;
+      color: rgba(255,255,255,.95);
+      text-shadow: 0 2px 8px rgba(0,0,0,.7);
+      font-variant-numeric: tabular-nums;
     }
 
-    /* Holiday items — slide in from left */
-    @keyframes holiday-slide-in {
-      from { opacity: 0; transform: translateX(-8px); }
-      to   { opacity: 1; transform: translateX(0); }
+    /* ── Footer strip ── */
+    .w-footer {
+      position: relative; z-index: 5;
+      height: 54px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 14px;
+      background: rgba(0,0,0,.28);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(255,255,255,.06);
+      flex-shrink: 0;
     }
-    .holiday-item {
-      animation: holiday-slide-in 400ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    .w-name {
+      font-size: 13px; font-weight: 700;
+      color: rgba(255,255,255,.88);
+      letter-spacing: .01em;
     }
-    .holiday-item:nth-child(1) { animation-delay: 160ms; }
-    .holiday-item:nth-child(2) { animation-delay: 240ms; }
-    .holiday-item:nth-child(3) { animation-delay: 320ms; }
-
-    /* Holiday dot — gentle glow pulse */
-    @keyframes dot-glow {
-      0%, 100% { transform: scale(1);   opacity: 1; }
-      50%       { transform: scale(1.5); opacity: 0.65; }
-    }
-    .holiday-dot.today-dot { animation: dot-glow 2.4s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
-
-    /* Live dot — breathe with scale */
-    @keyframes live-breathe {
-      0%, 100% { transform: scale(1);   opacity: 1; }
-      50%       { transform: scale(1.6); opacity: 0.35; }
-    }
-    .live-dot { animation: live-breathe 2s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
-
-    /* Pulse tag — subtle scale + fade */
-    @keyframes pulse-tag {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50%       { opacity: 0.65; transform: scale(0.96); }
+    .w-status {
+      display: flex; align-items: center; gap: 5px;
+      font-size: 10px; color: rgba(255,255,255,.38);
+      font-weight: 600; letter-spacing: .01em;
     }
 
-    /* Brief headline hover underline sweep */
-    .brief-headline {
-      background-image: linear-gradient(currentColor, currentColor);
-      background-size: 0% 1px;
-      background-position: 0 100%;
-      background-repeat: no-repeat;
-      transition: background-size 300ms ease, color 200ms ease;
+    /* Status dots */
+    .w-dot {
+      width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0;
     }
-    .brief-item:hover .brief-headline {
-      background-size: 100% 1px;
-      color: #e0e0ff;
+    @keyframes dot-breathe {
+      0%,100% { transform: scale(1);   opacity: 1; }
+      50%      { transform: scale(1.5); opacity: .5; }
     }
-
-    /* Widget header border shimmer on hover */
-    .widget-header {
-      transition: border-color 300ms ease;
+    .w-dot.online  {
+      background: #4ade80;
+      box-shadow: 0 0 7px #4ade80;
+      animation: dot-breathe 2.4s ease-in-out infinite;
+    }
+    .w-dot.offline {
+      background: #f87171;
+      box-shadow: 0 0 7px #f87171;
+    }
+    .w-dot.pending {
+      background: #fbbf24;
+      box-shadow: 0 0 7px #fbbf24;
+      animation: dot-breathe 1s ease-in-out infinite;
+    }
+    .w-dot.local {
+      background: #818cf8;
+      box-shadow: 0 0 6px #818cf8;
     }
   </style>
 </head>
@@ -450,7 +384,7 @@
       <div class="actions">
         <a href="/change-password" class="action-card">
           <span class="icon" style="background:linear-gradient(145deg,#fbbf24,#f97316)">
-            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
               <rect x="6" y="14" width="18" height="13" rx="3" stroke="white" stroke-width="2" fill="none"/>
               <path d="M10 14V10a5 5 0 0 1 10 0v4" stroke="white" stroke-width="2" stroke-linecap="round"/>
               <circle cx="15" cy="20.5" r="2" fill="white"/>
@@ -460,7 +394,7 @@
         </a>
         <a href="/logout" class="action-card">
           <span class="icon" style="background:linear-gradient(145deg,#f87171,#dc2626)">
-            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
               <path d="M12 7H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h4" stroke="white" stroke-width="2" stroke-linecap="round"/>
               <path d="M20 10l5 5-5 5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               <line x1="12" y1="15" x2="25" y2="15" stroke="white" stroke-width="2" stroke-linecap="round"/>
@@ -477,125 +411,235 @@
       <div class="app-grid" id="app-grid"></div>
     </div>
 
-    <!-- Widgets -->
-    <div class="widgets">
+    <!-- № I — Tools Workspace -->
+    <div style="width:100%;max-width:1100px">
+      <div class="workspace-label">№ I — Tools Workspace</div>
 
-      <!-- Holiday Widget -->
-      <div class="widget" id="holiday-widget" style="border-top:2px solid #34d399;box-shadow:0 0 0 0 transparent,0 -2px 24px rgba(52,211,153,.1)">
-        <div class="widget-header">
-          <span class="widget-title">
-            <span class="w-icon" style="background:linear-gradient(135deg,#34d399,#06b6d4)">
-              <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="1" y="3" width="13" height="11" rx="2" stroke="white" stroke-width="1.4" fill="none"/>
-                <path d="M1 6.5h13" stroke="white" stroke-width="1.4"/>
-                <line x1="4.5" y1="1.5" x2="4.5" y2="4.5" stroke="white" stroke-width="1.4" stroke-linecap="round"/>
-                <line x1="10.5" y1="1.5" x2="10.5" y2="4.5" stroke="white" stroke-width="1.4" stroke-linecap="round"/>
-                <circle cx="4.5" cy="9.5" r="1" fill="white"/>
-                <circle cx="7.5" cy="9.5" r="1" fill="white"/>
-                <circle cx="10.5" cy="9.5" r="1" fill="white"/>
-              </svg>
-            </span>
-            Holidays
-          </span>
-          <span class="widget-date" id="today-label"></span>
-        </div>
-        <div id="holiday-body"></div>
-      </div>
+      <div class="widgets">
 
-      <!-- Governance Brief -->
-      <div class="widget" style="border-top:2px solid #a78bfa;box-shadow:0 0 0 0 transparent,0 -2px 24px rgba(167,139,250,.1)">
-        <div class="widget-header">
-          <span class="widget-title">
-            <span class="w-icon" style="background:linear-gradient(135deg,#a78bfa,#6366f1)">
-              <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="2" y="1.5" width="11" height="12" rx="2" stroke="white" stroke-width="1.4" fill="none"/>
-                <line x1="4.5" y1="5" x2="10.5" y2="5" stroke="white" stroke-width="1.4" stroke-linecap="round"/>
-                <line x1="4.5" y1="7.5" x2="10.5" y2="7.5" stroke="white" stroke-width="1.4" stroke-linecap="round"/>
-                <line x1="4.5" y1="10" x2="8" y2="10" stroke="white" stroke-width="1.4" stroke-linecap="round"/>
-              </svg>
+        <!-- ① Holiday Widget -->
+        <div class="widget w-holiday" id="holiday-widget">
+          <div class="w-graphic">
+            <svg viewBox="0 0 160 138" xmlns="http://www.w3.org/2000/svg">
+              <!-- Glow aura -->
+              <ellipse cx="80" cy="80" rx="62" ry="54" fill="rgba(52,211,153,.07)"/>
+              <!-- Calendar shadow -->
+              <rect x="22" y="30" width="116" height="98" rx="14" fill="rgba(0,0,0,.25)"/>
+              <!-- Calendar body -->
+              <rect x="20" y="28" width="116" height="98" rx="13" fill="rgba(255,255,255,.06)" stroke="rgba(52,211,153,.18)" stroke-width="1.2"/>
+              <!-- Header band -->
+              <rect x="20" y="28" width="116" height="34" rx="13" fill="rgba(52,211,153,.18)"/>
+              <rect x="20" y="48" width="116" height="14" fill="rgba(52,211,153,.08)"/>
+              <!-- Month label -->
+              <text x="80" y="48" text-anchor="middle" font-size="11" font-weight="700" fill="rgba(52,211,153,.9)" id="w-cal-month">JUN</text>
+              <!-- Binding rings -->
+              <rect x="50" y="18" width="9" height="22" rx="4.5" fill="#34d399"/>
+              <rect x="101" y="18" width="9" height="22" rx="4.5" fill="#34d399"/>
+              <!-- Day grid - row 1 -->
+              <circle cx="38"  cy="82" r="9" fill="rgba(255,255,255,.05)"/>
+              <circle cx="60"  cy="82" r="9" fill="rgba(255,255,255,.05)"/>
+              <circle cx="80"  cy="82" r="9" fill="rgba(52,211,153,.85)" id="w-cal-highlight"/>
+              <circle cx="100" cy="82" r="9" fill="rgba(255,255,255,.05)"/>
+              <circle cx="122" cy="82" r="9" fill="rgba(255,255,255,.05)"/>
+              <!-- Day grid - row 2 -->
+              <circle cx="38"  cy="108" r="9" fill="rgba(255,255,255,.05)"/>
+              <circle cx="60"  cy="108" r="9" fill="rgba(255,255,255,.05)"/>
+              <circle cx="80"  cy="108" r="9" fill="rgba(255,255,255,.05)"/>
+              <circle cx="100" cy="108" r="9" fill="rgba(255,255,255,.05)"/>
+              <circle cx="122" cy="108" r="9" fill="rgba(255,255,255,.05)"/>
+              <!-- Highlighted date number -->
+              <text x="80" y="87" text-anchor="middle" dominant-baseline="middle" font-size="10" font-weight="800" fill="white" id="w-cal-day">—</text>
+              <!-- Sparkle decorations -->
+              <path d="M140 22 l2 5 5 2 -5 2 -2 5 -2 -5 -5 -2 5 -2 z" fill="#fbbf24" opacity=".65"/>
+              <path d="M18 108 l1.5 3.5 3.5 1.5 -3.5 1.5 -1.5 3.5 -1.5 -3.5 -3.5 -1.5 3.5 -1.5 z" fill="#34d399" opacity=".5"/>
+              <circle cx="146" cy="66" r="2.5" fill="rgba(52,211,153,.5)"/>
+              <circle cx="14"  cy="58" r="2"   fill="rgba(52,211,153,.4)"/>
+            </svg>
+          </div>
+          <div class="w-data">
+            <div class="w-data-primary" id="w-hol-name">Loading…</div>
+            <div class="w-data-sub"    id="w-hol-date"></div>
+          </div>
+          <div class="w-footer">
+            <span class="w-name">Holidays</span>
+            <span class="w-status">
+              <span class="w-dot local"></span>Local
             </span>
-            Governance Brief
-          </span>
-          <span class="widget-date" id="brief-date"></span>
-        </div>
-        <div id="brief-body"></div>
-        <div class="brief-updated">
-          <span class="live-dot"></span>
-          <span id="brief-updated-text"></span>
-        </div>
-      </div>
-
-      <!-- LinkedIn Widget -->
-      <div class="widget" style="border-top:2px solid #0a66c2;box-shadow:0 0 0 0 transparent,0 -2px 24px rgba(10,102,194,.12)">
-        <div class="widget-header">
-          <span class="widget-title">
-            <span class="w-icon" style="background:linear-gradient(135deg,#0a66c2,#0e8ee0)">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20.447 20.452H17.05v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.667V9h3.238v1.561h.046c.45-.855 1.549-1.756 3.188-1.756 3.41 0 4.039 2.244 4.039 5.162v6.485zM5.337 7.433a1.875 1.875 0 1 1 0-3.75 1.875 1.875 0 0 1 0 3.75zM6.957 20.452H3.717V9h3.24v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            </span>
-            LinkedIn
-          </span>
-          <span class="widget-date">KneuraLabs</span>
-        </div>
-        <div class="linkedin-body">
-          <a href="https://www.linkedin.com/company/kneuralabs/" target="_blank" rel="noopener"
-             class="linkedin-logo-link" aria-label="Open the KneuraLabs LinkedIn page" title="Open KneuraLabs on LinkedIn">
-            <svg width="34" height="34" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20.447 20.452H17.05v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.667V9h3.238v1.561h.046c.45-.855 1.549-1.756 3.188-1.756 3.41 0 4.039 2.244 4.039 5.162v6.485zM5.337 7.433a1.875 1.875 0 1 1 0-3.75 1.875 1.875 0 0 1 0 3.75zM6.957 20.452H3.717V9h3.24v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          </a>
-          <div>
-            <div class="linkedin-count" id="linkedin-count">—</div>
-            <div class="linkedin-label">Total followers</div>
           </div>
         </div>
-      </div>
 
-      <!-- Sentinel Widget -->
-      <div class="widget" style="border-top:2px solid #D97706;box-shadow:0 0 0 0 transparent,0 -2px 24px rgba(217,119,6,.12)">
-        <div class="widget-header">
-          <span class="widget-title">
-            <span class="w-icon" style="background:linear-gradient(135deg,#D97706,#F59E0B)">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <!-- ② Governance Brief -->
+        <div class="widget w-gov">
+          <div class="w-graphic">
+            <svg viewBox="0 0 160 138" xmlns="http://www.w3.org/2000/svg">
+              <!-- Ambient glow -->
+              <ellipse cx="80" cy="75" rx="58" ry="52" fill="rgba(139,92,246,.06)"/>
+              <!-- Document shadow -->
+              <rect x="38" y="16" width="88" height="110" rx="10" fill="rgba(0,0,0,.3)"/>
+              <!-- Document body -->
+              <rect x="36" y="14" width="88" height="110" rx="9" fill="rgba(139,92,246,.1)" stroke="rgba(167,139,250,.2)" stroke-width="1.2"/>
+              <!-- Dog-ear fold -->
+              <path d="M108 14 L124 14 L124 30 Z" fill="rgba(139,92,246,.35)"/>
+              <path d="M108 14 L108 30 L124 30" fill="none" stroke="rgba(167,139,250,.3)" stroke-width="1"/>
+              <!-- Header rule -->
+              <rect x="46" y="38" width="68" height="5" rx="2.5" fill="rgba(167,139,250,.5)"/>
+              <!-- Body text lines -->
+              <rect x="46" y="52" width="62" height="3.5" rx="1.75" fill="rgba(255,255,255,.18)"/>
+              <rect x="46" y="61" width="54" height="3.5" rx="1.75" fill="rgba(255,255,255,.13)"/>
+              <rect x="46" y="70" width="58" height="3.5" rx="1.75" fill="rgba(255,255,255,.10)"/>
+              <rect x="46" y="79" width="44" height="3.5" rx="1.75" fill="rgba(255,255,255,.07)"/>
+              <!-- Seal -->
+              <circle cx="80" cy="108" r="19" fill="rgba(109,40,217,.3)" stroke="rgba(167,139,250,.35)" stroke-width="1.5"/>
+              <circle cx="80" cy="108" r="13" fill="rgba(109,40,217,.2)"/>
+              <text x="80" y="113" text-anchor="middle" font-size="14" fill="rgba(196,181,253,.85)">⚖</text>
+              <!-- Live dot top-right -->
+              <circle cx="130" cy="26" r="6" fill="rgba(74,222,128,.12)">
+                <animate attributeName="r" values="6;10;6" dur="2s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values=".12;.04;.12" dur="2s" repeatCount="indefinite"/>
+              </circle>
+              <circle cx="130" cy="26" r="4" fill="#4ade80" opacity=".9"/>
+            </svg>
+          </div>
+          <div class="w-data">
+            <div class="w-data-primary" id="w-brief-line">Loading…</div>
+          </div>
+          <div class="w-footer">
+            <span class="w-name">Gov Brief</span>
+            <span class="w-status">
+              <span class="w-dot online"></span>Live
             </span>
-            Sentinel
-          </span>
-          <span class="widget-date">KneuraLabs</span>
-        </div>
-        <div class="linkedin-body">
-          <a href="https://sentinel.kneuralabs.com" target="_blank" rel="noopener"
-             class="linkedin-logo-link" style="color:#D97706;background:rgba(217,119,6,.1);border-color:rgba(217,119,6,.3)"
-             aria-label="Open Sentinel" title="Open Sentinel">
-            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </a>
-          <div>
-            <div style="font-size:15px;font-weight:600;color:#d0d0f0">Monitor &amp; protect</div>
-            <div class="linkedin-label">Security · Alerts · Compliance</div>
           </div>
         </div>
-      </div>
 
-      <!-- Letterz Widget — revealed only when the user is granted the app -->
-      <div class="widget" id="letterz-widget" style="display:none;border-top:2px solid #6D28D9;box-shadow:0 0 0 0 transparent,0 -2px 24px rgba(109,40,217,.12)">
-        <div class="widget-header">
-          <span class="widget-title">
-            <span class="w-icon" style="background:linear-gradient(135deg,#7C3AED,#6D28D9)">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 6 10 7L22 6"/></svg>
-            </span>
-            Letterz
-          </span>
-          <span class="widget-date">Letter Studio</span>
-        </div>
-        <div class="linkedin-body">
-          <a href="https://letterz.kneuralabs.com" target="_blank" rel="noopener"
-             class="linkedin-logo-link" style="color:#7C3AED;background:rgba(109,40,217,.1);border-color:rgba(109,40,217,.3)"
-             aria-label="Open Letterz" title="Open Letterz">
-            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 6 10 7L22 6"/></svg>
-          </a>
-          <div>
-            <div style="font-size:15px;font-weight:600;color:#d0d0f0">Compose &amp; send</div>
-            <div class="linkedin-label">Contracts · offers · NDAs · invoices</div>
+        <!-- ③ LinkedIn Widget -->
+        <a href="https://www.linkedin.com/company/kneuralabs/" target="_blank" rel="noopener"
+           class="widget w-linkedin">
+          <div class="w-graphic">
+            <svg viewBox="0 0 160 138" xmlns="http://www.w3.org/2000/svg">
+              <!-- Ambient glow -->
+              <ellipse cx="80" cy="70" rx="60" ry="52" fill="rgba(10,102,194,.08)"/>
+              <!-- Icon card -->
+              <rect x="28" y="20" width="104" height="104" rx="20" fill="rgba(10,102,194,.22)" stroke="rgba(10,102,194,.35)" stroke-width="1.3"/>
+              <!-- Inner highlight -->
+              <rect x="28" y="20" width="104" height="40" rx="20" fill="rgba(255,255,255,.04)"/>
+              <rect x="28" y="46" width="104" height="14" fill="rgba(255,255,255,.02)"/>
+              <!-- LinkedIn "in" mark (stylized) -->
+              <!-- Left column (person icon) -->
+              <rect x="44" y="56" width="14" height="42" rx="3" fill="rgba(255,255,255,.75)"/>
+              <circle cx="51" cy="48" r="8" fill="rgba(255,255,255,.75)"/>
+              <!-- Right column (link icon) -->
+              <rect x="66" y="56" width="14" height="42" rx="3" fill="rgba(255,255,255,.75)"/>
+              <path d="M80 56 C80 56 80 68 86 73 C92 78 102 76 102 76 L102 98 L88 98 L88 80 C88 80 88 74 82 72"
+                    fill="rgba(255,255,255,.75)"/>
+              <!-- Follower count overlay -->
+              <rect x="22" y="112" width="116" height="22" rx="8" fill="rgba(10,102,194,.35)"/>
+              <text x="80" y="127" text-anchor="middle" font-size="11" font-weight="700" fill="rgba(255,255,255,.55)">followers</text>
+            </svg>
           </div>
-        </div>
-      </div>
+          <div class="w-data" style="bottom:62px">
+            <div class="w-data-big" id="w-li-count">—</div>
+          </div>
+          <div class="w-footer">
+            <span class="w-name">LinkedIn</span>
+            <span class="w-status">
+              <span class="w-dot pending" id="li-dot"></span>
+              <span id="li-status">—</span>
+            </span>
+          </div>
+        </a>
 
+        <!-- ④ Sentinel Widget -->
+        <a href="https://sentinel.kneuralabs.com" target="_blank" rel="noopener"
+           class="widget w-sentinel">
+          <div class="w-graphic">
+            <svg viewBox="0 0 160 138" xmlns="http://www.w3.org/2000/svg">
+              <!-- Radar rings -->
+              <circle cx="80" cy="85" r="60" fill="none" stroke="rgba(217,119,6,.12)" stroke-width="1"/>
+              <circle cx="80" cy="85" r="44" fill="none" stroke="rgba(217,119,6,.17)" stroke-width="1"/>
+              <circle cx="80" cy="85" r="28" fill="none" stroke="rgba(217,119,6,.25)" stroke-width="1"/>
+              <!-- Radar sweep -->
+              <g>
+                <path d="M80 85 L80 25" stroke="url(#sweep-grad)" stroke-width="1.8" stroke-linecap="round">
+                  <animateTransform attributeName="transform" type="rotate" values="0 80 85;360 80 85" dur="4s" repeatCount="indefinite"/>
+                </path>
+                <defs>
+                  <linearGradient id="sweep-grad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#f59e0b" stop-opacity="0"/>
+                    <stop offset="100%" stop-color="#f59e0b" stop-opacity=".7"/>
+                  </linearGradient>
+                </defs>
+              </g>
+              <!-- Shield body -->
+              <path d="M80 10 L110 24 L110 54 C110 76 96 90 80 98 C64 90 50 76 50 54 L50 24 Z"
+                    fill="rgba(217,119,6,.18)" stroke="rgba(245,158,11,.55)" stroke-width="1.8"/>
+              <!-- Shield inner -->
+              <path d="M80 19 L102 30 L102 54 C102 72 91 83 80 90 C69 83 58 72 58 54 L58 30 Z"
+                    fill="rgba(217,119,6,.12)"/>
+              <!-- Checkmark -->
+              <path d="M68 55 L77 65 L95 43" stroke="rgba(251,191,36,.95)" stroke-width="2.8"
+                    fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- Blip dots on radar -->
+              <circle cx="106" cy="62" r="3" fill="#f59e0b" opacity=".7">
+                <animate attributeName="opacity" values=".7;.1;.7" dur="2.1s" repeatCount="indefinite"/>
+              </circle>
+              <circle cx="52" cy="104" r="2.5" fill="#f59e0b" opacity=".5">
+                <animate attributeName="opacity" values=".5;.05;.5" dur="3.3s" repeatCount="indefinite"/>
+              </circle>
+            </svg>
+          </div>
+          <div class="w-footer">
+            <span class="w-name">Sentinel</span>
+            <span class="w-status">
+              <span class="w-dot pending" id="sentinel-dot"></span>
+              <span id="sentinel-status">Checking…</span>
+            </span>
+          </div>
+        </a>
+
+        <!-- ⑤ Letterz Widget — revealed only when user has access -->
+        <a href="https://letterz.kneuralabs.com" target="_blank" rel="noopener"
+           class="widget w-letterz" id="letterz-widget" style="display:none">
+          <div class="w-graphic">
+            <svg viewBox="0 0 160 138" xmlns="http://www.w3.org/2000/svg">
+              <!-- Ambient glow -->
+              <ellipse cx="80" cy="80" rx="64" ry="56" fill="rgba(109,40,217,.07)"/>
+              <!-- Envelope shadow -->
+              <rect x="19" y="36" width="122" height="90" rx="13" fill="rgba(0,0,0,.3)"/>
+              <!-- Envelope body -->
+              <rect x="17" y="34" width="122" height="90" rx="12" fill="rgba(109,40,217,.18)" stroke="rgba(124,58,237,.35)" stroke-width="1.4"/>
+              <!-- V-fold crease -->
+              <path d="M17 46 L80 88 L143 46" fill="none" stroke="rgba(124,58,237,.4)" stroke-width="1.3"/>
+              <!-- Envelope flap (top fold) -->
+              <path d="M17 34 L80 76 L143 34 Z" fill="rgba(109,40,217,.2)" stroke="rgba(124,58,237,.25)" stroke-width="1"/>
+              <!-- Corner folds (bottom) -->
+              <path d="M17 124 L55 88" fill="none" stroke="rgba(124,58,237,.2)" stroke-width="1"/>
+              <path d="M143 124 L105 88" fill="none" stroke="rgba(124,58,237,.2)" stroke-width="1"/>
+              <!-- Wax seal -->
+              <circle cx="80" cy="104" r="22" fill="rgba(88,28,235,.4)" stroke="rgba(167,139,250,.45)" stroke-width="1.8"/>
+              <circle cx="80" cy="104" r="15" fill="rgba(88,28,235,.35)"/>
+              <!-- Ornate ring detail on seal -->
+              <circle cx="80" cy="104" r="11" fill="none" stroke="rgba(196,181,253,.3)" stroke-width="1" stroke-dasharray="2 3"/>
+              <!-- K monogram -->
+              <text x="80" y="110" text-anchor="middle" font-size="14" font-weight="800" fill="rgba(221,214,254,.88)" font-family="Georgia,serif">K</text>
+              <!-- Stamp mark -->
+              <text x="138" y="52" text-anchor="middle" font-size="9" fill="rgba(196,181,253,.4)" transform="rotate(-15 138 52)">✦</text>
+              <text x="22"  y="52" text-anchor="middle" font-size="9" fill="rgba(196,181,253,.3)" transform="rotate(15 22 52)">✦</text>
+            </svg>
+          </div>
+          <div class="w-data">
+            <div class="w-data-primary">Compose &amp; send</div>
+            <div class="w-data-sub">Contracts · Offers · NDAs</div>
+          </div>
+          <div class="w-footer">
+            <span class="w-name">Letterz</span>
+            <span class="w-status">
+              <span class="w-dot pending" id="letterz-dot"></span>
+              <span id="letterz-status">Checking…</span>
+            </span>
+          </div>
+        </a>
+
+      </div>
     </div>
   </main>
 
@@ -615,16 +659,14 @@
     resize();
     window.addEventListener('resize', resize);
 
-    // Neural nodes on sphere surface (lat/lon in radians)
     const NODE_COUNT = 52;
     const nodes = [];
     for(let i=0; i<NODE_COUNT; i++){
-      const lat = (Math.random()-0.5)*Math.PI;      // -π/2 .. π/2
-      const lon = Math.random()*2*Math.PI;           // 0 .. 2π
+      const lat = (Math.random()-0.5)*Math.PI;
+      const lon = Math.random()*2*Math.PI;
       nodes.push({lat, lon, r: 2+Math.random()*2});
     }
 
-    // Build edges between nearby nodes
     const edges = [];
     for(let i=0; i<nodes.length; i++){
       for(let j=i+1; j<nodes.length; j++){
@@ -641,18 +683,16 @@
       const a = lon + angle;
       const x = cx + R * Math.cos(lat) * Math.sin(a);
       const y = cy - R * Math.sin(lat);
-      const z = Math.cos(lat) * Math.cos(a);   // +1 = front, -1 = back
+      const z = Math.cos(lat) * Math.cos(a);
       return {x, y, z};
     }
 
-    // lat/lon grid lines
     const LATS = [-60,-40,-20,0,20,40,60].map(d=>d*Math.PI/180);
     const LONS = Array.from({length:18},(_,i)=>i*20*Math.PI/180);
 
     function drawGlobe(){
       ctx.clearRect(0,0,W,H);
 
-      // Glow behind globe
       const grd = ctx.createRadialGradient(cx,cy,R*0.1, cx,cy,R*1.3);
       grd.addColorStop(0,'rgba(99,102,241,0.18)');
       grd.addColorStop(0.5,'rgba(99,102,241,0.06)');
@@ -660,7 +700,6 @@
       ctx.fillStyle = grd;
       ctx.beginPath(); ctx.arc(cx,cy,R*1.3,0,Math.PI*2); ctx.fill();
 
-      // Lat lines (front-facing hemisphere)
       ctx.lineWidth = 1;
       for(const lat of LATS){
         ctx.beginPath();
@@ -677,7 +716,6 @@
         ctx.stroke();
       }
 
-      // Lon lines
       for(const lon of LONS){
         ctx.beginPath();
         let first = true;
@@ -693,7 +731,6 @@
         ctx.stroke();
       }
 
-      // Neural edges
       for(const [i,j] of edges){
         const a = project(nodes[i].lat, nodes[i].lon);
         const b = project(nodes[j].lat, nodes[j].lon);
@@ -706,17 +743,14 @@
         ctx.stroke();
       }
 
-      // Nodes
       for(const n of nodes){
         const p = project(n.lat, n.lon);
         if(p.z < 0) continue;
-        // glow halo
         const halo = ctx.createRadialGradient(p.x,p.y,0, p.x,p.y, n.r*4*p.z);
         halo.addColorStop(0,`rgba(180,140,255,${p.z*0.5})`);
         halo.addColorStop(1,'transparent');
         ctx.fillStyle = halo;
         ctx.beginPath(); ctx.arc(p.x,p.y, n.r*4*p.z, 0, Math.PI*2); ctx.fill();
-        // core dot
         ctx.beginPath();
         ctx.arc(p.x, p.y, n.r * p.z, 0, Math.PI*2);
         ctx.fillStyle = `rgba(210,190,255,${p.z*0.95})`;
@@ -736,7 +770,7 @@
   <!-- ── Holiday widget ── -->
   <script>
   (function(){
-    // All holidays (month is 1-based)
+    const MONTHS = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
     const FIXED = [
       {name:"New Year's Day",      m:1,  d:1},
       {name:"Kneuralabs Day",      m:2,  d:19, knl:true},
@@ -744,9 +778,7 @@
       {name:"Christmas Day",       m:12, d:25},
     ];
 
-    // US floating holidays (computed per year)
     function nthWeekday(year, month, weekday, n){
-      // weekday: 0=Sun..6=Sat, n: 1-based
       const d = new Date(year, month-1, 1);
       let count=0;
       while(true){
@@ -755,7 +787,7 @@
       }
     }
     function lastWeekday(year, month, weekday){
-      const d = new Date(year, month, 0); // last day of month
+      const d = new Date(year, month, 0);
       while(d.getDay()!==weekday) d.setDate(d.getDate()-1);
       return new Date(d);
     }
@@ -773,7 +805,6 @@
     function allHolidaysForYear(year){
       const list = [];
       for(const h of FIXED){
-        // Kneuralabs Day starts 2026
         if(h.knl && year < 2026) continue;
         list.push({name:h.name, date:new Date(year, h.m-1, h.d), knl:!!h.knl});
       }
@@ -787,125 +818,104 @@
     const today = new Date();
     today.setHours(0,0,0,0);
 
-    document.getElementById('today-label').textContent =
-      today.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+    // Update calendar icon
+    document.getElementById('w-cal-month').textContent = MONTHS[today.getMonth()];
+    document.getElementById('w-cal-day').textContent   = today.getDate();
 
-    // Collect holidays this year + next for wrap-around
     let holidays = [
       ...allHolidaysForYear(today.getFullYear()),
       ...allHolidaysForYear(today.getFullYear()+1),
     ];
 
-    const fmt = d => d.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});
-
-    // Is today a holiday?
+    const fmt = d => d.toLocaleDateString('en-US',{month:'short',day:'numeric'});
     const todayHol = holidays.find(h => h.date.getTime()===today.getTime());
-
-    // Next holiday strictly after today
     const upcoming = holidays.filter(h => h.date > today);
     const next1 = upcoming[0];
-    const next2 = upcoming[1];
-
-    let html = '';
 
     if(todayHol){
-      html += `<div class="holiday-today">Today is a Holiday!</div>`;
-      html += `<div class="holiday-row">`;
-      html += `<div class="holiday-item">
-        <div class="holiday-dot today-dot"></div>
-        <div>
-          <div class="holiday-name">${todayHol.name}${todayHol.knl?'<span class="knl-badge">KNL</span>':''}</div>
-          <div class="holiday-meta">Today · ${fmt(todayHol.date)}</div>
-        </div></div>`;
-    } else {
-      html += `<div class="holiday-row">`;
-    }
-
-    const labelNext = todayHol ? 'Next' : 'Next observed';
-
-    if(next1){
+      document.getElementById('w-hol-name').textContent = '🎉 ' + todayHol.name;
+      document.getElementById('w-hol-date').textContent = 'Today is a holiday!';
+    } else if(next1){
       const daysUntil = Math.round((next1.date - today)/(1000*60*60*24));
-      html += `<div class="holiday-item">
-        <div class="holiday-dot next-dot"></div>
-        <div>
-          <div class="holiday-name">${next1.name}${next1.knl?'<span class="knl-badge">KNL</span>':''}</div>
-          <div class="holiday-meta">${labelNext} · ${fmt(next1.date)} · in ${daysUntil} day${daysUntil!==1?'s':''}</div>
-        </div></div>`;
+      document.getElementById('w-hol-name').textContent = next1.name;
+      document.getElementById('w-hol-date').textContent = fmt(next1.date) + ' · in ' + daysUntil + 'd';
     }
-    if(next2){
-      html += `<div class="holiday-item">
-        <div class="holiday-dot knl-dot"></div>
-        <div>
-          <div class="holiday-name">${next2.name}${next2.knl?'<span class="knl-badge">KNL</span>':''}</div>
-          <div class="holiday-meta">${fmt(next2.date)}</div>
-        </div></div>`;
-    }
-
-    html += `</div>`;
-    document.getElementById('holiday-body').innerHTML = html;
   })();
   </script>
 
   <!-- ── Governance Brief ── -->
   <script>
   (function(){
-    const today = new Date();
-    const dateStr = today.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
-    document.getElementById('brief-date').textContent = dateStr;
-    document.getElementById('brief-updated-text').textContent = 'Updated daily · ' + today.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
-
-    // Governance briefs pool — rotated daily based on day-of-year
     const pool = [
-      {headline:"SEC finalises AI-model disclosure rules for financial institutions",  source:"SEC · Federal Register"},
-      {headline:"White House issues executive memo on federal AI procurement standards", source:"OMB · Office of Management and Budget"},
-      {headline:"FTC opens comment period on algorithmic accountability framework",      source:"FTC · Bureau of Consumer Protection"},
-      {headline:"NIST releases updated Cybersecurity Framework 2.1 draft for review",   source:"NIST · Information Technology Lab"},
-      {headline:"Senate Commerce Committee advances AI liability amendment",             source:"U.S. Senate · Committee on Commerce"},
-      {headline:"DOJ publishes guidance on cross-border data transfer compliance",       source:"DOJ · National Security Division"},
-      {headline:"CISA updates critical infrastructure cyber resilience benchmarks",      source:"CISA · Cybersecurity Advisory"},
-      {headline:"Federal Reserve issues circular on AI risk in banking supervision",     source:"Federal Reserve · Supervisory Letter"},
-      {headline:"DOD releases updated policy on autonomous systems decision authority",  source:"DOD · Office of the Undersecretary"},
-      {headline:"Congress introduces bipartisan bill on federal employee AI training",   source:"House · Committee on Oversight"},
+      "SEC finalises AI-model disclosure rules for financial institutions",
+      "White House issues exec memo on federal AI procurement standards",
+      "FTC opens comment period on algorithmic accountability framework",
+      "NIST releases updated Cybersecurity Framework 2.1 draft",
+      "Senate Commerce Committee advances AI liability amendment",
+      "DOJ publishes guidance on cross-border data transfer compliance",
+      "CISA updates critical infrastructure cyber resilience benchmarks",
+      "Federal Reserve issues circular on AI risk in banking supervision",
+      "DOD releases updated policy on autonomous systems authority",
+      "Congress introduces bipartisan bill on federal AI employee training",
     ];
 
-    // Pick 3 items seeded by day-of-year so they rotate daily
+    const today = new Date();
     const dayOfYear = Math.floor((today - new Date(today.getFullYear(),0,0))/(1000*60*60*24));
-    const picked = [];
-    for(let i=0;i<3;i++) picked.push(pool[(dayOfYear + i) % pool.length]);
-
-    let html = '';
-    picked.forEach((item, idx) => {
-      let tagClass, tagLabel;
-      if(idx === 0){
-        tagClass = 'tag-justin'; tagLabel = '⚡ Just In';
-      } else if(idx === 1){
-        tagClass = 'tag-today'; tagLabel = 'Today';
-      } else {
-        tagClass = 'tag-recent'; tagLabel = 'Recent';
-      }
-      html += `<div class="brief-item">
-        <div class="brief-tag ${tagClass}">${tagLabel}</div>
-        <div class="brief-headline">${item.headline}</div>
-        <div class="brief-source">${item.source}</div>
-      </div>`;
-    });
-
-    document.getElementById('brief-body').innerHTML = html;
+    const headline = pool[dayOfYear % pool.length];
+    document.getElementById('w-brief-line').textContent = headline;
   })();
   </script>
 
   <!-- ── LinkedIn followers ── -->
   <script>
   (function(){
-    const el = document.getElementById('linkedin-count');
+    const countEl = document.getElementById('w-li-count');
+    const dot     = document.getElementById('li-dot');
+    const label   = document.getElementById('li-status');
+
     fetch('/api/linkedin-followers')
-      .then(res => res.ok ? res.json() : null)
+      .then(res => {
+        if(!res.ok) throw new Error();
+        return res.json();
+      })
       .then(data => {
-        if (data && typeof data.followers === 'number') {
-          el.textContent = data.followers.toLocaleString('en-US');
+        if(data && typeof data.followers === 'number'){
+          countEl.textContent = data.followers.toLocaleString('en-US');
+          dot.className   = 'w-dot online';
+          label.textContent = 'Live';
+        } else {
+          dot.className = 'w-dot offline';
+          label.textContent = 'No data';
         }
       })
-      .catch(() => {});
+      .catch(() => {
+        dot.className = 'w-dot offline';
+        label.textContent = 'Offline';
+      });
+  })();
+  </script>
+
+  <!-- ── Service status checks ── -->
+  <script>
+  (function(){
+    async function checkService(url, dotId, labelId){
+      const dot   = document.getElementById(dotId);
+      const label = document.getElementById(labelId);
+      try {
+        const ctrl = new AbortController();
+        const tid  = setTimeout(() => ctrl.abort(), 6000);
+        await fetch(url, { method:'HEAD', mode:'no-cors', cache:'no-store', signal: ctrl.signal });
+        clearTimeout(tid);
+        dot.className = 'w-dot online';
+        label.textContent = 'Online';
+      } catch {
+        dot.className = 'w-dot offline';
+        label.textContent = 'Offline';
+      }
+    }
+
+    checkService('https://sentinel.kneuralabs.com', 'sentinel-dot', 'sentinel-status');
+    checkService('https://letterz.kneuralabs.com',  'letterz-dot',  'letterz-status');
   })();
   </script>
 
@@ -958,7 +968,6 @@
       const section = document.getElementById('app-section');
       const grid    = document.getElementById('app-grid');
 
-      // Reveal the Letterz widget when this user has been granted the app.
       const letterzWidget = document.getElementById('letterz-widget');
       if (letterzWidget && Array.isArray(appIds) && appIds.includes('letterz')) {
         letterzWidget.style.display = '';
