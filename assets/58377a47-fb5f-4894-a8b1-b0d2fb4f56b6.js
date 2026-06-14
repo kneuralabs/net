@@ -339,6 +339,7 @@ function ToolsSection({ unlockedSet, allowedIds, onActivate }) {
           />
         ))}
       </div>
+      <SentinelCard />
     </section>
   );
 }
@@ -679,7 +680,6 @@ function FeedSection() {
             <div className="poster-stamp" style={{ position:'relative' }}>Brief № {brief.num}</div>
           </div>
           <LinkedInCard />
-          <SentinelCard />
         </aside>
       </div>
     </section>
