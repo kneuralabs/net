@@ -827,122 +827,18 @@ function Colophon() {
    Open Tasks block — high-contrast attention magnet
    ──────────────────────────────────────────────────────────────── */
 /* ────────────────────────────────────────────────────────────────
-   KneuraCOMM live queue — fetch + minimal XLSX reader (no deps)
-   Pulls https://kneuralabs.github.io/comm/data.xlsx, parses the
-   first worksheet, maps header columns to the task shape. Falls
-   back to the bundled snapshot if the network/parse fails.
+   KneuraCOMM live queue — reads live state from Supabase.
+   KneuraCOMM now persists its working state to the `comm_state`
+   table (row id='main', jsonb `data`). We read it with the public
+   anon key and map open tasks to the queue shape. Falls back to the
+   bundled snapshot if the network/read fails.
    ──────────────────────────────────────────────────────────────── */
-const COMM_BASE = "https://kneuralabs.github.io/comm/";
+const COMM_BASE = "https://comm.kneuralabs.com/";
 
-async function _kqInflate(bytes, method) {
-  if (method === 0) return bytes;
-  const ds = new DecompressionStream("deflate-raw");
-  const ab = await new Response(
-    new Blob([bytes]).stream().pipeThrough(ds)
-  ).arrayBuffer();
-  return new Uint8Array(ab);
-}
-
-function _kqU16(d, o) { return d[o] | (d[o + 1] << 8); }
-function _kqU32(d, o) {
-  return (d[o] | (d[o + 1] << 8) | (d[o + 2] << 16) | (d[o + 3] << 24)) >>> 0;
-}
-
-async function _kqUnzip(buf) {
-  const d = new Uint8Array(buf);
-  let eo = -1;
-  for (let i = d.length - 22; i >= 0 && i > d.length - 65558; i--) {
-    if (_kqU32(d, i) === 0x06054b50) { eo = i; break; }
-  }
-  if (eo < 0) throw new Error("not a zip");
-  const n = _kqU16(d, eo + 10);
-  let p = _kqU32(d, eo + 16);
-  const want = {};
-  for (let i = 0; i < n; i++) {
-    if (_kqU32(d, p) !== 0x02014b50) break;
-    const method = _kqU16(d, p + 10);
-    const csize = _kqU32(d, p + 20);
-    const fnl = _kqU16(d, p + 28);
-    const efl = _kqU16(d, p + 30);
-    const cml = _kqU16(d, p + 32);
-    const lho = _kqU32(d, p + 42);
-    const name = new TextDecoder().decode(d.subarray(p + 46, p + 46 + fnl));
-    const lfnl = _kqU16(d, lho + 26);
-    const lefl = _kqU16(d, lho + 28);
-    const start = lho + 30 + lfnl + lefl;
-    want[name] = { d: d.subarray(start, start + csize), method };
-    p += 46 + fnl + efl + cml;
-  }
-  const out = {};
-  for (const k in want) {
-    out[k] = new TextDecoder().decode(
-      await _kqInflate(want[k].d, want[k].method)
-    );
-  }
-  return out;
-}
-
-function _kqXml(s) {
-  return String(s)
-    .replace(/&lt;/g, "<").replace(/&gt;/g, ">")
-    .replace(/&quot;/g, '"').replace(/&apos;/g, "'")
-    .replace(/&#x([0-9a-fA-F]+);/g, (_, h) => String.fromCharCode(parseInt(h, 16)))
-    .replace(/&#(\d+);/g, (_, n) => String.fromCharCode(+n))
-    .replace(/&amp;/g, "&");
-}
-
-function _kqCol(ref) {
-  let c = 0;
-  for (const ch of ref) {
-    const u = ch.charCodeAt(0);
-    if (u >= 65 && u <= 90) c = c * 26 + (u - 64); else break;
-  }
-  return c - 1;
-}
-
-function _kqShared(xml) {
-  if (!xml) return [];
-  return [...xml.matchAll(/<si>([\s\S]*?)<\/si>/g)].map(m =>
-    _kqXml([...m[1].matchAll(/<t[^>]*>([\s\S]*?)<\/t>/g)].map(x => x[1]).join(""))
-  );
-}
-
-function _kqRows(xml, shared) {
-  const rows = [];
-  if (!xml) return rows;
-  const rowRe = /<row\b[^>]*>([\s\S]*?)<\/row>/g;
-  let rm;
-  while ((rm = rowRe.exec(xml))) {
-    const cells = [];
-    const cRe = /<c\b([^>]*?)(?:\/>|>([\s\S]*?)<\/c>)/g;
-    let cm;
-    while ((cm = cRe.exec(rm[1]))) {
-      const attr = cm[1] || "";
-      const body = cm[2] || "";
-      const rA = /r="([A-Z]+)\d+"/.exec(attr);
-      const ci = rA ? _kqCol(rA[1]) : cells.length;
-      const tA = /t="([^"]+)"/.exec(attr);
-      const ty = tA ? tA[1] : "";
-      let v = "";
-      if (ty === "s") {
-        const vm = /<v>([\s\S]*?)<\/v>/.exec(body);
-        v = vm ? (shared[+vm[1]] || "") : "";
-      } else if (ty === "inlineStr") {
-        v = _kqXml(
-          [...body.matchAll(/<t[^>]*>([\s\S]*?)<\/t>/g)].map(x => x[1]).join("")
-        );
-      } else {
-        // str / b / e / number / date — value lives in <v>
-        const vm = /<v>([\s\S]*?)<\/v>/.exec(body);
-        v = vm ? _kqXml(vm[1]) : "";
-      }
-      cells[ci] = v;
-    }
-    for (let i = 0; i < cells.length; i++) if (cells[i] == null) cells[i] = "";
-    rows.push(cells);
-  }
-  return rows;
-}
+// Public anon (publishable) key — same project the dashboard already
+// uses for app access. RLS exposes comm_state for SELECT to anon.
+const COMM_SB_URL = "https://brysartqcjylgqwmnjkk.supabase.co";
+const COMM_SB_KEY = "sb_publishable_C5e5ViwIlW9dV14ZLi4O0A_ipIXhTB5";
 
 function _kqPrio(p) {
   const s = String(p == null ? "" : p).toLowerCase().trim();
@@ -961,109 +857,47 @@ function _kqDue(s) {
   return s;
 }
 
-function _kqClean(rows) {
-  return rows.map(r => (r || []).map(c => String(c == null ? "" : c).trim()));
-}
-
-// The export is a stacked sheet: a banner row, then sections each
-// introduced by an ALL-CAPS single-cell label, a header row, then
-// body rows. Returns { LABEL: { header:[], body:[[]] } }.
-function _kqSections(rows) {
-  const out = {};
-  let cur = null, awaitHdr = false;
-  for (const r of rows) {
-    const nonEmpty = r.filter(c => c !== "");
-    const isLabel =
-      nonEmpty.length === 1 && r[0] !== "" &&
-      /^[A-Z][A-Z0-9 _&\/-]{1,30}$/.test(r[0]) && r[0] === r[0].toUpperCase();
-    if (isLabel) {
-      cur = r[0].trim().toUpperCase();
-      out[cur] = { header: [], body: [] };
-      awaitHdr = true;
-      continue;
-    }
-    if (!cur) continue;
-    if (!nonEmpty.length) continue;
-    if (awaitHdr) { out[cur].header = r; awaitHdr = false; }
-    else out[cur].body.push(r);
-  }
-  return out;
-}
-
-function _kqIdx(header, ...keys) {
-  const h = header.map(c => c.toLowerCase());
-  for (let i = 0; i < h.length; i++)
-    if (keys.some(k => h[i] === k || h[i].includes(k))) return i;
-  return -1;
-}
-
-function _kqMap(rows) {
-  rows = _kqClean(rows);
-  const sec = _kqSections(rows);
-  // Build project id -> name map (best effort).
+// Map the KneuraCOMM state blob -> open-queue task shape.
+function _kqMapState(state) {
+  const tasks = Array.isArray(state && state.tasks) ? state.tasks : [];
+  const projList = Array.isArray(state && state.projects) ? state.projects : [];
   const proj = {};
-  const P = sec["PROJECTS"];
-  if (P && P.header.length) {
-    const pi = _kqIdx(P.header, "id");
-    const pn = _kqIdx(P.header, "name", "title");
-    if (pi >= 0 && pn >= 0)
-      for (const r of P.body) if (r[pi]) proj[r[pi]] = r[pn] || "";
-  }
-  const T = sec["TASKS"];
-  if (!T || !T.header.length) {
-    throw new Error("no TASKS section in data.xlsx");
-  }
-  const H = T.header;
-  const ti = _kqIdx(H, "title", "task", "name", "summary");
-  const ri = _kqIdx(H, "role", "owner", "assignee");
-  const pj = _kqIdx(H, "project");
-  const pr = _kqIdx(H, "priority", "prio", "severity");
-  const st = _kqIdx(H, "status", "state");
-  const du = _kqIdx(H, "due", "deadline", "target");
-  const g = (r, i) => (i >= 0 && r[i] != null ? String(r[i]).trim() : "");
+  for (const p of projList) if (p && p.id) proj[p.id] = p.name || "";
   const out = [];
-  for (const r of T.body) {
-    const title = g(r, ti);
+  for (const t of tasks) {
+    if (!t) continue;
+    const title = String(t.title == null ? "" : t.title).trim();
     if (!title) continue;
-    const status = g(r, st);
+    const status = String(t.status == null ? "" : t.status).trim();
     if (status && _KQ_DONE.test(status)) continue; // open queue only
-    let pv = g(r, pj);
+    let pv = String(t.project == null ? "" : t.project).trim();
     if (proj[pv]) pv = proj[pv];
     else if (/^[a-z0-9]{6,12}$/.test(pv)) pv = ""; // opaque id, unresolved
     out.push({
       title,
-      role: g(r, ri) || "Team",
+      role: String(t.role == null ? "" : t.role).trim() || "Team",
       project: pv || "KneuraCOMM",
-      priority: _kqPrio(g(r, pr)),
-      due: _kqDue(g(r, du)),
+      priority: _kqPrio(t.priority),
+      due: _kqDue(t.due),
     });
   }
   return out;
 }
 
-const COMM_SOURCES = [
-  COMM_BASE + "data.xlsx",
-  "https://raw.githubusercontent.com/kneuralabs/comm/main/data.xlsx",
-];
-
 async function fetchCommTasks() {
-  let lastErr;
-  for (const url of COMM_SOURCES) {
-    try {
-      const res = await fetch(url, { mode: "cors", cache: "no-store" });
-      if (!res.ok) throw new Error("HTTP " + res.status + " · " + url);
-      const buf = await res.arrayBuffer();
-      const files = await _kqUnzip(buf);
-      const shared = _kqShared(files["xl/sharedStrings.xml"]);
-      const key = Object.keys(files)
-        .filter(k => /^xl\/worksheets\/sheet\d+\.xml$/.test(k))
-        .sort()[0] || "xl/worksheets/sheet1.xml";
-      return _kqMap(_kqRows(files[key] || "", shared));
-    } catch (e) {
-      lastErr = e;
+  const res = await fetch(
+    COMM_SB_URL + "/rest/v1/comm_state?id=eq.main&select=data",
+    {
+      headers: { apikey: COMM_SB_KEY, Authorization: "Bearer " + COMM_SB_KEY },
+      cache: "no-store",
     }
+  );
+  if (!res.ok) throw new Error("HTTP " + res.status);
+  const rows = await res.json();
+  if (!Array.isArray(rows) || !rows.length || !rows[0].data) {
+    throw new Error("no comm_state main row");
   }
-  throw lastErr || new Error("no source reachable");
+  return _kqMapState(rows[0].data);
 }
 window.fetchCommTasks = fetchCommTasks;
 
