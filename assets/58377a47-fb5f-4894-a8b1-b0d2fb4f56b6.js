@@ -314,7 +314,7 @@ function ToolsSection({ unlockedSet, allowedIds, onActivate }) {
       <div className="section__head">
         <span className="section__num">№ I — Tools</span>
         <h2 className="section__title">Workspace</h2>
-        <span className="section__meta">{tools.length} apps</span>
+        <span className="section__meta">{tools.length + 1} apps</span>
       </div>
       {tools.length === 0 && (
         <div style={{
