@@ -227,11 +227,11 @@
       to   { opacity: 1; transform: translateY(0)    scale(1);    filter: blur(0); }
     }
     .widget { animation: widget-rise 680ms cubic-bezier(0.34,1.15,0.64,1) both; }
-    .widget:nth-child(1) { animation-delay:  60ms; }
-    .widget:nth-child(2) { animation-delay: 140ms; }
-    .widget:nth-child(3) { animation-delay: 220ms; }
-    .widget:nth-child(4) { animation-delay: 300ms; }
-    .widget:nth-child(5) { animation-delay: 380ms; }
+    .widgets > .w-item:nth-child(1) .widget { animation-delay:  60ms; }
+    .widgets > .w-item:nth-child(2) .widget { animation-delay: 140ms; }
+    .widgets > .w-item:nth-child(3) .widget { animation-delay: 220ms; }
+    .widgets > .w-item:nth-child(4) .widget { animation-delay: 300ms; }
+    .widgets > .w-item:nth-child(5) .widget { animation-delay: 380ms; }
 
     .widget:hover {
       transform: translateY(-6px) scale(1.04);
@@ -378,7 +378,15 @@
       background: #818cf8;
       box-shadow: 0 0 6px #818cf8;
     }
-  </style>
+
+    /* Respect reduced-motion preferences */
+    @media (prefers-reduced-motion: reduce) {
+      .widget, .w-dot, .widget * {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+</style>
 </head>
 <body>
   <canvas id="globe-canvas"></canvas>
