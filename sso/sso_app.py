@@ -335,10 +335,17 @@ def login():
         if redirect_url and _is_valid_redirect(redirect_url):
             return render_template('sso_success.html', redirect_url=redirect_url)
 
-        if callback and _is_valid_callback(callback):
+        safe_callback = callback.replace('\\', '/')
+        parsed_callback = urlparse(safe_callback)
+        if (
+            safe_callback.startswith('/')
+            and not parsed_callback.scheme
+            and not parsed_callback.netloc
+            and _is_valid_callback(safe_callback)
+        ):
             token = _make_token(employee_id)
-            sep = '&' if '?' in callback else '?'
-            return redirect(f'{callback}{sep}token={token}')
+            sep = '&' if '?' in safe_callback else '?'
+            return redirect(f'{safe_callback}{sep}token={token}')
 
         # No valid callback — show confirmation in place
         flash('Sign-in successful. Return to the intranet.', 'success')
