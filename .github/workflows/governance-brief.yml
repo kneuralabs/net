@@ -1,7 +1,8 @@
 name: Daily Governance Brief
 
-# Pulls authentic AI-governance headlines once a day and commits them to
-# assets/news.json, which the intranet Brief reads at page load.
+# Pulls authentic AI-governance headlines once a day and publishes them to the
+# unprotected `feeds-data` branch, which the intranet Brief reads live via
+# raw.githubusercontent (main is protected, so CI cannot push to it).
 on:
   schedule:
     - cron: "20 6 * * *"   # 06:20 UTC daily (~11:50 IST)
@@ -18,9 +19,10 @@ jobs:
   refresh:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      # Default GITHUB_TOKEN — it can push to non-protected branches like feeds-data.
+      - uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
