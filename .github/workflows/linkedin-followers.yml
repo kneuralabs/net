@@ -1,9 +1,11 @@
 name: LinkedIn Followers
 
-# Best-effort refresh of the committed follower-count seed (assets/linkedin.json)
-# on main. The live LinkedIn widget fetches the public company page directly in
-# the browser on each load and uses this committed file only as a last-known-good
-# fallback. If the push is gated by branch protection the job still succeeds.
+# Refresh of the LinkedIn follower count every 6 hours. The fetch script reads
+# the public company page and writes assets/linkedin.json; this workflow then
+# publishes that file to the UNPROTECTED `feeds-data` branch (never main), which
+# the live LinkedIn widget reads cross-origin from raw.githubusercontent.com.
+# A side branch sidesteps main's branch protection; a failed publish fails the
+# run (no silent green) so staleness is visible.
 on:
   schedule:
     - cron: "35 */6 * * *"   # every 6 hours at :35 (00:35/06:35/12:35/18:35 UTC)
@@ -13,7 +15,9 @@ permissions:
   contents: write
 
 concurrency:
-  group: linkedin-followers
+  # Shared with governance-brief so the two feed jobs serialise their pushes
+  # to feeds-data (never race a fast-forward). false => queue, don't cancel.
+  group: feeds-data-publish
   cancel-in-progress: false
 
 jobs:
@@ -32,16 +36,8 @@ jobs:
       - name: Fetch follower count
         run: python3 scripts/fetch_linkedin_followers.py
 
-      - name: Commit refreshed seed to main if changed (best-effort)
+      - name: Publish refreshed follower count to the feeds-data branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git add assets/linkedin.json
-          if git diff --cached --quiet; then
-            echo "No change to assets/linkedin.json."
-            exit 0
-          fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "chore: refresh LinkedIn follower count seed"
-          # Pushing to main also redeploys Pages. If branch protection blocks the
-          # bot, don't fail the run — the widget stays current client-side.
-          git push origin HEAD:main || echo "::warning::push to main blocked; widget stays current via in-browser fetch"
+          bash scripts/publish_to_feeds_data.sh assets/linkedin.json "chore: refresh LinkedIn follower count"

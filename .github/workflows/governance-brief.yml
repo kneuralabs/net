@@ -1,10 +1,11 @@
 name: Daily Governance Brief
 
-# Best-effort daily refresh of the committed Brief seed (assets/news.json) on
-# main. The live intranet Brief no longer depends on this: it fetches worldwide
-# headlines client-side on every page load and uses this committed file only as
-# an instant-paint seed / offline fallback. If the push is gated by branch
-# protection the job still succeeds — freshness is guaranteed in-browser.
+# Daily refresh of the Governance Brief. The fetch script pulls real, dated
+# headlines and writes assets/news.json; this workflow then publishes that file
+# to the UNPROTECTED `feeds-data` branch (never main), which the live intranet
+# reads cross-origin from raw.githubusercontent.com. Publishing to a side branch
+# sidesteps main's branch protection and avoids a Pages rebuild on every refresh.
+# A failed publish now fails the run (no silent green), so staleness is visible.
 on:
   schedule:
     - cron: "20 6 * * *"   # 06:20 UTC daily (~11:50 IST)
@@ -14,7 +15,9 @@ permissions:
   contents: write
 
 concurrency:
-  group: governance-brief
+  # Shared with linkedin-followers so the two feed jobs serialise their pushes
+  # to feeds-data (never race a fast-forward). false => queue, don't cancel.
+  group: feeds-data-publish
   cancel-in-progress: false
 
 jobs:
@@ -33,16 +36,8 @@ jobs:
       - name: Fetch authentic governance news
         run: python3 scripts/fetch_governance_news.py
 
-      - name: Commit refreshed seed to main if changed (best-effort)
+      - name: Publish refreshed Brief to the feeds-data branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git add assets/news.json
-          if git diff --cached --quiet; then
-            echo "No change to assets/news.json."
-            exit 0
-          fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "chore: refresh Daily Governance Brief seed"
-          # Pushing to main also redeploys Pages. If branch protection blocks the
-          # bot, don't fail the run — the live Brief stays current client-side.
-          git push origin HEAD:main || echo "::warning::push to main blocked; live Brief stays current via in-browser fetch"
+          bash scripts/publish_to_feeds_data.sh assets/news.json "chore: refresh Daily Governance Brief"

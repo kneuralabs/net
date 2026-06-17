@@ -456,6 +456,22 @@ const BRIEF_PROXIES = [
   (u) => "https://corsproxy.io/?url=" + encodeURIComponent(u),
   (u) => "https://thingproxy.freeboard.io/fetch/" + u,
 ];
+// Cross-origin fetch with a hard timeout. The free public CORS proxies above
+// are flaky and routinely accept a connection then hang. A plain fetch() has no
+// timeout, so one stalled proxy would await forever — leaving the Brief stuck on
+// its committed seed and the LinkedIn count stuck on an em dash, with no way to
+// advance to the next proxy. Aborting on a deadline turns a hang into a normal
+// "try the next proxy" failure so the feed always converges.
+const PROXY_TIMEOUT_MS = 6000;
+async function _proxyFetch(url, timeoutMs = PROXY_TIMEOUT_MS) {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), timeoutMs);
+  try {
+    return await fetch(url, { mode: "cors", cache: "no-store", signal: ctrl.signal });
+  } finally {
+    clearTimeout(timer);
+  }
+}
 function _briefParse(xml) {
   const doc = new DOMParser().parseFromString(xml, "text/xml");
   if (doc.querySelector("parsererror")) return [];
@@ -484,7 +500,7 @@ function _briefParse(xml) {
 async function _briefFetchOne(url) {
   for (const wrap of BRIEF_PROXIES) {
     try {
-      const res = await fetch(wrap(url), { mode: "cors", cache: "no-store" });
+      const res = await _proxyFetch(wrap(url));
       if (!res.ok) continue;
       const items = _briefParse(await res.text());
       if (items.length) return items;
@@ -507,6 +523,27 @@ async function fetchGovernanceNews() {
 }
 window.fetchGovernanceNews = fetchGovernanceNews;
 
+// ── First-party CI-refreshed feed data ──────────────────────────────────────
+// A scheduled GitHub Action regenerates the feeds server-side and publishes
+// them to the UNPROTECTED `feeds-data` branch. GitHub's own raw endpoint serves
+// that branch with `Access-Control-Allow-Origin: *`, so the browser reads it
+// cross-origin with NO third-party proxy in the path. This is the reliable live
+// source. The public CORS proxies above are now only a best-effort "even
+// fresher" layer, and the committed assets/*.json the final offline fallback.
+const FEEDS_DATA_BASE = "https://raw.githubusercontent.com/kneuralabs/net/feeds-data/";
+async function _feedsDataJson(path) {
+  const r = await fetch(FEEDS_DATA_BASE + path + "?d=" + Date.now(), { cache: "no-store" });
+  if (!r.ok) throw new Error("feeds-data " + path + " HTTP " + r.status);
+  return await r.json();
+}
+async function fetchFeedsDataBrief() {
+  try {
+    const items = await _feedsDataJson("assets/news.json");
+    if (Array.isArray(items) && items.length) return items.slice(0, 6);
+  } catch (e) { /* branch not published yet / offline — fall through */ }
+  return [];
+}
+
 // Committed snapshot shipped with the site — used for instant first paint and
 // as a graceful fallback when the live RSS proxies are unreachable.
 async function fetchBriefSeed() {
@@ -519,14 +556,19 @@ async function fetchBriefSeed() {
   } catch (e) { /* fall through to empty */ }
   return [];
 }
-// Live worldwide headlines first (refreshed every page load); the committed
-// seed only if every live source is unreachable. No CI, branch or human in loop.
+// Source priority, most-reliable first:
+//   1. First-party CI feed on the feeds-data branch (refreshed daily, CORS-ok).
+//   2. Best-effort live worldwide headlines via public CORS proxies (timeout-
+//      bounded) — only when the CI feed is unreachable.
+//   3. Committed seed shipped with the site — offline fallback.
 async function fetchBriefData() {
+  const ci = await fetchFeedsDataBrief();
+  if (ci.length) return ci;
   try {
     const live = await fetchGovernanceNews();
     if (live && live.length) return live;
   } catch (e) {
-    console.warn("[Brief] live feed unavailable:", e);
+    console.warn("[Brief] live proxy feed unavailable:", e);
   }
   return await fetchBriefSeed();
 }
@@ -655,19 +697,26 @@ function _liParse(html) {
   return Number.isFinite(n) && n > 0 ? n : null;
 }
 async function fetchLinkedInFollowers() {
-  // 1 · Live count straight from the page (follow-button endpoint first — it is
-  //     meant for anonymous embedding, unlike the authwalled company page).
+  // 1 · First-party CI count from the feeds-data branch (refreshed every 6h,
+  //     served CORS-enabled by raw.githubusercontent — the reliable source).
+  try {
+    const data = await _feedsDataJson("assets/linkedin.json");
+    if (data && typeof data.followers === "number") return data.followers;
+  } catch (e) { /* branch not published yet / offline — fall through */ }
+  // 2 · Best-effort live scrape via public CORS proxies (timeout-bounded;
+  //     follow-button endpoint first — it is meant for anonymous embedding,
+  //     unlike the authwalled company page).
   for (const target of [LINKEDIN_FOLLOW_BTN_URL, LINKEDIN_PAGE_URL]) {
     for (const wrap of LINKEDIN_PROXIES) {
       try {
-        const res = await fetch(wrap(target), { mode: "cors", cache: "no-store" });
+        const res = await _proxyFetch(wrap(target));
         if (!res.ok) continue;
         const n = _liParse(await res.text());
         if (n != null) return n;
       } catch (e) { /* try next proxy */ }
     }
   }
-  // 2 · Committed snapshot fallback (last known good count).
+  // 3 · Committed snapshot fallback (last known good count, offline).
   try {
     const r = await fetch("assets/linkedin.json?d=" + Date.now(), { cache: "no-store" });
     if (r.ok) {
@@ -832,19 +881,26 @@ function _kqMapState(state) {
 }
 
 async function fetchCommTasks() {
-  const res = await fetch(
-    COMM_SB_URL + "/rest/v1/comm_state?id=eq.main&select=data",
-    {
-      headers: { apikey: COMM_SB_KEY, Authorization: "Bearer " + COMM_SB_KEY },
-      cache: "no-store",
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), 8000);
+  try {
+    const res = await fetch(
+      COMM_SB_URL + "/rest/v1/comm_state?id=eq.main&select=data",
+      {
+        headers: { apikey: COMM_SB_KEY, Authorization: "Bearer " + COMM_SB_KEY },
+        cache: "no-store",
+        signal: ctrl.signal,
+      }
+    );
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const rows = await res.json();
+    if (!Array.isArray(rows) || !rows.length || !rows[0].data) {
+      throw new Error("no comm_state main row");
     }
-  );
-  if (!res.ok) throw new Error("HTTP " + res.status);
-  const rows = await res.json();
-  if (!Array.isArray(rows) || !rows.length || !rows[0].data) {
-    throw new Error("no comm_state main row");
+    return _kqMapState(rows[0].data);
+  } finally {
+    clearTimeout(timer);
   }
-  return _kqMapState(rows[0].data);
 }
 window.fetchCommTasks = fetchCommTasks;
 
@@ -909,6 +965,22 @@ function OpenTasks({ onOpenCommand }) {
           <span><i className="prio prio--low" /> {low} Low</span>
         </div>
       </div>
+      {data.status === "loading" ? (
+        <ol className="opentasks__list" aria-hidden="true">
+          {[0, 1, 2, 3, 4].map((i) => (
+            <li className="opentasks__row" key={i}>
+              <span className="opentasks__idx kq-skel" style={{ width: 18, height: 12 }} />
+              <span className="kq-skel" style={{ width: 10, height: 10, borderRadius: "50%" }} />
+              <span className="kq-skel" style={{ height: 13, width: `${66 - i * 8}%` }} />
+              <span className="opentasks__meta">
+                <span className="kq-skel" style={{ width: 50, height: 18, borderRadius: 999 }} />
+                <span className="kq-skel" style={{ width: 62, height: 18, borderRadius: 999 }} />
+              </span>
+              <span className="opentasks__due kq-skel" style={{ width: 40, height: 12 }} />
+            </li>
+          ))}
+        </ol>
+      ) : (
       <ol className="opentasks__list">
         {tasks.map((t, i) => (
           <li className="opentasks__row" key={i}>
@@ -923,6 +995,7 @@ function OpenTasks({ onOpenCommand }) {
           </li>
         ))}
       </ol>
+      )}
     </section>
   );
 }
