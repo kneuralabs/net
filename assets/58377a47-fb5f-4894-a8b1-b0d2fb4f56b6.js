@@ -881,19 +881,26 @@ function _kqMapState(state) {
 }
 
 async function fetchCommTasks() {
-  const res = await fetch(
-    COMM_SB_URL + "/rest/v1/comm_state?id=eq.main&select=data",
-    {
-      headers: { apikey: COMM_SB_KEY, Authorization: "Bearer " + COMM_SB_KEY },
-      cache: "no-store",
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), 8000);
+  try {
+    const res = await fetch(
+      COMM_SB_URL + "/rest/v1/comm_state?id=eq.main&select=data",
+      {
+        headers: { apikey: COMM_SB_KEY, Authorization: "Bearer " + COMM_SB_KEY },
+        cache: "no-store",
+        signal: ctrl.signal,
+      }
+    );
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const rows = await res.json();
+    if (!Array.isArray(rows) || !rows.length || !rows[0].data) {
+      throw new Error("no comm_state main row");
     }
-  );
-  if (!res.ok) throw new Error("HTTP " + res.status);
-  const rows = await res.json();
-  if (!Array.isArray(rows) || !rows.length || !rows[0].data) {
-    throw new Error("no comm_state main row");
+    return _kqMapState(rows[0].data);
+  } finally {
+    clearTimeout(timer);
   }
-  return _kqMapState(rows[0].data);
 }
 window.fetchCommTasks = fetchCommTasks;
 
@@ -958,6 +965,22 @@ function OpenTasks({ onOpenCommand }) {
           <span><i className="prio prio--low" /> {low} Low</span>
         </div>
       </div>
+      {data.status === "loading" ? (
+        <ol className="opentasks__list" aria-hidden="true">
+          {[0, 1, 2, 3, 4].map((i) => (
+            <li className="opentasks__row" key={i}>
+              <span className="opentasks__idx kq-skel" style={{ width: 18, height: 12 }} />
+              <span className="kq-skel" style={{ width: 10, height: 10, borderRadius: "50%" }} />
+              <span className="kq-skel" style={{ height: 13, width: `${66 - i * 8}%` }} />
+              <span className="opentasks__meta">
+                <span className="kq-skel" style={{ width: 50, height: 18, borderRadius: 999 }} />
+                <span className="kq-skel" style={{ width: 62, height: 18, borderRadius: 999 }} />
+              </span>
+              <span className="opentasks__due kq-skel" style={{ width: 40, height: 12 }} />
+            </li>
+          ))}
+        </ol>
+      ) : (
       <ol className="opentasks__list">
         {tasks.map((t, i) => (
           <li className="opentasks__row" key={i}>
@@ -972,6 +995,7 @@ function OpenTasks({ onOpenCommand }) {
           </li>
         ))}
       </ol>
+      )}
     </section>
   );
 }

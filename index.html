@@ -2435,7 +2435,7 @@ html[data-motion="playful"] .tile:hover {
 
   <script type="text/babel" src="assets/c18bcef9-cfc3-4b1a-a660-7f23df295f1b.js?v=2"></script>
   <script type="text/babel" src="assets/b27ee60f-f1d6-4946-82c3-002ef0020e69.js?v=8"></script>
-  <script type="text/babel" src="assets/58377a47-fb5f-4894-a8b1-b0d2fb4f56b6.js?v=20"></script>
+  <script type="text/babel" src="assets/58377a47-fb5f-4894-a8b1-b0d2fb4f56b6.js?v=21"></script>
   <script type="text/babel" src="assets/a7e17038-28e5-442a-8b55-791d88b8b3f8.js?v=5"></script>
 
   <!-- Neuron firing background -->
@@ -2445,6 +2445,14 @@ html[data-motion="playful"] .tile:hover {
     html[data-theme="authority"] #kn-neurons,
     html[data-theme="navy"]      #kn-neurons { opacity: 0.80; }
     @keyframes just-in-pulse { 0%,100%{opacity:1} 50%{opacity:.5} }
+    /* KneuraCOMM open-queue loading shimmer */
+    @keyframes kq-shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+    .kq-skel{ display:inline-block; border-radius:6px; background:linear-gradient(90deg,
+      rgba(28,92,170,0.07) 25%, rgba(28,92,170,0.20) 37%, rgba(28,92,170,0.07) 63%);
+      background-size:200% 100%; animation:kq-shimmer 1.4s ease-in-out infinite; }
+    html[data-theme="authority"] .kq-skel, html[data-theme="navy"] .kq-skel{
+      background:linear-gradient(90deg, rgba(255,255,255,0.06) 25%, rgba(255,255,255,0.18) 37%,
+      rgba(255,255,255,0.06) 63%); background-size:200% 100%; }
     @keyframes all-green-blink { 0%,100%{opacity:1} 50%{opacity:0.15} }
     .all-green-lbl { animation: all-green-blink 1.8s ease-in-out infinite; }
     body > .page, body > .theme-toggle, body > .lock-overlay, body > .sso-overlay { position:relative; z-index:1; }
