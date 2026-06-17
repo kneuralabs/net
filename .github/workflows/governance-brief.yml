@@ -9,7 +9,6 @@ on:
 
 permissions:
   contents: write
-  pull-requests: write
 
 concurrency:
   group: governance-brief
@@ -31,27 +30,15 @@ jobs:
       - name: Fetch authentic governance news
         run: python3 scripts/fetch_governance_news.py
 
-      - name: Commit via auto-merged PR if changed
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Commit if changed
         run: |
-          if git diff --quiet -- assets/news.json; then
+          git add assets/news.json
+          if git diff --cached --quiet; then
             echo "No change to assets/news.json."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          BRANCH="bot/governance-brief-$(date -u +%Y%m%d%H%M%S)"
-          git checkout -b "$BRANCH"
-          git add assets/news.json
           git commit -m "chore: refresh Daily Governance Brief"
-          git push origin "$BRANCH"
-          # main is protected (PR-only); open and immediately merge a PR so the
-          # refreshed feed reaches main and redeploys Pages.
-          gh pr create --base main --head "$BRANCH" \
-            --title "chore: refresh Daily Governance Brief" \
-            --body "Automated daily refresh of assets/news.json."
-          # Merge now; if required checks gate the branch, fall back to
-          # auto-merge so it lands once they pass.
-          gh pr merge "$BRANCH" --merge --delete-branch \
-            || gh pr merge "$BRANCH" --merge --auto --delete-branch
+          # github-actions[bot] is allowlisted to bypass branch protection on main.
+          git push origin HEAD:main
