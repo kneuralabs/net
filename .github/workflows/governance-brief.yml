@@ -1,8 +1,10 @@
 name: Daily Governance Brief
 
-# Pulls authentic AI-governance headlines once a day and publishes them to the
-# unprotected `feeds-data` branch, which the intranet Brief reads live via
-# raw.githubusercontent (main is protected, so CI cannot push to it).
+# Best-effort daily refresh of the committed Brief seed (assets/news.json) on
+# main. The live intranet Brief no longer depends on this: it fetches worldwide
+# headlines client-side on every page load and uses this committed file only as
+# an instant-paint seed / offline fallback. If the push is gated by branch
+# protection the job still succeeds — freshness is guaranteed in-browser.
 on:
   schedule:
     - cron: "20 6 * * *"   # 06:20 UTC daily (~11:50 IST)
@@ -19,7 +21,6 @@ jobs:
   refresh:
     runs-on: ubuntu-latest
     steps:
-      # Default GITHUB_TOKEN — it can push to non-protected branches like feeds-data.
       - uses: actions/checkout@v4
 
       - uses: actions/setup-python@v5
@@ -32,7 +33,7 @@ jobs:
       - name: Fetch authentic governance news
         run: python3 scripts/fetch_governance_news.py
 
-      - name: Publish to feeds-data branch if changed
+      - name: Commit refreshed seed to main if changed (best-effort)
         run: |
           git add assets/news.json
           if git diff --cached --quiet; then
@@ -41,7 +42,7 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "chore: refresh Daily Governance Brief"
-          # main is protected; publish to the unprotected feeds-data branch the
-          # site reads live via raw.githubusercontent (no Pages redeploy needed).
-          git push -f origin HEAD:feeds-data
+          git commit -m "chore: refresh Daily Governance Brief seed"
+          # Pushing to main also redeploys Pages. If branch protection blocks the
+          # bot, don't fail the run — the live Brief stays current client-side.
+          git push origin HEAD:main || echo "::warning::push to main blocked; live Brief stays current via in-browser fetch"

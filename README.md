@@ -17,8 +17,24 @@ an encrypted Excel workbook (`DATA.xlsx`) as the user store.
   The editable source of truth lives outside this repository and should be
   documented here by the owner (tool, project link, export procedure). Do not
   hand-edit these files; changes will be lost on the next export.
-- **`scripts/fetch_governance_news.py`** — refreshes `assets/news.json`; run
-  daily by `.github/workflows/governance-brief.yml`.
+- **Live feeds (Governance Brief, Daily Read, LinkedIn followers)** — all three
+  update automatically with no human intervention, and the live experience does
+  **not** depend on CI or any extra branch:
+  - **Governance Brief** — fetched **client-side on every page load** from Google
+    News RSS (via public CORS proxies), covering AI governance & regulation, IT
+    modernization, IT standards and notable AI tool/model releases worldwide.
+    `assets/news.json` is only an instant-paint seed / offline fallback.
+  - **Daily Read** — a definitional line on AI governance, IT modernization,
+    Governance-as-a-Service and IT standards, rotated **deterministically by date**
+    in the browser (offline, never repeats within a cycle).
+  - **LinkedIn followers** — fetched **live from the public company page** in the
+    browser, with `assets/linkedin.json` as the last-known-good fallback.
+  - **`scripts/fetch_governance_news.py` / `scripts/fetch_linkedin_followers.py`**
+    only refresh those committed *seed* files. `.github/workflows/*.yml` run them
+    best-effort and push to `main`; if branch protection blocks the bot the runs
+    still succeed, because freshness is guaranteed in-browser. (Note: scheduled
+    Actions are not currently firing for this repo — another reason the live feeds
+    are client-side.)
 
 ## Configuration
 
