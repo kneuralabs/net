@@ -18,11 +18,11 @@ jobs:
   refresh:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-            with:
-                    token: ${{ secrets.ADMIN_PAT }}
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.ADMIN_PAT }}
 
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
@@ -42,5 +42,4 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "chore: refresh Daily Governance Brief"
-          # github-actions[bot] is allowlisted to bypass branch protection on main.
           git push origin HEAD:main
