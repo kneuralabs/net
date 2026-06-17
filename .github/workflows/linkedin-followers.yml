@@ -53,4 +53,7 @@ jobs:
           gh pr create --base main --head "$BRANCH" \
             --title "chore: refresh LinkedIn follower count" \
             --body "Automated refresh of assets/linkedin.json."
-          gh pr merge "$BRANCH" --merge --delete-branch
+          # Merge now; if required checks gate the branch, fall back to
+          # auto-merge so it lands once they pass.
+          gh pr merge "$BRANCH" --merge --delete-branch \
+            || gh pr merge "$BRANCH" --merge --auto --delete-branch
