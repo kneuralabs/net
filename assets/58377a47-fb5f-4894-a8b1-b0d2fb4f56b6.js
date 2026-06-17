@@ -436,7 +436,7 @@ function LockModal({ tool, onClose, onSuccess }) {
 }
 
 /* ────────────────────────────────────────────────────────────────
-   Weekly Brief — rotates every ISO week
+   Daily Brief — rotates every day
    ──────────────────────────────────────────────────────────────── */
 const WEEKLY_BRIEFS = [
   "The audit is the artefact.",
@@ -500,17 +500,17 @@ function getISOWeek(date) {
   return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
 }
 
-function getWeeklyBrief() {
+function getDailyBrief() {
   const now = new Date();
-  const week = getISOWeek(now);
-  const year = now.getFullYear();
-  // Deterministic index: spread across the quote list, resets each year
-  const idx = (week - 1) % WEEKLY_BRIEFS.length;
-  // Brief number: weeks elapsed since 2025-W01
-  const briefNum = (year - 2025) * 52 + week;
+  // Whole-day count since the 2025-01-01 epoch (UTC), so the read advances
+  // to a fresh quote every day and never repeats within a cycle.
+  const today = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+  const epoch = Date.UTC(2025, 0, 1);
+  const dayNum = Math.floor((today - epoch) / 86400000) + 1;
+  const idx = ((dayNum - 1) % WEEKLY_BRIEFS.length + WEEKLY_BRIEFS.length) % WEEKLY_BRIEFS.length;
   return {
     quote: WEEKLY_BRIEFS[idx],
-    num: String(briefNum).padStart(3, "0"),
+    num: String(dayNum).padStart(3, "0"),
   };
 }
 
@@ -593,7 +593,7 @@ async function fetchBriefData() {
 window.fetchBriefData = fetchBriefData;
 
 function FeedSection() {
-  const brief = getWeeklyBrief();
+  const brief = getDailyBrief();
   const week = getISOWeek(new Date());
   const posterPal = KN_POSTER_PALETTE[week % KN_POSTER_PALETTE.length];
   const [feed, setFeed] = useState(() => ({ items: window.NEWS || [], status: "loading" }));
@@ -675,7 +675,7 @@ function FeedSection() {
               background: `radial-gradient(circle, ${posterPal.orb2} 0%, transparent 70%)`,
               borderRadius:'50%', filter:'blur(3px)', pointerEvents:'none',
             }} />
-            <span className="smallcaps" style={{ position:'relative' }}>Weekly Read</span>
+            <span className="smallcaps" style={{ position:'relative' }}>Daily Read</span>
             <h3 style={{ position:'relative' }}>{brief.quote}</h3>
             <div className="poster-stamp" style={{ position:'relative' }}>Brief № {brief.num}</div>
           </div>
