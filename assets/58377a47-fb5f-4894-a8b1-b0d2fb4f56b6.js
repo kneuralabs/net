@@ -484,18 +484,26 @@ async function fetchGovernanceNews() {
 }
 window.fetchGovernanceNews = fetchGovernanceNews;
 
-// Loads the Brief: committed authentic feed (refreshed daily by CI) first,
-// then live client-side RSS as a fallback. Both sources are real news.
+// Live data lives on the unprotected `feeds-data` branch (CI can't push to the
+// protected main). raw.githubusercontent serves it cross-origin with a short
+// cache, so the site stays current without redeploying Pages.
+const FEEDS_DATA_BASE =
+  "https://raw.githubusercontent.com/kneuralabs/net/feeds-data/assets/";
+
+// Loads the Brief: live feeds-data snapshot (refreshed daily by CI) first, then
+// the committed snapshot on main, then live client-side RSS. All are real news.
 async function fetchBriefData() {
-  try {
-    const cb = new Date().toISOString().slice(0, 10);
-    const r = await fetch("assets/news.json?d=" + cb, { cache: "no-store" });
-    if (r.ok) {
-      const items = await r.json();
-      if (Array.isArray(items) && items.length) return items.slice(0, 6);
+  const cb = Date.now();
+  for (const src of [FEEDS_DATA_BASE + "news.json?t=" + cb, "assets/news.json?d=" + cb]) {
+    try {
+      const r = await fetch(src, { cache: "no-store" });
+      if (r.ok) {
+        const items = await r.json();
+        if (Array.isArray(items) && items.length) return items.slice(0, 6);
+      }
+    } catch (e) {
+      console.warn("[Brief] source unavailable: " + src, e);
     }
-  } catch (e) {
-    console.warn("[Brief] news.json unavailable, trying live RSS:", e);
   }
   return await fetchGovernanceNews();
 }
@@ -608,16 +616,19 @@ const LINKEDIN_FOLLOW_BTN_URL =
   "https://www.linkedin.com/pages-extensions/FollowCompany?id=" + LINKEDIN_COMPANY_ID + "&counter=bottom";
 
 async function fetchLinkedInFollowers() {
-  // 1 · Committed snapshot, refreshed daily by CI (same pattern as news.json)
-  try {
-    const cb = new Date().toISOString().slice(0, 10);
-    const r = await fetch("assets/linkedin.json?d=" + cb, { cache: "no-store" });
-    if (r.ok) {
-      const data = await r.json();
-      if (data && typeof data.followers === "number") return data.followers;
+  // 1 · Snapshot refreshed by CI — live feeds-data branch first, then the
+  //     committed copy on main (same pattern as the Brief).
+  const cb = Date.now();
+  for (const src of [FEEDS_DATA_BASE + "linkedin.json?t=" + cb, "assets/linkedin.json?d=" + cb]) {
+    try {
+      const r = await fetch(src, { cache: "no-store" });
+      if (r.ok) {
+        const data = await r.json();
+        if (data && typeof data.followers === "number") return data.followers;
+      }
+    } catch (e) {
+      console.warn("[LinkedIn] source unavailable: " + src, e);
     }
-  } catch (e) {
-    console.warn("[LinkedIn] linkedin.json unavailable, trying live page:", e);
   }
   // 2 · Live sources via CORS proxies (follow-button endpoint first — it is
   //     meant for anonymous embedding, unlike the authwalled company page)
