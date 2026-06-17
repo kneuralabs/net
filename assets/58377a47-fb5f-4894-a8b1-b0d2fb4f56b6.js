@@ -345,61 +345,57 @@ function ToolsSection({ unlockedSet, allowedIds, onActivate }) {
 }
 
 /* ────────────────────────────────────────────────────────────────
-   Daily Brief — rotates every day
+   Daily Read — a definitional line on AI governance, IT
+   modernization, Governance-as-a-Service & IT standards. Advances
+   automatically every day (deterministic, offline, no human in the
+   loop) and never repeats within a cycle.
    ──────────────────────────────────────────────────────────────── */
-const WEEKLY_BRIEFS = [
-  "The audit is the artefact.",
-  "Governance without teeth is theatre.",
-  "Explainability is not optional.",
-  "Trust is infrastructure.",
-  "Alignment begins before deployment.",
-  "The model is only as honest as its training.",
-  "Accountability demands a paper trail.",
-  "Safety and capability are not opposites.",
-  "Who owns the output owns the risk.",
-  "Red-teaming is a form of respect.",
-  "Transparency is a feature, not a bug.",
-  "Every dataset encodes a worldview.",
-  "The edge case is where ethics live.",
-  "Humans in the loop, not just on the form.",
-  "Regulation lags, but it arrives.",
-  "Consent is the foundation of trust.",
-  "A model that cannot say no is dangerous.",
-  "The benchmark is not the goal.",
-  "Bias audits are not a one-time event.",
-  "Power without oversight is liability.",
-  "The question before the answer.",
-  "Interpretability is an act of humility.",
-  "Incident response is a governance muscle.",
-  "Ethics cannot be bolted on afterwards.",
-  "The supply chain includes the model card.",
-  "Fairness is context-dependent.",
-  "Autonomy requires reversibility.",
-  "Documentation is the first line of defence.",
-  "High stakes demand higher scrutiny.",
-  "The future of AI is a policy decision.",
-  "Uncertainty should be communicated, not hidden.",
-  "Harm reduction is not risk elimination.",
-  "Provenance matters as much as performance.",
-  "The users are the stakeholders.",
-  "An unmonitored system drifts.",
-  "Consent forms are not consent.",
-  "Robustness is tested at the margins.",
-  "Feedback loops require feedback channels.",
-  "Governance is a living document.",
-  "The model learns what you reward.",
-  "Privacy by design, not by disclaimer.",
-  "Impact assessments prevent impact.",
-  "The right to explanation is a right.",
-  "Oversight scales with stakes.",
-  "Deployment is not the finish line.",
-  "Every heuristic has a blind spot.",
-  "Shared vocabulary precedes shared standards.",
-  "The algorithm reflects its authors.",
-  "Accountability without authority is hollow.",
-  "Iteration without evaluation is drift.",
-  "Efficiency must not outrun accountability.",
-  "The hardest safety problem is overconfidence.",
+const DAILY_READS = [
+  "AI governance: accountability engineered into every model you ship.",
+  "IT modernization: trading legacy constraints for future capability.",
+  "Governance as a Service: oversight delivered like infrastructure.",
+  "An IT standard is a promise anyone can verify.",
+  "Governance without evidence is only a guess.",
+  "Modernization is migration with intent, not newer hardware.",
+  "Responsible AI is proven before deployment, not promised after.",
+  "Standards are the grammar that lets systems trust each other.",
+  "Governance as a Service: compliance you subscribe to, not restart.",
+  "The audit trail is the artefact — if it wasn't recorded, it didn't happen.",
+  "Modernization retires debt so you can fund outcomes.",
+  "Govern what learns, or it will govern you.",
+  "Standards turn opinion into interoperability.",
+  "Modern IT is measured by how safely it can change.",
+  "Governance scales when controls become code.",
+  "An AI you cannot explain is an AI you cannot govern.",
+  "Governance as a Service delivers the framework; you keep the judgement.",
+  "Modernization without governance is just faster risk.",
+  "A control that is never tested is no control at all.",
+  "IT standards turn a promise into a guarantee.",
+  "AI governance makes principles provable.",
+  "Modernize for reversibility: change you can safely undo.",
+  "Governance is accountability with a paper trail.",
+  "A standard nobody follows is documentation, not a standard.",
+  "AI governance is risk management for systems that learn.",
+  "Modern platforms assume change; legacy platforms resist it.",
+  "Governance as a Service: policy, controls and evidence, delivered together.",
+  "Explainability is a constraint you design from, not bolt on.",
+  "Modernization is the quiet work behind every innovation.",
+  "A standard earns authority by being verifiable, not mandated.",
+  "AI governance asks not only can we, but should we.",
+  "IT modernization is debt repayment for the future.",
+  "Proven controls beat cited policies.",
+  "Governance as a Service turns 'we should' into 'we already do'.",
+  "Interoperability is a standard kept by everyone at once.",
+  "The model is only as governed as its weakest unmonitored path.",
+  "Good modernization is invisible to users and obvious in the metrics.",
+  "Governance is how an organisation keeps its promises at scale.",
+  "A standard is consensus made executable.",
+  "Fasten governance before the model accelerates.",
+  "Modern IT makes security and compliance defaults, not add-ons.",
+  "Governance as a Service: oversight that arrives ready, not assembled.",
+  "What you cannot measure, you cannot modernize.",
+  "AI governance is how using a model becomes owning its outcome.",
+  "Standards are written so the next engineer never has to guess.",
 ];
 
 function getISOWeek(date) {
@@ -409,22 +405,27 @@ function getISOWeek(date) {
   return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
 }
 
-function getDailyBrief() {
+function getDailyRead() {
   const now = new Date();
-  // Whole-day count since the 2025-01-01 epoch (UTC), so the read advances
-  // to a fresh quote every day and never repeats within a cycle.
+  // Whole-day count since the 2025-01-01 epoch (UTC), so the read advances to a
+  // fresh definition every day and never repeats within a cycle. Fully
+  // deterministic: no network, no CI, no human intervention.
   const today = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
   const epoch = Date.UTC(2025, 0, 1);
   const dayNum = Math.floor((today - epoch) / 86400000) + 1;
-  const idx = ((dayNum - 1) % WEEKLY_BRIEFS.length + WEEKLY_BRIEFS.length) % WEEKLY_BRIEFS.length;
+  const idx = ((dayNum - 1) % DAILY_READS.length + DAILY_READS.length) % DAILY_READS.length;
   return {
-    quote: WEEKLY_BRIEFS[idx],
+    quote: DAILY_READS[idx],
     num: String(dayNum).padStart(3, "0"),
   };
 }
 
 /* ────────────────────────────────────────────────────────────────
-   News feed — live governance brief (daily, client-side RSS)
+   Governance Brief — live worldwide newsfeed, refreshed in every
+   visitor's browser on each load (no CI, branch or human in the
+   loop). Covers AI governance & regulation, IT modernization, IT
+   standards, and notable AI tool / model releases employees should
+   know about.
    ──────────────────────────────────────────────────────────────── */
 const _BRIEF_MON = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
 function _briefDate(d) {
@@ -433,89 +434,116 @@ function _briefDate(d) {
 function _briefChip(title) {
   const s = String(title).toLowerCase();
   if (/regulat|\bact\b|\blaw\b|\bbill\b|legislat/.test(s)) return "Regulation";
-  if (/framework|standard|\bnist\b|\biso\b|guideline/.test(s)) return "Framework";
+  if (/iso 42001|\bnist\b|\biso\b|standard|framework|guideline|certif/.test(s)) return "Standards";
+  if (/moderni[sz]|legacy|migrat|digital transformation|cloud|overhaul|upgrade/.test(s)) return "Modernization";
+  if (/launch|releas|unveil|rolls out|introduc|debut|new model|new tool|update/.test(s)) return "Release";
   if (/fine|enforce|penalt|lawsuit|\bban\b/.test(s)) return "Enforcement";
-  if (/\beu\b|brussels|white house|federal|government|ministry|meity|oecd/.test(s)) return "Policy";
+  if (/\beu\b|brussels|white house|federal|government|ministry|meity|oecd|\bun\b/.test(s)) return "Policy";
   return "Industry";
 }
-// AI-governance / policy headlines, freshest first.
-const BRIEF_FEED = "https://news.google.com/rss/search?q=%22AI%20governance%22%20OR%20%22AI%20regulation%22%20OR%20%22AI%20policy%22&hl=en-US&gl=US&ceid=US:en";
-// CORS proxies tried in order (Google News RSS sends no CORS headers).
-const BRIEF_SOURCES = [
-  "https://api.allorigins.win/raw?url=" + encodeURIComponent(BRIEF_FEED),
-  "https://corsproxy.io/?url=" + encodeURIComponent(BRIEF_FEED),
+// Focused Google-News RSS queries spanning every topic, merged newest-first.
+const BRIEF_QUERIES = [
+  '("AI governance" OR "AI regulation" OR "AI Act" OR "AI policy" OR "responsible AI") when:14d',
+  '("IT modernization" OR "digital transformation" OR "ISO 42001" OR "NIST AI" OR "AI standard" OR "AI compliance") when:21d',
+  '("new AI model" OR "AI model release" OR "AI tool launch" OR "launches AI" OR "enterprise AI") when:10d',
 ];
-async function fetchGovernanceNews() {
-  let lastErr;
-  for (const url of BRIEF_SOURCES) {
+function _briefFeedUrl(q) {
+  return "https://news.google.com/rss/search?q=" + encodeURIComponent(q) + "&hl=en-US&gl=US&ceid=US:en";
+}
+// Google News RSS sends no CORS headers, so route through public CORS proxies.
+const BRIEF_PROXIES = [
+  (u) => "https://api.allorigins.win/raw?url=" + encodeURIComponent(u),
+  (u) => "https://corsproxy.io/?url=" + encodeURIComponent(u),
+  (u) => "https://thingproxy.freeboard.io/fetch/" + u,
+];
+function _briefParse(xml) {
+  const doc = new DOMParser().parseFromString(xml, "text/xml");
+  if (doc.querySelector("parsererror")) return [];
+  const out = [];
+  doc.querySelectorAll("item").forEach((it) => {
+    const link = (it.querySelector("link")?.textContent || "").trim();
+    let title = (it.querySelector("title")?.textContent || "").trim();
+    if (!title || !link) return;
+    const src = (it.querySelector("source")?.textContent || "").trim();
+    // Google News titles read "Headline - Publisher"; trim the publisher.
+    if (src && title.endsWith(" - " + src)) title = title.slice(0, -(src.length + 3)).trim();
+    const pub = it.querySelector("pubDate")?.textContent;
+    const d = pub ? new Date(pub) : new Date();
+    out.push({
+      _t: isNaN(d) ? Date.now() : d.getTime(),
+      date: _briefDate(isNaN(d) ? new Date() : d),
+      chip: _briefChip(title),
+      title,
+      src: src || "Newswire",
+      tag: "Google News",
+      url: link,
+    });
+  });
+  return out;
+}
+async function _briefFetchOne(url) {
+  for (const wrap of BRIEF_PROXIES) {
     try {
-      const res = await fetch(url, { mode: "cors", cache: "no-store" });
-      if (!res.ok) throw new Error("HTTP " + res.status + " · " + url);
-      const xml = await res.text();
-      const doc = new DOMParser().parseFromString(xml, "text/xml");
-      if (doc.querySelector("parsererror")) throw new Error("bad XML · " + url);
-      const out = [];
-      doc.querySelectorAll("item").forEach((it) => {
-        if (out.length >= 6) return;
-        const link = (it.querySelector("link")?.textContent || "").trim();
-        let title = (it.querySelector("title")?.textContent || "").trim();
-        if (!title || !link) return;
-        const src = (it.querySelector("source")?.textContent || "").trim();
-        // Google News titles read "Headline - Publisher"; trim the publisher.
-        if (src && title.endsWith(" - " + src)) title = title.slice(0, -(src.length + 3)).trim();
-        const pub = it.querySelector("pubDate")?.textContent;
-        const d = pub ? new Date(pub) : new Date();
-        out.push({
-          date: _briefDate(isNaN(d) ? new Date() : d),
-          chip: _briefChip(title),
-          title,
-          src: src || "Newswire",
-          tag: "Google News",
-          url: link,
-        });
-      });
-      if (!out.length) throw new Error("no items · " + url);
-      return out;
-    } catch (e) {
-      lastErr = e;
-    }
+      const res = await fetch(wrap(url), { mode: "cors", cache: "no-store" });
+      if (!res.ok) continue;
+      const items = _briefParse(await res.text());
+      if (items.length) return items;
+    } catch (e) { /* try next proxy */ }
   }
-  throw lastErr || new Error("no source reachable");
+  return [];
+}
+async function fetchGovernanceNews() {
+  const batches = await Promise.all(BRIEF_QUERIES.map((q) => _briefFetchOne(_briefFeedUrl(q))));
+  const seen = new Set();
+  const merged = [];
+  for (const it of batches.flat()) {
+    const key = it.title.toLowerCase().slice(0, 80);
+    if (seen.has(key)) continue;
+    seen.add(key);
+    merged.push(it);
+  }
+  merged.sort((a, b) => b._t - a._t);
+  return merged.slice(0, 6).map(({ _t, ...rest }) => rest);
 }
 window.fetchGovernanceNews = fetchGovernanceNews;
 
-// Live data lives on the unprotected `feeds-data` branch (CI can't push to the
-// protected main). raw.githubusercontent serves it cross-origin with a short
-// cache, so the site stays current without redeploying Pages.
-const FEEDS_DATA_BASE =
-  "https://raw.githubusercontent.com/kneuralabs/net/feeds-data/assets/";
-
-// Loads the Brief: live feeds-data snapshot (refreshed daily by CI) first, then
-// the committed snapshot on main, then live client-side RSS. All are real news.
-async function fetchBriefData() {
-  const cb = Date.now();
-  for (const src of [FEEDS_DATA_BASE + "news.json?t=" + cb, "assets/news.json?d=" + cb]) {
-    try {
-      const r = await fetch(src, { cache: "no-store" });
-      if (r.ok) {
-        const items = await r.json();
-        if (Array.isArray(items) && items.length) return items.slice(0, 6);
-      }
-    } catch (e) {
-      console.warn("[Brief] source unavailable: " + src, e);
+// Committed snapshot shipped with the site — used for instant first paint and
+// as a graceful fallback when the live RSS proxies are unreachable.
+async function fetchBriefSeed() {
+  try {
+    const r = await fetch("assets/news.json?d=" + Date.now(), { cache: "no-store" });
+    if (r.ok) {
+      const items = await r.json();
+      if (Array.isArray(items) && items.length) return items.slice(0, 6);
     }
+  } catch (e) { /* fall through to empty */ }
+  return [];
+}
+// Live worldwide headlines first (refreshed every page load); the committed
+// seed only if every live source is unreachable. No CI, branch or human in loop.
+async function fetchBriefData() {
+  try {
+    const live = await fetchGovernanceNews();
+    if (live && live.length) return live;
+  } catch (e) {
+    console.warn("[Brief] live feed unavailable:", e);
   }
-  return await fetchGovernanceNews();
+  return await fetchBriefSeed();
 }
 window.fetchBriefData = fetchBriefData;
+window.fetchBriefSeed = fetchBriefSeed;
 
 function FeedSection() {
-  const brief = getDailyBrief();
+  const read = getDailyRead();
   const week = getISOWeek(new Date());
   const posterPal = KN_POSTER_PALETTE[week % KN_POSTER_PALETTE.length];
   const [feed, setFeed] = useState(() => ({ items: window.NEWS || [], status: "loading" }));
   useEffect(() => {
     let alive = true;
+    // Instant paint from the committed seed, then replace with live worldwide news.
+    fetchBriefSeed().then((seed) => {
+      if (alive && seed.length) setFeed((f) => (f.status === "loading" ? { items: seed, status: "cached" } : f));
+    });
     fetchBriefData()
       .then((items) => {
         if (!alive) return;
@@ -523,15 +551,15 @@ function FeedSection() {
         else setFeed((f) => ({ items: f.items, status: "cached" }));
       })
       .catch((e) => {
-        console.error("[Brief] live feed unavailable:", e);
+        console.error("[Brief] feed unavailable:", e);
         if (alive) setFeed((f) => ({ items: f.items, status: "cached" }));
       });
     return () => { alive = false; };
   }, []);
   const meta =
-    feed.status === "live"    ? "Live · refreshed daily · IST"
-    : feed.status === "loading" ? "Syncing · IST"
-    :                             "Cached · IST";
+    feed.status === "live"      ? "Live · worldwide · refreshed daily"
+    : feed.status === "loading" ? "Syncing latest headlines…"
+    :                             "Latest cached · worldwide";
   return (
     <section className="section" id="feed">
       <div className="section__head">
@@ -547,8 +575,8 @@ function FeedSection() {
               <div>
                 <h3 className="feed__title">
                   {feed.status === "loading"
-                    ? "Loading the latest governance headlines…"
-                    : "Live brief syncing — authentic headlines will appear shortly."}
+                    ? "Loading the latest governance, modernization & AI headlines…"
+                    : "Live brief syncing — fresh headlines will appear shortly."}
                 </h3>
               </div>
             </div>
@@ -557,16 +585,16 @@ function FeedSection() {
             const fp = KN_TILE_PALETTE[i % KN_TILE_PALETTE.length];
             return (
               <a key={i} className="feed__item" href={n.url} target="_blank" rel="noopener noreferrer"
-                 style={{ background: fp.bg, borderTopColor: fp.border }}>
+                 style={{ background: fp.bg, borderLeft: "3px solid " + fp.border }}>
                 <div className="feed__date">
                   {n.date}
-                  {i === 0 && <span style={{display:"block",width:"100%",boxSizing:"border-box",fontSize:"9px",fontWeight:700,letterSpacing:"0.14em",padding:"2px 6px",marginTop:5,background:"rgba(239,68,68,0.12)",color:"#f87171",border:"1px solid rgba(239,68,68,0.30)",animation:"just-in-pulse 2s ease-in-out infinite",textAlign:"center",textTransform:"uppercase",fontFamily:"var(--f-mono)"}}>Just In</span>}
+                  {i === 0 && <span style={{display:"block",width:"100%",boxSizing:"border-box",fontSize:"9px",fontWeight:700,letterSpacing:"0.14em",padding:"2px 6px",marginTop:5,background:"rgba(220,38,38,0.14)",color:"#dc2626",border:"1px solid rgba(220,38,38,0.45)",animation:"just-in-pulse 2s ease-in-out infinite",textAlign:"center",textTransform:"uppercase",fontFamily:"var(--f-mono)"}}>Just In</span>}
                 </div>
                 <div>
                   <h3 className="feed__title">{n.title}</h3>
-                  <div className="feed__src" style={{ color: fp.accent }}>{n.src} · <b style={{ color: fp.accent }}>{n.tag}</b></div>
+                  <div className="feed__src" style={{ color: "var(--accent-ink)" }}>{n.src} · <b style={{ color: "var(--accent-ink)" }}>{n.tag}</b></div>
                 </div>
-                <span className="feed__chip" style={{ borderColor: fp.border, color: fp.accent, background: fp.bg }}>
+                <span className="feed__chip" style={{ color: "var(--accent-ink)" }}>
                   {n.chip} <span className="feed__arrow" aria-hidden="true">↗</span>
                 </span>
               </a>
@@ -575,7 +603,7 @@ function FeedSection() {
         </div>
         <aside className="aside">
           <div className="aside__poster" style={{
-            background: posterPal.bg,
+            background: `linear-gradient(150deg, rgba(8,20,42,0.60), rgba(8,20,42,0.82)), ${posterPal.bg}`,
             borderColor: posterPal.border,
           }}>
             {/* orb 1 — top right */}
@@ -583,18 +611,18 @@ function FeedSection() {
               position:'absolute', inset:'-20% -10% auto auto',
               width:'60%', aspectRatio:'1',
               background: `radial-gradient(circle, ${posterPal.orb1} 0%, rgba(74,139,200,0.3) 60%, transparent 100%)`,
-              borderRadius:'50%', opacity:0.75, filter:'blur(2px)', pointerEvents:'none',
+              borderRadius:'50%', opacity:0.55, filter:'blur(2px)', pointerEvents:'none',
             }} />
             {/* orb 2 — bottom left */}
             <div style={{
               position:'absolute', bottom:'-15%', left:'-10%',
               width:'50%', aspectRatio:'1',
               background: `radial-gradient(circle, ${posterPal.orb2} 0%, transparent 70%)`,
-              borderRadius:'50%', filter:'blur(3px)', pointerEvents:'none',
+              borderRadius:'50%', opacity:0.55, filter:'blur(3px)', pointerEvents:'none',
             }} />
             <span className="smallcaps" style={{ position:'relative' }}>Daily Read</span>
-            <h3 style={{ position:'relative' }}>{brief.quote}</h3>
-            <div className="poster-stamp" style={{ position:'relative' }}>Brief № {brief.num}</div>
+            <h3 style={{ position:'relative', fontSize:'clamp(22px, 2.3vw, 31px)', lineHeight:1.18, textShadow:'0 1px 12px rgba(0,0,0,0.50)' }}>{read.quote}</h3>
+            <div className="poster-stamp" style={{ position:'relative' }}>Read № {read.num}</div>
           </div>
           <LinkedInCard />
         </aside>
@@ -604,50 +632,49 @@ function FeedSection() {
 }
 
 /* ────────────────────────────────────────────────────────────────
-   LinkedIn widget — company page follower count
-   Reads the committed snapshot (assets/linkedin.json, refreshed
-   daily by CI) first, then falls back to fetching the public page
-   through the same CORS proxies the Brief uses.
+   LinkedIn widget — Kneuralabs company-page follower count.
+   Fetches the public page live (via CORS proxies) on every load,
+   falling back to the committed snapshot only when the page is
+   authwalled. No CI, branch or human intervention.
    ──────────────────────────────────────────────────────────────── */
 const LINKEDIN_PAGE_URL = "https://www.linkedin.com/company/kneuralabs/";
 const LINKEDIN_COMPANY_ID = "112376100";
 // Built for anonymous embedding — far less likely to be authwalled than the page.
 const LINKEDIN_FOLLOW_BTN_URL =
   "https://www.linkedin.com/pages-extensions/FollowCompany?id=" + LINKEDIN_COMPANY_ID + "&counter=bottom";
-
+const LINKEDIN_PROXIES = [
+  (u) => "https://api.allorigins.win/raw?url=" + encodeURIComponent(u),
+  (u) => "https://corsproxy.io/?url=" + encodeURIComponent(u),
+  (u) => "https://thingproxy.freeboard.io/fetch/" + u,
+];
+function _liParse(html) {
+  const m = /([\d][\d,.]*)\s+followers/i.exec(html) ||
+            /follower[^>]*>\s*([\d][\d,.]*)\s*</i.exec(html);
+  if (!m) return null;
+  const n = parseInt(m[1].replace(/\D/g, ""), 10);
+  return Number.isFinite(n) && n > 0 ? n : null;
+}
 async function fetchLinkedInFollowers() {
-  // 1 · Snapshot refreshed by CI — live feeds-data branch first, then the
-  //     committed copy on main (same pattern as the Brief).
-  const cb = Date.now();
-  for (const src of [FEEDS_DATA_BASE + "linkedin.json?t=" + cb, "assets/linkedin.json?d=" + cb]) {
-    try {
-      const r = await fetch(src, { cache: "no-store" });
-      if (r.ok) {
-        const data = await r.json();
-        if (data && typeof data.followers === "number") return data.followers;
-      }
-    } catch (e) {
-      console.warn("[LinkedIn] source unavailable: " + src, e);
+  // 1 · Live count straight from the page (follow-button endpoint first — it is
+  //     meant for anonymous embedding, unlike the authwalled company page).
+  for (const target of [LINKEDIN_FOLLOW_BTN_URL, LINKEDIN_PAGE_URL]) {
+    for (const wrap of LINKEDIN_PROXIES) {
+      try {
+        const res = await fetch(wrap(target), { mode: "cors", cache: "no-store" });
+        if (!res.ok) continue;
+        const n = _liParse(await res.text());
+        if (n != null) return n;
+      } catch (e) { /* try next proxy */ }
     }
   }
-  // 2 · Live sources via CORS proxies (follow-button endpoint first — it is
-  //     meant for anonymous embedding, unlike the authwalled company page)
-  const targets = [LINKEDIN_FOLLOW_BTN_URL, LINKEDIN_PAGE_URL];
-  const proxies = [];
-  for (const t of targets) {
-    proxies.push("https://api.allorigins.win/raw?url=" + encodeURIComponent(t));
-    proxies.push("https://corsproxy.io/?url=" + encodeURIComponent(t));
-  }
-  for (const url of proxies) {
-    try {
-      const res = await fetch(url, { mode: "cors", cache: "no-store" });
-      if (!res.ok) continue;
-      const html = await res.text();
-      const m = /([\d][\d,.]*)\s+followers/i.exec(html) ||
-                /follower[^>]*>\s*([\d][\d,.]*)\s*</i.exec(html);
-      if (m) return parseInt(m[1].replace(/\D/g, ""), 10);
-    } catch (e) { /* try next proxy */ }
-  }
+  // 2 · Committed snapshot fallback (last known good count).
+  try {
+    const r = await fetch("assets/linkedin.json?d=" + Date.now(), { cache: "no-store" });
+    if (r.ok) {
+      const data = await r.json();
+      if (data && typeof data.followers === "number") return data.followers;
+    }
+  } catch (e) { /* give up — render an em dash */ }
   return null;
 }
 window.fetchLinkedInFollowers = fetchLinkedInFollowers;
@@ -673,7 +700,7 @@ function LinkedInCard() {
           </svg>
         </a>
         <div>
-          <div className="li-card__count">{followers == null ? "—" : followers.toLocaleString("en-US")}</div>
+          <div className="li-card__count" style={{ color: "var(--ink)" }}>{followers == null ? "—" : followers.toLocaleString("en-US")}</div>
           <div className="li-card__sub">Total followers</div>
         </div>
       </div>

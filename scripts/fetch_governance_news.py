@@ -17,13 +17,22 @@ import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 from email.utils import parsedate_to_datetime
 from pathlib import Path
+from urllib.parse import quote
 
 OUT = Path(__file__).resolve().parent.parent / "assets" / "news.json"
 
-# Authentic source: Google News RSS search, restricted to AI governance / policy.
+
+def _feed(q: str) -> str:
+    return "https://news.google.com/rss/search?q=" + quote(q) + "&hl=en-US&gl=US&ceid=US:en"
+
+
+# Authentic source: Google News RSS (aggregates real publishers). Worldwide AI
+# governance & regulation, IT modernization, IT standards and notable AI
+# tool/model releases — several focused queries, merged and de-duplicated below.
 FEEDS = [
-    "https://news.google.com/rss/search?q=%22AI%20governance%22%20OR%20%22AI%20regulation%22%20OR%20%22AI%20policy%22%20OR%20%22AI%20Act%22&hl=en-US&gl=US&ceid=US:en",
-    "https://news.google.com/rss/search?q=%22AI%20safety%22%20OR%20%22AI%20oversight%22%20OR%20%22AI%20governance%22%20when:7d&hl=en-US&gl=US&ceid=US:en",
+    _feed('("AI governance" OR "AI regulation" OR "AI Act" OR "AI policy" OR "responsible AI") when:14d'),
+    _feed('("IT modernization" OR "digital transformation" OR "ISO 42001" OR "NIST AI" OR "AI standard" OR "AI compliance") when:21d'),
+    _feed('("new AI model" OR "AI model release" OR "AI tool launch" OR "launches AI" OR "enterprise AI") when:10d'),
 ]
 
 MON = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN",
@@ -45,11 +54,15 @@ def classify_chip(title: str) -> str:
     s = title.lower()
     if re.search(r"regulat|\bact\b|\blaw\b|\bbill\b|legislat", s):
         return "Regulation"
-    if re.search(r"framework|standard|\bnist\b|\biso\b|guideline", s):
-        return "Framework"
+    if re.search(r"iso 42001|\bnist\b|\biso\b|standard|framework|guideline|certif", s):
+        return "Standards"
+    if re.search(r"moderni[sz]|legacy|migrat|digital transformation|cloud|overhaul|upgrade", s):
+        return "Modernization"
+    if re.search(r"launch|releas|unveil|rolls out|introduc|debut|new model|new tool|update", s):
+        return "Release"
     if re.search(r"fine|enforce|penalt|lawsuit|\bban\b", s):
         return "Enforcement"
-    if re.search(r"\beu\b|brussels|white house|federal|government|ministry|meity|oecd", s):
+    if re.search(r"\beu\b|brussels|white house|federal|government|ministry|meity|oecd|\bun\b", s):
         return "Policy"
     return "Industry"
 

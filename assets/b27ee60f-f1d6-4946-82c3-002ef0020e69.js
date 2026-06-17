@@ -49,7 +49,7 @@ const TOOLS = [
     locked: false, href: "https://letterz.kneuralabs.com", seal: "📝", accent: "#6D28D9" },
 ];
 
-const NEWS = [];  // Populated at runtime from assets/news.json (authentic, refreshed daily by CI).
+const NEWS = [];  // Replaced at runtime by fetchBriefData(): live worldwide headlines each load, committed assets/news.json as fallback.
 
 const WEATHER = {
   kolkata: { temp: 34, cond: "Hot · clear", icon: "☀" },
