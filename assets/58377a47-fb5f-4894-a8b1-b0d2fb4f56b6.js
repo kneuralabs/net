@@ -456,6 +456,22 @@ const BRIEF_PROXIES = [
   (u) => "https://corsproxy.io/?url=" + encodeURIComponent(u),
   (u) => "https://thingproxy.freeboard.io/fetch/" + u,
 ];
+// Cross-origin fetch with a hard timeout. The free public CORS proxies above
+// are flaky and routinely accept a connection then hang. A plain fetch() has no
+// timeout, so one stalled proxy would await forever — leaving the Brief stuck on
+// its committed seed and the LinkedIn count stuck on an em dash, with no way to
+// advance to the next proxy. Aborting on a deadline turns a hang into a normal
+// "try the next proxy" failure so the feed always converges.
+const PROXY_TIMEOUT_MS = 6000;
+async function _proxyFetch(url, timeoutMs = PROXY_TIMEOUT_MS) {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), timeoutMs);
+  try {
+    return await fetch(url, { mode: "cors", cache: "no-store", signal: ctrl.signal });
+  } finally {
+    clearTimeout(timer);
+  }
+}
 function _briefParse(xml) {
   const doc = new DOMParser().parseFromString(xml, "text/xml");
   if (doc.querySelector("parsererror")) return [];
@@ -484,7 +500,7 @@ function _briefParse(xml) {
 async function _briefFetchOne(url) {
   for (const wrap of BRIEF_PROXIES) {
     try {
-      const res = await fetch(wrap(url), { mode: "cors", cache: "no-store" });
+      const res = await _proxyFetch(wrap(url));
       if (!res.ok) continue;
       const items = _briefParse(await res.text());
       if (items.length) return items;
@@ -660,7 +676,7 @@ async function fetchLinkedInFollowers() {
   for (const target of [LINKEDIN_FOLLOW_BTN_URL, LINKEDIN_PAGE_URL]) {
     for (const wrap of LINKEDIN_PROXIES) {
       try {
-        const res = await fetch(wrap(target), { mode: "cors", cache: "no-store" });
+        const res = await _proxyFetch(wrap(target));
         if (!res.ok) continue;
         const n = _liParse(await res.text());
         if (n != null) return n;
