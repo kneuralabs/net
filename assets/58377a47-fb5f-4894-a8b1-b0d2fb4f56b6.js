@@ -523,6 +523,27 @@ async function fetchGovernanceNews() {
 }
 window.fetchGovernanceNews = fetchGovernanceNews;
 
+// ── First-party CI-refreshed feed data ──────────────────────────────────────
+// A scheduled GitHub Action regenerates the feeds server-side and publishes
+// them to the UNPROTECTED `feeds-data` branch. GitHub's own raw endpoint serves
+// that branch with `Access-Control-Allow-Origin: *`, so the browser reads it
+// cross-origin with NO third-party proxy in the path. This is the reliable live
+// source. The public CORS proxies above are now only a best-effort "even
+// fresher" layer, and the committed assets/*.json the final offline fallback.
+const FEEDS_DATA_BASE = "https://raw.githubusercontent.com/kneuralabs/net/feeds-data/";
+async function _feedsDataJson(path) {
+  const r = await fetch(FEEDS_DATA_BASE + path + "?d=" + Date.now(), { cache: "no-store" });
+  if (!r.ok) throw new Error("feeds-data " + path + " HTTP " + r.status);
+  return await r.json();
+}
+async function fetchFeedsDataBrief() {
+  try {
+    const items = await _feedsDataJson("assets/news.json");
+    if (Array.isArray(items) && items.length) return items.slice(0, 6);
+  } catch (e) { /* branch not published yet / offline — fall through */ }
+  return [];
+}
+
 // Committed snapshot shipped with the site — used for instant first paint and
 // as a graceful fallback when the live RSS proxies are unreachable.
 async function fetchBriefSeed() {
@@ -535,14 +556,19 @@ async function fetchBriefSeed() {
   } catch (e) { /* fall through to empty */ }
   return [];
 }
-// Live worldwide headlines first (refreshed every page load); the committed
-// seed only if every live source is unreachable. No CI, branch or human in loop.
+// Source priority, most-reliable first:
+//   1. First-party CI feed on the feeds-data branch (refreshed daily, CORS-ok).
+//   2. Best-effort live worldwide headlines via public CORS proxies (timeout-
+//      bounded) — only when the CI feed is unreachable.
+//   3. Committed seed shipped with the site — offline fallback.
 async function fetchBriefData() {
+  const ci = await fetchFeedsDataBrief();
+  if (ci.length) return ci;
   try {
     const live = await fetchGovernanceNews();
     if (live && live.length) return live;
   } catch (e) {
-    console.warn("[Brief] live feed unavailable:", e);
+    console.warn("[Brief] live proxy feed unavailable:", e);
   }
   return await fetchBriefSeed();
 }
@@ -671,8 +697,15 @@ function _liParse(html) {
   return Number.isFinite(n) && n > 0 ? n : null;
 }
 async function fetchLinkedInFollowers() {
-  // 1 · Live count straight from the page (follow-button endpoint first — it is
-  //     meant for anonymous embedding, unlike the authwalled company page).
+  // 1 · First-party CI count from the feeds-data branch (refreshed every 6h,
+  //     served CORS-enabled by raw.githubusercontent — the reliable source).
+  try {
+    const data = await _feedsDataJson("assets/linkedin.json");
+    if (data && typeof data.followers === "number") return data.followers;
+  } catch (e) { /* branch not published yet / offline — fall through */ }
+  // 2 · Best-effort live scrape via public CORS proxies (timeout-bounded;
+  //     follow-button endpoint first — it is meant for anonymous embedding,
+  //     unlike the authwalled company page).
   for (const target of [LINKEDIN_FOLLOW_BTN_URL, LINKEDIN_PAGE_URL]) {
     for (const wrap of LINKEDIN_PROXIES) {
       try {
@@ -683,7 +716,7 @@ async function fetchLinkedInFollowers() {
       } catch (e) { /* try next proxy */ }
     }
   }
-  // 2 · Committed snapshot fallback (last known good count).
+  // 3 · Committed snapshot fallback (last known good count, offline).
   try {
     const r = await fetch("assets/linkedin.json?d=" + Date.now(), { cache: "no-store" });
     if (r.ok) {
