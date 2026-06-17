@@ -903,8 +903,10 @@ window.fetchCommTasks = fetchCommTasks;
 
 function OpenTasks({ onOpenCommand }) {
   const prioOrder = { high: 0, med: 1, low: 2 };
+  // Start empty while syncing so the bundled snapshot never flashes a stale
+  // count; the snapshot is only used as a fallback if the live read fails.
   const [data, setData] = React.useState(() => ({
-    tasks: window.OPEN_TASKS || [],
+    tasks: [],
     status: "loading",
     err: "",
   }));
@@ -918,7 +920,7 @@ function OpenTasks({ onOpenCommand }) {
       .catch(e => {
         const msg = String((e && e.message) || e || "fetch failed");
         console.error("[KneuraCOMM] live queue unavailable:", e);
-        if (alive) setData(d => ({ tasks: d.tasks, status: "cached", err: msg }));
+        if (alive) setData({ tasks: window.OPEN_TASKS || [], status: "cached", err: msg });
       });
     return () => { alive = false; };
   }, []);
@@ -950,7 +952,9 @@ function OpenTasks({ onOpenCommand }) {
       </div>
       <div className="opentasks__title-row">
         <h2 className="opentasks__title">
-          You have <em>{tasks.length}</em> open task{tasks.length === 1 ? "" : "s"}
+          {data.status === "loading"
+            ? <>Syncing the <em>live</em> queue…</>
+            : <>You have <em>{tasks.length}</em> open task{tasks.length === 1 ? "" : "s"}</>}
         </h2>
         <div className="opentasks__counts">
           <span><i className="prio prio--high" /> {high} High</span>
