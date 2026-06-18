@@ -567,105 +567,35 @@ function FeedSection() {
   const read = knDailyDefinition();
   const week = knISOWeek(new Date());
   const posterPal = KN_POSTER_PALETTE[week % KN_POSTER_PALETTE.length];
-  // Start from the last live result cached in this browser, so a returning
-  // visitor sees real data instantly; we then refresh it live below.
-  const cachedNews = knCacheGet("kn.brief.v1");
-  const [feed, setFeed] = useState(() =>
-    Array.isArray(cachedNews) && cachedNews.length
-      ? { items: cachedNews, status: "live" }
-      : { items: [], status: "loading" });
-  useEffect(() => {
-    let alive = true;
-    // First-ever load with no cache: paint the committed seed while we fetch.
-    if (!(Array.isArray(cachedNews) && cachedNews.length)) {
-      knLoadNewsSeed().then((seed) => {
-        if (alive && seed.length) setFeed((f) => (f.status === "loading" ? { items: seed, status: "cached" } : f));
-      });
-    }
-    // Always pull fresh worldwide headlines; persist every successful result so
-    // the feed keeps showing real live data even if a later fetch is blocked.
-    knFetchNews()
-      .then((items) => {
-        if (!alive) return;
-        if (items && items.length) { setFeed({ items, status: "live" }); knCacheSet("kn.brief.v1", items); }
-        else setFeed((f) => ({ items: f.items, status: f.items.length ? "live" : "cached" }));
-      })
-      .catch((e) => {
-        console.warn("[Brief] live refresh failed:", e);
-        if (alive) setFeed((f) => ({ items: f.items, status: f.items.length ? "live" : "cached" }));
-      });
-    return () => { alive = false; };
-  }, []);
-  const meta =
-    feed.status === "loading" ? "Syncing latest headlines…"
-    : feed.status === "cached" ? "Last live · worldwide"
-    :                            "Live · worldwide · auto-refreshed";
   return (
     <section className="section" id="feed">
       <div className="section__head">
         <span className="section__num">№ II — Daily</span>
-        <h2 className="section__title">Governance <em>Brief</em></h2>
-        <span className="section__meta">{meta}</span>
+        <h2 className="section__title">Daily <em>Read</em></h2>
       </div>
-      <div className="feed">
-        <div className="feed__list">
-          {feed.items.length === 0 && (
-            <div className="feed__item" style={{ opacity: 0.75 }}>
-              <div className="feed__date">—</div>
-              <div>
-                <h3 className="feed__title">
-                  {feed.status === "loading"
-                    ? "Loading the latest governance, modernization & AI headlines…"
-                    : "Live brief syncing — fresh headlines will appear shortly."}
-                </h3>
-              </div>
-            </div>
-          )}
-          {feed.items.map((n, i) => {
-            const fp = KN_TILE_PALETTE[i % KN_TILE_PALETTE.length];
-            return (
-              <a key={i} className="feed__item" href={n.url} target="_blank" rel="noopener noreferrer"
-                 style={{ background: fp.bg, borderLeft: "3px solid " + fp.border }}>
-                <div className="feed__date">
-                  {n.date}
-                  {i === 0 && <span style={{display:"block",width:"100%",boxSizing:"border-box",fontSize:"9px",fontWeight:700,letterSpacing:"0.14em",padding:"2px 6px",marginTop:5,background:"rgba(220,38,38,0.14)",color:"#dc2626",border:"1px solid rgba(220,38,38,0.45)",animation:"just-in-pulse 2s ease-in-out infinite",textAlign:"center",textTransform:"uppercase",fontFamily:"var(--f-mono)"}}>Just In</span>}
-                </div>
-                <div>
-                  <h3 className="feed__title">{n.title}</h3>
-                  <div className="feed__src" style={{ color: "var(--accent-ink)" }}>{n.src} · <b style={{ color: "var(--accent-ink)" }}>{n.tag}</b></div>
-                </div>
-                <span className="feed__chip" style={{ color: "var(--accent-ink)" }}>
-                  {n.chip} <span className="feed__arrow" aria-hidden="true">↗</span>
-                </span>
-              </a>
-            );
-          })}
+      <div style={{ maxWidth: 460, margin: "0 auto" }}>
+        <div className="aside__poster" style={{
+          background: `linear-gradient(150deg, rgba(8,20,42,0.60), rgba(8,20,42,0.82)), ${posterPal.bg}`,
+          borderColor: posterPal.border,
+        }}>
+          {/* orb 1 — top right */}
+          <div style={{
+            position:'absolute', inset:'-20% -10% auto auto',
+            width:'60%', aspectRatio:'1',
+            background: `radial-gradient(circle, ${posterPal.orb1} 0%, rgba(74,139,200,0.3) 60%, transparent 100%)`,
+            borderRadius:'50%', opacity:0.55, filter:'blur(2px)', pointerEvents:'none',
+          }} />
+          {/* orb 2 — bottom left */}
+          <div style={{
+            position:'absolute', bottom:'-15%', left:'-10%',
+            width:'50%', aspectRatio:'1',
+            background: `radial-gradient(circle, ${posterPal.orb2} 0%, transparent 70%)`,
+            borderRadius:'50%', opacity:0.55, filter:'blur(3px)', pointerEvents:'none',
+          }} />
+          <span className="smallcaps" style={{ position:'relative' }}>Daily Read</span>
+          <h3 style={{ position:'relative', fontSize:'clamp(22px, 2.3vw, 31px)', lineHeight:1.18, textShadow:'0 1px 12px rgba(0,0,0,0.50)' }}>{read.quote}</h3>
+          <div className="poster-stamp" style={{ position:'relative' }}>Read № {read.num}</div>
         </div>
-        <aside className="aside">
-          <div className="aside__poster" style={{
-            background: `linear-gradient(150deg, rgba(8,20,42,0.60), rgba(8,20,42,0.82)), ${posterPal.bg}`,
-            borderColor: posterPal.border,
-          }}>
-            {/* orb 1 — top right */}
-            <div style={{
-              position:'absolute', inset:'-20% -10% auto auto',
-              width:'60%', aspectRatio:'1',
-              background: `radial-gradient(circle, ${posterPal.orb1} 0%, rgba(74,139,200,0.3) 60%, transparent 100%)`,
-              borderRadius:'50%', opacity:0.55, filter:'blur(2px)', pointerEvents:'none',
-            }} />
-            {/* orb 2 — bottom left */}
-            <div style={{
-              position:'absolute', bottom:'-15%', left:'-10%',
-              width:'50%', aspectRatio:'1',
-              background: `radial-gradient(circle, ${posterPal.orb2} 0%, transparent 70%)`,
-              borderRadius:'50%', opacity:0.55, filter:'blur(3px)', pointerEvents:'none',
-            }} />
-            <span className="smallcaps" style={{ position:'relative' }}>Daily Read</span>
-            <h3 style={{ position:'relative', fontSize:'clamp(22px, 2.3vw, 31px)', lineHeight:1.18, textShadow:'0 1px 12px rgba(0,0,0,0.50)' }}>{read.quote}</h3>
-            <div className="poster-stamp" style={{ position:'relative' }}>Read № {read.num}</div>
-          </div>
-          <LinkedInCard />
-        </aside>
       </div>
     </section>
   );
