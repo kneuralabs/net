@@ -554,7 +554,7 @@ async function knFetchNews() {
   return merged.slice(0, 6).map(({ _t, ...rest }) => rest);
 }
 // Committed snapshot shipped with the site — used only for the very first paint
-// before any live result has ever been cached in this browser.
+// and as the final offline fallback.
 async function knLoadNewsSeed() {
   try {
     const r = await fetch("assets/news.json?d=" + Date.now(), { cache: "no-store" });
@@ -563,20 +563,45 @@ async function knLoadNewsSeed() {
   return [];
 }
 
-// Live Governance Brief list: seeds from the last cached live payload for an
-// instant real feed, refreshes via knFetchNews() and re-persists, and falls
-// back to the committed seed only on a first-ever load that cannot reach out.
+// ── First-party CI-refreshed feed data ──────────────────────────────────────
+// A scheduled GitHub Action regenerates the feeds server-side and publishes
+// them to the UNPROTECTED `feeds-data` branch. GitHub's raw endpoint serves it
+// with Access-Control-Allow-Origin: *, so the browser reads it cross-origin with
+// NO third-party proxy — the reliable live source. The public relays above are
+// only a best-effort "even fresher" layer; assets/*.json the offline fallback.
+const FEEDS_DATA_BASE = "https://raw.githubusercontent.com/kneuralabs/net/feeds-data/";
+async function _feedsDataJson(path) {
+  const r = await fetch(FEEDS_DATA_BASE + path + "?d=" + Date.now(), { cache: "no-store" });
+  if (!r.ok) throw new Error("feeds-data " + path + " HTTP " + r.status);
+  return await r.json();
+}
+// Source priority, most-reliable first: CI feeds-data → best-effort live relays
+// → committed seed.
+async function fetchBriefData() {
+  try {
+    const ci = await _feedsDataJson("assets/news.json");
+    if (Array.isArray(ci) && ci.length) return ci.slice(0, 6);
+  } catch (e) { /* branch not published yet / offline — fall through */ }
+  try {
+    const live = await knFetchNews();
+    if (live && live.length) return live;
+  } catch (e) { /* relays down — fall through */ }
+  return await knLoadNewsSeed();
+}
+
+// Live Governance Brief list: instant paint from the committed seed, then
+// replaced by fetchBriefData() (CI feeds-data → relays → seed).
 function GovernanceBrief() {
-  const cached = knCacheGet("kn.news.v1");
-  const [items, setItems] = useState(() => (Array.isArray(cached) && cached.length ? cached : []));
+  const [items, setItems] = useState([]);
   useEffect(() => {
     let alive = true;
-    knFetchNews().then((live) => {
-      if (!alive) return;
-      if (Array.isArray(live) && live.length) { setItems(live); knCacheSet("kn.news.v1", live); }
-      else if (!(Array.isArray(cached) && cached.length)) {
-        knLoadNewsSeed().then((seed) => { if (alive && Array.isArray(seed) && seed.length) setItems(seed); });
-      }
+    // Instant paint from the committed seed, then replace with the reliable
+    // CI feed (feeds-data) — falling back through relays to the seed.
+    knLoadNewsSeed().then((seed) => {
+      if (alive && Array.isArray(seed) && seed.length) setItems((cur) => (cur.length ? cur : seed));
+    });
+    fetchBriefData().then((live) => {
+      if (alive && Array.isArray(live) && live.length) setItems(live);
     }).catch(() => {});
     return () => { alive = false; };
   }, []);
@@ -668,8 +693,13 @@ function knParseFollowers(html) {
   const n = parseInt(m[1].replace(/\D/g, ""), 10);
   return Number.isFinite(n) && n > 0 ? n : null;
 }
-// Race every relay over each target; the first valid count wins.
+// CI feeds-data first (reliable, CORS-ok), then race every relay over each
+// target; the first valid count wins.
 async function knFetchFollowers() {
+  try {
+    const d = await _feedsDataJson("assets/linkedin.json");
+    if (d && typeof d.followers === "number") return d.followers;
+  } catch (e) { /* branch not published yet / offline — fall through */ }
   for (const target of [KN_LI_EMBED, KN_LI_PAGE]) {
     const attempts = KN_RELAYS.map((wrap) => (async () => {
       const n = knParseFollowers(await knGet(wrap(target)));
@@ -689,17 +719,15 @@ async function knLoadFollowerSeed() {
 }
 
 function LinkedInCard() {
-  // Seed from the last live count cached in this browser for an instant, real
-  // number; then refresh live and re-persist. Falls back to the committed
-  // snapshot only on a first-ever load that cannot reach the network.
-  const cached = knCacheGet("kn.followers.v1");
-  const [followers, setFollowers] = useState(() => (typeof cached === "number" ? cached : null));
+  // CI feeds-data is the reliable source (read inside knFetchFollowers); fall
+  // back to the committed snapshot only when nothing can be reached.
+  const [followers, setFollowers] = useState(null);
   useEffect(() => {
     let alive = true;
     knFetchFollowers().then((n) => {
       if (!alive) return;
-      if (typeof n === "number") { setFollowers(n); knCacheSet("kn.followers.v1", n); }
-      else if (typeof cached !== "number") knLoadFollowerSeed().then((s) => { if (alive && typeof s === "number") setFollowers(s); });
+      if (typeof n === "number") setFollowers(n);
+      else knLoadFollowerSeed().then((s) => { if (alive && typeof s === "number") setFollowers(s); });
     }).catch(() => {});
     return () => { alive = false; };
   }, []);
