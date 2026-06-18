@@ -99,7 +99,6 @@ if not EXCEL_PASSWORD:
         )
 
 DATA_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'DATA.xlsx')
-EMPLOYEE_DATA_URL = 'https://raw.githubusercontent.com/kneuralabs/ID/main/EmployeeData.xlsx'
 # Initial password issued to first-time users (must be changed on first login).
 DEFAULT_PASSWORD = os.environ.get('DEFAULT_USER_PASSWORD', '')
 if not DEFAULT_PASSWORD:
@@ -257,29 +256,6 @@ def update_last_login(employee_id: str) -> None:
                 row[3].value = now
                 _save_wb_locked(wb)
                 return
-
-
-# ── Employee validation ────────────────────────────────────────────────────────
-
-def check_employee_roster(employee_id: str) -> str:
-    """Returns 'found', 'revoked', or 'not_found'."""
-    try:
-        resp = requests.get(EMPLOYEE_DATA_URL, timeout=10)
-        resp.raise_for_status()
-        wb = openpyxl.load_workbook(io.BytesIO(resp.content))
-        ws = wb.active
-        revoke_kw = {'revok', 'inactive', 'terminat', 'disabled', 'suspended'}
-        for row in ws.iter_rows(min_row=2, values_only=True):
-            if not row or row[0] is None:
-                continue
-            if str(row[0]).strip() == str(employee_id).strip():
-                for cell in row[1:]:
-                    if cell and any(k in str(cell).lower() for k in revoke_kw):
-                        return 'revoked'
-                return 'found'
-        return 'not_found'
-    except Exception:
-        return 'error'
 
 
 # ── LinkedIn followers ─────────────────────────────────────────────────────────
