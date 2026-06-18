@@ -344,12 +344,13 @@ function ToolsSection({ unlockedSet, allowedIds, onActivate }) {
   );
 }
 
-/* ────────────────────────────────────────────────────────────────
-   Daily Read — a definitional line on AI governance, IT
-   modernization, Governance-as-a-Service & IT standards. Advances
-   automatically every day (deterministic, offline, no human in the
-   loop) and never repeats within a cycle.
-   ──────────────────────────────────────────────────────────────── */
+/* ════════════════════════════════════════════════════════════════
+   DAILY READ — one definition of AI governance, IT modernization,
+   Governance-as-a-Service or an IT standard, surfaced fresh each day.
+   Fully automated: the line is chosen deterministically from the date
+   in the browser, so it advances on its own every day (offline, no CI,
+   no human in the loop) and never repeats within a cycle.
+   ════════════════════════════════════════════════════════════════ */
 const DAILY_READS = [
   "AI governance: accountability engineered into every model you ship.",
   "IT modernization: trading legacy constraints for future capability.",
@@ -405,19 +406,16 @@ function getISOWeek(date) {
   return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
 }
 
+// Picks today's line by counting whole UTC days since a fixed epoch, so the
+// Daily Read advances on its own at every midnight (UTC) and cycles without
+// repeating. Fully deterministic — no network, no CI, no human intervention.
 function getDailyRead() {
   const now = new Date();
-  // Whole-day count since the 2025-01-01 epoch (UTC), so the read advances to a
-  // fresh definition every day and never repeats within a cycle. Fully
-  // deterministic: no network, no CI, no human intervention.
   const today = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
-  const epoch = Date.UTC(2025, 0, 1);
-  const dayNum = Math.floor((today - epoch) / 86400000) + 1;
-  const idx = ((dayNum - 1) % DAILY_READS.length + DAILY_READS.length) % DAILY_READS.length;
-  return {
-    quote: DAILY_READS[idx],
-    num: String(dayNum).padStart(3, "0"),
-  };
+  const dayNum = Math.floor((today - Date.UTC(2025, 0, 1)) / 86400000) + 1;
+  const len = DAILY_READS.length;
+  const idx = (((dayNum - 1) % len) + len) % len;
+  return { quote: DAILY_READS[idx], num: String(dayNum).padStart(3, "0") };
 }
 
 /* ────────────────────────────────────────────────────────────────
@@ -450,11 +448,13 @@ const BRIEF_QUERIES = [
 function _briefFeedUrl(q) {
   return "https://news.google.com/rss/search?q=" + encodeURIComponent(q) + "&hl=en-US&gl=US&ceid=US:en";
 }
-// Google News RSS sends no CORS headers, so route through public CORS proxies.
+// Google News RSS sends no CORS header, so route through reliable CORS relays
+// that echo the raw RSS XML. (rss2json, a parsed-JSON relay, is tried first in
+// _briefFetchOne.) corsproxy.io now requires a key and thingproxy is defunct,
+// so neither is used.
 const BRIEF_PROXIES = [
   (u) => "https://api.allorigins.win/raw?url=" + encodeURIComponent(u),
-  (u) => "https://corsproxy.io/?url=" + encodeURIComponent(u),
-  (u) => "https://thingproxy.freeboard.io/fetch/" + u,
+  (u) => "https://api.codetabs.com/v1/proxy/?quest=" + encodeURIComponent(u),
 ];
 // Cross-origin fetch with a hard timeout. The free public CORS proxies above
 // are flaky and routinely accept a connection then hang. A plain fetch() has no
@@ -497,14 +497,42 @@ function _briefParse(xml) {
   });
   return out;
 }
+// rss2json returns Google News RSS already parsed to JSON; normalise to the
+// same item shape _briefParse produces (and trim the "- Publisher" suffix).
+function _briefParseJson(data) {
+  if (!data || data.status !== "ok" || !Array.isArray(data.items)) return [];
+  const out = [];
+  data.items.forEach((it) => {
+    const link = (it.link || "").trim();
+    let title = (it.title || "").trim();
+    if (!title || !link) return;
+    let src = "";
+    const i = title.lastIndexOf(" - ");
+    if (i > 0 && title.length - i - 3 <= 40) { src = title.slice(i + 3).trim(); title = title.slice(0, i).trim(); }
+    const d = it.pubDate ? new Date(it.pubDate) : new Date();
+    out.push({
+      _t: isNaN(d) ? Date.now() : d.getTime(),
+      date: _briefDate(isNaN(d) ? new Date() : d),
+      chip: _briefChip(title),
+      title, src: src || "Newswire", tag: "Google News", url: link,
+    });
+  });
+  return out;
+}
 async function _briefFetchOne(url) {
+  // 1 · rss2json — parsed-JSON relay, the most robust path for Google News RSS.
+  try {
+    const res = await _proxyFetch("https://api.rss2json.com/v1/api.json?count=20&rss_url=" + encodeURIComponent(url));
+    if (res.ok) { const items = _briefParseJson(await res.json()); if (items.length) return items; }
+  } catch (e) { /* fall through to raw-XML relays */ }
+  // 2 · Raw-XML CORS relays.
   for (const wrap of BRIEF_PROXIES) {
     try {
       const res = await _proxyFetch(wrap(url));
       if (!res.ok) continue;
       const items = _briefParse(await res.text());
       if (items.length) return items;
-    } catch (e) { /* try next proxy */ }
+    } catch (e) { /* try next relay */ }
   }
   return [];
 }
@@ -523,26 +551,7 @@ async function fetchGovernanceNews() {
 }
 window.fetchGovernanceNews = fetchGovernanceNews;
 
-// ── First-party CI-refreshed feed data ──────────────────────────────────────
-// A scheduled GitHub Action regenerates the feeds server-side and publishes
-// them to the UNPROTECTED `feeds-data` branch. GitHub's own raw endpoint serves
-// that branch with `Access-Control-Allow-Origin: *`, so the browser reads it
-// cross-origin with NO third-party proxy in the path. This is the reliable live
-// source. The public CORS proxies above are now only a best-effort "even
-// fresher" layer, and the committed assets/*.json the final offline fallback.
-const FEEDS_DATA_BASE = "https://raw.githubusercontent.com/kneuralabs/net/feeds-data/";
-async function _feedsDataJson(path) {
-  const r = await fetch(FEEDS_DATA_BASE + path + "?d=" + Date.now(), { cache: "no-store" });
-  if (!r.ok) throw new Error("feeds-data " + path + " HTTP " + r.status);
-  return await r.json();
-}
-async function fetchFeedsDataBrief() {
-  try {
-    const items = await _feedsDataJson("assets/news.json");
-    if (Array.isArray(items) && items.length) return items.slice(0, 6);
-  } catch (e) { /* branch not published yet / offline — fall through */ }
-  return [];
-}
+// (Live feeds are 100% client-side — no feeds-data branch or CI in the path.)
 
 // Committed snapshot shipped with the site — used for instant first paint and
 // as a graceful fallback when the live RSS proxies are unreachable.
@@ -556,19 +565,14 @@ async function fetchBriefSeed() {
   } catch (e) { /* fall through to empty */ }
   return [];
 }
-// Source priority, most-reliable first:
-//   1. First-party CI feed on the feeds-data branch (refreshed daily, CORS-ok).
-//   2. Best-effort live worldwide headlines via public CORS proxies (timeout-
-//      bounded) — only when the CI feed is unreachable.
-//   3. Committed seed shipped with the site — offline fallback.
+// Live worldwide headlines first (fetched fresh in the browser on every load);
+// the committed seed is used only when every relay is unreachable.
 async function fetchBriefData() {
-  const ci = await fetchFeedsDataBrief();
-  if (ci.length) return ci;
   try {
     const live = await fetchGovernanceNews();
     if (live && live.length) return live;
   } catch (e) {
-    console.warn("[Brief] live proxy feed unavailable:", e);
+    console.warn("[Brief] live feed unavailable:", e);
   }
   return await fetchBriefSeed();
 }
@@ -686,8 +690,7 @@ const LINKEDIN_FOLLOW_BTN_URL =
   "https://www.linkedin.com/pages-extensions/FollowCompany?id=" + LINKEDIN_COMPANY_ID + "&counter=bottom";
 const LINKEDIN_PROXIES = [
   (u) => "https://api.allorigins.win/raw?url=" + encodeURIComponent(u),
-  (u) => "https://corsproxy.io/?url=" + encodeURIComponent(u),
-  (u) => "https://thingproxy.freeboard.io/fetch/" + u,
+  (u) => "https://api.codetabs.com/v1/proxy/?quest=" + encodeURIComponent(u),
 ];
 function _liParse(html) {
   const m = /([\d][\d,.]*)\s+followers/i.exec(html) ||
@@ -697,15 +700,9 @@ function _liParse(html) {
   return Number.isFinite(n) && n > 0 ? n : null;
 }
 async function fetchLinkedInFollowers() {
-  // 1 · First-party CI count from the feeds-data branch (refreshed every 6h,
-  //     served CORS-enabled by raw.githubusercontent — the reliable source).
-  try {
-    const data = await _feedsDataJson("assets/linkedin.json");
-    if (data && typeof data.followers === "number") return data.followers;
-  } catch (e) { /* branch not published yet / offline — fall through */ }
-  // 2 · Best-effort live scrape via public CORS proxies (timeout-bounded;
-  //     follow-button endpoint first — it is meant for anonymous embedding,
-  //     unlike the authwalled company page).
+  // Live read of the public page through a CORS relay (timeout-bounded so a
+  // stalled relay can't hang). The follow-button embed endpoint is tried first —
+  // it is built for anonymous embedding, unlike the authwalled company page.
   for (const target of [LINKEDIN_FOLLOW_BTN_URL, LINKEDIN_PAGE_URL]) {
     for (const wrap of LINKEDIN_PROXIES) {
       try {
@@ -713,10 +710,10 @@ async function fetchLinkedInFollowers() {
         if (!res.ok) continue;
         const n = _liParse(await res.text());
         if (n != null) return n;
-      } catch (e) { /* try next proxy */ }
+      } catch (e) { /* try next relay */ }
     }
   }
-  // 3 · Committed snapshot fallback (last known good count, offline).
+  // Committed snapshot fallback — our last known-good count (offline-safe).
   try {
     const r = await fetch("assets/linkedin.json?d=" + Date.now(), { cache: "no-store" });
     if (r.ok) {

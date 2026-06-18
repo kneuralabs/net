@@ -18,23 +18,24 @@ an encrypted Excel workbook (`DATA.xlsx`) as the user store.
   documented here by the owner (tool, project link, export procedure). Do not
   hand-edit these files; changes will be lost on the next export.
 - **Live feeds (Governance Brief, Daily Read, LinkedIn followers)** — all three
-  update automatically with no human intervention, and the live experience does
-  **not** depend on CI or any extra branch:
-  - **Governance Brief** — fetched **client-side on every page load** from Google
-    News RSS (via public CORS proxies), covering AI governance & regulation, IT
-    modernization, IT standards and notable AI tool/model releases worldwide.
-    `assets/news.json` is only an instant-paint seed / offline fallback.
+  update automatically in the visitor's browser on each page load, with **no human
+  intervention** and **no server, CI job or extra branch** in the path:
+  - **Governance Brief** — fetched **client-side on every load** from Google News
+    RSS (real, dated publisher articles) via reliable CORS relays (rss2json first,
+    with allorigins / codetabs as raw-XML fallbacks). Covers AI governance &
+    regulation, IT modernization, IT standards and notable AI tool/model releases
+    worldwide. `assets/news.json` is an instant-paint seed and offline fallback only.
   - **Daily Read** — a definitional line on AI governance, IT modernization,
-    Governance-as-a-Service and IT standards, rotated **deterministically by date**
-    in the browser (offline, never repeats within a cycle).
-  - **LinkedIn followers** — fetched **live from the public company page** in the
-    browser, with `assets/linkedin.json` as the last-known-good fallback.
-  - **`scripts/fetch_governance_news.py` / `scripts/fetch_linkedin_followers.py`**
-    only refresh those committed *seed* files. `.github/workflows/*.yml` run them
-    best-effort and push to `main`; if branch protection blocks the bot the runs
-    still succeed, because freshness is guaranteed in-browser. (Note: scheduled
-    Actions are not currently firing for this repo — another reason the live feeds
-    are client-side.)
+    Governance-as-a-Service and IT standards, chosen **deterministically from the
+    date** in the browser (offline, advances every day, never repeats in a cycle).
+  - **LinkedIn followers** — read **live from the public company page** in the
+    browser via a CORS relay, with `assets/linkedin.json` as the last-known-good
+    fallback.
+
+  These feeds are client-side **by design**: Google News and LinkedIn block
+  datacenter IPs, so server-side / CI fetches get HTTP 403, whereas a real
+  visitor's browser reaches them through a CORS relay. There is no `feeds-data`
+  branch or scheduled Action — freshness is guaranteed in-browser.
 
 ## Configuration
 
