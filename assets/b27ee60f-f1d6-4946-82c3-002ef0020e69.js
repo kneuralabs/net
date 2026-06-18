@@ -49,7 +49,7 @@ const TOOLS = [
     locked: false, href: "https://letterz.kneuralabs.com", seal: "📝", accent: "#6D28D9" },
 ];
 
-const NEWS = [];  // Replaced at runtime by fetchBriefData(): live worldwide headlines each load, committed assets/news.json as fallback.
+const NEWS = [];  // Unused: the Governance Brief now fetches live worldwide headlines itself in FeedSection and caches them in the browser.
 
 const WEATHER = {
   kolkata: { temp: 34, cond: "Hot · clear", icon: "☀" },

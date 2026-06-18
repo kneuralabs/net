@@ -21,21 +21,24 @@ an encrypted Excel workbook (`DATA.xlsx`) as the user store.
   update automatically in the visitor's browser on each page load, with **no human
   intervention** and **no server, CI job or extra branch** in the path:
   - **Governance Brief** — fetched **client-side on every load** from Google News
-    RSS (real, dated publisher articles) via reliable CORS relays (rss2json first,
-    with allorigins / codetabs as raw-XML fallbacks). Covers AI governance &
-    regulation, IT modernization, IT standards and notable AI tool/model releases
-    worldwide. `assets/news.json` is an instant-paint seed and offline fallback only.
+    RSS (real, dated publisher articles) via several independent CORS relays
+    **raced in parallel** (rss2json + allorigins + codetabs; first usable response
+    wins, each hard-timeout-bounded). Covers AI governance & regulation, IT
+    modernization, IT standards and notable AI tool/model releases worldwide.
+    `assets/news.json` is a first-paint seed only.
   - **Daily Read** — a definitional line on AI governance, IT modernization,
     Governance-as-a-Service and IT standards, chosen **deterministically from the
     date** in the browser (offline, advances every day, never repeats in a cycle).
   - **LinkedIn followers** — read **live from the public company page** in the
-    browser via a CORS relay, with `assets/linkedin.json` as the last-known-good
-    fallback.
+    browser via raced CORS relays, with `assets/linkedin.json` as the
+    last-known-good seed.
 
   These feeds are client-side **by design**: Google News and LinkedIn block
   datacenter IPs, so server-side / CI fetches get HTTP 403, whereas a real
   visitor's browser reaches them through a CORS relay. There is no `feeds-data`
-  branch or scheduled Action — freshness is guaranteed in-browser.
+  branch or scheduled Action. Every successful fetch is cached in `localStorage`,
+  so the Brief and follower count **always show the last real live value** and
+  never revert to a frozen build-time number — freshness is guaranteed in-browser.
 
 ## Configuration
 
