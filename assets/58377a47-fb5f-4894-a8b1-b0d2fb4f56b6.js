@@ -563,6 +563,49 @@ async function knLoadNewsSeed() {
   return [];
 }
 
+// Live Governance Brief list: seeds from the last cached live payload for an
+// instant real feed, refreshes via knFetchNews() and re-persists, and falls
+// back to the committed seed only on a first-ever load that cannot reach out.
+function GovernanceBrief() {
+  const cached = knCacheGet("kn.news.v1");
+  const [items, setItems] = useState(() => (Array.isArray(cached) && cached.length ? cached : []));
+  useEffect(() => {
+    let alive = true;
+    knFetchNews().then((live) => {
+      if (!alive) return;
+      if (Array.isArray(live) && live.length) { setItems(live); knCacheSet("kn.news.v1", live); }
+      else if (!(Array.isArray(cached) && cached.length)) {
+        knLoadNewsSeed().then((seed) => { if (alive && Array.isArray(seed) && seed.length) setItems(seed); });
+      }
+    }).catch(() => {});
+    return () => { alive = false; };
+  }, []);
+  if (!items.length) {
+    return (
+      <div className="feed__list">
+        <div className="feed__item" style={{ gridTemplateColumns: "1fr" }}>
+          <div className="feed__title" style={{ color: "var(--muted)" }}>Gathering the latest worldwide brief…</div>
+        </div>
+      </div>
+    );
+  }
+  return (
+    <div className="feed__list">
+      {items.map((it, i) => (
+        <a className="feed__item" key={(it.url || it.title) + i}
+           href={it.url || "#"} target="_blank" rel="noopener noreferrer">
+          <span className="feed__date">{it.date}</span>
+          <span>
+            <span className="feed__title">{it.title}<span className="feed__arrow">↗</span></span>
+            <span className="feed__src"><b>{it.src}</b> · {it.tag || "Newswire"}</span>
+          </span>
+          <span className="feed__chip">{it.chip}</span>
+        </a>
+      ))}
+    </div>
+  );
+}
+
 function FeedSection() {
   const read = knDailyDefinition();
   const week = knISOWeek(new Date());
@@ -570,10 +613,13 @@ function FeedSection() {
   return (
     <section className="section" id="feed">
       <div className="section__head">
-        <span className="section__num">№ II — Daily</span>
-        <h2 className="section__title">Daily <em>Read</em></h2>
+        <span className="section__num">№ II — Brief</span>
+        <h2 className="section__title">Governance <em>Brief</em></h2>
+        <span className="section__meta">Live · worldwide</span>
       </div>
-      <div style={{ maxWidth: 460, margin: "0 auto" }}>
+      <div className="feed">
+        <GovernanceBrief />
+        <aside className="aside">
         <div className="aside__poster" style={{
           background: `linear-gradient(150deg, rgba(8,20,42,0.60), rgba(8,20,42,0.82)), ${posterPal.bg}`,
           borderColor: posterPal.border,
@@ -596,6 +642,8 @@ function FeedSection() {
           <h3 style={{ position:'relative', fontSize:'clamp(22px, 2.3vw, 31px)', lineHeight:1.18, textShadow:'0 1px 12px rgba(0,0,0,0.50)' }}>{read.quote}</h3>
           <div className="poster-stamp" style={{ position:'relative' }}>Read № {read.num}</div>
         </div>
+        <LinkedInCard />
+        </aside>
       </div>
     </section>
   );
