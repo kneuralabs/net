@@ -171,7 +171,7 @@ function StatusStrip({ now }) {
     <section className="strip">
       <ClockCell city="Kolkata" code="IST · UTC+5:30" tz="Asia/Kolkata"
                  weather={window.WEATHER.kolkata} now={now} />
-      <ClockCell city="Connecticut" code="EDT · America/New_York" tz="America/New_York"
+      <ClockCell city="Connecticut" code="EDT · New York" tz="America/New_York"
                  weather={window.WEATHER.connecticut} now={now} />
       <HolidayCell now={now} />
       <div className="strip__cell">
