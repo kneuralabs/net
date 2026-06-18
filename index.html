@@ -2286,14 +2286,15 @@ html[data-motion="playful"] .tile:hover {
 /* Tablet landscape / small laptop (901–1180px) */
 @media (min-width: 901px) and (max-width: 1180px) {
   .page { padding: 0 28px 64px; }
-  .strip { grid-template-columns: repeat(4, 1fr); }
+  .strip { grid-template-columns: repeat(2, 1fr); }
   .tools { grid-template-columns: repeat(3, 1fr); }
   .feed { grid-template-columns: 1.6fr 1fr; gap: 32px; }
 }
 
-/* Laptop (1181–1439) */
+/* Laptop (1181–1439) — tablets like iPad Pro 12.9" land here */
 @media (min-width: 1181px) and (max-width: 1439px) {
   .page { padding: 0 32px 72px; }
+  .strip { grid-template-columns: repeat(2, 1fr); }
 }
 
 /* Desktop (1440+) */
