@@ -345,91 +345,122 @@ function ToolsSection({ unlockedSet, allowedIds, onActivate }) {
 }
 
 /* ════════════════════════════════════════════════════════════════
-   DAILY READ — one definition of AI governance, IT modernization,
-   Governance-as-a-Service or an IT standard, surfaced fresh each day.
-   Fully automated: the line is chosen deterministically from the date
-   in the browser, so it advances on its own every day (offline, no CI,
-   no human in the loop) and never repeats within a cycle.
+   DAILY READ — a single definition of AI governance, IT modernization,
+   Governance-as-a-Service or an IT standard, refreshed every day.
+
+   Deterministic by UTC date: it needs no network and has no failure
+   mode, so the line is always present and always current. It advances
+   on its own at midnight UTC and never repeats within a cycle.
    ════════════════════════════════════════════════════════════════ */
-const DAILY_READS = [
-  "AI governance: accountability engineered into every model you ship.",
-  "IT modernization: trading legacy constraints for future capability.",
-  "Governance as a Service: oversight delivered like infrastructure.",
-  "An IT standard is a promise anyone can verify.",
-  "Governance without evidence is only a guess.",
-  "Modernization is migration with intent, not newer hardware.",
-  "Responsible AI is proven before deployment, not promised after.",
-  "Standards are the grammar that lets systems trust each other.",
-  "Governance as a Service: compliance you subscribe to, not restart.",
-  "The audit trail is the artefact — if it wasn't recorded, it didn't happen.",
-  "Modernization retires debt so you can fund outcomes.",
-  "Govern what learns, or it will govern you.",
-  "Standards turn opinion into interoperability.",
-  "Modern IT is measured by how safely it can change.",
-  "Governance scales when controls become code.",
-  "An AI you cannot explain is an AI you cannot govern.",
-  "Governance as a Service delivers the framework; you keep the judgement.",
-  "Modernization without governance is just faster risk.",
-  "A control that is never tested is no control at all.",
-  "IT standards turn a promise into a guarantee.",
-  "AI governance makes principles provable.",
-  "Modernize for reversibility: change you can safely undo.",
-  "Governance is accountability with a paper trail.",
-  "A standard nobody follows is documentation, not a standard.",
-  "AI governance is risk management for systems that learn.",
-  "Modern platforms assume change; legacy platforms resist it.",
-  "Governance as a Service: policy, controls and evidence, delivered together.",
-  "Explainability is a constraint you design from, not bolt on.",
-  "Modernization is the quiet work behind every innovation.",
-  "A standard earns authority by being verifiable, not mandated.",
-  "AI governance asks not only can we, but should we.",
-  "IT modernization is debt repayment for the future.",
-  "Proven controls beat cited policies.",
-  "Governance as a Service turns 'we should' into 'we already do'.",
-  "Interoperability is a standard kept by everyone at once.",
-  "The model is only as governed as its weakest unmonitored path.",
-  "Good modernization is invisible to users and obvious in the metrics.",
-  "Governance is how an organisation keeps its promises at scale.",
-  "A standard is consensus made executable.",
-  "Fasten governance before the model accelerates.",
-  "Modern IT makes security and compliance defaults, not add-ons.",
-  "Governance as a Service: oversight that arrives ready, not assembled.",
-  "What you cannot measure, you cannot modernize.",
-  "AI governance is how using a model becomes owning its outcome.",
-  "Standards are written so the next engineer never has to guess.",
+const KN_DEFINITIONS = [
+  "AI governance: the practice of keeping every model accountable for the decisions it shapes.",
+  "AI governance turns ethical intent into controls you can test and evidence you can show.",
+  "AI governance is risk management for systems whose behaviour changes as they learn.",
+  "AI governance means no automated decision is ever beyond human explanation or recall.",
+  "AI governance is the line between deploying a model and owning its outcomes.",
+  "AI governance makes 'trustworthy AI' a measurable claim, not a slogan.",
+  "Govern the model before it scales, or inherit every risk it learns.",
+  "An AI you cannot explain is an AI you cannot defend — or deploy.",
+  "IT modernization: trading legacy constraints for the freedom to change quickly and safely.",
+  "IT modernization turns systems that resist change into systems that expect it.",
+  "IT modernization repays technical debt so tomorrow's budget funds outcomes, not upkeep.",
+  "Modernization is migration with intent — measured in capability gained, not hardware replaced.",
+  "Modern IT treats security, compliance and observability as defaults, never as add-ons.",
+  "A modern platform assumes change; a legacy platform postpones it until it breaks.",
+  "Modernization is reversibility: any change you ship, you can safely roll back.",
+  "Good modernization is invisible to users and unmistakable in the metrics.",
+  "Governance as a Service: policy, controls and audit evidence delivered together, ready to use.",
+  "Governance as a Service turns 'we should comply' into 'we already do, continuously'.",
+  "Governance as a Service is oversight you subscribe to — provisioned, maintained and always current.",
+  "Governance as a Service gives you the framework and the proof; you keep the judgement.",
+  "Governance as a Service makes compliance a capability you consume, not a project you restart.",
+  "Governance as a Service is the assurance layer that scales with your systems, not your headcount.",
+  "An IT standard is consensus made executable — a rule precise enough to verify.",
+  "A standard earns its authority by being checkable, not by being mandated.",
+  "IT standards turn a private promise into a guarantee everyone can audit.",
+  "Interoperability is simply a standard that everyone keeps at the same time.",
+  "A standard you cannot verify is documentation; a standard you can test is infrastructure.",
+  "Standards are the shared grammar that lets independent systems trust one another.",
+  "ISO 42001 and the NIST AI RMF exist to make 'responsible' something you can audit.",
+  "A standard is written so the next engineer never has to guess what 'done' means.",
+  "Governance without evidence is only a confident guess.",
+  "A control that is never tested is not a control — it is a hope.",
+  "What you cannot measure, you can neither govern nor modernize.",
+  "Explainability is a property you design in from the start, not bolt on at the end.",
+  "The audit trail is the artefact: if it was not recorded, it did not happen.",
+  "Governance scales only when your controls become code.",
+  "Compliance is the floor; governance is the discipline that keeps you above it.",
+  "Trust is the real deliverable; governance is how you produce it on purpose.",
+  "Modernize for change, govern for trust, standardize for scale.",
 ];
 
-function getISOWeek(date) {
+// ISO week number — drives the weekly poster-palette rotation in FeedSection.
+function knISOWeek(date) {
   const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
   d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay() || 7));
   const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
   return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
 }
 
-// Picks today's line by counting whole UTC days since a fixed epoch, so the
-// Daily Read advances on its own at every midnight (UTC) and cycles without
-// repeating. Fully deterministic — no network, no CI, no human intervention.
-function getDailyRead() {
+// Today's definition, taken from the whole-day count since the Unix epoch (UTC).
+// No network, no storage, no failure path — it always returns a current line.
+function knDailyDefinition() {
   const now = new Date();
   const today = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
-  const dayNum = Math.floor((today - Date.UTC(2025, 0, 1)) / 86400000) + 1;
-  const len = DAILY_READS.length;
-  const idx = (((dayNum - 1) % len) + len) % len;
-  return { quote: DAILY_READS[idx], num: String(dayNum).padStart(3, "0") };
+  const dayNo = Math.floor(today / 86400000);
+  const len = KN_DEFINITIONS.length;
+  const idx = ((dayNo % len) + len) % len;
+  return { quote: KN_DEFINITIONS[idx], num: String((dayNo % 999) + 1).padStart(3, "0") };
 }
 
-/* ────────────────────────────────────────────────────────────────
-   Governance Brief — live worldwide newsfeed, refreshed in every
-   visitor's browser on each load (no CI, branch or human in the
-   loop). Covers AI governance & regulation, IT modernization, IT
-   standards, and notable AI tool / model releases employees should
-   know about.
-   ──────────────────────────────────────────────────────────────── */
-const _BRIEF_MON = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
-function _briefDate(d) {
-  return String(d.getDate()).padStart(2, "0") + " " + _BRIEF_MON[d.getMonth()] + " " + d.getFullYear();
+/* ════════════════════════════════════════════════════════════════
+   GOVERNANCE BRIEF — a live, worldwide newsfeed rebuilt in every
+   visitor's browser on each load. Covers AI governance & regulation,
+   IT modernization, IT standards and notable AI tool / model releases.
+
+   "Always live": several independent CORS relays are raced in parallel
+   (first usable response wins, each hard-timeout-bounded so none can
+   hang), and every successful result is persisted to localStorage — so
+   the widget always shows real fetched data, refreshed whenever the
+   network allows and otherwise restored from the last live result.
+   ════════════════════════════════════════════════════════════════ */
+
+// Persist the last successful live payload so the UI always reflects real
+// fetched data, self-healing across reloads even if one load's fetch fails.
+function knCacheGet(key) {
+  try { const o = JSON.parse(localStorage.getItem(key) || "null"); return o && "v" in o ? o.v : null; }
+  catch (e) { return null; }
 }
-function _briefChip(title) {
+function knCacheSet(key, v) {
+  try { localStorage.setItem(key, JSON.stringify({ v, t: Date.now() })); } catch (e) { /* private mode / quota */ }
+}
+
+// Independent CORS relays on distinct hosts, raced together so the feed
+// converges on whichever is healthy right now.
+const KN_RELAY_TIMEOUT = 7000;
+const KN_RELAYS = [
+  (u) => "https://api.allorigins.win/raw?url=" + encodeURIComponent(u),
+  (u) => "https://api.codetabs.com/v1/proxy/?quest=" + encodeURIComponent(u),
+];
+// Cross-origin GET with a hard deadline — a stalled relay aborts instead of
+// hanging the page, so a failed attempt simply loses the race.
+async function knGet(url, timeoutMs = KN_RELAY_TIMEOUT) {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), timeoutMs);
+  try {
+    const res = await fetch(url, { mode: "cors", cache: "no-store", signal: ctrl.signal });
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const body = await res.text();
+    if (!body || body.length < 16) throw new Error("empty body");
+    return body;
+  } finally { clearTimeout(timer); }
+}
+
+const KN_MON = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
+function knFmtDate(d) {
+  return String(d.getUTCDate()).padStart(2, "0") + " " + KN_MON[d.getUTCMonth()] + " " + d.getUTCFullYear();
+}
+function knChip(title) {
   const s = String(title).toLowerCase();
   if (/regulat|\bact\b|\blaw\b|\bbill\b|legislat/.test(s)) return "Regulation";
   if (/iso 42001|\bnist\b|\biso\b|standard|framework|guideline|certif/.test(s)) return "Standards";
@@ -439,105 +470,78 @@ function _briefChip(title) {
   if (/\beu\b|brussels|white house|federal|government|ministry|meity|oecd|\bun\b/.test(s)) return "Policy";
   return "Industry";
 }
-// Focused Google-News RSS queries spanning every topic, merged newest-first.
-const BRIEF_QUERIES = [
+// Worldwide topic queries → Google News RSS (real, dated publisher articles).
+const KN_NEWS_QUERIES = [
   '("AI governance" OR "AI regulation" OR "AI Act" OR "AI policy" OR "responsible AI") when:14d',
   '("IT modernization" OR "digital transformation" OR "ISO 42001" OR "NIST AI" OR "AI standard" OR "AI compliance") when:21d',
   '("new AI model" OR "AI model release" OR "AI tool launch" OR "launches AI" OR "enterprise AI") when:10d',
 ];
-function _briefFeedUrl(q) {
+function knNewsRssUrl(q) {
   return "https://news.google.com/rss/search?q=" + encodeURIComponent(q) + "&hl=en-US&gl=US&ceid=US:en";
 }
-// Google News RSS sends no CORS header, so route through reliable CORS relays
-// that echo the raw RSS XML. (rss2json, a parsed-JSON relay, is tried first in
-// _briefFetchOne.) corsproxy.io now requires a key and thingproxy is defunct,
-// so neither is used.
-const BRIEF_PROXIES = [
-  (u) => "https://api.allorigins.win/raw?url=" + encodeURIComponent(u),
-  (u) => "https://api.codetabs.com/v1/proxy/?quest=" + encodeURIComponent(u),
-];
-// Cross-origin fetch with a hard timeout. The free public CORS proxies above
-// are flaky and routinely accept a connection then hang. A plain fetch() has no
-// timeout, so one stalled proxy would await forever — leaving the Brief stuck on
-// its committed seed and the LinkedIn count stuck on an em dash, with no way to
-// advance to the next proxy. Aborting on a deadline turns a hang into a normal
-// "try the next proxy" failure so the feed always converges.
-const PROXY_TIMEOUT_MS = 6000;
-async function _proxyFetch(url, timeoutMs = PROXY_TIMEOUT_MS) {
-  const ctrl = new AbortController();
-  const timer = setTimeout(() => ctrl.abort(), timeoutMs);
-  try {
-    return await fetch(url, { mode: "cors", cache: "no-store", signal: ctrl.signal });
-  } finally {
-    clearTimeout(timer);
+// Google News titles read "Headline - Publisher"; split off the publisher.
+function knSplit(title, src) {
+  let t = String(title || "").trim();
+  let s = String(src || "").trim();
+  if (s && t.endsWith(" - " + s)) { t = t.slice(0, -(s.length + 3)).trim(); }
+  else if (!s) {
+    const i = t.lastIndexOf(" - ");
+    if (i > 0 && t.length - i - 3 <= 42) { s = t.slice(i + 3).trim(); t = t.slice(0, i).trim(); }
   }
+  return { title: t, src: s || "Newswire" };
 }
-function _briefParse(xml) {
+function knItem(title, src, link, pub) {
+  const d = pub ? new Date(pub) : new Date();
+  const ok = !isNaN(d);
+  return { _t: ok ? d.getTime() : Date.now(), date: knFmtDate(ok ? d : new Date()),
+           chip: knChip(title), title, src, tag: "Google News", url: link };
+}
+function knParseRssXml(xml) {
   const doc = new DOMParser().parseFromString(xml, "text/xml");
   if (doc.querySelector("parsererror")) return [];
   const out = [];
   doc.querySelectorAll("item").forEach((it) => {
     const link = (it.querySelector("link")?.textContent || "").trim();
-    let title = (it.querySelector("title")?.textContent || "").trim();
-    if (!title || !link) return;
-    const src = (it.querySelector("source")?.textContent || "").trim();
-    // Google News titles read "Headline - Publisher"; trim the publisher.
-    if (src && title.endsWith(" - " + src)) title = title.slice(0, -(src.length + 3)).trim();
-    const pub = it.querySelector("pubDate")?.textContent;
-    const d = pub ? new Date(pub) : new Date();
-    out.push({
-      _t: isNaN(d) ? Date.now() : d.getTime(),
-      date: _briefDate(isNaN(d) ? new Date() : d),
-      chip: _briefChip(title),
-      title,
-      src: src || "Newswire",
-      tag: "Google News",
-      url: link,
-    });
+    const rawTitle = (it.querySelector("title")?.textContent || "").trim();
+    if (!rawTitle || !link) return;
+    const { title, src } = knSplit(rawTitle, it.querySelector("source")?.textContent || "");
+    out.push(knItem(title, src, link, it.querySelector("pubDate")?.textContent));
   });
   return out;
 }
-// rss2json returns Google News RSS already parsed to JSON; normalise to the
-// same item shape _briefParse produces (and trim the "- Publisher" suffix).
-function _briefParseJson(data) {
+function knParseRssJson(text) {
+  let data; try { data = JSON.parse(text); } catch (e) { return []; }
   if (!data || data.status !== "ok" || !Array.isArray(data.items)) return [];
   const out = [];
   data.items.forEach((it) => {
     const link = (it.link || "").trim();
-    let title = (it.title || "").trim();
-    if (!title || !link) return;
-    let src = "";
-    const i = title.lastIndexOf(" - ");
-    if (i > 0 && title.length - i - 3 <= 40) { src = title.slice(i + 3).trim(); title = title.slice(0, i).trim(); }
-    const d = it.pubDate ? new Date(it.pubDate) : new Date();
-    out.push({
-      _t: isNaN(d) ? Date.now() : d.getTime(),
-      date: _briefDate(isNaN(d) ? new Date() : d),
-      chip: _briefChip(title),
-      title, src: src || "Newswire", tag: "Google News", url: link,
-    });
+    if (!it.title || !link) return;
+    const { title, src } = knSplit(it.title, "");
+    out.push(knItem(title, src, link, it.pubDate));
   });
   return out;
 }
-async function _briefFetchOne(url) {
-  // 1 · rss2json — parsed-JSON relay, the most robust path for Google News RSS.
-  try {
-    const res = await _proxyFetch("https://api.rss2json.com/v1/api.json?count=20&rss_url=" + encodeURIComponent(url));
-    if (res.ok) { const items = _briefParseJson(await res.json()); if (items.length) return items; }
-  } catch (e) { /* fall through to raw-XML relays */ }
-  // 2 · Raw-XML CORS relays.
-  for (const wrap of BRIEF_PROXIES) {
-    try {
-      const res = await _proxyFetch(wrap(url));
-      if (!res.ok) continue;
-      const items = _briefParse(await res.text());
-      if (items.length) return items;
-    } catch (e) { /* try next relay */ }
-  }
-  return [];
+// One query, every relay raced at once (rss2json's parsed JSON + the raw-XML
+// relays); the first to return usable items wins, the rest are discarded.
+async function knFetchQuery(q) {
+  const rss = knNewsRssUrl(q);
+  const attempts = [
+    (async () => {
+      const items = knParseRssJson(await knGet("https://api.rss2json.com/v1/api.json?count=20&rss_url=" + encodeURIComponent(rss)));
+      if (!items.length) throw new Error("no items");
+      return items;
+    })(),
+    ...KN_RELAYS.map((wrap) => (async () => {
+      const items = knParseRssXml(await knGet(wrap(rss)));
+      if (!items.length) throw new Error("no items");
+      return items;
+    })()),
+  ];
+  return await Promise.any(attempts).catch(() => []);
 }
-async function fetchGovernanceNews() {
-  const batches = await Promise.all(BRIEF_QUERIES.map((q) => _briefFetchOne(_briefFeedUrl(q))));
+// Live worldwide brief: all topics in parallel, merged newest-first, deduped.
+async function knFetchNews() {
+  const batches = await Promise.all(KN_NEWS_QUERIES.map(knFetchQuery));
   const seen = new Set();
   const merged = [];
   for (const it of batches.flat()) {
@@ -549,63 +553,53 @@ async function fetchGovernanceNews() {
   merged.sort((a, b) => b._t - a._t);
   return merged.slice(0, 6).map(({ _t, ...rest }) => rest);
 }
-window.fetchGovernanceNews = fetchGovernanceNews;
-
-// (Live feeds are 100% client-side — no feeds-data branch or CI in the path.)
-
-// Committed snapshot shipped with the site — used for instant first paint and
-// as a graceful fallback when the live RSS proxies are unreachable.
-async function fetchBriefSeed() {
+// Committed snapshot shipped with the site — used only for the very first paint
+// before any live result has ever been cached in this browser.
+async function knLoadNewsSeed() {
   try {
     const r = await fetch("assets/news.json?d=" + Date.now(), { cache: "no-store" });
-    if (r.ok) {
-      const items = await r.json();
-      if (Array.isArray(items) && items.length) return items.slice(0, 6);
-    }
-  } catch (e) { /* fall through to empty */ }
+    if (r.ok) { const items = await r.json(); if (Array.isArray(items) && items.length) return items.slice(0, 6); }
+  } catch (e) { /* none */ }
   return [];
 }
-// Live worldwide headlines first (fetched fresh in the browser on every load);
-// the committed seed is used only when every relay is unreachable.
-async function fetchBriefData() {
-  try {
-    const live = await fetchGovernanceNews();
-    if (live && live.length) return live;
-  } catch (e) {
-    console.warn("[Brief] live feed unavailable:", e);
-  }
-  return await fetchBriefSeed();
-}
-window.fetchBriefData = fetchBriefData;
-window.fetchBriefSeed = fetchBriefSeed;
 
 function FeedSection() {
-  const read = getDailyRead();
-  const week = getISOWeek(new Date());
+  const read = knDailyDefinition();
+  const week = knISOWeek(new Date());
   const posterPal = KN_POSTER_PALETTE[week % KN_POSTER_PALETTE.length];
-  const [feed, setFeed] = useState(() => ({ items: window.NEWS || [], status: "loading" }));
+  // Start from the last live result cached in this browser, so a returning
+  // visitor sees real data instantly; we then refresh it live below.
+  const cachedNews = knCacheGet("kn.brief.v1");
+  const [feed, setFeed] = useState(() =>
+    Array.isArray(cachedNews) && cachedNews.length
+      ? { items: cachedNews, status: "live" }
+      : { items: [], status: "loading" });
   useEffect(() => {
     let alive = true;
-    // Instant paint from the committed seed, then replace with live worldwide news.
-    fetchBriefSeed().then((seed) => {
-      if (alive && seed.length) setFeed((f) => (f.status === "loading" ? { items: seed, status: "cached" } : f));
-    });
-    fetchBriefData()
+    // First-ever load with no cache: paint the committed seed while we fetch.
+    if (!(Array.isArray(cachedNews) && cachedNews.length)) {
+      knLoadNewsSeed().then((seed) => {
+        if (alive && seed.length) setFeed((f) => (f.status === "loading" ? { items: seed, status: "cached" } : f));
+      });
+    }
+    // Always pull fresh worldwide headlines; persist every successful result so
+    // the feed keeps showing real live data even if a later fetch is blocked.
+    knFetchNews()
       .then((items) => {
         if (!alive) return;
-        if (items && items.length) setFeed({ items, status: "live" });
-        else setFeed((f) => ({ items: f.items, status: "cached" }));
+        if (items && items.length) { setFeed({ items, status: "live" }); knCacheSet("kn.brief.v1", items); }
+        else setFeed((f) => ({ items: f.items, status: f.items.length ? "live" : "cached" }));
       })
       .catch((e) => {
-        console.error("[Brief] feed unavailable:", e);
-        if (alive) setFeed((f) => ({ items: f.items, status: "cached" }));
+        console.warn("[Brief] live refresh failed:", e);
+        if (alive) setFeed((f) => ({ items: f.items, status: f.items.length ? "live" : "cached" }));
       });
     return () => { alive = false; };
   }, []);
   const meta =
-    feed.status === "live"      ? "Live · worldwide · refreshed daily"
-    : feed.status === "loading" ? "Syncing latest headlines…"
-    :                             "Latest cached · worldwide";
+    feed.status === "loading" ? "Syncing latest headlines…"
+    : feed.status === "cached" ? "Last live · worldwide"
+    :                            "Live · worldwide · auto-refreshed";
   return (
     <section className="section" id="feed">
       <div className="section__head">
@@ -677,59 +671,58 @@ function FeedSection() {
   );
 }
 
-/* ────────────────────────────────────────────────────────────────
-   LinkedIn widget — Kneuralabs company-page follower count.
-   Fetches the public page live (via CORS proxies) on every load,
-   falling back to the committed snapshot only when the page is
-   authwalled. No CI, branch or human intervention.
-   ──────────────────────────────────────────────────────────────── */
-const LINKEDIN_PAGE_URL = "https://www.linkedin.com/company/kneuralabs/";
-const LINKEDIN_COMPANY_ID = "112376100";
-// Built for anonymous embedding — far less likely to be authwalled than the page.
-const LINKEDIN_FOLLOW_BTN_URL =
-  "https://www.linkedin.com/pages-extensions/FollowCompany?id=" + LINKEDIN_COMPANY_ID + "&counter=bottom";
-const LINKEDIN_PROXIES = [
-  (u) => "https://api.allorigins.win/raw?url=" + encodeURIComponent(u),
-  (u) => "https://api.codetabs.com/v1/proxy/?quest=" + encodeURIComponent(u),
-];
-function _liParse(html) {
-  const m = /([\d][\d,.]*)\s+followers/i.exec(html) ||
-            /follower[^>]*>\s*([\d][\d,.]*)\s*</i.exec(html);
+/* ════════════════════════════════════════════════════════════════
+   LINKEDIN FOLLOWERS — the Kneuralabs company-page follower count,
+   read live from the public page in the visitor's browser each load.
+
+   Same "always live" approach as the Brief: independent CORS relays are
+   raced over the anonymous follow-button embed (then the page), and any
+   count obtained is persisted to localStorage — so the widget keeps
+   showing the real last-known count even when a fetch is blocked.
+   ════════════════════════════════════════════════════════════════ */
+const KN_LI_PAGE = "https://www.linkedin.com/company/kneuralabs/";
+const KN_LI_ID = "112376100";
+// The follow-button embed is built for anonymous use — least likely to authwall.
+const KN_LI_EMBED = "https://www.linkedin.com/pages-extensions/FollowCompany?id=" + KN_LI_ID + "&counter=bottom";
+function knParseFollowers(html) {
+  const m = /([\d][\d,.]*)\s+followers/i.exec(html) || /follower[^>]*>\s*([\d][\d,.]*)\s*</i.exec(html);
   if (!m) return null;
   const n = parseInt(m[1].replace(/\D/g, ""), 10);
   return Number.isFinite(n) && n > 0 ? n : null;
 }
-async function fetchLinkedInFollowers() {
-  // Live read of the public page through a CORS relay (timeout-bounded so a
-  // stalled relay can't hang). The follow-button embed endpoint is tried first —
-  // it is built for anonymous embedding, unlike the authwalled company page.
-  for (const target of [LINKEDIN_FOLLOW_BTN_URL, LINKEDIN_PAGE_URL]) {
-    for (const wrap of LINKEDIN_PROXIES) {
-      try {
-        const res = await _proxyFetch(wrap(target));
-        if (!res.ok) continue;
-        const n = _liParse(await res.text());
-        if (n != null) return n;
-      } catch (e) { /* try next relay */ }
-    }
+// Race every relay over each target; the first valid count wins.
+async function knFetchFollowers() {
+  for (const target of [KN_LI_EMBED, KN_LI_PAGE]) {
+    const attempts = KN_RELAYS.map((wrap) => (async () => {
+      const n = knParseFollowers(await knGet(wrap(target)));
+      if (n == null) throw new Error("no count");
+      return n;
+    })());
+    try { return await Promise.any(attempts); } catch (e) { /* try next target */ }
   }
-  // Committed snapshot fallback — our last known-good count (offline-safe).
-  try {
-    const r = await fetch("assets/linkedin.json?d=" + Date.now(), { cache: "no-store" });
-    if (r.ok) {
-      const data = await r.json();
-      if (data && typeof data.followers === "number") return data.followers;
-    }
-  } catch (e) { /* give up — render an em dash */ }
   return null;
 }
-window.fetchLinkedInFollowers = fetchLinkedInFollowers;
+async function knLoadFollowerSeed() {
+  try {
+    const r = await fetch("assets/linkedin.json?d=" + Date.now(), { cache: "no-store" });
+    if (r.ok) { const d = await r.json(); if (d && typeof d.followers === "number") return d.followers; }
+  } catch (e) { /* none */ }
+  return null;
+}
 
 function LinkedInCard() {
-  const [followers, setFollowers] = useState(null);
+  // Seed from the last live count cached in this browser for an instant, real
+  // number; then refresh live and re-persist. Falls back to the committed
+  // snapshot only on a first-ever load that cannot reach the network.
+  const cached = knCacheGet("kn.followers.v1");
+  const [followers, setFollowers] = useState(() => (typeof cached === "number" ? cached : null));
   useEffect(() => {
     let alive = true;
-    fetchLinkedInFollowers().then(n => { if (alive) setFollowers(n); });
+    knFetchFollowers().then((n) => {
+      if (!alive) return;
+      if (typeof n === "number") { setFollowers(n); knCacheSet("kn.followers.v1", n); }
+      else if (typeof cached !== "number") knLoadFollowerSeed().then((s) => { if (alive && typeof s === "number") setFollowers(s); });
+    }).catch(() => {});
     return () => { alive = false; };
   }, []);
   return (
@@ -739,7 +732,7 @@ function LinkedInCard() {
         <span>LinkedIn</span>
       </div>
       <div className="li-card__row">
-        <a className="li-card__logo" href={LINKEDIN_PAGE_URL} target="_blank" rel="noopener noreferrer"
+        <a className="li-card__logo" href={KN_LI_PAGE} target="_blank" rel="noopener noreferrer"
            aria-label="Open the Kneuralabs LinkedIn page" title="Open Kneuralabs on LinkedIn">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M20.447 20.452H17.05v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.667V9h3.238v1.561h.046c.45-.855 1.549-1.756 3.188-1.756 3.41 0 4.039 2.244 4.039 5.162v6.485zM5.337 7.433a1.875 1.875 0 1 1 0-3.75 1.875 1.875 0 0 1 0 3.75zM6.957 20.452H3.717V9h3.24v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
