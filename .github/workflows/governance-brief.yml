@@ -1,6 +1,6 @@
 name: Daily Governance Brief
 
-# Daily refresh of the Governance Brief. The fetch script pulls real, dated
+# Refresh of the Governance Brief every 6 hours. The fetch script pulls real, dated
 # headlines and writes assets/news.json; this workflow then publishes that file
 # to the UNPROTECTED `feeds-data` branch (never main), which the live intranet
 # reads cross-origin from raw.githubusercontent.com. Publishing to a side branch
@@ -8,7 +8,7 @@ name: Daily Governance Brief
 # A failed publish now fails the run (no silent green), so staleness is visible.
 on:
   schedule:
-    - cron: "20 6 * * *"   # 06:20 UTC daily (~11:50 IST)
+    - cron: "20 */6 * * *"   # every 6 hours at :20 (00:20/06:20/12:20/18:20 UTC)
   workflow_dispatch: {}
 
 permissions:
