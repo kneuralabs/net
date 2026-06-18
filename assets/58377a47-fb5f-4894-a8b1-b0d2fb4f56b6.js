@@ -576,30 +576,36 @@ async function _feedsDataJson(path) {
   return await r.json();
 }
 // Source priority, most-reliable first: CI feeds-data → best-effort live relays
-// → committed seed.
+// → last-known-good (localStorage) → committed seed. Every successful real
+// fetch is persisted, so once real news has loaded it survives later refreshes
+// even if that load's network fails — it never falls back to the stale seed.
 async function fetchBriefData() {
   try {
     const ci = await _feedsDataJson("assets/news.json");
-    if (Array.isArray(ci) && ci.length) return ci.slice(0, 6);
+    if (Array.isArray(ci) && ci.length) { const v = ci.slice(0, 6); knCacheSet("kn.news.v1", v); return v; }
   } catch (e) { /* branch not published yet / offline — fall through */ }
   try {
     const live = await knFetchNews();
-    if (live && live.length) return live;
+    if (live && live.length) { knCacheSet("kn.news.v1", live); return live; }
   } catch (e) { /* relays down — fall through */ }
+  const cached = knCacheGet("kn.news.v1");
+  if (Array.isArray(cached) && cached.length) return cached;
   return await knLoadNewsSeed();
 }
 
-// Live Governance Brief list: instant paint from the committed seed, then
-// replaced by fetchBriefData() (CI feeds-data → relays → seed).
+// Live Governance Brief list: instant paint from last-known-good (or seed),
+// then re-fetched on every open via fetchBriefData() (feeds-data → relays →
+// cache → seed).
 function GovernanceBrief() {
-  const [items, setItems] = useState([]);
+  const cached = knCacheGet("kn.news.v1");
+  const [items, setItems] = useState(() => (Array.isArray(cached) && cached.length ? cached : []));
   useEffect(() => {
     let alive = true;
-    // Instant paint from the committed seed, then replace with the reliable
-    // CI feed (feeds-data) — falling back through relays to the seed.
-    knLoadNewsSeed().then((seed) => {
-      if (alive && Array.isArray(seed) && seed.length) setItems((cur) => (cur.length ? cur : seed));
-    });
+    if (!(Array.isArray(cached) && cached.length)) {
+      knLoadNewsSeed().then((seed) => {
+        if (alive && Array.isArray(seed) && seed.length) setItems((cur) => (cur.length ? cur : seed));
+      });
+    }
     fetchBriefData().then((live) => {
       if (alive && Array.isArray(live) && live.length) setItems(live);
     }).catch(() => {});
@@ -694,11 +700,12 @@ function knParseFollowers(html) {
   return Number.isFinite(n) && n > 0 ? n : null;
 }
 // CI feeds-data first (reliable, CORS-ok), then race every relay over each
-// target; the first valid count wins.
+// target; the first valid count wins. Every real count is persisted as
+// last-known-good so a later refresh never reverts to the stale committed seed.
 async function knFetchFollowers() {
   try {
     const d = await _feedsDataJson("assets/linkedin.json");
-    if (d && typeof d.followers === "number") return d.followers;
+    if (d && typeof d.followers === "number") { knCacheSet("kn.followers.v1", d.followers); return d.followers; }
   } catch (e) { /* branch not published yet / offline — fall through */ }
   for (const target of [KN_LI_EMBED, KN_LI_PAGE]) {
     const attempts = KN_RELAYS.map((wrap) => (async () => {
@@ -706,7 +713,7 @@ async function knFetchFollowers() {
       if (n == null) throw new Error("no count");
       return n;
     })());
-    try { return await Promise.any(attempts); } catch (e) { /* try next target */ }
+    try { const n = await Promise.any(attempts); knCacheSet("kn.followers.v1", n); return n; } catch (e) { /* try next target */ }
   }
   return null;
 }
@@ -719,15 +726,17 @@ async function knLoadFollowerSeed() {
 }
 
 function LinkedInCard() {
-  // CI feeds-data is the reliable source (read inside knFetchFollowers); fall
-  // back to the committed snapshot only when nothing can be reached.
-  const [followers, setFollowers] = useState(null);
+  // Instant paint from last-known-good so a refresh never flashes the stale
+  // seed; then refresh via knFetchFollowers (feeds-data → relays, both cached).
+  // The committed snapshot is used only when no real count has ever loaded.
+  const cached = knCacheGet("kn.followers.v1");
+  const [followers, setFollowers] = useState(() => (typeof cached === "number" ? cached : null));
   useEffect(() => {
     let alive = true;
     knFetchFollowers().then((n) => {
       if (!alive) return;
       if (typeof n === "number") setFollowers(n);
-      else knLoadFollowerSeed().then((s) => { if (alive && typeof s === "number") setFollowers(s); });
+      else if (typeof cached !== "number") knLoadFollowerSeed().then((s) => { if (alive && typeof s === "number") setFollowers(s); });
     }).catch(() => {});
     return () => { alive = false; };
   }, []);

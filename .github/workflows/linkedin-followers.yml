@@ -9,6 +9,14 @@ name: LinkedIn Followers
 on:
   schedule:
     - cron: "35 */6 * * *"   # every 6 hours at :35 (00:35/06:35/12:35/18:35 UTC)
+  # Run once on merge so the feeds-data branch is seeded immediately, without a
+  # manual dispatch. Path-filtered so unrelated pushes to main don't trigger it.
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/linkedin-followers.yml
+      - scripts/fetch_linkedin_followers.py
+      - scripts/publish_to_feeds_data.sh
   workflow_dispatch: {}
 
 permissions:
