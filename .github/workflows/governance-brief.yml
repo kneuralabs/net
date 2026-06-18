@@ -9,6 +9,14 @@ name: Daily Governance Brief
 on:
   schedule:
     - cron: "20 */6 * * *"   # every 6 hours at :20 (00:20/06:20/12:20/18:20 UTC)
+  # Run once on merge so the feeds-data branch is seeded immediately, without a
+  # manual dispatch. Path-filtered so unrelated pushes to main don't trigger it.
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/governance-brief.yml
+      - scripts/fetch_governance_news.py
+      - scripts/publish_to_feeds_data.sh
   workflow_dispatch: {}
 
 permissions:
