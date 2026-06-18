@@ -1,0 +1,43 @@
+name: Daily Governance Brief
+
+# Daily refresh of the Governance Brief. The fetch script pulls real, dated
+# headlines and writes assets/news.json; this workflow then publishes that file
+# to the UNPROTECTED `feeds-data` branch (never main), which the live intranet
+# reads cross-origin from raw.githubusercontent.com. Publishing to a side branch
+# sidesteps main's branch protection and avoids a Pages rebuild on every refresh.
+# A failed publish now fails the run (no silent green), so staleness is visible.
+on:
+  schedule:
+    - cron: "20 6 * * *"   # 06:20 UTC daily (~11:50 IST)
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  # Shared with linkedin-followers so the two feed jobs serialise their pushes
+  # to feeds-data (never race a fast-forward). false => queue, don't cancel.
+  group: feeds-data-publish
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validate fetch script
+        run: python3 -m py_compile scripts/fetch_governance_news.py
+
+      - name: Fetch authentic governance news
+        run: python3 scripts/fetch_governance_news.py
+
+      - name: Publish refreshed Brief to the feeds-data branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          bash scripts/publish_to_feeds_data.sh assets/news.json "chore: refresh Daily Governance Brief"
