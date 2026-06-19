@@ -1,6 +1,30 @@
 [
   {
     "date": "19 JUN 2026",
+    "chip": "Industry",
+    "title": "How responsible AI research helps manufacturers understand tax impacts before it’s too late",
+    "src": "Wolters Kluwer",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNelFvLWtwVXVTckNIU2pWLXZ5dlhmLS1WVGVrdFp6QU9ROUdDSjh5M09xd0xFSzhuVHphVGFydUJicXNINWVkdzBmNks4Y0dycE9sV2ZkOUx2TFl3SGJkd2FUWUNwSC0xOFFQMlVhNmpLekJ0UExZNnlsLVZhSFVodVBXckhtMnBfdllOVUJrMG1uZw?oc=5"
+  },
+  {
+    "date": "19 JUN 2026",
+    "chip": "Industry",
+    "title": "Ad Hoc AI Policy & Drama After ‘The Blip 2.0.’ ARD #101",
+    "src": "AI: Reset to Zero",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE9JaGw4TEdTLUtNQ1g5S2p0YTYwcmV4Yjh2RjVmWC1FYV92NHpPcDkzNVAwYVZMUWh5aXQ4NXZZSGJ1UWVUSTlQS0Z4MWdzbTVSZWs1NU9EQk9ERHc1eGp6U3Z3LXY4OXc4Vl96aktmZHAyeEpoS3VXSA?oc=5"
+  },
+  {
+    "date": "19 JUN 2026",
+    "chip": "Industry",
+    "title": "PR News | PR Pro Germinder Calls for Responsible AI Adoption - Fri., Jun. 19, 2026",
+    "src": "O'Dwyer's PR",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPLXhDRWNxVFpoczVHTnZNNjNta0JzWFNOeUZOYTQ2Z2N3RGhXM3FxNjJybkJURm1yMG4tRWhBbXdmRlRBNmdtSjFWV0VRSy1MU0hlYzZfR1E3V1M0M3d5ZWhjX0NpY2c3aTl2a0ZYZENldGpxbzRiSFNNVEltTGN2V2czUmhYcjBSdnJBeDM1amJYTW1iRDV4OHlYZm5aTVY3TGw2WWtYX2lFX1RwLTNB?oc=5"
+  },
+  {
+    "date": "19 JUN 2026",
     "chip": "Standards",
     "title": "The NIST AI RMF and Third-Party Risk: An Implementation Guide for TPRM Programs",
     "src": "JD Supra",
@@ -18,33 +42,9 @@
   {
     "date": "19 JUN 2026",
     "chip": "Release",
-    "title": "Zensar Technologies Launches 'ZenseAI.AgentMesh' to Accelerate Enterprise AI Adoption at Scale",
-    "src": "PR Newswire",
+    "title": "Utah launches AI prescription pilot program",
+    "src": "Yahoo",
     "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxOdVJ5OWFtN1h4Z0VYWVpFM1d4SHVZU2ttdG5oUW5icW5FbEpLTW5mSGlDcFFSWWtGdDVHREV5LUhNdTVZSlMyNkNJekpnNTJTekFSZF9SaUFneWVOTkg2ZDE0MmdIN0QzeHlscnlYNW8zZ05EN3JhZkNwRy1uU0pBSEw3cVk3TVZWMC1keXFDRVdIQy0zWDk5MjgwQjZnbVliV3RJN0cwWXN0TVptbUxSQzBTaUxpTTk4Skg5MVdxZGo3VndtSlc4Q0xJQUtXdWRLUFE3MFEwWDh0WGZRSk4tYQ?oc=5"
-  },
-  {
-    "date": "19 JUN 2026",
-    "chip": "Modernization",
-    "title": "Google Cloud’s EQT Agreement Highlights the Next Phase of Enterprise AI",
-    "src": "Cloud Wars",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQOXJTRURyZldScGw4SWVvWHV6VWZNUkpVTkwzQUxHTUdqNWY2c1cwRFNIS3NfZ2FidVFkRzNKVktsN1QzNy04Uy1JWUxIOGF2VHYwSm02T0U2U0ZRWDBsd1pKdlRYdDdMbjBVYzZlU2g3eDY0Vm54TTh0dzNyZDdvdElzTmlfb3NNMTVYZGg2YmZkTVZWQW1ZUThwYWJrTHU1VE1xeHBwYkFSeWNyUHNxNg?oc=5"
-  },
-  {
-    "date": "19 JUN 2026",
-    "chip": "Modernization",
-    "title": "Digital Transformation Keynote Speakers | #1 Scott Steinberg",
-    "src": "futuristsspeakers.com",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE12RG53bjhFQWpLOGh2WXpieVpxbFBmdTZxZWFXRU1LWGw2TkFVMEFjVnA0U2llTXpsdzF3RklGTFZjeXNsMXhkTlhZcm9OTmNpRmJpWkFJZ1hqXzk1MW5EbUJDeGx4YWI5UGdpMkczN3JYdXk1OTVKZ0RhSmZFT2c?oc=5"
-  },
-  {
-    "date": "19 JUN 2026",
-    "chip": "Modernization",
-    "title": "How mobile tech is key to Africa’s digital transformation boom",
-    "src": "capacityglobal.com",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFAxMGxaYmlleHV1Z2lqV0tOUlNrNkg4VkFwRkhnWFZzR3NKNlpvcVhwMlBXU1VHZXF1M2VTa20yYWllMi1WRmt6TmM2MEEtREpDZENhSWFtNm1Xc3lwOXZoWDRObllRN2taTHpvNS1n?oc=5"
+    "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOVGd6NXlna0dEZzhUNExkQ1E4OU1ud1RGQmFNclk0TkhqUmFfakVlZmQxeTZlcm1VRDBud2VkNVM5b2U4M01taElZZ3JOdTRIY05xWXJ4RkNZTHEzVEpOOHBKX1JGUUI4Nl9ETnQyRDEyTUpFaWZwRFBJMkw5QUhIZDQ0cUdubDkzWVhVRlRRczlOQ3NzcHFjT2l3?oc=5"
   }
 ]
