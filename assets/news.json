@@ -1,50 +1,50 @@
 [
   {
     "date": "19 JUN 2026",
+    "chip": "Standards",
+    "title": "The NIST AI RMF and Third-Party Risk: An Implementation Guide for TPRM Programs",
+    "src": "JD Supra",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxQZGNZaURCMWQ0ZnRzWlZxV1JlMUM2eWNkdUJiU2xIVzJMN01JRW9jLUYydjBJcXEwVnZRZ3NKZG1mZjZOQXpyVDhqa290dTlZRURLR0hELUR4SkxBZFU3dXQ4V0llOWZTdkNyT1JMWXpfT201NVZlc0FYXzBPaEJFWkViVk0tLTBoREE?oc=5"
+  },
+  {
+    "date": "19 JUN 2026",
+    "chip": "Industry",
+    "title": "Nassau Financial Group invests in AI governance startup Trussed AI",
+    "src": "Hartford Business Journal",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPZmlyOHRZdkRwV19GZzBaVFRocGp4ZGgzNmY3NkpPaUItRTJJY3ItN18yWlVkcTdkZXRsUXJBTV8yVWxxNExWUE1QallZeEMyQ2FzZlc2S1Jva1Vtb1BEeWMtak9QeUF0aUNpR3dabnlqMnJfbVZhT2FNbzlnM0VMN0RjenNlWXZja21qTGdrRndQQ1RLWHZYN3VicGNvd0RNYmpBT2dvQQ?oc=5"
+  },
+  {
+    "date": "19 JUN 2026",
+    "chip": "Release",
+    "title": "Zensar Technologies Launches 'ZenseAI.AgentMesh' to Accelerate Enterprise AI Adoption at Scale",
+    "src": "PR Newswire",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxOdVJ5OWFtN1h4Z0VYWVpFM1d4SHVZU2ttdG5oUW5icW5FbEpLTW5mSGlDcFFSWWtGdDVHREV5LUhNdTVZSlMyNkNJekpnNTJTekFSZF9SaUFneWVOTkg2ZDE0MmdIN0QzeHlscnlYNW8zZ05EN3JhZkNwRy1uU0pBSEw3cVk3TVZWMC1keXFDRVdIQy0zWDk5MjgwQjZnbVliV3RJN0cwWXN0TVptbUxSQzBTaUxpTTk4Skg5MVdxZGo3VndtSlc4Q0xJQUtXdWRLUFE3MFEwWDh0WGZRSk4tYQ?oc=5"
+  },
+  {
+    "date": "19 JUN 2026",
+    "chip": "Modernization",
+    "title": "Google Cloud’s EQT Agreement Highlights the Next Phase of Enterprise AI",
+    "src": "Cloud Wars",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQOXJTRURyZldScGw4SWVvWHV6VWZNUkpVTkwzQUxHTUdqNWY2c1cwRFNIS3NfZ2FidVFkRzNKVktsN1QzNy04Uy1JWUxIOGF2VHYwSm02T0U2U0ZRWDBsd1pKdlRYdDdMbjBVYzZlU2g3eDY0Vm54TTh0dzNyZDdvdElzTmlfb3NNMTVYZGg2YmZkTVZWQW1ZUThwYWJrTHU1VE1xeHBwYkFSeWNyUHNxNg?oc=5"
+  },
+  {
+    "date": "19 JUN 2026",
+    "chip": "Modernization",
+    "title": "Digital Transformation Keynote Speakers | #1 Scott Steinberg",
+    "src": "futuristsspeakers.com",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE12RG53bjhFQWpLOGh2WXpieVpxbFBmdTZxZWFXRU1LWGw2TkFVMEFjVnA0U2llTXpsdzF3RklGTFZjeXNsMXhkTlhZcm9OTmNpRmJpWkFJZ1hqXzk1MW5EbUJDeGx4YWI5UGdpMkczN3JYdXk1OTVKZ0RhSmZFT2c?oc=5"
+  },
+  {
+    "date": "19 JUN 2026",
     "chip": "Modernization",
     "title": "How mobile tech is key to Africa’s digital transformation boom",
     "src": "capacityglobal.com",
     "tag": "Google News",
     "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFAxMGxaYmlleHV1Z2lqV0tOUlNrNkg4VkFwRkhnWFZzR3NKNlpvcVhwMlBXU1VHZXF1M2VTa20yYWllMi1WRmt6TmM2MEEtREpDZENhSWFtNm1Xc3lwOXZoWDRObllRN2taTHpvNS1n?oc=5"
-  },
-  {
-    "date": "19 JUN 2026",
-    "chip": "Modernization",
-    "title": "Axis appoints McKinsey’s Patiath to board to bolster digital transformation strategy",
-    "src": "Bermuda Re",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPQmtEeWM3bHJ3YUl5cUVyRmduX3VKVkJGWUstTHpQZ21pNEg1dldRMFFqTkUwVUoyUFkxN3VJYlFnaS1zN21Ec3BSYXRyS0MzUXNYSDJtVU4zZ1NndzY4RGI1Qi10d0lYcVFTZGQwNXBLSy1qanRmYTh6VEl0VjUxeER2bjJEbkRlaG85MmNtVUFuZ293ZkhXcDdxekwzdWt3eXVGUFVPZ0FGUVlGcW1vTnVFandVWFFKOEVRQ1B1bldxZ1pK?oc=5"
-  },
-  {
-    "date": "19 JUN 2026",
-    "chip": "Modernization",
-    "title": "Tottenham signs TCS in digital transformation deal",
-    "src": "SecurityBrief UK",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPaGRVUWhoeHJhd0wwajVfRURNakY4cjhuUk55MWFZbGJDanlRSnhxVzRYZ1V4clZ5ZXlpZEpsOWdsVk1WaFliSnV5V1BVSjhKdjFTNlJILTNDdnNLeFo2UDBRUDRYT2NXTllTbkVUUUlaUXd5VHdjeVVMVTJVMUkxLU5wb01tM1FiaFk1Wg?oc=5"
-  },
-  {
-    "date": "19 JUN 2026",
-    "chip": "Modernization",
-    "title": "Asian Development Bank launches digital transformation strategy focused on AI and inclusion",
-    "src": "Digital Watch Observatory",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE1XLVFnREQ2QjZjMURUbjBzbW5YVHRlclV4NFlyU19CSEs2VmVSMVF2YzhIbVIzSzNONTl5VksxanNXNWIwZXp6T3VWY1J3bk5VT2EzVHgwUmp2Y180M0lFQ2w5dzMzOVZOS3FRWVpDOVdVYkFYSFJ3YjdkUm1KejQ?oc=5"
-  },
-  {
-    "date": "19 JUN 2026",
-    "chip": "Industry",
-    "title": "Chris Wright: Metal-to-agent is the foundation of scalable enterprise AI",
-    "src": "Techzine Global",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOemJyOFQzaGFTZ0syUUFyV1dEZ09zVHU4OW5mR3ZBcHF4MDN3Mi1tQUR4MUd5YXllR0FxZzQ5TWNtY0VMcWZLNWFGekV5NnRzbTJvdDRRVDdmMFM1M0FCZFpBOVN3UFFEdWkwSUFxbkQzeDJPaWNlaEJEWFhIbEZJWXZGbklnWEdVM2dRWTV0YjNfd2pLZHhXMkhxWm5VOS12YXBwbHR5cDl3SUhZWWN1YnA2eHFXLUZjRjNhWDVKVlVvQQ?oc=5"
-  },
-  {
-    "date": "19 JUN 2026",
-    "chip": "Modernization",
-    "title": "Madagascar Reviews Progress on DECIM and PRODIGY Digital Transformation Projects",
-    "src": "TechAfrica News",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNa3o5dlVIUVgwQXBXT2RGTXlER2g2MGlESHpoZTRsa2JVcUZDRjJWTmpEUkF2MGQzVWJhNGc2ZkwtU0IwTzVoRndfb1Y5YmNtUmMtYTkyS0sxV3JTQ3JQWERXc3VRamZNbVJZUFljemJwMk5GdDhiMHF1NGRHN2E3ZFg0dm40N3g3WHZRZjRfcURVZk1SbXp4cTBfWV9SeWlGTlJmN1k4WDNXcG1GVEVuckNTdGNfZUZWdGdj?oc=5"
   }
 ]
