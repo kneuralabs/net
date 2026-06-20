@@ -1,6 +1,22 @@
 [
   {
     "date": "19 JUN 2026",
+    "chip": "Release",
+    "title": "DoorDash (DASH) Launches AI-Powered Chatbot to Streamline Ordering and Reservations",
+    "src": "Yahoo Finance",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQNkNkaU5KclNkNVVwd2hmQ3lFRW5PRFhhbWltdGFZX0VmZFZMbDFjN2llSl9oTG5fWG1kY0o0alJBb1RKYWVNVkRjVUJYeWk1aVB0aUJjRHF4SWdsX3JrYXc2OXp1cldZN3hEelpkNG5mY0d6SUtBbURNT3hFY2xzOTk4Z1NMc19talBrcFRrUWh3NjlKa04yTXpfakRpUQ?oc=5"
+  },
+  {
+    "date": "19 JUN 2026",
+    "chip": "Industry",
+    "title": "AMD (AMD) Buys MEXT And Teams With Rackspace For Enterprise AI Infrastructure",
+    "src": "Sahm",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNT1lvTk9Pa2tBMDBiV2p6OE1RcWQ0aFRXcm9qd0xxa0c1MU1QeGlRNk9WbGo3X3JsSzJkS2lvbDU5aVcwd01tZDhSczVIQWNZTWNZZk0wM3JKUjNrMkJ5TEJCTU55MXpGNHhoaUFjNXRycEVuNmF4WURnUUlZdHR1OUN3YlcwUmdnenc2b2dkWDU2LVU1YV9jc3F4VGxQeEpTM2JWR2luSXVtRjBPajVnYTFDOFVadS02a3ZvNVRwcmhEWWNHX0E?oc=5"
+  },
+  {
+    "date": "19 JUN 2026",
     "chip": "Industry",
     "title": "How responsible AI research helps manufacturers understand tax impacts before it’s too late",
     "src": "Wolters Kluwer",
@@ -9,19 +25,11 @@
   },
   {
     "date": "19 JUN 2026",
-    "chip": "Industry",
-    "title": "Ad Hoc AI Policy & Drama After ‘The Blip 2.0.’ ARD #101",
-    "src": "AI: Reset to Zero",
+    "chip": "Modernization",
+    "title": "Vietnam News Agency Launches First Digital Transformation News Platform",
+    "src": "OpenGov Asia",
     "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE9JaGw4TEdTLUtNQ1g5S2p0YTYwcmV4Yjh2RjVmWC1FYV92NHpPcDkzNVAwYVZMUWh5aXQ4NXZZSGJ1UWVUSTlQS0Z4MWdzbTVSZWs1NU9EQk9ERHc1eGp6U3Z3LXY4OXc4Vl96aktmZHAyeEpoS3VXSA?oc=5"
-  },
-  {
-    "date": "19 JUN 2026",
-    "chip": "Industry",
-    "title": "PR News | PR Pro Germinder Calls for Responsible AI Adoption - Fri., Jun. 19, 2026",
-    "src": "O'Dwyer's PR",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPLXhDRWNxVFpoczVHTnZNNjNta0JzWFNOeUZOYTQ2Z2N3RGhXM3FxNjJybkJURm1yMG4tRWhBbXdmRlRBNmdtSjFWV0VRSy1MU0hlYzZfR1E3V1M0M3d5ZWhjX0NpY2c3aTl2a0ZYZENldGpxbzRiSFNNVEltTGN2V2czUmhYcjBSdnJBeDM1amJYTW1iRDV4OHlYZm5aTVY3TGw2WWtYX2lFX1RwLTNB?oc=5"
+    "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQTkpyLS1Da3l3UzRSaWJQN2pDM1BUZnlXZlAxbXFHTjJHZ0xNU0IzaGJiN0YxalZsMXNDMkUtcVBWbmdvZm8zR0kwazhGanlEUy1reXhROEI3NkpSaE93eUNHRGNCSFVtVEMtdE1OZmU0SExZZlMyZklqZnI0ZWxwUWw4MXlnM0hRblJxcW1YS3dpSVM5TkpEekZpY2U?oc=5"
   },
   {
     "date": "19 JUN 2026",
@@ -38,13 +46,5 @@
     "src": "Hartford Business Journal",
     "tag": "Google News",
     "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPZmlyOHRZdkRwV19GZzBaVFRocGp4ZGgzNmY3NkpPaUItRTJJY3ItN18yWlVkcTdkZXRsUXJBTV8yVWxxNExWUE1QallZeEMyQ2FzZlc2S1Jva1Vtb1BEeWMtak9QeUF0aUNpR3dabnlqMnJfbVZhT2FNbzlnM0VMN0RjenNlWXZja21qTGdrRndQQ1RLWHZYN3VicGNvd0RNYmpBT2dvQQ?oc=5"
-  },
-  {
-    "date": "19 JUN 2026",
-    "chip": "Release",
-    "title": "Utah launches AI prescription pilot program",
-    "src": "Yahoo",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOVGd6NXlna0dEZzhUNExkQ1E4OU1ud1RGQmFNclk0TkhqUmFfakVlZmQxeTZlcm1VRDBud2VkNVM5b2U4M01taElZZ3JOdTRIY05xWXJ4RkNZTHEzVEpOOHBKX1JGUUI4Nl9ETnQyRDEyTUpFaWZwRFBJMkw5QUhIZDQ0cUdubDkzWVhVRlRRczlOQ3NzcHFjT2l3?oc=5"
   }
 ]
