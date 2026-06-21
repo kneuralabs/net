@@ -1,6 +1,38 @@
 [
   {
     "date": "21 JUN 2026",
+    "chip": "Regulation",
+    "title": "AI Governance Shouldn’t Cost More Than Your Actual AI Bill",
+    "src": "HackerNoon",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOSFhubnMzM3pxYnIyTXBmYnNOTWFCQ09OdHh2a3k0Q2NPSHo3WjEzRTlEdVJFSURBc19GT1JtbFIwdm9hMU13QjJNbXJwVW1oV3RYYklwLW84X25OREJhUExQaGcwcWxYcjdoRnloV0tvbVc3dmpyNlI1WjdfSFBaTTVWU0pZMjA?oc=5"
+  },
+  {
+    "date": "21 JUN 2026",
+    "chip": "Industry",
+    "title": "Smart Cities Move Forward in Syrian-Saudi Cooperation - Enab Baladi",
+    "src": "Enab Baladi",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNbTZvTURYMmZFeHFLUHlZQUt1RjZIaG5fdUNaQkFNeFRrQkxNR3g3dHV4UThHeEY5VTZ5Uk9UYlBUczJfSFI3dmVjTmFhMVNPRmJuelhfUklwV0ZMMUhRN2VsaXpzSzJTWVY3cWhxVFZJazcxeW5lb2lpWXJDSHJRSnpZWWFMVW9OUGswaGFveU91cTRxeUJ4b19YLWpJQmdobzJaeNIBqgFBVV95cUxOMVdlSEgyMmlKNmZHajRkWWV6dWE2UV9TWWJsbjdmS3pCbHZ3RTFYMmctOVkyV2FId2pLVFdXaXlfZGhuUTk0SHpuei1va3FNYXBQazZrTVJEVDFTU3lxYkcxUDM4SkxJRHNOeHJxMk9tT0xxbG9DWlR4SDg1NkdtM3FGbVNYTHJScnItNU5UN3FYQTNGLVJyS1FhOHpWTTZOTHhyZHEtdDhxUQ?oc=5"
+  },
+  {
+    "date": "21 JUN 2026",
+    "chip": "Regulation",
+    "title": "AI regulation is a mess, and Anthropic is caught in the crosshairs",
+    "src": "CNN",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE1neXNmOTd6N0V5LVlxS0pFVnVUVHpEMzNXSE5aSkE0aWJCMDc1N3BuVXFRX091UWFWR2MzVEw0MW5aQzh5TjRPTVYwVjQtUHYzT2RTLW1kRi11am80cHFfTGREZUtwdEw3RlBR?oc=5"
+  },
+  {
+    "date": "21 JUN 2026",
+    "chip": "Industry",
+    "title": "Enterprise AI budgets hit a wall and the reckoning is reshaping how companies spend and how founders pitch",
+    "src": "Startup Fortune",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPSlBTazF6MFNYeHdJZmpMNER3cWFXNFZJb2ZBWExjMk9oYlRzdk93ckZmdWdGQzhEWWVBT3JDQ0pCb25jN3pWX2d3MTdYRWZ3QmpVNUpNbXRtNHVHVEd2RXhXYzNXNTc1QWR1Z2lOcUdXb2pLRTBJT0MwMm55TnJ4cnZWRC1jcVhfR3hxNkFOYlFWbEhRbE1keHNGYU9EcXFfU1RrZC1iOVBscVA1QTI4elJFNjBLVXhkdEhJdk1LSUZrRzg3Um5HWUxwaTJLcUk?oc=5"
+  },
+  {
+    "date": "21 JUN 2026",
     "chip": "Industry",
     "title": "My teenage son is using AI to do his math homework. I'm now helping his school write its first AI policy.",
     "src": "Business Insider",
@@ -14,37 +46,5 @@
     "src": "cepro.com",
     "tag": "Google News",
     "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQTUx2N2wwMjlyMTVoUnlYck9peTJ1eFI5YTd1eUNDb3pvMnBSSWl0QjUxRndsc01uaWhUT3N5UVRpVFJ6WEhHbkM3dU8tbkdwSkZXTFMwbXNWaEczOGNqUmJUelpWQUdHVVM4Vko1WkdmU28wbXVycXJxdzZmZ19QalJqOE9Nb1ZrT3U2VHlycWJoU3VMdDVhZ2tPcGRTZw?oc=5"
-  },
-  {
-    "date": "20 JUN 2026",
-    "chip": "Modernization",
-    "title": "UNDP and ITU strengthen global digital cooperation to accelerate inclusive digital transformation",
-    "src": "Tech Review Africa",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQY1dCc3FhV090eUc5RjE4cHJ1SExQTmE0cEtXUDZwb0E2SXRXcW1rYjZmOFFjRWs4NDBsNHdWT2dieDNjYW5nTjdlUGU1OWJhaDh2ZkhqQzZjSDlVUlRWMzFBVThYYVlQOExMMnZXZUxJWXljRDJVMW1KMnJBVmFFLUhfYzA2U2ZfZjFRSkliNzZrMFBnbmQ3LWJ4S1pQV1NQcmFLMGtiblZscWJrQzFSR3hIZHdvMDFOcDVsVllPcjVBYmFnWHlpTS12RldZZEVGenc?oc=5"
-  },
-  {
-    "date": "20 JUN 2026",
-    "chip": "Regulation",
-    "title": "Microsoft is rewriting the economics of enterprise AI and the bill shock is just getting started",
-    "src": "Startup Fortune",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQaTFUdEVwdmJHOXJ4dDNWazBOTUF1bmVWMkxSYV9sT2tiRGZOT0ZuajlQQUR4WDRUaHZXSXhrZGl5SUp4eXlnZklxYlpuYlh6VXNUYmVBRUNCZE1zUnFNRFJramhYbnAwOFFSMTMtbW5WN2R0MXZDZGhkMElBTXlaanZLaXFnLXJaU0I1U0FSTUM4bEJpclAxajF0dUd1WVlaLXg1WVVOR1prSTdEU21lNk9BOXhmNjc5dWtGbDRYWFZudw?oc=5"
-  },
-  {
-    "date": "20 JUN 2026",
-    "chip": "Standards",
-    "title": "The AI-Driven Digital Transformation Framework for the Next Decade",
-    "src": "Pipeline Magazine",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPSEpBdHNGQ1RjVURYTThiYU1EdGZqeHM0UkNIVnVKaGN4Mnk5dXM0VWxEa0dwZl9kdG9QNm1DZW1scXBfX3J4UzVERlk2ZHlJdHBCZWtEVUxHNU1xNGcwUldfdkVLNTFlVzU1dVQzbmJVVVBXcEYzdW1Uck1VajRUSVdfNVhVQnFzaG9NU3g0OA?oc=5"
-  },
-  {
-    "date": "20 JUN 2026",
-    "chip": "Industry",
-    "title": "Gov't pushes digital reform to improve services for diaspora",
-    "src": "Caribbean National Weekly",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOejhJNDRibkVHQ3BJUFBCX1FTaVVoM01IT2NSV3Z4NG9wY0VvYjdMSXhxOFlSOWNKVFNreVM1em1YMVZ5c3E1ZFV6REpSRVNzNnJqX0tyc0lIMHZjbzZZQ1I4UjA3T3RHalZXNGpOSXZrWENyMHItWlM4N2xvQ0ZZZjJKNGo1RUJBZEZvakdFcXo3V0pyZ09iYlNBS3hHS3A4d1hXNWhHa2FBSnpmRkxhWWxTU3FFaGxvSGl0YmhDSWtvM3pTbUE?oc=5"
   }
 ]
