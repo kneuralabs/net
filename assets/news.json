@@ -1,11 +1,35 @@
 [
   {
+    "date": "27 JUN 2026",
+    "chip": "Industry",
+    "title": "Central Ohio school districts prepare as deadline looms to set AI policy",
+    "src": "NBC4 WCMH-TV",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPekgwQ2wySkg2MXM5UlNJMElDTHU1Q3RpWjlza2VYOEpUaFJ3bl8zU0FDbEdIQ19Tc08wRENzRjd6T0JldnJBaHhLNU42U0VmOWJQR3BudVFOUlV5QmNxUGU1WnRjOWdyQ1lNX25WVDJ1V2QyVVppb2liMEh3aUVvbldBNTU0SkF3U2tIX1A2ZXJldXdBcVR0Q0h1MF9jd01FSDZhTGswaVEwSUJTWlZDS0d6LUhJRnZrT3JrbURCczB3VnZlQk9uUdIBzgFBVV95cUxONEVyc216Wmo1eHoxSHAzajVTRXRlbGtHVHpBMFNCaER1M2J5ZmNscTdCZ002NDV6ZVR0MU9WRTh4cVhXRThkUjB2bi1TT0NGYzBmdF9zY3dOR2NHRnFhMUliY3JwT2w0ekdZTXNVSjFYOXphdUlRSEFySkJUbmJ6b3BMTERzaW40VUxpZjUzS1lJRHhsd1hfWmFLbERUX0JhZ1F1QjBjWjFnMXl4VkFjOUlXX09KZk9EMUxQQU5GRy1RX3ZocmFFVTJpaDRfdw?oc=5"
+  },
+  {
+    "date": "27 JUN 2026",
+    "chip": "Industry",
+    "title": "Wedbush Says Missing ROI Metrics Threaten Further Enterprise AI Deployment",
+    "src": "PYMNTS.com",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxONjh0dER2TUxZc0V2VHVIOXJIS2VIeWwyQmJIUkNiNk5BMFhRY2hnOHBQTzBSanFNcEk1SVpvWGpTZHFqX1duV1lQOWVEMERvc1AybGluaHhnVm5tUzJvb3VpRG05OThhcjZFSV95WG5LOEJwNDVNczhtUmYteVBLX2tBdGRIMklDb0lidzF6dXRNQXdheHVqQ05kQzA5VWpBOXl5cnRUbmNqSE9GbjVpcEpHTEV1NFpQNzFJZVA0NU1MQVlReEFENHE4YU0?oc=5"
+  },
+  {
+    "date": "26 JUN 2026",
+    "chip": "Regulation",
+    "title": "Cartoon: AI Regulation",
+    "src": "The Virginian-Pilot",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9LTl9TOTh5dUd0UW1kUFEyTGlZVFF6OFQ0RTRqaEt5Z0pmOFpxcU85WTBtVjhPOHA4bkt0ZDNJcWNDaExFRjF2Yksyc2ctcmlMN0dBVU1jWU1GT1pmeV95WWFWNnlVdlp2NXN0VGlR?oc=5"
+  },
+  {
     "date": "26 JUN 2026",
     "chip": "Industry",
-    "title": "Constructing AI Compliance Plans As State Laws Diverge",
-    "src": "Law360",
+    "title": "Strong AI governance can lower insurance premiums and board liability",
+    "src": "MarketScale",
     "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQcVhJUFpJZnVZMHczTXpVVFJ5N0NScnlFbDNwT2JMUm03NXYxV29sZkk4Y2pENlRkSlpmaDZOVjl1Q0ZqVnZlQjM1ZDQwQ2xLR1lZaEpqczRvR1NvNW1UUWg5d0FHb3ZnVlZkXzdiM1hXMUpfclJLMVdRd296T2JWTDhTcGM4RmdNTTktV25qVHBCQzQwbUxTWUxB0gFWQVVfeXFMTnVWemg2RVdDeUVjOTJUVGRsbk9FRnRzQlphc0JNcEw4RXUwTlVQc21ueGl1SHNYRUo4Nkc1X3YxaXRZTUxlRk04ODhWS0NHVVRpQXZiNmc?oc=5"
+    "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNMGZ6TVg3b2Fxelp2RlZKZHp4Y3dUNTVsMi01MlpxRGVFYVBYcFFJQlgxTHJmcnl0UUhtNFhjOHNhQzZRSzBiRllrY09DemNJMVN6b3Q3NzE0R3pvWXFDc0JYLWZJRzlsbThEZkhoOV9SOEpyNFExbWNCUXBTSU5JWFRpZ0JxSjkxY0E3MkZ0a1EzM1E0eXo4ZFFFNmlCcE9HVFMxQTRhVnRkUGNYeUc3TkhlQV9MREtkdk9abWhMakMzRWpobGQw?oc=5"
   },
   {
     "date": "26 JUN 2026",
@@ -17,34 +41,10 @@
   },
   {
     "date": "26 JUN 2026",
-    "chip": "Standards",
-    "title": "Cloud Security AI Controls Matrix Turns AI Governance Into Assessment Framework",
-    "src": "Virtualization Review",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNemhka0oyX1ZIbWJIZ1phY0Y5NE1xZjhKaW16MG1xNWwzTFR6T01xSmpPalBtM0lHRHRoUlFPNFVMdXZmVTVIV29kZmRFWDdPUWxRN0RwNTNwdkVucFIzbWV5MFJGSUp1blhPUDhEekpMY3dnTnQ5YUExc3FXVGVRaUhxVURURkFnbTZhSlk3S0dRTjI5SkVHM1hXcWZEWkV2bEdRLW5mdFdGQm9iSnRFYjV4SHJCSFdXRnBmdmpMdU9SZ1FNWllHNmthemZvRGN1OTlF?oc=5"
-  },
-  {
-    "date": "26 JUN 2026",
     "chip": "Modernization",
-    "title": "Before and After: The Requirement Digital Transformation Often Misses",
-    "src": "PA TIMES Online",
+    "title": "Retail Digital Transformation Guide for 2026",
+    "src": "Shopify",
     "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQZG1UdmFFeUN5YkV4WW94YnpURGRSOHRsR3VGOUVwQ2FpTTRXb0w0bDZyYk92OHJyd3QtaW1rcVp2bU9UajVUd0NxczEzUDdzX0FwbFdhNE03NkF6UTBvY0NyUmozMjZUNUw1ak9wRE5qWHFFYXdXalU4eDhESEUzR3JBZWVxUDZfbkFEOTN1UWJJVzg?oc=5"
-  },
-  {
-    "date": "26 JUN 2026",
-    "chip": "Industry",
-    "title": "Capco Recognized by OpenAI for Innovation and Responsible AI Leadership",
-    "src": "Business Wire",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPZDBZLWM5dGlISlVwd1daN3l4U0JxNWRPUVBiYkFaVlJtLXZBa2FOQ3lhZVpJaEVjLVlOdjZTWjZfOGlxVEtMLVlJeUVWSGhNbVhLempvZlVFbDFoUDhuZzY4Q3Exd0U0anh2aTB1aC03OFpuM1JMN2Z3dUZZTVROY0lOUi1fcTZxNkktZkRQai1Ja1FqbU1fWnhDTjZtekI3SnlZeElrRXo0bkw2OTlReHhGVVY4ekgzUmNEUkdHbENPOFF6cWRv?oc=5"
-  },
-  {
-    "date": "26 JUN 2026",
-    "chip": "Industry",
-    "title": "What SUNY’s Systemwide AI Policy Means for Public University IT Leaders",
-    "src": "EdTech Magazine",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQV3VCN3FQbzAyY1c5bVJFdjNwa1NoV3lXaE9BQjJMVzNUMkstTHdzb3lHbEJPLWR1WWo3c1RKZkZxLU1YUnd2bzNIdVFNOFpzWWVWUVROb0xUajh3RWhUbTR0QVAxV0NJckd3WUVqb1Z1RVNwclFTZmM5WmpFUVNoVzVFQmtIRGh5a09LYl9sNVJoN1RGRkE2MjhQcWhkc1ZLalE?oc=5"
+    "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBOSGY5QmdyRlhMdjF6cWJhbFlzN3BWQ0RsZkh2Qi1Cci0waTZDeTc5YXNady1RV0FtM0RiVmdNM3BySEtzT2lmM3h6endEODdoS1dUc3JuWGtsNGZHVlJ4UU9oN21wdFdFTzk5ZDhtbjlwcnpBMk9IMA?oc=5"
   }
 ]
