@@ -1,5 +1,37 @@
 [
   {
+    "date": "29 JUN 2026",
+    "chip": "Industry",
+    "title": "Prompts Are The New Malware As Enterprise AI Defenses Fall Behind",
+    "src": "Forbes",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOemJOaE1xTHd6dzJSWXd4UXExdFZhMTZ6TWphbW1EZFJ6T1lCbExGUU51Q0VMX3h2SmgwaHdtdV9JazFoY0lnc0dRUDhDM3FYTE9PZnJnUXRrZEdJWWN4aUpRY1R0UzNPV2Eyd2hzUm5KaVRPQ3RxY0V3NVBCVTV4S0VzYVVjQXRkMWI2T1Z0VmUyRDliRlJSd253N2Y3a2hjQWk0d1NTWm91NHpWNHJDT3BGYUlsM1Q3SGxr?oc=5"
+  },
+  {
+    "date": "29 JUN 2026",
+    "chip": "Release",
+    "title": "OPPOLIA Launches AI-Powered Factory to Expand Global Reach",
+    "src": "GlobeNewswire",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxOQnlFVEJoZnFrSWNVNFVLeXNzWll2LWVkV1A1NUotWUlURUstVXg0a0JkYU1qMlNqMlY3elRpQW5lZWxEZjdYWnJUMURaU0tGUjk3MEpKYllVeklWVnJkczNqaENLNkNUT1E5QklRcl9KOEhBUUtiU3FaTUZyQklCZ3ZPWnJ6bXZCS3FUc1YtVmJCNWxIZkhQMERISE9FdXh2Mm9HYW41TXJPdG5XT2F6UWxIZEl0N2ptOGxJS25hc3lHcEdCOHd4WG9n?oc=5"
+  },
+  {
+    "date": "29 JUN 2026",
+    "chip": "Regulation",
+    "title": "As Calls for AI Regulation Grow, Media Faces a Defining Moment",
+    "src": "NAB Show",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOMjc1NUoxVEdzMFpNZXVmRWc4NlByaGR3TjlHTU83ZG5YLU9CRkZodW5TNHBLWTdQdFlyWlZSazljTENMMDIzdlBMa3lKV2xwc3VraEpvOWsxVEZVdDVLOWJnaGFHeUsyNDEzc2tRYU83MjZMYldDX2gzOVdfTTB0cGMwYllCUmpPa3lWLVpiVEU1by1nTnhZTzF3?oc=5"
+  },
+  {
+    "date": "28 JUN 2026",
+    "chip": "Industry",
+    "title": "Rackspace cuts 750 jobs to expand enterprise AI strategy",
+    "src": "The American Bazaar",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOZy1kMk5weEtUak10bFctMWZlaEJfczVpZ2hoOTVRRy1EX1p1SnF4cXRCTWtBN2piNXRQM2RURGk3SmdNZXBXOFhvdnRBZ2FOWk5adTlqQkdVSHBoLW5Ud3dVZVhsSDFkdk50dkd5WWdYa2dtSlpVM0NRYUd2RHlkdFNmOTl5MGFjMWl2M3Rxdk9ZTWZXNnJCbFkxZTJ5aUZkMjBITmJvOURUeWN0?oc=5"
+  },
+  {
     "date": "28 JUN 2026",
     "chip": "Industry",
     "title": "Enterprise AI hits an inflection point as companies rein in spending and demand real results",
@@ -9,42 +41,10 @@
   },
   {
     "date": "28 JUN 2026",
-    "chip": "Modernization",
-    "title": "The Growing Role of Digital Transformation Consultants in Industry 4.0 Initiatives",
-    "src": "The AI Journal",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNdGtsZWdhanNGNi1iYlVOX0M1T3Fwc2JtdWZycVFiR1R2ZkNHTnA5YjZwOHJTanZzbHVCOTZhU0RlVUN5M0ZhR1RGd2g5NGFnOTFIUEQ4LWZfVXJBMlFhLW5kNDN2NzkxRTZBcDhkT2dFeUcxcUJvbnVSQ1g3NFl3RHFqQUZjVFd4aHFFWDh6d0V1bGxGQVA1VFRNTld4QkFUSkJNVDR3?oc=5"
-  },
-  {
-    "date": "28 JUN 2026",
     "chip": "Industry",
     "title": "Prompt injection is exploiting enterprise AI's biggest design flaws by targeting agents, RAG pipelines and model routers",
-    "src": "Venturebeat",
+    "src": "VentureBeat",
     "tag": "Google News",
     "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxOeHR6dGc5dlAzMTd6X0xOdllsdndndnNpalVXSk00MjhMejVVSDJKeWFTSWZKNENHN3ozVERvX2t5V2x3UG85UmdlVlB1eGtha1pOVFlfVGFMQVNQNGsxbU5BdlBCeUVPZFJseW14UEJfc1k3LUlVOE9KMERoOUlaM0RoektvYmVLRnZFaHBoX256ci14UklPU18yR1g0WFZ3YUFBNXhnYlQ5c19od1duak5yeEw4b2tGWGNOQXRJaVdqRzJxdUtUZlIzdFF5c1NaOUtoM29vdTBMUXZwMklDOV8yVThNZw?oc=5"
-  },
-  {
-    "date": "28 JUN 2026",
-    "chip": "Industry",
-    "title": "UNESCO summit backs ethical AI governance in Latin America and the Caribbean",
-    "src": "Digital Watch Observatory",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE1KY3l4OVAxMWhaRXpHbVIwZmJ3RnRXREp1LUxzRTBEc3F5VFlPeDB6V2dMMDlVY0E1dmhJUlNCMlBNdGdGVmt3S1cyVWo3TDR6ZlZwejJiR1c5WVFKUFRKZXU1NA?oc=5"
-  },
-  {
-    "date": "28 JUN 2026",
-    "chip": "Industry",
-    "title": "The AI Governance Stack. A practitioner’s field guide to… | by Adnan Masood, PhD. | Jun, 2026",
-    "src": "Medium",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE9BamdmdU0xd005elRyWnVJZ3p3SUpOdkJCMVBaU2ViLVVMYnlpQzN1Z2duV1FWVnkzOVhnLWtGcWpSc0Q1VUVNY0RVeVJMTW9GUmFpRW5DNTEyc1g1YWF1SGwtaVNST3dUandoX3NLbUl2c0FubXdF?oc=5"
-  },
-  {
-    "date": "28 JUN 2026",
-    "chip": "Release",
-    "title": "Vale S.A. (VALE) Launches AI‑Driven Model Plant in Itabira",
-    "src": "Yahoo Finance",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQQl9PV2loSVR3V3MyYkJOaW1ISjdwN2o3X3FLekFoZkM3c2V6a3M0bTc5bGdfZFl5QUo5Z1RtTmQwV215THc4Rm50VjVJVGlqQU9Nc2FTZ1NNUnlEaFhqaG82eWRHdldOZ3lSdmtNLWtnR2dkcHk2Q0JFSHlzZWQ1Z2VGa2s4WW9GeVlnWUFZVUJNVnRsUFY0?oc=5"
   }
 ]
