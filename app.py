@@ -135,6 +135,9 @@ _SSO_TOKEN_MAX_AGE = 300  # seconds
 # Application-specific KDF salt for the XLSX encryption key.
 # This is a domain-separation constant, NOT a password salt — it intentionally
 # stays fixed so the same EXCEL_PASSWORD always produces the same Fernet key.
+# It MUST stay identical to sso/sso_app.py's _SALT: the SSO server reads the
+# same DATA.xlsx this app writes, so a mismatch breaks SSO logins silently.
+# The invariant is enforced by tests/test_crypto_compat.py.
 _KDF_SALT = b'kneura_net_v2'
 
 

@@ -69,6 +69,19 @@ python sso/sso_app.py   # SSO on :5001
 python app.py           # intranet
 ```
 
+## Testing
+
+```bash
+pip install -r requirements-dev.txt
+pytest
+```
+
+The suite (`tests/`) sets its own dev-mode secrets via `conftest.py`, so no
+environment setup is needed. It covers the intranet↔SSO shared-store
+encryption contract (both apps must derive the same Fernet key for
+`DATA.xlsx`), the SSO open-redirect / callback allow-list, and the
+change-password validation rules.
+
 ## Known limitations
 
 - `DATA.xlsx` as a user database does not scale (file I/O per request, no

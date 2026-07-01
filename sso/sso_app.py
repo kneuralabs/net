@@ -180,7 +180,14 @@ def _is_valid_redirect(url):
     except Exception:
         return False
 
-_SALT = b'kneura_labs_2026'
+# KDF salt for the DATA.xlsx encryption key. This MUST stay byte-for-byte
+# identical to app.py's _KDF_SALT: both apps derive their Fernet key from the
+# same EXCEL_PASSWORD to read the *same* shared DATA.xlsx, and app.py is the
+# only writer. A different salt here yields a different key, so every decrypt
+# fails, _load_wb() returns None, and the SSO server silently falls back to
+# treating everyone as a first-time user (only DEFAULT_PASSWORD is accepted).
+# The cross-app round-trip is locked in by tests/test_crypto_compat.py.
+_SALT = b'kneura_net_v2'
 
 
 def _fernet():
