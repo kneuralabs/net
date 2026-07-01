@@ -1,0 +1,55 @@
+name: Tests
+
+# Run the pytest suite on every PR and on pushes to main so regressions —
+# like the intranet/SSO DATA.xlsx salt drift these tests guard against — are
+# caught before merge. Path-filtered to code/deps so unrelated doc-only or
+# frontend-asset changes don't spend CI minutes.
+on:
+  pull_request:
+    paths:
+      - "**.py"
+      - requirements.txt
+      - requirements-dev.txt
+      - sso/requirements.txt
+      - pytest.ini
+      - conftest.py
+      - tests/**
+      - .github/workflows/tests.yml
+  push:
+    branches: [main]
+    paths:
+      - "**.py"
+      - requirements.txt
+      - requirements-dev.txt
+      - sso/requirements.txt
+      - pytest.ini
+      - conftest.py
+      - tests/**
+      - .github/workflows/tests.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-dev.txt
+
+      - name: Run tests
+        run: pytest
