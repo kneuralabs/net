@@ -1,27 +1,35 @@
 [
   {
     "date": "16 JUL 2026",
+    "chip": "Release",
+    "title": "Digital Organizations Technologies and Strategies (DOTS) Research Report - updates on Humanitarian AI and addressing concerns for responsible AI deployment (July 2026)",
+    "src": "ReliefWeb",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMimAJBVV95cUxQcFc2c0pOY3oyUkhlWFhYbTZ2eTRNWTJnT2pWMUZlZE9WdWphaXp0QmU0RFlnY0VVTmxnS2s0Snd2Zm5pQThIWlVmRU92R3dIQnpjTmt2cXJDOGdDajdsZ2hIVXpZXzROdDVoZWQ3MjBHcHA0VkZrVW0zcGlhUjFtZDI1cUVNTVhPNzNFNmJ5M1JZdl9uamJLY3VVallxOVhuRjZSdzBGaU4xYXBpVDc3MG5fVXpsemlXckd4QWV1UlpVbGVXSkJJSXpTaVhFLW5rOGk3Q05Ncm1lU3VaNFFtODQtOXQ0dmFnVWxXWmx6WWdkdWh2VklPWm1qLXpwN3hTbHlHaVJPaG44MDg5Q3l4UUhLUEhpbWRm?oc=5"
+  },
+  {
+    "date": "16 JUL 2026",
+    "chip": "Modernization",
+    "title": "Cameroon Urges North West Councils to Accelerate Digital Transformation",
+    "src": "TechAfrica News",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxON2F6UmpubF9zdi1NVVkwTmR5aFFLaGJlVlFlaUYtZVF4cEpMNmZIQ2I0dEFOc0ZBNTVDend1Nm5lZFV2Z2pfQzRzM1BnR0k1VmhKSTZBR2NyZVI5ZXlxRjNfYnVCUnJ3amRFNWNPdk9NTlF4V3p1OUNUUVNsV0hQcFdWcnNld0lGUU45WFpUWjB2OTVvUmdKZ3E0VDllSVVieVdLN0kySGpsbUFCSmc0?oc=5"
+  },
+  {
+    "date": "16 JUL 2026",
     "chip": "Industry",
-    "title": "Whale Raises $40M Series C3 Extension, Bringing Total Series C to $100M, to Scale Global Enterprise AI Operations",
-    "src": "Yahoo Finance",
+    "title": "China's 'unleashing' of capital markets shows a maturity of its AI industrial policy: Paul Triolo",
+    "src": "CNBC",
     "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNOFBfOXlEekpsVUhWXzg2SnNHRFV5dnpadWNIeU94ZXVUak5aaDVDa2JiMlpQelhlSk1VT204SGpzbkV2THNkMUxLejJuQmJ3dExjZjZxQnZNSUZrSGxBMkVKY0xMV1MyUFhhM2NLV1dPbnBwZXI1bG1xWDdTLWRSd2pIQ0VCOEE1NkIyRHZ1RHZOTzIw?oc=5"
+    "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOYXZiSktHOWxoMGJjSGRma012UDZ3UFFScVR4OXE3OEJvTWhDcTJVbEI3cWlFcXdYZ2RsUG9haExXNUhieVM1ZFhNRzBDXzZ5VDdJbXhyRndVd2FnVDBwRE5QOWZQZldPYnFTWWs0bkVWYXkwaE1lUEZXbC02ZzgtbnN2MVFHeFJXZE1oQUdNUElKR21NcjR3aVlucS1DakFqRnJNWld3?oc=5"
   },
   {
     "date": "16 JUL 2026",
     "chip": "Modernization",
-    "title": "QumulusAI’s direct listing: Accelerating the neocloud for enterprise AI",
-    "src": "SiliconANGLE",
+    "title": "Kenya Urges ICT Directors to Drive Next Phase of Digital Transformation",
+    "src": "TechAfrica News",
     "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNTzdKUVBtVWNQZlJQc3M5em9rTTE3V3BBdk1oWkEzRWhxZDRGRHZBX1dhYkNRZjhmVVNRdFpZd25jakJkM3FEeDlteTBNWWpUeFU5VXJ6cFl0clJLRW11Q1VJTmd1SC1OM0VlWnpFd01RMDZtMGVfUFUwV29xazV2TlhRTFkwR1NFT0lILTBvSjF0N3p6cDBQOTdlWFZYVEk?oc=5"
-  },
-  {
-    "date": "16 JUL 2026",
-    "chip": "Modernization",
-    "title": "Tencent Cloud Expands AI Agent Solutions in Indonesia to Accelerate Enterprise AI Adoption",
-    "src": "The Fast Mode",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPaWJ3VTFDakpFdGZGUUJzNGZTV0VCZTZ2ZWh2aEdfdktzLUloV0ZXbDFQS0VrcUZrNkUtaDd5a2VNNjBXeWpfNUw4cDFQdGJuQjVkYmpIa1kxRmd4QlZ0TkxrY1NFckN5WXZPX09pM3E3ZXBQMFkwUF9iR0s5ekR3UTZqdFpzSlZIdW5GUXZ6MUk2V2FUM3VxeUhMM19IZmd0d0FpcWRkM18yRVFoTXZ5SE1tNmYtUHh5eEt3UmxxenBFVk9TdVo4VmFSQUJ5MDdfWFNPdk5XamhtTEFldEE?oc=5"
+    "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPZWZUdmVCUkJlSmN0R1NKMWFRUHMwejlvbG9ac1NVRWt6dDRIOFlGU282MTFiUVA0Y2JXZFd3Z0xsWnNPUjQ0Q2otaE96amZwcTY5cUFtb0piaFo0MkpOR294VXZGSXlFRTVESjZVNzFRZlhJeGhuOHFHQzhQOXRUekQtNWRWMkktOEx3Q1BIbVpxNHBvWGxldXZxeTVTWVlOS0pYbmJWM2VwWjJFc3FF?oc=5"
   },
   {
     "date": "16 JUL 2026",
@@ -33,18 +41,10 @@
   },
   {
     "date": "16 JUL 2026",
-    "chip": "Release",
-    "title": "Las Vegas-based firm Hey Seven launches AI casino host platform",
-    "src": "CDC Gaming",
+    "chip": "Regulation",
+    "title": "Omdia: Regulators must shift focus from AI policy design to implementation and enforcement",
+    "src": "Omdia",
     "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNbVEzbk5LbmtoODB2VXR6TUNXSGh4UkRCM0RFdmNyWE5ZQnZXSzJhazFtN2RUNnRGZV9XbjM2UEpDTnRmRjFoVjNBczJNUm8waUJsLXZDWkhVX29oM0lVanVyQkNVUTRZZEhVOXRqR3RoTlIxWENXNVpxWGVwRkViQnlFZkdrRnlWaWJEeVFCQXFNOUtGRE0w?oc=5"
-  },
-  {
-    "date": "16 JUL 2026",
-    "chip": "Industry",
-    "title": "Healthcare CIOs shift focus from AI deployment to AI governance",
-    "src": "MarketScale",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOa0tpdVpWWTlIeUVtMFhFQ0kxVXRyQ3F4Z1RZWHpxYlpOMy1GeHI4TzhzRnlmcjFNcmUyOTkxVDduYXBDMWsydm1tOUVLZDNDcnBVakRlWm9qS3BDZmduWno3VkpOR3dYNHN1QmpmWVVYV2Q1ek5vaXJKalRxc3VuWHZiUzEzSXdrVkdzdlJFeFJraEkyTFZ0RjdMTGhGb24zR2Q5dGZXNzR1dWltTnc?oc=5"
+    "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOUVM0d2FrNHdKcTRRQUwzdUE3ZjMxeW04QXlGWVNjV01BaVlfTG5aLUhwZDl4ZC1pcE9xc2xlaWdqUmhySUxrNTVOQTNVV3VpQXhEaGQ1MzhxRDR1bnV0N3hQYWFwclNkZkp5N3BaX0lTWHVaN1J2Y2tldzJLTEpITWZQN19JR2dyS1lXYk9yYUI2Tk9iMzM5Y0E4TlBveDVSRnVwZmItaHN2cWRBYlFsZFRsemVGbVZZV3BhcjUzMFAzcUNMZUE?oc=5"
   }
 ]
