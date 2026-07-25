@@ -1,6 +1,22 @@
 [
   {
     "date": "25 JUL 2026",
+    "chip": "Modernization",
+    "title": "Digital transformation of national education: Innovation, inclusion, impact",
+    "src": "Unicef",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPZFM5dkxoY1I1ZTZCS2x2allKQzRxcDlpaXFNUnBYNmxkUG1CLVNudjQyQWlOTTBWNERKM2hleXRJdWI2UmJqYU9vUDlMWG5MVk1pdXlQSGRCWmdWR3RqWm85N1dYMnMycFZFRDZSYkpkdjhZSFVhV1ZPY2ZaVVhnMUdERmJFNHN5Ym1HT0E0VXZ4Q29WbW94UWF4dkJkUnNNTU5uMG1naUVvSkMwcWFNN0ZONWFSUzBYLXc?oc=5"
+  },
+  {
+    "date": "25 JUL 2026",
+    "chip": "Industry",
+    "title": "Is S&P Global’s (SPGI) Adaptive Retrieval Quietly Redefining Its Role in Enterprise AI Workflows?",
+    "src": "Yahoo Finance",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOc2wxQmlQc2hpTHFHOGJlYjZ1T0tHLUlhSFR3NkhDZ2NScHRZNmp3TGxpMm9DaWt2LTFSRk1hdVhhNU5meTlSR2VHZGZ6YWJDaEdnRHZiTDNjSy1zS0pxOW15X05yS3VDWi1qOFNKZWdBVENKZU1kRGpscFp0aDlSRWFPOTZCTXBhQU03d2F5ZHVaZ0YzUnFwcFJKWjE?oc=5"
+  },
+  {
+    "date": "25 JUL 2026",
     "chip": "Release",
     "title": "Sacramento International Airport launches AI-backed curbside monitoring system",
     "src": "KCRA",
@@ -30,21 +46,5 @@
     "src": "Fox Business",
     "tag": "Google News",
     "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNUXN5bC1DVmFJUXQ1Z1dSV3VvRjBjajZJcDl5ZEwwczVNR1BiNUVydERPUEpIR3hzUlBkdDBJclhDM3ROUE5aOExZcjgyODRmQWFaVkR5SklleDVkVWJzU3ZEUW56LWNvOTZjUWxlcUhPcjFNX3ZKQlRadHJEVFBQdXFXaDVQUlpnMHRjRS1uTkNLczJaNVdSS1dZdkU4OG85NUFGbTd3emFISmxkY3RkakZ3ONIBuAFBVV95cUxOVndsNzAyYjl6R1BveHhHT1NLdEhKM2VWTXplcV9yZ0hYalptT3hRQ3hlRWdueG41VjFPMGR4UmhYUGl1alVPR2xLekhwcDVTOWNvQ0w3YkwtWnkweVE5NFlYdnFlRERfbjZ4aEpVLXlFd3dYTFVXZnVjVFY1X2VUT21MV1ppeDVMUm1UM3p2a2p3ZnQ0RmNreGtSRnVKbVBhNkJWNzVMbjNPei1rYjluV3l5Qm8tSU1i?oc=5"
-  },
-  {
-    "date": "24 JUL 2026",
-    "chip": "Industry",
-    "title": "How we report: View our AI policy",
-    "src": "The Daily Evergreen",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBmVENWQ19WS1h6T2R3YkhiSEFENzBySnlLaV9Dd3FqeE9ob1gteEs3eEVvdkFuMXdSeUVFQ0tWNGl0cW5NMlRXNmNlMjVUMkN6eDB0OHhQYkZ3LVpIUFVMWFpVVDRBS1ZldXR5US1jMURrVVY4T25fcEtTUlk0Szg?oc=5"
-  },
-  {
-    "date": "24 JUL 2026",
-    "chip": "Modernization",
-    "title": "NCS unveils MIS File Tracker to deepen digital transformation",
-    "src": "Realnews Magazine",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNMXBlQUhHQWZucm9kTDFORVE1VXh0Sk9WanRZVUhodkxUeG9fNjB4cExSSW1kenR4b2dCdDVQNWw3LVd1SmlkYTB0SnpqcnBmaVZfXzlrTW10U2lJMnBsUVBYWWxNMC1NWU55WjZvbXE5Nl8tdFdrcXdWV3dZZDlxUjNHR3EwUlo4TFpzNzhYWjQ0SzBDOHc?oc=5"
   }
 ]
