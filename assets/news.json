@@ -1,50 +1,50 @@
 [
   {
     "date": "31 JUL 2026",
+    "chip": "Standards",
+    "title": "TechnipFMC Achieves ISO/IEC 42001 Certification, Strengthening Responsible AI Governance",
+    "src": "TechnipFMC plc",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxPVjU4RllCaW9aRk4wN3RpQ1pNaUhQYjhSRUQxSGljR1FnMXlLcnZwVndPNndxUl9RTVRWUHhYd29rRHdjaDV2UVFsc2tUS1o1M2wyU2tmMkJOTjg0Q3ZleDAyQ3gtZUpkRXR1Y2VLV0M3VUcxV0xjbnRIcXg5WDBIZ2ZxWGo4NWdTeXFRWmUtQlh5cW5YN0VHcnlkbG05NHM2RkRiX291Wmt4dTZqdEtpSnJKaVdYS3pWN1ZaLTR3TVlaaTRROVJGS1JlY1VmeWR3MHc?oc=5"
+  },
+  {
+    "date": "31 JUL 2026",
+    "chip": "Policy",
+    "title": "AI Policy Groups Urge White House Investigation Into OpenAI Security Incident",
+    "src": "MeriTalk",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPclE1UjZmakNsbF9MYnpuWUFHR1hycDIwM0lyM2hZQVJaVWUzcTVKQnFvWC1rQndfSUwySTR2ZzZFQVlEU0VHTk9BWExyVkVFakdBcnB4M1JCZE1hR1lxejR4MmRlUGpNTFVLRkpWSlZ6eGRSMmwwczJnNmxHWjM5WDI2TEFQczdnSFVsOWJ0eXNSWXk1ODFUd2t1Vnk4b1ZiUENrY2gyRy1rd1Y0cVkza2l3?oc=5"
+  },
+  {
+    "date": "31 JUL 2026",
+    "chip": "Modernization",
+    "title": "ImagineX Acquires Payteros To Strengthen Digital Transformation Capabilities",
+    "src": "Pulse 2.0",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxON0hLdjR6VzJJazZUazVPZ0lqWlEzSlpZV1hzcklhSnF2b1FmX0JUQXRxWnBwSWdPYUp5dFlzbkZ5aVU4MC1sMVFsN2RUZVdDU1dfQmNhd3BXT1pKbzcwdEgzVS10V2ZCa1BjR0tDWWYyaS1wbG9oUktHalRMWVRtUGU3bGY1TzZSQjNqaDMtMnQtQjNScjdVMWtsbWjSAaIBQVVfeXFMUHNkLU1meS1KZFh0QVh6V1JTLXRIR2x4VkwwMmhYTmJFZXk0M3VidTEtRXAyUFkzalFndXRGd29SUktydjk1NG1faGdQS011cUdKU0hVNmlwRFdQNDZ2bnM4WjBET3hIQUNXYzZ3UG1LUUppSUptVnoxWTJPd29QRC1pN3o1NF8wU2VJS3BwV2V2RVI0V012dnJrQnlTZlFwVnh3?oc=5"
+  },
+  {
+    "date": "31 JUL 2026",
+    "chip": "Regulation",
+    "title": "The EU AI Act requires AI transparency. What does it mean for CX?",
+    "src": "Customer Experience Dive",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPdWpOTy1ZbklJZnFsa0FZeTVHNEc1bU4yTTA2Y0NEYTdKM096b09Ld0Q4UDZHT2NqclVuQXZaUTZJZHd4ZlRQWnFnOFZrUlk2dTFkcU8tNlVWMmNZRjFGbV9SSGcteTFxUHNHdFFWYlZGOGE0UC1MMXplNjhGZV9HM25KSHdlcVpGcEJZX2JXX09xRkdiQTRyOW9Mbk8wMzFnRnlwVEFySDBwVlVMMjV2eWo1UXUtUQ?oc=5"
+  },
+  {
+    "date": "31 JUL 2026",
     "chip": "Industry",
-    "title": "Enterprise AI tools are splitting the market between productivity gains and unresolved governance gaps",
-    "src": "MarketScale",
+    "title": "Organizations Must Prioritize Responsible AI in Healthcare",
+    "src": "HealthTech Magazine",
     "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxQdEk5bXBBVGZoRHhBcUJBYnpxS2lvaEZ4bTAteXdDTzl3bzd4Vkk0M3B2S2k2MG1DVndqMUJqQWpEeGNIcnBQRjFXOHNWd0xpRl9Cdm1zV3VMOFQyczR6SXBTYl9jZnVCbmVsUkJZOE0yNnl4eWFyNUlfOE5RYmRUS1gwWU9EZ3paX3N6elNrNTJjVGhxRzZNTE9hSHRvNzVvVTVpOVRMV2hZWXBGVDlEVl9zMzhWYXV3UHdXSjV3TU94MHQ5VWU3a2pqNEoxcDFuQWJXYVB2akpUUGt0UlRpQVcwV1NpX3dRemtPQ3hpazM2QjJXTXNNdQ?oc=5"
-  },
-  {
-    "date": "31 JUL 2026",
-    "chip": "Release",
-    "title": "Morphisec Launches AI Usage Control to Govern Enterprise AI Agents and Identities",
-    "src": "Security Info Watch",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxPaDdVeWR5eG44ZDVyM0I5R0ZHZUxhSUpGWDNldWxrV0NWb1BNSzFFZTRmSTdoR1F1Z3ZCMnpGQmF5S0lOdnhTMmhBMXBUc0xfRmt5NF8zaWF1T3lXanNJTnRSeGRrRTZ6bTNLVWlJcnNEb2xMNHlDUWk3WG84S1Z2NGRqWGlmaWpOX05lS0RHbVc4WlU5SkpmWVEzMThYejRhNmNGRUVVdjFNX0hmWDJyZk9UdkNSMzdmNzl3ZDd0VlNqYk1pTnFrQzJpdm4xOVlJSXd0eE9KcXRrSms?oc=5"
-  },
-  {
-    "date": "31 JUL 2026",
-    "chip": "Release",
-    "title": "Bestow Launches AI-Native Lab for Innovation and Experimentation",
-    "src": "D Magazine",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOQUpXd3pxZTFOem5HRHVTdmd1VTg2aU4zeTE2em9KcHd2Sm43UnlXYTRKdDdVbmRJNE5sakdEeTh1Y2R3YTMxdkV3UVRjVUplN2dWdDgtVFNKQmpFZWFOVkV3SnQxaTEwNEpwcXNlZE45YTg4bjNvX1FWT2Z5SWRIazdVMUozQzkwZmQyVFZ6c0UwWHBsXzJUbTAxdW1VRl9DdTRHREZSZTVxMjhBbm5YSlkyVGhvN28?oc=5"
+    "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQNGFRR0Z0SVpKTkduTHl4X3NfbWJIbWYxdFpBTTNKR3l0dERHRzlCWUE4QjYxRVNsQVZpQWpmZi1lZU9SOC1uczNaejNiWm1DX2QxTnZ3aFRFbkxwY2tXSjgyT1N3RDBxR3ZsX3IxTXo5NVpVc0RvZkhmZFdPWmpieVFFVW9JbWVmNHpWNUtCd1dwWjJ4Q1BKT3ozQWI0cTJPU20xN3FLUVNWQQ?oc=5"
   },
   {
     "date": "31 JUL 2026",
     "chip": "Industry",
-    "title": "From Tools To Governed Intelligence: Enterprise AI’s Platform Moment",
-    "src": "forbes.com",
+    "title": "Pushing for responsible AI implementation; My upcoming shred event; Highlighting our local parks; New grant opportunities available – and more!",
+    "src": "Pennsylvania House Democratic Caucus",
     "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOZ0RabHJHQWpVMTh0bFhydk95V1hWaWxCemZtSzliLTFtdzU5VG1jMTZuMEVoRzFFUEt5a1VWOE1NUFVKZjd4ZWZ0Qjh3OFN1cUR4b3FRdVlUN3VDb3ZzY3l1SGgxdGVNeXRScWtleV9nb2JtdHBlaXprSTgzbno4eUdkSm9ZTkEyMFFxb3d3X20tanVYOGpZUnlaREFQX3luMmxfb3lXQ0YyUWtCNkhmYmJ1eERuS29vekE?oc=5"
-  },
-  {
-    "date": "31 JUL 2026",
-    "chip": "Industry",
-    "title": "How full-stack AI infrastructure is reshaping enterprise AI",
-    "src": "SiliconANGLE",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNYUI1eElQMXBjSzVtMjdtRV9qRGZydXkzTXhkQ0dybTctaFZpeFhCajN3SmRMbGk4cWVxc2NKdmdkU1VNcDdKYUJSdmcxckkzZmxQcUN1SDlEbHhhdEtZVkZQSU41OG11NW5VTXJUckRGS3JGdTdFNG9uTUhCemNZQnlkbDJxalhHVHRHMk1JMG5EMDJVVXNTOVlfblNGanhTdW1MMHYzQQ?oc=5"
-  },
-  {
-    "date": "31 JUL 2026",
-    "chip": "Release",
-    "title": "Essilor Launches AI-Designed Varilux Shift Progressive Lens for Presbyopes",
-    "src": "eyewire.news",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQMVJOZ2xqZ2ZvaUZjVnktdWszQ19kN0VTbUNSVjN0QWVJNU0xN2Z5aUlIZ0VRWnA0LUVmMXhxN2ZJZXF0aEdFbmZCZGktaElxQmxLTVJUTDJRV3kxcHdxMFpvdW14ZEkwNXVrZ2UteHVpMUJING1tamdsa2xUNkVuYzh6VTRCUjBiR18yaEFSWjRmZmpySk5qZzN3bndzdVpsS3c?oc=5"
+    "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFB2d3ZNcGdGbnllZ3l6cjRadjQxNE9yRVNIT1VKRjM3SDFWZ3l6cDR2X3d1ZEQ5Q1Z3WkxyaFR0eHNuR0FNMl8xQlNreUxhcXlfTEdvczRqMURSSG94ZFdXS2l2WVk?oc=5"
   }
 ]
