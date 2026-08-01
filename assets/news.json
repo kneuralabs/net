@@ -1,11 +1,11 @@
 [
   {
     "date": "01 AUG 2026",
-    "chip": "Standards",
-    "title": "Viet Nam strengthens legal framework to accelerate comprehensive digital transformation",
-    "src": "Nhan Dan Online",
+    "chip": "Regulation",
+    "title": "EU AI Act: Next level applies as of 2 August 2026",
+    "src": "Reed Smith LLP",
     "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPSHFZZzZPeEtROW50c2hvdGFWd3B0SDhDTDZpRXlUT0JzeGdNMFhLQll1QmNtcjluU1k3bkhPeHhpcEItREllRWh1QW9aeFhyb2FmVG4wSEdMemMtdkNQWktwRmVhQkQxdklLeDVSWUlZS3cxd2p1dlFDYjBNb1BiRG1rTVZmYk1YSFBiMmxHTWxCYUdzeVkwN2VUYjdEdU1LcFUxaXJsdVVjd1FJd0xBWUNVNXZPbTRxV1dKZWRBejB5NGM?oc=5"
+    "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOVUNDTzRNQjYwbE0tNjlJMnFsTHc3ZEsya3U0Z0ZFX1pOT1dzYjFEd2J1MzlmZmR0SEVoX3ZPUTZia2JDTldQM3BGRno4UXpvQkhkU2Q2V1lvMkZ0elhDRWxreWp1TEJRU1d2OU5Za1JPNU1hSWpkSjIydk8zZ1FfcXFfLXhpWC1DUXc4UlNUWE8zSmtER0dzZURWQ1BMaTJUUnFGbW5mZkFwNW1JN2RUTG45eVNjNDQyLVVjSVBGTTdEcmJr?oc=5"
   },
   {
     "date": "01 AUG 2026",
@@ -25,9 +25,17 @@
   },
   {
     "date": "31 JUL 2026",
+    "chip": "Standards",
+    "title": "Viet Nam strengthens legal framework to accelerate comprehensive digital transformation",
+    "src": "Nhan Dan Online",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPSHFZZzZPeEtROW50c2hvdGFWd3B0SDhDTDZpRXlUT0JzeGdNMFhLQll1QmNtcjluU1k3bkhPeHhpcEItREllRWh1QW9aeFhyb2FmVG4wSEdMemMtdkNQWktwRmVhQkQxdklLeDVSWUlZS3cxd2p1dlFDYjBNb1BiRG1rTVZmYk1YSFBiMmxHTWxCYUdzeVkwN2VUYjdEdU1LcFUxaXJsdVVjd1FJd0xBWUNVNXZPbTRxV1dKZWRBejB5NGM?oc=5"
+  },
+  {
+    "date": "31 JUL 2026",
     "chip": "Release",
     "title": "College of Business launches AI Management concentration",
-    "src": "California State University, Sacramento",
+    "src": "Sacramento State",
     "tag": "Google News",
     "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5tRTEtSHJzUThoUE5tQkJCNmtTbHFZQkl4RGJUbWhuazdIM3RRVFd5MzZwZlFjQk5haGNmSnNwRmdOMW9KdWxTVXBWM0FqeE5iSmY2Z2kzeDlWYmU1dmxGaHZUUjlXSzlzeWhSSExNQkQ4bzB1V3VDUlFxRQ?oc=5"
   },
@@ -38,13 +46,5 @@
     "src": "Lawfare",
     "tag": "Google News",
     "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNaGpoX2p5bkxmM0czQ2NBMjhUZndJWjEzVmwyZ2RDS0FqdW5RWHF3Vk1GM3B4eVE2MlBwM0V4WjVGdHBiODRJV3JSWlNQaFdYbGRuTl9FcC1hVGVUM05EQlJ6QXNKTUpFQVlUVnVQZTVIelNCUHFmVmZiQ1EwcWdUU2RvNkE1bVVyQlkxRzlGWUtSTHIyRzl3RzZDRDhGLU9PSHRvQUhzYm5lbzJwdHhj?oc=5"
-  },
-  {
-    "date": "31 JUL 2026",
-    "chip": "Standards",
-    "title": "TechnipFMC Achieves ISO/IEC 42001 Certification, Strengthening Responsible AI Governance",
-    "src": "TechnipFMC plc",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxPVjU4RllCaW9aRk4wN3RpQ1pNaUhQYjhSRUQxSGljR1FnMXlLcnZwVndPNndxUl9RTVRWUHhYd29rRHdjaDV2UVFsc2tUS1o1M2wyU2tmMkJOTjg0Q3ZleDAyQ3gtZUpkRXR1Y2VLV0M3VUcxV0xjbnRIcXg5WDBIZ2ZxWGo4NWdTeXFRWmUtQlh5cW5YN0VHcnlkbG05NHM2RkRiX291Wmt4dTZqdEtpSnJKaVdYS3pWN1ZaLTR3TVlaaTRROVJGS1JlY1VmeWR3MHc?oc=5"
   }
 ]
