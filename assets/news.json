@@ -1,5 +1,37 @@
 [
   {
+    "date": "02 AUG 2026",
+    "chip": "Industry",
+    "title": "Enterprise AI Platforms",
+    "src": "Trend Hunter",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9zQ282MnFLcFhlRTZmY3ptTGdqOXM3NWluVzEwWEpWS0Q3eFVqRFlRaW5Na2cxX0x6bEVxSEZrY2RRXzh3MWxyWG9iRXlJamM5bWcwdjRaVUZYeXBPdlRNcNIBYEFVX3lxTE9zQ282MnFLcFhlRTZmY3ptTGdqOXM3NWluVzEwWEpWS0Q3eFVqRFlRaW5Na2cxX0x6bEVxSEZrY2RRXzh3MWxyWG9iRXlJamM5bWcwdjRaVUZYeXBPdlRNcA?oc=5"
+  },
+  {
+    "date": "02 AUG 2026",
+    "chip": "Regulation",
+    "title": "Five Reasons AI Regulation Is Coming To The US, How And When",
+    "src": "Forbes",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPZ1ZJblVIS01WSW9aZmFuajlXc2E1dGdCRmZzV2c2OVprbl93SHFEd1BJOS1kWTJSRzRRM1A1RHBRVmI0WFozTUo3Ml9uejl4bktMd09xdWpTMmprMXRKTU1kYm54VmFTdC1KbGhkUVNLM1VLTDFLX2VfNTljV2thSWRxQXNjOUdFVVdIcUE0VGMxVVNmVkNiYnQyNzZQcW9rUThtZFlUY0E5ZjJ5M0lDTE5B?oc=5"
+  },
+  {
+    "date": "01 AUG 2026",
+    "chip": "Modernization",
+    "title": "When a Moment of Truth Becomes a Moment of Tragedy: Is Too Much Digital Transformation Destroying Customer Experience?",
+    "src": "CEOWORLD magazine",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxQZ3I2cFF2dmN2UGxVeHRfRmd4QkJOX0RzWWl3N2tqMVA1WFVHODBfWUZoc25DUlRZeGIzYi1TMlRkU1ZHZkxTcGZ1VU13ZHYtcGJfX3VuUWNCU3JCZlAwOWhvWF9uWXVDQzBObXB2UE1RdTFKbGlLV3JVVVpaSTBIZzg4cFJ0VXZCZEdhZllsME5iQWJ2V1IwdUVrZmVvZGVZMlo4S05BcE5qazFYZjJNdl9OdlhVYjdzU0prTm1KakliLW9sVHFrTUZPUHdESWJXRlFYQU5Uc05RUU1odmxkQ1JfZw?oc=5"
+  },
+  {
+    "date": "01 AUG 2026",
+    "chip": "Industry",
+    "title": "Building Competitive Advantage through AI Governance",
+    "src": "CIOReview",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNeVp5cVo2N1hDb1B5VzgwTVFPaFF5SldoVHFxaEthcTF6elJ0NVFJT2xqUTJBWm1peHp2ODJ4TWFVMXk3T0lTRmNuUmttWTNEa2IxMzhUUzROOHN2Zl9HaFNMUmFoWjdOT2pReDA4U1hzV09MM1dfSlE1ZzBJdmY0ZFY4dXpFaVdDUGZfQThmT3BFU253dzRiNXdGNWNoWlpuX2FTN3RrX1lSak1qZmRfZUlsVU4xeE1QR3haeUd6MjRjTkk?oc=5"
+  },
+  {
     "date": "01 AUG 2026",
     "chip": "Modernization",
     "title": "Egypt launches new water year with expanded reuse, digital transformation, and climate resilience projects",
@@ -14,37 +46,5 @@
     "src": "Yahoo Finance",
     "tag": "Google News",
     "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOWHpIVzZJUkNUUkFTdFF4anlmVlk2VE5CNXNSb0tYVW43cGU1ZG81Qzc0NWRqZGpkb3RYR083M3ctQ3NpeXczdGFPYTAzM05IanRwVHNmQ0I1cWRvRmFCVTF4TjFNQkV1MlBURjZCVU55dldOSS1kNDc2YUNMd1JjWHVSLWpQOFFmUGFCRHJmSS0?oc=5"
-  },
-  {
-    "date": "01 AUG 2026",
-    "chip": "Regulation",
-    "title": "CertiProf Accelerates Adoption of AI Governance and AI Security Amid Global Regulatory Demands",
-    "src": "EIN News",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOUzFPMzhKenUzcm40RllhVTNpOVBITklFMklaakhlWjV2RlQ3ZndsNFFEUE8yZTRJVWhPQW9idjJ3bXFveHlDRDhiNEp3SWJDTWY4V3c2N2d0ZEFwdGRjWkY1OXF0ZVppUkJ1SlZKWm82TUVMWUYtVWl6YWg2dmJGVlg5SVJTV3ZhOEhPZGdrRGFVRFJ1ZlVLaENHb0ItVExrWkNnWXp3VnNYTWdjd2NnTG45c0JGY3NqRXN5RTh1S3BqTWJDWGtOQy1JUjRzOUM2X3Uw?oc=5"
-  },
-  {
-    "date": "01 AUG 2026",
-    "chip": "Modernization",
-    "title": "Egypt, Namibia Deepen Health Cooperation Through Digital Transformation",
-    "src": "DNE Africa",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOTWNVbDZDaEpWR0ROWkRTVE04TWgxQ05ONkF5OWtYa0NsVGxkT2ltemc1N0d4ZklsOGduWnhUVnhMLVo1dzhNa2FZbmxqUkhPb1dZVVRiamtwalBtYUxkMEY0dE1fazJtN1dUbVFHbEdpWXM5Mld2VTRVN2RzMHVyVldxWkhyWFZYcXVGRnd3RmNhRV9qZmUxMm5WcHBCdGp6LTlJT3RMU2s?oc=5"
-  },
-  {
-    "date": "01 AUG 2026",
-    "chip": "Modernization",
-    "title": "Ryanair extends AWS partnership to accelerate AI-powered digital transformation",
-    "src": "Future Travel Experience",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxObEQzb2N6UWlLN3UxcWlrbHB3MFNkNGhEcnF1VnpjNVpYVGwtYVpHR3FfV2tzNHlNTC1pQ1k0dlVwNHdabVJHUGxjaUQ5UHFqbFpyLWstY08tcm90RG5ZLWR3ellzYnBCeHNfM01MOFM5ZV9QT0VXbG4zVmJuNnNHdEVuY1RfOWdrYmpRamU1dzRGNlRFSVcxUml6NW9lQU9DQmVNcFgxREtwQ0NfQW92SG1GRl80ajVJS1ZXZmptZmFEYUt1WVE?oc=5"
-  },
-  {
-    "date": "01 AUG 2026",
-    "chip": "Industry",
-    "title": "Snowflake (SNOW) Joins AWS And Nvidia In New Enterprise AI Program",
-    "src": "simplywall.st",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxOTFpQQUNHdWRCbmswc1dmZFJ4dHBKeDFLU3ltM2lrYWFwcGhDcGRReDFfTDVKcDBfTVVtOUNqZ0poNEpVeGFsMGRaV1ZNaG1vSjBDbkJvMXEwN1VoWXJYMjAzZXczakNaNEVHcHJDeTczbHhRbG1YTTRER1cyQXNIdjdrUjJDQ2VqQmo2SFhCUUxKOXVyMmxNX2NrZExyb1hjN0FTTDdhRENEWXFvZ1JMZkZNRGJ3eWVCY1ZaQjVHbUp0VTFhdzV4d0ln0gHKAUFVX3lxTE5MWlBBQ0d1ZEJuazBzV2ZkUnh0cEp4MUtTeW0zaWthYXBwaENwZFF4MV9MNUpwMF9NVW05Q2pnSmg0SlV4YWwwZFpXVk1obW9KMENuQm8xcTA3VWhZclgyMDNldzNqQ1o0RUdwckN5NzNseFFsbVhNNERHVzJBc0h2N2tSMkNDZWpCajZIWEJRTEo5dXIybE1fY2tkTHJvWGM3QVNMN2FEQ0RZcW9nUkxmRk1EYnd5ZUJjVlpCNUdtSnRVMWF3NXh3SWc?oc=5"
   }
 ]
