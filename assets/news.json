@@ -1,9 +1,17 @@
 [
   {
     "date": "07 AUG 2026",
+    "chip": "Regulation",
+    "title": "What the first year of EU AI Act transparency enforcement could look like",
+    "src": "Help Net Security",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPYU9mcWJFMnhoaVF3bjNfOURkNmxYYV9kRS1pNlo2ay0xTG5fYjk5SjhxYkdxUGQzV0NjbHZCR0FUWmdrUUFwS204eUNUTkdUcWJ3WU1oa0NSanBMUFJaVnVXUkZmXzIzWnA5QThGVXF5TmxvaDlKeERxSE1ZUmtFaDB4T3lKcFhtRkRjaDdETDQ?oc=5"
+  },
+  {
+    "date": "07 AUG 2026",
     "chip": "Industry",
     "title": "Enterprise AI splits leaders from spenders in 2026",
-    "src": "marketscale.com",
+    "src": "MarketScale",
     "tag": "Google News",
     "url": "https://news.google.com/rss/articles/CBMikAJBVV95cUxPRnRNdVpZSjVvelRFUTB2OUIwLTZvTkhyMUtZVFFMNjBwckZObGE4bDlBN2lJTG1Cd3N4enhGdzMyckh3MXMzbUV2UlRGUmFFMXpvVERkS0k3WmdtdC01R2p1Q1VvMHNCMGNxQklIczUwWF9ON3FmYkVBbDJRcUZkcWctRlA3VUo0VkNRcG8zdHhsejUwMGVsdkxKdTZKVHIwaDhSaTJZWk01SVJWYXRiR0dqUThJbTI5c1paQUpZdVhKNGc1dlU0d3JuZFNWbV9TN1lQS2FhZFZkdWJoMVYzWDV2YWdEVjgzbjNyMzI4WlJvQXdSei1IbHhzMlBWTzFGZVlyZXFZYzhxTkVIX1pGZQ?oc=5"
   },
@@ -11,7 +19,7 @@
     "date": "07 AUG 2026",
     "chip": "Modernization",
     "title": "Digital Transformation 2.0: What You Need to Know",
-    "src": "HackerNoon",
+    "src": "hackernoon.com",
     "tag": "Google News",
     "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTFBvbE95aXhVVUhZZlllZm82VjhHN2xBZnp4ZXhueVZJT1U0MEo1ZkFTeG0tY052YzNxbUVMUGdfeUg0bEhUOG8wY0Fpd25OaE9zR1oyUkpsYWM1a1JlRVEyTzJUdmNEVnI2UXc2OFdOc0NzeFB1MFZhOEJ3?oc=5"
   },
@@ -38,13 +46,5 @@
     "src": "SoMdNews.com",
     "tag": "Google News",
     "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQZFEzVklXQTZkRm9VbW05N1daU1QyWHpMbXpiUVVUakZzejZVdGZZRzRYaTh4OWZYa0NzdEh0ekJhWXY2aHgtM19EcXh4cWpaTW1NLXlqOWlNd3M2dlR2ZWZTcFJoNWQ3bUhJY2U5MlE4SnhUSlkwVE1IbU5QVFZQWGxMN1hmQ3JDVVhwSHIydEJwZnBCOHlwdDRwSi1TdG53VWlUanp1cUxhT3VFcFhJSmZ4Z1Z6Y0N5ZVVTOFIyX3NfMnBFWEUw?oc=5"
-  },
-  {
-    "date": "06 AUG 2026",
-    "chip": "Industry",
-    "title": "New York Life Names Zhen Zhao Chief AI Officer to Lead Enterprise AI Strategy",
-    "src": "citybiz",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOaW5EdDFuOUxwZ2JRQkxkWFlObXlyMC0yWVZidC1KYjZsUGhxUW1YMk1hWDdyak9UNlhYd2RteV80amdLRjY4R3RnOENHcENxTm41YmFCN1h3S1NWRXJiZEx4ZHBzS0lUVlZBZnFnc05UX2pHSm9UbVg4Z3VwbnNiZGlsR3VVbE9Zd0llUDJtY01YQ3NSMTlZMUdWVkdMNjB3aExNVEd4MXg4SjllVTBBbFZEZ3Uyb2M?oc=5"
   }
 ]
