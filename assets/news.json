@@ -1,5 +1,37 @@
 [
   {
+    "date": "08 AUG 2026",
+    "chip": "Regulation",
+    "title": "Pressure building for AI regulation",
+    "src": "TribLIVE.com",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOUVZjNlZudmxRUE5pbnJlc1NiMTZCYXByYkdmcTZKT0RSS1RQcW4wVFNvZXpZcHFmLThUV0p5RlV3QnRTZHQwX2dqZC1tdlFiLURhMDhYcE96c2J1MDZ1aW9aWDg5WFpvNGJDUy1kbV9nc3JTWmRXc0xiQnNUdlBYSVRrbVdtR2N1WS1UcQ?oc=5"
+  },
+  {
+    "date": "08 AUG 2026",
+    "chip": "Industry",
+    "title": "Why CTOs Must Get Hands-On With Enterprise AI",
+    "src": "BankInfoSecurity",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPVmRFRm42OWFpUk1panA1bFF6aFZFUTRuWnNkRTBYUnVoWlRSVDNPX0pic2VjdFplNnpHcHQ0YzI2cEUxOG9KblREWEx0Z3JwSF9NalNmWVBnT3ZIQS0zZEZrMDQzV21xUUZxcElheTJ5bXZ2a3FUZ2xKTmhMYUNfdVhkaw?oc=5"
+  },
+  {
+    "date": "08 AUG 2026",
+    "chip": "Release",
+    "title": "EPRI Launches AI Risk Assessment Initiative for Electric Utilities",
+    "src": "TD World",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQY2w2cXJNRVhnRTFiQi1RNkp6XzBlYUNhWFhtVmtxNkxSZlVXaWt6ZEtqY0oxMDZaNm0xYVBjc0RpUGt5UVNQRmpyUkhLWUZmcXZ3TnJIVnZYcUM1R1lOMmlRWTc1TGEtcGpjNXpwSDRuUnZ3eDJVZkNwdXBzTENRMkpydE1PbG80UlRfUVFxd2Jmc3loV3FPRHN4REZlQnY0Zjdhb2VCU21pZWlLQm9wcW5vU1FXeVpQV3dlUjZsOTVLUDVNN29DTVo2XzQ?oc=5"
+  },
+  {
+    "date": "08 AUG 2026",
+    "chip": "Modernization",
+    "title": "AI factories will power Saudi Arabia’s next phase of digital transformation, NVIDIA says",
+    "src": "Arab News",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9yZHpjWVFSbmNqVC12dkY5LTV3VzZSUVVDOFl1dDE2NGZtLVVFY0M1aFJJR0JMOTA1eHFMOTI2Rm5qcF9WLVZueXBfdTFLLWVIb3lyRGw5Tmd3SWc2Sl9MeUh2Uk0?oc=5"
+  },
+  {
     "date": "07 AUG 2026",
     "chip": "Industry",
     "title": "SoundHound AI (SOUN) Stock Jumps As Enterprise AI Demand Fuels Growth",
@@ -11,40 +43,8 @@
     "date": "07 AUG 2026",
     "chip": "Industry",
     "title": "YouTube star Hank Green sets new AI policy for himself — and urges other content creators to do the same",
-    "src": "Business Insider",
+    "src": "businessinsider.com",
     "tag": "Google News",
     "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOb2FVdHdfb2xDN2F4YW9BLWlfQ3hURjdOS3FBR214UGJLWnJMQmthVnZTRDRMb3lDNTFLNzk1X2VydW80bzFkN0RiTVlIekF4MTZsaUp2VjZwV2piZHpwR3lwdXdIdXpzTFVjSDVpTXdVMnJ6QWJVUnQ0SGlzN2NqZkVNajItZUtwSmN0ekdHYnZXM2EwMGdlaktDUzYwOUhOc19F?oc=5"
-  },
-  {
-    "date": "07 AUG 2026",
-    "chip": "Industry",
-    "title": "New AI model reveals the volume of the world's glaciers",
-    "src": "Phys.org",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE9pOFh2VmUybXNUUmZQLUFEOUk1QjYzcUpDUzRDbHB0RGdrZmZITG1XVlREWnp6WWNTdHNhRUtMaWh1YU9HdXM5MXk0U25TMlFScGZodkhRQTdFRHhSOVVWbFJoejBIYWlLRFZhTzg3akdQTnlQOXc?oc=5"
-  },
-  {
-    "date": "07 AUG 2026",
-    "chip": "Industry",
-    "title": "Enterprise AI governance is structural, not cosmetic, and most organizations haven't made the shift yet",
-    "src": "marketscale.com",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNSkMxdXVGVW92Q2hYUERfUC1HNEh4UzFVenEzZU01MzVyUjVCSHJ5RXhfSlNCaGpualZYUGJ6OXJLTlE0QzN0cnNxdEpWcWZuWVIzN016XzBTRlRGTjdvdjZWTTE2ZTJ1QjNwblExUFJUT0JYMDhIdGNIRU9palYzR3o0UlVUZnRkUUFaaC1PTDZyeXBQTXBGMlZQNXpSRUozU0Y0V3JfMDdsdlZSb3MwWl9QbjN2V2hqT1hwNG9lTXNkQWFtUFhQVXFJMU8wTExaY3VCcUtMcW1ESVFKeFVrOFNxZndtQ1BPS0hERE53?oc=5"
-  },
-  {
-    "date": "07 AUG 2026",
-    "chip": "Release",
-    "title": "Hims & Hers Health (HIMS) Launches AI Weight Loss Care, Is It Still A Bargain?",
-    "src": "Yahoo Finance",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQNnJoNkJJblNyaV9IS0RkSWZzdWJFNHA4OGpqU2FjLXVhTVJ0bXBlN3owVU40d0FPc0VGYW43ZEtJY3ltTUtwWDdEdUU3bWFWZnZrMDA2SzEwZUh0cmp0RVh3NEZFOGpMZmdWdC1rSno0V2xnRk8taWlFcWM4aUNjZWgwNDZmcEh4bG1LTWhfMnhXVEF1enc?oc=5"
-  },
-  {
-    "date": "07 AUG 2026",
-    "chip": "Modernization",
-    "title": "Pega’s FedRAMP Expansion: A Major Shift for Government Digital Transformation?",
-    "src": "The Futurum Group",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNWG42eUR2RnZRQ2V1c2o0MVJkMktzTGl2ejB6LVhnOHhPU3htbXlTVEExTkZyZ1hnS1psZUJNUzQzRDRqWjRFdEpKUEIwXzh4VW5Bd18tYkhrRENqeHRHMFRYSVRTZzVLVDhqTW5CUGo2dTVCSklMY2F4Nk9qRTNzS1BIR1BCY3M0YjhMZjhWeEQ5ZVB6cnh6emZENHg0SDdyTGZOTzlNM09lU0FIb1pV?oc=5"
   }
 ]
