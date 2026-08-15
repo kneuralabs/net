@@ -1,6 +1,14 @@
 [
   {
     "date": "15 AUG 2026",
+    "chip": "Industry",
+    "title": "A gradual journey: How executives should manage Enterprise AI",
+    "src": "calcalistech.com",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1ucE9ob29oNnNZWjUxQkhicTRKMHhaNGIxblg1SGpaTUJkdTFmVlJHUjZYU0pkZS12blFXOUdYQW9TVmRZczd3eWtZY3h1R2tEa1RDUDdxUGgxQ2s0VWhlU3UzRGVHcjQ?oc=5"
+  },
+  {
+    "date": "15 AUG 2026",
     "chip": "Modernization",
     "title": "Digital Transformation - Why audience questions may be a publisher’s most valuable metric",
     "src": "Business Reporter",
@@ -27,7 +35,7 @@
     "date": "14 AUG 2026",
     "chip": "Release",
     "title": "Octane Launches AI Operating System Built to Run Convenience Stores",
-    "src": "wboc.com",
+    "src": "WBOC TV",
     "tag": "Google News",
     "url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxNQmVkQ1k4WnB5U2JBMmdzWkh1am9BZGJLb0c4RTBVa0pMdjFpaFdOWjF0bG9kUmhSRGw3OS1PQW01ODhtcUplRVdUeUJRRGRKRjFTMkNkclUwLVo2S3Q5LWNkcV9IMEJxYUJMaHpzUFhNdlJtVWJzNUxyako4TXZ0ZHUxTFlURHdJU3ZMZEVOcWNka2ZwUHV6a0d6b3NpU0xXc2JwdkN3X1FYeXRtbHJRR1M0dGFxOTNlSlFVZzZzT1lsNUlaY3BNVEVqcWJtWXk3N3FsaDJIVmtyR2RTdTFHbUdNVG81cUNFT2dVNGRtWGZydTVuc20zb3VQZnp5Zw?oc=5"
   },
@@ -38,13 +46,5 @@
     "src": "EIN News",
     "tag": "Google News",
     "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxPZXJKOHBNQ0RKOFc5X3l2VVdmWFdtRS1QN2FLbk1XZEZ5LUl4OHZaemN4RV9VUEkxSHc3WS1DSEtOZHRSWUFCNzEyX3FhbWtiUUJTbE1JYnVTYnBhQVYyanlqN1pYYTk2ZktqN3I5OWtuLXgtM08tZG4ySDdGUmYtY2JMUmh1Z0RNZ09uWVhULTJoM3JZN0V2T24zZkJ2SXpXTDF4LS1CREdzV291MmN1WkthWkQ0c1N0eFdqX3o4Nl94NFNrcEEteFdCX3o3TUVFYURBTGJzekhOX3hXTVBPWHFpZ0wyUjg?oc=5"
-  },
-  {
-    "date": "14 AUG 2026",
-    "chip": "Industry",
-    "title": "LPS superintendent discusses district's AI policy",
-    "src": "KOLN | Nebraska Local News, Weather, Sports | Lincoln, NE",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNeGZIdy05LVNYSmJPX3FLUUt1UU1JeXNCM0xUZmlveF9ROUVNNUxjQ2VaY2w3WXVrU0ZBYTZVMXBLVXdveHYydVN5QUJrNl9hTDRiRjk3akV1NGRKcWxVbkFLb3FRUF94d3dnMFljcWxuSnp3R2N3ckN1eXZ6UHRYXzlyVGk3RllKYk0teWRBQkJNTzVN?oc=5"
   }
 ]
