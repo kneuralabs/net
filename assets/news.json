@@ -1,11 +1,35 @@
 [
   {
     "date": "15 AUG 2026",
+    "chip": "Regulation",
+    "title": "Law School introduces largely permissive AI policy",
+    "src": "Columbia Daily Spectator",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQOFJad1ZPdF9leHJheFZMR2pkLVg4cGwxSEJhWkoxZzR5TmFDVU9XUGhwSTZMbUFPWkVDLVFmSE5WalhsNHZIa3YtYWtvdl9mUldsWDJfTE5BRlQzUXU5bXM0QnBLS3hTSEtUNTYyNVVITzYwNUhVa1kwd082bzB5WGlYYVhBYjlvTURFVmRlcEtEY2huNkxJVG9rLXBGUHJjNWw4?oc=5"
+  },
+  {
+    "date": "15 AUG 2026",
+    "chip": "Industry",
+    "title": "Jasper names a CFO with a $1B M&A track record as enterprise AI marketing enters its operationalization phase",
+    "src": "MarketScale",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxNbHhfU1VaaC10RFpPMDVUYmNrUVF5NEpzellxTUNqYVYwSkg4dGxjakdZc3NBa2JLclMtYV81NXRjWllqcXVKcXhzZnVDVm5TTXRZcFVwTkhpZ250alJhNGhoaXkyX2pHUWM2UmxrQ05zek5wd1NmNU1pUDBacEJReV9wUXBKMGNkT05YYllMTEdmcDFZZ0w4ZFctZGxqUXFiZU10bDhELVpkc1ZtLTQxdXh3clBGaUpoWmZzMG9obmljcG42RmRkSm1nVXZYQ0tKcUpZR3VvNWwzaC1PY09OanBZOE8ybUo2Vm9EYTR1ZlFkNGM?oc=5"
+  },
+  {
+    "date": "15 AUG 2026",
     "chip": "Industry",
     "title": "A gradual journey: How executives should manage Enterprise AI",
     "src": "calcalistech.com",
     "tag": "Google News",
     "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1ucE9ob29oNnNZWjUxQkhicTRKMHhaNGIxblg1SGpaTUJkdTFmVlJHUjZYU0pkZS12blFXOUdYQW9TVmRZczd3eWtZY3h1R2tEa1RDUDdxUGgxQ2s0VWhlU3UzRGVHcjQ?oc=5"
+  },
+  {
+    "date": "15 AUG 2026",
+    "chip": "Industry",
+    "title": "Is Rubrik (RBRK) Quietly Redefining Enterprise AI Resilience With Its Wipro Partnership?",
+    "src": "simplywall.st",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOWHJRbFY5R2NKLThhakxYRjQ1NEh2anRVZVB0Vkg1U1dtcXplMi1ZdUZVbWFMYnlRTldydjlpX3E5RzNsOGRRb1FaOWJ6Umh4RUhpb2tTWm9xekpTX3d1TEhYUmN2N2FWWWVvZDNvWlVDMFFSQWNHTXc5MzZ2MlA1eDB2SVN6QmoxeTFtaktud3AtM2lFWFVkVFBvNlFQUHEwNjQtRHBaVzF5ZXF1M1Y0OFpSQmJyTzdNaFA4UU00Z3PSAcYBQVVfeXFMTWZXb2VUZjVVcUFiNk54Y3M5dGRKZDl4dmRCRDRWZ0M3Ym5SV1NSNnBEVHlHdkU1anRxSmFrcTV6amdTeDA3QXotd0x3NlVndl9qT0N0VUtCUUVQaVIzQzFXUHFxWG9DRDRZd1RHSHp4UTVJU0FocmVZWUtGR3RfdDc1VXlvWFZmN09RV3M0c2llcXk1LUFPRkVvdEREc25PN0ZRdy1SVFlKQWNKaGZNSmp0TWtZeUxDcW1qd0FOeTJNUmI3ejd3?oc=5"
   },
   {
     "date": "15 AUG 2026",
@@ -22,29 +46,5 @@
     "src": "FF News",
     "tag": "Google News",
     "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQNFdsQldjLUNEdHU3VDQ5SXFxUml5clNabGZ2LTdqQ2N3bHpIT3BabHZGNl83VUtCMl9GaWRqcGxSQThBaGZvTTlXZXoyNVB4WVJIekdxSWp2UkR2WjBfekYxSi11aklHMkdZeTkzZUVCWHA5bURPdXhQTVVPQTZvREwzTkFfbC11U1JkMFR2YTFnSGk3RnlkNU13X25CN1FWakZYaTNKRWRVMFo4Y1FNb3FqMA?oc=5"
-  },
-  {
-    "date": "15 AUG 2026",
-    "chip": "Industry",
-    "title": "Rysun Marks 25 Years with Enterprise AI Push Focused on Security, Governance, and Measurable Impact",
-    "src": "EIN News",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxNNi1QODN0NGNFVlJ1WmxybVhlcnZSdTlZWEpRSTRhb01JaEd4aEpSMkdIT2JqcFkwTWMxSEpHdlRxdWFEcmI3RmJGWW83MDdrTy1BVWwzMTBRSFJIU2hPWGdjQjVIU1FvTzhvZ3RxSTNpSm13Y0xjbG1KbnVaRVhnUXRSMEVlY1lUX21NS1owNjBJbGZWdVFGaUJ1X1ZzOXhheS1Nd1FIc1B4aWwtX3p6ajVQQVFFQWdQVEI0OTZXOWFWLVhodDNkeWgxQThoQktOd2EybDF4TQ?oc=5"
-  },
-  {
-    "date": "14 AUG 2026",
-    "chip": "Release",
-    "title": "Octane Launches AI Operating System Built to Run Convenience Stores",
-    "src": "WBOC TV",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxNQmVkQ1k4WnB5U2JBMmdzWkh1am9BZGJLb0c4RTBVa0pMdjFpaFdOWjF0bG9kUmhSRGw3OS1PQW01ODhtcUplRVdUeUJRRGRKRjFTMkNkclUwLVo2S3Q5LWNkcV9IMEJxYUJMaHpzUFhNdlJtVWJzNUxyako4TXZ0ZHUxTFlURHdJU3ZMZEVOcWNka2ZwUHV6a0d6b3NpU0xXc2JwdkN3X1FYeXRtbHJRR1M0dGFxOTNlSlFVZzZzT1lsNUlaY3BNVEVqcWJtWXk3N3FsaDJIVmtyR2RTdTFHbUdNVG81cUNFT2dVNGRtWGZydTVuc20zb3VQZnp5Zw?oc=5"
-  },
-  {
-    "date": "14 AUG 2026",
-    "chip": "Release",
-    "title": "Sophiie AI Raises AUD $5 Million Seed Round and Launches AI Operating System for Trades and Service Businesses",
-    "src": "EIN News",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxPZXJKOHBNQ0RKOFc5X3l2VVdmWFdtRS1QN2FLbk1XZEZ5LUl4OHZaemN4RV9VUEkxSHc3WS1DSEtOZHRSWUFCNzEyX3FhbWtiUUJTbE1JYnVTYnBhQVYyanlqN1pYYTk2ZktqN3I5OWtuLXgtM08tZG4ySDdGUmYtY2JMUmh1Z0RNZ09uWVhULTJoM3JZN0V2T24zZkJ2SXpXTDF4LS1CREdzV291MmN1WkthWkQ0c1N0eFdqX3o4Nl94NFNrcEEteFdCX3o3TUVFYURBTGJzekhOX3hXTVBPWHFpZ0wyUjg?oc=5"
   }
 ]
