@@ -9,14 +9,6 @@
   },
   {
     "date": "16 AUG 2026",
-    "chip": "Modernization",
-    "title": "\"Can we skip Digital Transformation (DX) and go straight to AI Transformation (AX)?\"It's a question",
-    "src": "매일경제",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1QZlVsTnFfZTVHblk1UGo4VTJnN3RSRTdsVC1acmpGQTA5dXl6bkN4M2tzbkVJQ1piWkt6T0x6cE1CMnFfNkRVWkc2X1dsdkl5cWpNbWI5N1lwYVBu?oc=5"
-  },
-  {
-    "date": "16 AUG 2026",
     "chip": "Industry",
     "title": "Health systems keep pouring money into Epic as margins tighten and AI governance lags behind",
     "src": "MarketScale",
@@ -35,7 +27,7 @@
     "date": "15 AUG 2026",
     "chip": "Modernization",
     "title": "The Ministry of Digital Transformation is preparing to provide Ukrainians with communication in the event of a multi-day blackout",
-    "src": "antikor.info",
+    "src": "АНТИКОР",
     "tag": "Google News",
     "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQbVRfR2R3SE9PZWFMOWpUOXVvRVBXTjVfVHVUR25CVHZwQlF6RXV0RlNrLXJPLWxxTlJzZzZjYUhYaVFTdDI2ZlJ6UlFpNXc1VTdXSWZJREFRYmxPV3BmNkppRDI5cXZFVW1TMERubURuNmJkU3BVNnpmNmhJSXlCV2djeDFhX2VUUkF5XzU3Y01FeHlnYzQwcUw3bUlLMUlsTkwwWFhYclNEby1qSlhxSTB0b25tTFQ3Zmk4QnpuTFdIcU0?oc=5"
   },
@@ -46,5 +38,13 @@
     "src": "Columbia Daily Spectator",
     "tag": "Google News",
     "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQOFJad1ZPdF9leHJheFZMR2pkLVg4cGwxSEJhWkoxZzR5TmFDVU9XUGhwSTZMbUFPWkVDLVFmSE5WalhsNHZIa3YtYWtvdl9mUldsWDJfTE5BRlQzUXU5bXM0QnBLS3hTSEtUNTYyNVVITzYwNUhVa1kwd082bzB5WGlYYVhBYjlvTURFVmRlcEtEY2huNkxJVG9rLXBGUHJjNWw4?oc=5"
+  },
+  {
+    "date": "15 AUG 2026",
+    "chip": "Industry",
+    "title": "Writer Enterprise AI Roadmap: How Skills, Playbooks, and Triggers Are Reframing Project and Task Management",
+    "src": "UC Today",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE1WekNGMlFreGtRaFZnZVdDWjlZWmdjb3dGVFVKR2JrUUh6M1ExZkh2ckprelVfb0tmWUhsSWpvYmRIQ251Zk5sLXlhZkVfOXpLamhodTFHNHM0SlF5Q0RCcTB5UkVWTGdmRGFBSmFzSm1nQk1vX2R0dUZZMUk?oc=5"
   }
 ]
