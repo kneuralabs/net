@@ -1,9 +1,25 @@
 [
   {
     "date": "15 AUG 2026",
+    "chip": "Industry",
+    "title": "95% of enterprise AI pilots deliver no measurable ROI, and the fix isn't more tools",
+    "src": "MarketScale",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNV2FHMGJZa015a3B1RHpqcjl0ZDJpNmpvcGtMTEJWN0JGOUhiUGt3Y0Z1NW8zWTdUb0RiQUEwZW9TQXRRSWJlQnItVHRvajdPdTQ4MDZZTXYtTEQ4Nnc1b2RIU2xUemJJamZYUmFONWFSQk1IM213LTQycXNBM3VDeUFuX2NmX1p6NVlnRG13bEd0c21YaUlXeDVvSnhxQThGcXhGaGNXMEdxTWxORHZmemdiV3VndnBKTWVqT3hJVFZlTkRoQUJjUERxb0JZOEVabWxR?oc=5"
+  },
+  {
+    "date": "15 AUG 2026",
+    "chip": "Modernization",
+    "title": "The Ministry of Digital Transformation is preparing to provide Ukrainians with communication in the event of a multi-day blackout",
+    "src": "АНТИКОР",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQbVRfR2R3SE9PZWFMOWpUOXVvRVBXTjVfVHVUR25CVHZwQlF6RXV0RlNrLXJPLWxxTlJzZzZjYUhYaVFTdDI2ZlJ6UlFpNXc1VTdXSWZJREFRYmxPV3BmNkppRDI5cXZFVW1TMERubURuNmJkU3BVNnpmNmhJSXlCV2djeDFhX2VUUkF5XzU3Y01FeHlnYzQwcUw3bUlLMUlsTkwwWFhYclNEby1qSlhxSTB0b25tTFQ3Zmk4QnpuTFdIcU0?oc=5"
+  },
+  {
+    "date": "15 AUG 2026",
     "chip": "Regulation",
     "title": "Law School introduces largely permissive AI policy",
-    "src": "Columbia Daily Spectator",
+    "src": "columbiaspectator.com",
     "tag": "Google News",
     "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQOFJad1ZPdF9leHJheFZMR2pkLVg4cGwxSEJhWkoxZzR5TmFDVU9XUGhwSTZMbUFPWkVDLVFmSE5WalhsNHZIa3YtYWtvdl9mUldsWDJfTE5BRlQzUXU5bXM0QnBLS3hTSEtUNTYyNVVITzYwNUhVa1kwd082bzB5WGlYYVhBYjlvTURFVmRlcEtEY2huNkxJVG9rLXBGUHJjNWw4?oc=5"
   },
@@ -30,21 +46,5 @@
     "src": "simplywall.st",
     "tag": "Google News",
     "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOWHJRbFY5R2NKLThhakxYRjQ1NEh2anRVZVB0Vkg1U1dtcXplMi1ZdUZVbWFMYnlRTldydjlpX3E5RzNsOGRRb1FaOWJ6Umh4RUhpb2tTWm9xekpTX3d1TEhYUmN2N2FWWWVvZDNvWlVDMFFSQWNHTXc5MzZ2MlA1eDB2SVN6QmoxeTFtaktud3AtM2lFWFVkVFBvNlFQUHEwNjQtRHBaVzF5ZXF1M1Y0OFpSQmJyTzdNaFA4UU00Z3PSAcYBQVVfeXFMTWZXb2VUZjVVcUFiNk54Y3M5dGRKZDl4dmRCRDRWZ0M3Ym5SV1NSNnBEVHlHdkU1anRxSmFrcTV6amdTeDA3QXotd0x3NlVndl9qT0N0VUtCUUVQaVIzQzFXUHFxWG9DRDRZd1RHSHp4UTVJU0FocmVZWUtGR3RfdDc1VXlvWFZmN09RV3M0c2llcXk1LUFPRkVvdEREc25PN0ZRdy1SVFlKQWNKaGZNSmp0TWtZeUxDcW1qd0FOeTJNUmI3ejd3?oc=5"
-  },
-  {
-    "date": "15 AUG 2026",
-    "chip": "Modernization",
-    "title": "Digital Transformation - Why audience questions may be a publisher’s most valuable metric",
-    "src": "Business Reporter",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNUG5HZFkwV0xpclM1dDJhSG83WGFETThtRDNFYXdTcFpqbWZHQzcwN2xPNUo1OVZYWXdDUGdiOU5sQkFrcnR5eEhzU1FWMUNZMXVZZi1USy1ySUdSY2lqZXhDRnBIUlc5Nml3MlZYaVppa1FZNWIwYm1ob2xfZ0Z5b1ZZeWVnSmIxMjFpdDN6d1BIMlRwRDFkQ0NBWkFqX1hDajVXb2V0UVdOSGFpWTNtYk9RUFUxZGlBMDVYalZlNA?oc=5"
-  },
-  {
-    "date": "15 AUG 2026",
-    "chip": "Release",
-    "title": "FinOpsly Launches AI Cost Governance to Establish Financial Discipline for Enterprise AI",
-    "src": "FF News",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQNFdsQldjLUNEdHU3VDQ5SXFxUml5clNabGZ2LTdqQ2N3bHpIT3BabHZGNl83VUtCMl9GaWRqcGxSQThBaGZvTTlXZXoyNVB4WVJIekdxSWp2UkR2WjBfekYxSi11aklHMkdZeTkzZUVCWHA5bURPdXhQTVVPQTZvREwzTkFfbC11U1JkMFR2YTFnSGk3RnlkNU13X25CN1FWakZYaTNKRWRVMFo4Y1FNb3FqMA?oc=5"
   }
 ]
