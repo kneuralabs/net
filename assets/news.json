@@ -1,11 +1,27 @@
 [
   {
     "date": "21 AUG 2026",
+    "chip": "Regulation",
+    "title": "Anthropic Watermarks Claude to Meet New EU AI Act Rules",
+    "src": "Business Chief",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNNHROU1VCeURmZHVLLXJnRTlCd0wxMFJVVm1MTDRYSWZTYkpSRDNKOF8tcHpsUGo3MVk0dUN2cTFoNGZEZ1hPRElkWE1YOExzWDhQZV9fRGxoYW9IMDV0N0oycEU0RDdldWlmem9uankwdldWeVNvVE1MYWw2UkNBWGZ1ZzdOYVl1eUhXLThzSQ?oc=5"
+  },
+  {
+    "date": "21 AUG 2026",
     "chip": "Release",
     "title": "Brazil launches AI supercomputer push while balancing US and Chinese tech",
     "src": "Al Jazeera",
     "tag": "Google News",
     "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPZ0lBTVBaTzhZZW1TMFJGMXh6NGVCNEloS0RPZlU2U0NqUHZQeDgyTW93eklwUHlRSjMybDlhTThVUjN2ZGIxMG52VEx2NmJ0d0xwWnBySXYtSnZzTXBMQ1VGVm1OcU5DUTAzbjN6UUE4Yzg0bkdxSkZzTDFpOF84SWFEbVFMejV0SmhXVVlKeU14WGd1dER2VDl1aXpDQUxNUy04SDlIWXlmNzBOeWtWLVdmS2Y1ZHBB0gG-AUFVX3lxTE56NFYzZ245MURqQUNGUDFXVm54alMteWFxMVhsVzdFaWYtNk1xYXRfRkxwUHQxQWpKNjFxdjNQUkdubHY1NVhIY0JQUzN6RGFTTVF5VEZiTXNEdDczU1A1amdMWmhYWWxhdEtTOEJTX1FOai1WUlktWDlEZzJLSjM0d1hSNjFsZzB0UnJzS1JabWdnTk9CNjlRRlZMdDN6VnpNOHJLM2JWY3RUR2psUkFkZnlxVWc5d3NQazJ2TFE?oc=5"
+  },
+  {
+    "date": "21 AUG 2026",
+    "chip": "Regulation",
+    "title": "The Data Chronicles: Asia Spotlight Episode 2 – Regulating artificial intelligence in APAC",
+    "src": "www.hlc.com",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOTUxZN3VUeDB2bE9jMWJBcUFKT3RqVkdRZnRsQ0d2RExTd29hRFlpTnV6Ni1BWGNucXFxSVdnc2o2Y2VJVG1fSUg2dHhnX3BXa3B2eVB3SXVYeWJVcTVoeUR1OVphbzdBNXhmTjZQdklEX0RWYnUzRUtsRU1xQ1QzUUdUTkZYX1RVNndZZ3M1YUk1c25VMVZKa21BWHRFNXpVYWw2eUk4cFFCeGowSGNDUXc5bGZaeDcwOUR6WU5kVTU?oc=5"
   },
   {
     "date": "21 AUG 2026",
@@ -30,21 +46,5 @@
     "src": "KNOE",
     "tag": "Google News",
     "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPTUZFNDhDbS1tRHdFN2QySXc0c1VQY0tOM3VYSE9mZXBPMlpfazNVSmJsUkFVTUpyOEZpbjVxLUlvTHBQRXp6cE5WN2NCVG13SlBKSHNiamRwNUUtQS1tS0FIMTZGTEZoYWJTc0sxNGhDZHpRUzRQNFZnVExRZWNaekFWLW9hd2hZT2lhQ1BJb3BVZw?oc=5"
-  },
-  {
-    "date": "20 AUG 2026",
-    "chip": "Release",
-    "title": "Charleston County school district launches AI resource hub",
-    "src": "Live 5 News",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPdUowQlp5NEdFQnBpTVRGTnBuQjVqVmZBXy1JNUJZalJObngwUlJ3aW9KODVXYkZPc3VXZXEtU2pGRGw3MUtWc2xkX3BqWm91a0lmYVVkX3ZvUHo5Z0xRbnVLMGdkdnh0TGVMWjcyZ2xtbWFvRHh1c2VvVzdBRWxvcmFkSnlteXdaQzJjV2l1NG5JaTdmQjRlMk5sbFDSAbABQVVfeXFMT1JmS0tuVnd3M3lTcWdQVDg0M3daZTJiVFE0UnVyaHhVVVZWMTd3RzdodnhRNTMzNlgtTEp5SFl5SjF2VEMxM0pOZ0tZQzBXNEJPU2t1dk1hdndmTFFIYVlCbW14VVdIb3FRdVN6dVY1bmtub1h5MjlsOEU2aEp1Q09DNjFoY0ttYU1vd3ctcHdIM3VHc20tNEU0RkhWOVQyUFNQbU5oelowTVhwS001eTY?oc=5"
-  },
-  {
-    "date": "20 AUG 2026",
-    "chip": "Industry",
-    "title": "SSA Seeks Industry Input on Enterprise AI Strategy",
-    "src": "ExecutiveGov",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE1IRmlhNTlKLWpSc3gyZWtoQ3g2dS1CeElYSC1hdG5kMlJXZGgtVloweDlCNE9WeWRFemFGZGNBVXlpNW5QQU5kVTJRSUhFdWg4amJ5YUJiVWMwZmdvalk2TFJxdWMtZ3NEdTVQUVZ0cThIYWV6M0hB?oc=5"
   }
 ]
