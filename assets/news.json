@@ -1,11 +1,35 @@
 [
   {
     "date": "22 AUG 2026",
+    "chip": "Release",
+    "title": "MillworkSuite Launches AI Estimating and Direct-to-CAD Platform That Cuts Drafting Time in Half",
+    "src": "Yahoo Finance Singapore",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQOXJFLXAydjNRTVN2UTZyMlNUMTNMd1VHYUR2UmcwVW1lSUg4R0l4RzdZX21Bemc2RC1yckt1ZEpGdVZXNmZnZEloTUItczFsaG5tbG51Qm5qOFF3c2xWa3d3NTBkalVEYmxHUGtFa19fS2xBeGZ1bXhVa2txa3pTODZXMDRwc0hDbkRJT3VEcGRBQ01rQzZn?oc=5"
+  },
+  {
+    "date": "22 AUG 2026",
     "chip": "Industry",
     "title": "Anthropic’s mega-IPO prep is forcing enterprise buyers to treat AI vendors like long-term critical infrastructure",
     "src": "MarketScale",
     "tag": "Google News",
     "url": "https://news.google.com/rss/articles/CBMihgJBVV95cUxQUXJmOTNvZUx2MzE0NmVhVFBHaDVkWHoxekw4MWpmVE92bDhMeDBCZWF2Sl9UeWNmSVZwNzhLbUlZemMtNWFnOVRyZk1KMTh6WFFERko2ZWJvTTI1OHY4S01CTTZVZTYydWFQRzFlellIa3JTNHptSWhXNnlsWm9HSVhzUVJfUU9uWUhQeThHd3l4UVlVT2FBYWpXNFpxU2ptR0FxWmpyNmZBX0xoellDNHJSSTJVN01ZQWFDZXRheko5b0pCOHJrVWtuZW52cjE0VVFzUzM3RkdPcFlkWDJZd200M3h3RG9UZjEyR0t3ZkFzcHhjTy0wRnJGNmpHWS1oTjRqWUhR?oc=5"
+  },
+  {
+    "date": "22 AUG 2026",
+    "chip": "Modernization",
+    "title": "Hewlett Packard Enterprise Stock And Other Ways To Play Federal IT Modernization",
+    "src": "simplywall.st",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQUDZPMUhpN1UwM1h5ZHp2RldBdkI4TjhKRUl5Tno2aGRhOE1zR3ZsV3I0NmtsaWNreGlhdGdLRlVuajduY28tYjRPeHRJZmNCbi15X0NRWDRMb2JxTDZXclVmdzdPcEZKb2JXVUZiTVFSMkZ2UEQxWWdWdlZRdG1PSzludUVtNTR2LVdESWl4OC1xeHY3anhqeEtlcUVqdVVNaE4xel9JampNZFBveTV6REFVcGNsNkFObnBxcnF2c3B1N1gyWS16OU5xd01TYkHSAdQBQVVfeXFMTUkxSWZNY0RXeEI5VDNLcXRFcHR2RWlISEJzM0RtMDJIVmZ0b2xEYVpnODJqdHdGRDV4dHFGZl90XzNxM2Q2eGVWRmVCcHc1RVNJX3R1YXF4X0RPdF85NU1rS1A2UkQ1XzNia084dUQzRVVTZ2VvNm9HaGhTZXpIcW1LR1Bncm9RazEtUlBlNXRYOG5TWWJUVlVnWVhxWnBMQ180b2xXTHRFazI2SHJaOEh4UW81ZmFqTGtMcUdTV0VBOVltOEJxYTRYQU5xeHdrOUNQZ2o?oc=5"
+  },
+  {
+    "date": "22 AUG 2026",
+    "chip": "Regulation",
+    "title": "The Regulatory Ledger, Edition 1: The Complete Map of AI Regulation, August 2026",
+    "src": "Medium",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNNWxGYm8wQmw1NnNlR0ZOOHpENVJBX1h0VFlpZVVjMEZPNTlTWGM5ZlpGYzNUdm9tenpjOUVHSmsyY0NGMHZlWDZhZ29GcUtVV1NWd2dIQmZvMVJWaHpIY3JHMkVMWWtlVkFXbXZZWERxUnBwNzlCUUhnNFNBMHFGR2hGSG5sSWFmV1FlRWZkbC1QMXY3ZGF6SW9PRVhvMjJDRjNSdVBXRC1sOUNmbjNVNlpNZGh6RjBCMU9LejJUbw?oc=5"
   },
   {
     "date": "22 AUG 2026",
@@ -18,33 +42,9 @@
   {
     "date": "22 AUG 2026",
     "chip": "Industry",
-    "title": "New AI model reveals hidden code behind gene activation",
-    "src": "News-Medical",
+    "title": "Tech Mahindra expands ServiceNow partnership for enterprise AI adoption",
+    "src": "Portal ERP",
     "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPcDRZd2xtNjdraVhxQXJxRkFVNzg4ZkxhTmR2N3pmVWdGd3ZEa3MtZjN0eE9fS1o2d1RkeXdabWIyb0dfVXhIRUNrUDFrUUpsS1VWWlRDay0zTGYyMUhKOVh3TTNpMGVyTm9jZkNOWUl3ZFNHZGFFZjNkMTZzd3AxQTZsb05BM0RCT0pyMzkzY0pHeE1kNG5uNG5PQ3RZVDlkTzFLU2FR?oc=5"
-  },
-  {
-    "date": "22 AUG 2026",
-    "chip": "Industry",
-    "title": "Shades of Skynet? State’s measured approach to AI policy development was wise plan",
-    "src": "Meridian Star",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQRk5rWWlyZm5tVVNUNjdvNkV4bXhGSnl5WGRObGRidHBvZm5ieEJSZl9zRGQyRXhHNmZjdHAzS2poVnpxNEw2SjY3NXpVUXRqQ2gtdGVLMnduV3M2NFZpZjYtNWpyc3pYd0pheVVyRXpDYlY0MDQyUmlmLVBva05aUkpzRjNEYzNhalJsSm1xYjhhYktmS21IeTZoSS1DeVJFN3RzY3gyUW03WEUxZGxVZ2xKTldESUFp?oc=5"
-  },
-  {
-    "date": "22 AUG 2026",
-    "chip": "Industry",
-    "title": "Best Enterprise AI Pentesting Tools in 2026",
-    "src": "Aikido Security",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1CSy1jRXBOTThQZFdRalBNYU1ZanJJT0tyak9DSVpiN2pIQ3R1N2hWSlNGM21QdTEwSlZJNW5qTXZLQVJab2hnenVobTJRdm42TWYzcFZCeE5uUHJYS3M5bEpLWnFVcW0zZFJTX0ZKcw?oc=5"
-  },
-  {
-    "date": "21 AUG 2026",
-    "chip": "Release",
-    "title": "Meta launches AI update to help Louisiana small businesses: KNOE8 Streaming News 8/20/2026",
-    "src": "KNOE",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPM3VlbVBxRGxFLVFSaVFJaXFrV0FWMlV0YWNxVEw2UzRRa001UTdmcDgxMkZzUVlMOGpmNVpnaDRZVlMtTmZ2U19ROFFmVmdkOHdvcExlNnkzOEZuVXNoekxsSWEybW5Oa0ZDcDJJdzkxUnpVZGZiWFZ0RW1Ra1p1M08ta1FNVEhxS0llTHYyQm9HSGFHSDlVTHJpZ0VmdHNmVkp4Vll4NlRrRlBKVEhtUGJIY05RXzFyM1hjN1RxZU4?oc=5"
+    "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPUHYzODRNZ1VpbE1QRkdvcTZoTEFTUUdPM28tSEt2R0FZNDB5S1FxZUJ4a3pkNXRLMGVBaTNuY29vMmVlb194T2hYd0dNVndkOVVsR29YZ0dmN3hZNlNqTGI4NTBRM2E0OVUtTVN6YzlYMmZuUGkzcWV4UHl2NVhjUkR6aUZUWndZRlJoVFRmNTRhR2xPWkEwZEN0dnBGNGlRQVhV?oc=5"
   }
 ]
