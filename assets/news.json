@@ -1,6 +1,14 @@
 [
   {
     "date": "23 AUG 2026",
+    "chip": "Regulation",
+    "title": "Discussion on AI Regulation & Containment Failures",
+    "src": "C-SPAN",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPNDgyREl5LTVRTnFQaUViQ0VLRnZoVHV0VVR4Q2J1X0tqWWRRMTl0ZUNOUjEwdG9ONG1jVXlQSEp6aVJVdTMzY3VhRXgxZTJ4ODI4VkxYMGlWcDA5OXNoUlRLMFlmQ1NpVG1qanBXNUVUdWtxcEcwZzRqdDItTld5R3dISjFwZW9KZndXWWZhaENTYnVybkxiT2p0X0FQYjl0UGpxSkJJVVU?oc=5"
+  },
+  {
+    "date": "23 AUG 2026",
     "chip": "Modernization",
     "title": "Digital transformation can boost Gen Z participation in student cooperatives",
     "src": "The Malaysian Reserve",
@@ -38,13 +46,5 @@
     "src": "Yahoo Finance",
     "tag": "Google News",
     "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNRmhKR2Q1VVZqc21pMndfMFE4ZkJJSWwxMVBMVkhUdHdZM1RNTHpOSTM4a0tHMkxCaUdEcTBoZ1E5M2R3a3BJSjBhLUdjdUZhN21BT0dyWDJfcXlyWFhQY2pkODJPWXdCV2pKTERFU0xPcGh6VkdnYktUdmZGU2EtcnJ3SENJSEFhaWVTU1lTaDFVOFJHaEJnekZn?oc=5"
-  },
-  {
-    "date": "22 AUG 2026",
-    "chip": "Industry",
-    "title": "The Developer’s Guide to NeMo Guardrails for Enterprise AI Safety",
-    "src": "MarkTechPost",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNS0kwYUFLY1Y5Qm1wQ0ltbm5nQ3lyZFZMME92SEYxbUZHOGtPNE42clZKQVhfX3R1SElQNC1PNDRoUEEyYjV0bXVuWm5USUpxNUZyV0FIRGNhSFNCeDR4aUZ2aks0cnpGYkxYMVg0Q3V2cFBzRVJtd2EwNU1wLWxtNnh0d1lYLUh5WnpOQWxlUTNwWEw5aHJOLVptRkZKa2ctSnZVOGlabF_SAa4BQVVfeXFMTUoyckIwQ2NLUUhVenlmUU5NUlhoZE9oSFV2VE5uWEtCa09pUHJudTVYWGRGczUzV1JEXzRZWF9fZXRiSDk5Q2FMU3hkUkJCdFdUTEM4cktwTkttVWswdmpZNHpzYlhiMHFDZ2ktTzN2akhfTjNQY2pCOFpnM2VWU1c3VjVOYWNzVTJHVUwyX0RzdkdiVXd6Qmk5dlpoSUowLXJJYWNwSzJ5S21JVGZB?oc=5"
   }
 ]
