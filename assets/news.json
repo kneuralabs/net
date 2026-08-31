@@ -1,11 +1,27 @@
 [
   {
-    "date": "30 AUG 2026",
+    "date": "31 AUG 2026",
     "chip": "Modernization",
-    "title": "Malawi advances digital transformation and national AI strategy",
-    "src": "Tech Review Africa",
+    "title": "China Merchants Bank: Steady profit growth, robust asset quality, and digital transformation drive performance",
+    "src": "TradingView",
     "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQekNKMy1obVVhUllmSklvZkFNSWppLTJJQUJDeTlMOHNYOWMyTV8tam9nakdOaHgwYU0yakROQ3ZDYlJKekg4UlJwV0NHM1BNTVQzZUtvVUt2bG1uTzJ5RUE4Y3RFbDM1UzZDUW4xZF9fOUlTSjJrNnN2dGhyZUJreFRIb1YtRUhRR1czNC1RdTBTX29CdmIzaWlsVHBwX29QelZwRQ?oc=5"
+    "url": "https://news.google.com/rss/articles/CBMinwJBVV95cUxOZlM4Si1TdkRrS1NWVUpOOW9MY015UUVJSDNQQk43SDFiVF9pZVFPU3B1aFVpYjRSVWtDTkpXSVhBaDBLaElNU210VTdkWFVNNm9OVHVVbWJNZ1lITkQ1eEpnY2JTLXF3NTB4ZkJ2ZDR2bExmcXdxUVJwSjhWam9QUnVVX0Y5QjNpaWZkbHl1VFk2Wllmb3ktWmtVSnBGVGpDZnNCNWx1dGxvdXE4aEpxZnVLQnA0SHVEZXVEcFI3TEdnUUFlY2IzMXN5MTh5aXQ0ZC0zSERYaDBSTGtGWlkzdGljbzUzOFVkLS1NeVIweWdBZ3Z1dGpCZzByYVB0ZWFrZy1NbGZDenhFblpRTFpZNm92VWVMU1E1NjFKYmhodw?oc=5"
+  },
+  {
+    "date": "31 AUG 2026",
+    "chip": "Modernization",
+    "title": "Salesforce driving digital transformation, AI innovation and sustainable business growth in SL | Daily FT - newspaper",
+    "src": "Magzter",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQS05wMmRsQl8zZE1YaC1wTUVhblRfMFZxNEozaUJEZElsdVhEbEdfaU9YNU90b3NJZFQxWjBNS0xnY2VVUmxKdl9aSzVaM3Y2Z0JGTGZhRDFQek9CY1BDLVZWUTZEeTdYdnYxeVB3UER5SXVrMlRmSlhXVVkxWGtBZE5yX0hhTHFjbV9vcmxac0JmOE80ZEtPU1FVN2dySEFfU01fS0RLN1ZCTjU2Q2NiWUt0cUFiakQ5d1NOd01GNDJ0Vk5RdTB6LTlrbkFHT2wtS2U3ZEVJMzlKeUlr?oc=5"
+  },
+  {
+    "date": "30 AUG 2026",
+    "chip": "Release",
+    "title": "GEMINI launches ai-assisted trial with partners to prevent delirium across 13 hospitals",
+    "src": "hospitalnews.com",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNU1M1eFVPdWFZNUdCSXAwbGtxdG15VTJ5UFRkczZjN0ZMUjFCYTUxUG1rSlVBNlBuMXV4RWVKOHRQN3I3NWVoT3V5aXQzWHRBcGxEWk13dndOUFpLWVQ1VHRHVEF5RUpCTWRmRGwyNVcySGxQOERIRzd4Y0FCOEJnQnc3Vm91YzBZV1p3aUVxLWRwbVhiVUFVUDNRd3V0X1dNOUpLZUFsUnJzSkpMSC1WdFNPSk5XUXZn?oc=5"
   },
   {
     "date": "30 AUG 2026",
@@ -17,34 +33,18 @@
   },
   {
     "date": "30 AUG 2026",
+    "chip": "Modernization",
+    "title": "Malawi advances digital transformation and national AI strategy",
+    "src": "Tech Review Africa",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQekNKMy1obVVhUllmSklvZkFNSWppLTJJQUJDeTlMOHNYOWMyTV8tam9nakdOaHgwYU0yakROQ3ZDYlJKekg4UlJwV0NHM1BNTVQzZUtvVUt2bG1uTzJ5RUE4Y3RFbDM1UzZDUW4xZF9fOUlTSjJrNnN2dGhyZUJreFRIb1YtRUhRR1czNC1RdTBTX29CdmIzaWlsVHBwX29QelZwRQ?oc=5"
+  },
+  {
+    "date": "30 AUG 2026",
     "chip": "Industry",
     "title": "Glean Bets Everything on Context",
     "src": "The AI Economy | Ken Yeung",
     "tag": "Google News",
     "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1Wd3hwN0E2RnRVeXVzYWREbEZQNFgzWnlienJKMy0wSVJmZk1IeTc2bGh6VUxiZ0pIVVItVGJ6TG5ITkplaDhDLXpHbzMwb1pOeWJVWEl2NWw4cUJJRVl5MjVVUUpzdFlDRU83ZHZYeHF1STVqc19JWg?oc=5"
-  },
-  {
-    "date": "30 AUG 2026",
-    "chip": "Modernization",
-    "title": "10 Retail Digital Transformation Case Studies in 2026: AI, Data and Automation Deliver Measurable Results",
-    "src": "InfotechLead",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQeG52TU5MbnBXVTBqNkhMbjFlNDNnc3V5cXdWYXNCNkcydk13aElXeDE3QVhUSmRkTVQzbEY4azYzcEIxYjVackh2MnZTNlNqWUNSdk43OWR2MWF4SUVNNUtkRjIxMUw5VXlKQjBRdWc0UHRfQkVxcHZhU2JpdmQzVy1WLVZhVVRLYjU2SW03aFpNN0V1REZOc0VkN281TC1sTlVZUk9TN2djWUpabkE4NTE4ajZ5dEQ4a2NGSDNLMnVKVjJDbWZuTHh1VVhhVGFDNGxwc0dOMW4tSmRL0gHcAUFVX3lxTFB4bnZNTkxucFdVMGo2SExuMWU0M2dzdXlxd1Zhc0I2RzJ2TXdoSVd4MTdBWFRKZGRNVDNsRjhrNjNwQjFiNVpySHYydlM2U2pZQ1J2Tjc5ZHYxYXhJRU01S2RGMjExTDlVeUpCMFF1ZzRQdF9CRXFwdmFTYml2ZDNXLVYtVmFVVEtiNTZJbTdoWk03RXVERk5zRWQ3bzVMLWxOVVlST1M3Z2NZSlpuQTg1MThqNnl0RDhrY0ZIM0sydUpWMkNtZm5MeHVVWGFUYUM0bHBzR04xbi1KZEs?oc=5"
-  },
-  {
-    "date": "30 AUG 2026",
-    "chip": "Modernization",
-    "title": "Bắc Ninh to accelerate digital transformation in agriculture",
-    "src": "vietnamnews.vn",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNOVJwN1JtSnZFYThNMlhSbS1FUDc0UmlFMHRTaGN5QXdEdWNTbm9BTUR5bUlGZzhtVnhFYXhqb0pSTWJxU21GdXVzTWh2SU0yQlJVNkVRMWVmNGxTblE4N2VndmNJcWt5YXIwZzJSUW80MXUtVEl5X0REQTFUNjZVT2NIemFXUHBsUWFTbHNTcU56dVZscVQ1SWVTZ3ZfMl9sNVB0blhTYw?oc=5"
-  },
-  {
-    "date": "29 AUG 2026",
-    "chip": "Release",
-    "title": "Viral SEO Launches AI Assistant for Google Search Console Insights",
-    "src": "Yahoo Finance",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOUlNkdWxfY000cG5EZlpPUFVwQTRxbU9pV24zUGkxSGdGeEZxQUN1bVAwbzNRMGVVd0VORGtLckk0U0E0alduSkVHamhCR0YtX2JsSXh3anNNSlh3cGwybGNqdGJJNUVBVXgxRjZlQ3NKT2FYbXhna1FYMHFuRnlCeTV5TUdXd2w5MVQyRVRxb2xQaG9jQ25iSV94YnE?oc=5"
   }
 ]
