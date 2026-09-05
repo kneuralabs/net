@@ -1,17 +1,33 @@
 [
   {
     "date": "05 SEP 2026",
-    "chip": "Regulation",
-    "title": "AI regulation costs lives",
-    "src": "The Washington Post",
+    "chip": "Standards",
+    "title": "UiPath (PATH) Founder Publishes Enterprise AI Orchestration Framework",
+    "src": "Yahoo Finance",
     "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQSDFKd0EtQ2RFV0NGWVBPaHZPNjUzS2ItY3Z6dGhsOFJCXzFCU1dodk5zSFRfU0VaX3A2Q0QzNjRJM19KNm5LdEJrdFlKNDZtZ3JGaEQ1THBhZGV3eVRObDFGRFplRFhNUVVuUkUwS3I0a25MVzV5alBGalJpV05SdHJlSUF4T19nM1lfSGtqakluX1VfMkFZcGdpLWR5ZE1VQWFuLTA2Z25tNDgyb0M2SXB5c0hubUx3TVgyM1BYQXk0V1hSYjFySVBn?oc=5"
+    "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNVmE1MFhMYXlQcm1QUVdSVllXcjdfNEhpbTc3SGVUcnNXR2VCbnptSzlJSmN6MHl4eWYtb0RQYnFEVHdwRWVRckUzdS1VTEJjWGFOX0dOT0pPNzNhRFJKMm52YU93TmFhWnJhQUVyQzZVVENhTjNTbzBPdG54azNCeHZMc1F2ZUZzT2lpU2FXWW9pbmg4ZzNVNEowQWR3RFJyZ3ZxWEg4dw?oc=5"
+  },
+  {
+    "date": "05 SEP 2026",
+    "chip": "Modernization",
+    "title": "The fifth edition of Innovaforum, focusing on flexible education and digital transformation, has been announced.",
+    "src": "Universidad de Guadalajara",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPU2luRlBJUUxNQzVPSUhJTVNkRkVQbDZJX3ppNmNNVF9EcFY1bFRCejQwVHNZak0xUktJZDRpQ01KT1diaUtBSEtxSTFSaGIxZHEyb0l3eENFMFoyN2RHdGtFSGhSQ3Nxc1doZzNPbzZaT1hoejNTbGxXQ25ZM1ZtTTZFNmZBRUhKc09DbFN0SUN1cC1ZaE0tN0pBTjdieGdpaEhabERfd2hwR2I3VUJ4bUlzbHhuVnc?oc=5"
+  },
+  {
+    "date": "05 SEP 2026",
+    "chip": "Industry",
+    "title": "Making Enterprise AI Work Beyond the Pilot",
+    "src": "bankinfosecurity.com",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxPTExPR0ZwcU1EVnBnWjljNHVqcURKTXdCNFV4OVdlMEx3WXp4WTNnQTBEMTdJdXQyZ2JzSXMwNTZXTW51TFZDWnY5SkNuVWdLekhDYl9IamhXX3ZQMFE2UlRuSEJQdnpWZ3p2VGtwUWxGTjAxeUswUG9BUGgzSXFHMGN6M0YtUQ?oc=5"
   },
   {
     "date": "05 SEP 2026",
     "chip": "Modernization",
     "title": "Asia Shifts from Digital Transformation to Global Leadership",
-    "src": "thailand-business-news.com",
+    "src": "Thailand Business News",
     "tag": "Google News",
     "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQdXAtcGh3aVN1bnBiR2tjb1R5Q3VMM1FzZ3Rhc1ZSbXpFTTZraWRLdEZubXhWc1plLVpyVUcxOFFCVHBiMUR1el8xWERXMVg1TXNmMExIeHlpNXA0cWo5ZGczVTFtQWhjYXlCN0Q3b0tyWnZrRE1CU3dlejB6SFQ2UGtPRl9ON0tKckUtb3JtekRHTEhjUGZud01ZUlJvbldGbC1JWjhKdi03TzJQWVQtR2Vn?oc=5"
   },
@@ -30,21 +46,5 @@
     "src": "Snowflake",
     "tag": "Google News",
     "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPb0t6N3F1VVNTRmdxWVFnR2ZWN0pPQy13VHFtS3Zqc2xsUEJhZ0pwRlpZSnYtTWYyTmdmVkphdVk3U2tSaFMzYnc1Y0ZiRkdkUnVyNUNwUnNnSE9FOTN4dEZ2T25oS3NRUUFObWNnRUU4akZSSjVkTG9kcnVHUFR2clBxdw?oc=5"
-  },
-  {
-    "date": "05 SEP 2026",
-    "chip": "Industry",
-    "title": "Intel (INTC) Deepens Its Role In Enterprise AI Infrastructure",
-    "src": "simplywall.st",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxQQ0UtMFZaUTRUMHhvSEF6ajVvOGRWLXp0RXlsTVYwRTBSYjNkTDlnbnZIRDlKcHdfcFNqMnhyZTVndUZkVHlWeWQ5RHNCemprMkNGeE5KQ0x0TUNkOVp1RE1ERFZMejM1WlhrZWhFRjZIejNrX3R6QWlBZm5KcFNGcHlrUktnVXNpcVdkc2NNQnVGZnN6cnE4YWJkd3ljQTgyZjVkcHhTV1JVbnJnYnByZTNuMUZpUkw5dmxhN2VTU2VTZFBxaW9PddIBzgFBVV95cUxNTmp6YnhzdVZ4eE05dXdUZi1Ic2xzNFZlNGh3bDJVaWJnQTQ1RVlKMThCZ0ZYT3pJY1J6RWRWM0wyZmduZk1wejdFNVByaGFDN2piOVljZFVZYzJvMzFnRzNhZWd3Z0lmR2RCaGNId2pCZnhVSC1LWmpDOWN2S3A5VmJWQmhWUnBNSXNydmZfeW9nY2F6Q1hkQlVodGZsOUtLUzhNMUhfRTBjQTZjTGs1VDJ2VVpsYXMzX05SbmZ6QzJjZlFNR1pxdVNYdm16QQ?oc=5"
-  },
-  {
-    "date": "05 SEP 2026",
-    "chip": "Industry",
-    "title": "Making Enterprise AI Work Beyond the Pilot",
-    "src": "BankInfoSecurity",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxPTExPR0ZwcU1EVnBnWjljNHVqcURKTXdCNFV4OVdlMEx3WXp4WTNnQTBEMTdJdXQyZ2JzSXMwNTZXTW51TFZDWnY5SkNuVWdLekhDYl9IamhXX3ZQMFE2UlRuSEJQdnpWZ3p2VGtwUWxGTjAxeUswUG9BUGgzSXFHMGN6M0YtUQ?oc=5"
   }
 ]
