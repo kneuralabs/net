@@ -1,50 +1,50 @@
 [
   {
     "date": "09 SEP 2026",
-    "chip": "Release",
-    "title": "Arm launches AI Portal for optimized software deployment",
-    "src": "Engineering.com",
+    "chip": "Industry",
+    "title": "New AI model for DNA learns from evolution to unlock secrets of the human genome",
+    "src": "University of California, Berkeley",
     "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxORF9PVzlkaHVRWDRoTUczWGNqNlZHeE5ZUWNuZk9ZdjcyUVZRMGFTU1FSeHlrWEdRbGRPNnlLRW5VSldoVDJsZkFHcERBTGpsYWtZRWtWMklBclhRU0w2VFdUMW1ZQnVqcnQ0RlYyeFg4Y2pvVDdjZDhha2ZKbDNCUmdaOEdxb0loWWQyRWV3?oc=5"
+    "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQMUNfWlRqQ3N5cWtURGZibUZhbXhLSDlfTERGaS15emRlMEhYVXNrSjVmcDZnblhfdGM3YS1rdllSVGhGdnRueEhvLTFUd2xFOGNmUTVMR3VfVlJyYTlDOW5nSEZONUNjU3dtR2ZwSnlCUFhMMFFkMHpYdlBiZDV4RjJYQmZtZzhKTVJ6bnhNSWpwRTNmdElSTjUyWjRmRUlQWXJwcGNscnJuSzNEeUNBanNhUC15X005cUE?oc=5"
+  },
+  {
+    "date": "09 SEP 2026",
+    "chip": "Regulation",
+    "title": "The EU AI Act for the Downstream Provider: What You Owe When You Just Call an API",
+    "src": "Security Boulevard",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOY0hTcnphYjdjUGJ0ZTBBQUt1RXNwT1pROXhyV3RNQmVBalF5Q050QmU0dUFmcURnbFZxOWNfN0s2M184VUxKVC1XdmFRX2F3RnlVNjVZRXVUaWdDdmRUcmFJM0xlRGpoeW9kZVd3LVJBYnJuNDlvUXRrczJjeFZ4WU1YeU9DMlB4QWYwUkstRzJnbHVpNXVMNHZwVDkzeTJGeDE5aHIwcUlXanJoQ3BFOWFQdV95QlBqb2pR?oc=5"
+  },
+  {
+    "date": "09 SEP 2026",
+    "chip": "Regulation",
+    "title": "Healthcare organizations tackle AI governance in fragmented regulatory environment",
+    "src": "iapp.org",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQTGR3cC12Ynd0TFd0UE13djA0Zk5qcW80VDlwMHhxRjV0TnAtSklqNzVaMkRTSGFFVzVJRk5PS2RvTWZnUU9Fd3MySWxwSUo4WVpFaHpmRTA5RjhCM2hOZllLdnE4SFZTd3NJbzJIMzZmUVhicWhuQm4wTld1M0V6NDlFV1pWcV9mZ01paVNUVGxRMFFLa1JsSXBYdkNvRWxYUGJvOVg0Q1dVQQ?oc=5"
   },
   {
     "date": "09 SEP 2026",
     "chip": "Release",
-    "title": "Suno launches AI music models trained on licensed Warner and BMG catalogue",
-    "src": "The Next Web",
+    "title": "Proofpoint launches AI agent to help SOC teams investigate threats",
+    "src": "MSSP Alert",
     "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE9XTjlkNnBhSXJRZnVsWURpZXptZkF1R19PSHE4N0lWSnRkelpwRXlFbHJmUTJoUHljeFhPd1RFUGNVODRFa2djbTBJVGsxUXYtVlEtOHh0VUw3Q2R0WWNWanRyRGFJelNFOTktV1luendsSjRaYnhXSmFB?oc=5"
-  },
-  {
-    "date": "09 SEP 2026",
-    "chip": "Release",
-    "title": "MessagePay Launches AI Tool to Predict When Credit Union Borrowers Will Pay",
-    "src": "CUTimes",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPWlRhZ1NNSlhzUXFZZXZ5UjRrUXZOaE0zNmlhMXRIWVdYQVA4bXBRTTM4LTA5NUVSbUxwMUpfaFktZ1VoeHVaRmVUNlp4Z09XUnFDOGNMTk05NW9kaWJueE96MWJ3TmNIckRkZ0hsNnR1YW5ZRm9XN3gwUHdNWW5iWk0xeVh0Zm9KOUIteDJWZGVncXNYRnlKSUhGeUpybjhHdTBDYjlSUjVhTFhrMU5ISw?oc=5"
-  },
-  {
-    "date": "09 SEP 2026",
-    "chip": "Release",
-    "title": "C-Infinity Launches AI System for Automated Assembly Planning",
-    "src": "Assembly Magazine",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPVkZET1gzN1VIS2JrZTlQZGQyelpfbjI0S29Ham1WSEN3Z0lBcmdjNXlPbmRiTHR4NGQ3S2R3TkV6d29YUEZ0SkZScTJDU3VMVHZpd3dLR1JMVkRwMmlJdjFBbUVuM3d0bkxzZGlvT2hmM2pxWEJYN1NSajBxbFV3OWJncy05UzFsakU1Y2FiTVFyWDM0ZXpEZkVEdF9oY3dSV0RYX3dSV0g?oc=5"
+    "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOUG9JeDNYTlhCbHg2M3d6S0JyV1FfZ0xVTmxNX1hQMW1xRDRKeHhWaTlTX0h2Wi1DeEZpUk5nQU8zVWJJRGdROFh2b3JzMFpuZWZIdEhsUzJFNUxKN1h4eTNkOEMzcldIendIYXE3VWZSUGpSdnNuV0Jkb0N2Um9yR1RTQjR3bHVMU29YR1l0bWNEMXlTcm5EMTNSRi1NU2c?oc=5"
   },
   {
     "date": "09 SEP 2026",
     "chip": "Industry",
-    "title": "Ministries headed by Fedorov were partners in $330 million worth of programs for years, while the foundation where he was given a reserved position was the implementer",
-    "src": "Українські Національні Новини (УНН)",
+    "title": "Euno Raises $23 Million Series A to Scale Enterprise AI Context Platform",
+    "src": "citybiz",
     "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMisgJBVV95cUxNaUNld3VyM2RZMkcwQUgzOEM1VE9idElvU0dHZ0VqM2p5X1Z0NnNDU3UwdldvOVpoakdRdnpPczVmZWUyOEpLQnJJNkFkYWdtem8zRXRwQ2dpQ0Q1cFRkRmlCanU1ejZCUEFNa2pCNVI0NGhPanlBeHpaVm1iUjhEbkttZERtQVVPeDViMHotNmhLWWN1eWRRRTJsQWkzTXRaalJMT0ZFTVdyLTlpT1ItcFJQZm5EaDJuMnpFMGd0WTJEa3VSTS1ZWGJYZncwMDc5ZkI1THgwb0tvZDRKN2hlekNwZHZmNlB4X2NRRmV3VTZWWUxuRm56U3dqM0ZXRFhWWXdaRXBycFcxbW1JRTFtRXZKMkh5SjZvcXppOGZQSlhPNHFfci1JMU5WM3JMWUxsY3fSAbACQVVfeXFMTms4OV9fY2x3NFZnT1lLUDlDRW9DZmdOWGdQV0YtOG1aMTJ1TzgzV2JlMUs2SURiMENSNFpyQllHZkloazZZVkRUczJhWVN6ZjlyWkkyb19sM0lWRXBWbDNIV2xOWUlNMjdtbFgtRmdjaEpiTDJKRV91b0p1aFRMZGhBbU50Z1UxSTRJUk5PYktZODVNZHAyeEJ6blFhODdnS0FXRHoxVUd5MUNlemI1eDVXRXd2enBsZlNwNG1BTmhQbnJpdkthVFdLVERld0toSGN0ZXk5RHZoSDZDZ2JZZnBnYnMwSnFTZGRqZHpDbUQtQTUwR19fQ1lzZHh6SlB6Nk1teFV4N2pDdTUtWURKSlUzX0ZIVTdsbEVVQTdZMjhSLXV0dDZPMGtWNVY5ZUY5aw?oc=5"
+    "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNRWFmYjZJOUdLUzE1RlZtTDdPYWpCb2VjMEdJRWh3dF9ORTFqZ0VRVjZlWEhWRElQb183bUVQc2lmcWxNT21KYmlGbTFTSURrek1za0Yxa3g4ZGRibDVFWE4zQTA0b3JKYm91LVdCRDhWb3h0SW9wSU1JdzRxMTdXMUoxUGhxVEFYcnlRQlBoYjMxQmVGZEVzWHBXQjRUa2xjZWwxNVpZNkJUS21ZcGFR?oc=5"
   },
   {
     "date": "09 SEP 2026",
-    "chip": "Modernization",
-    "title": "M&T Bank expands enterprise AI after years of technology overhaul",
-    "src": "AI News",
+    "chip": "Industry",
+    "title": "Anthropic Was Meant to Be the More Responsible AI Lab. A Terrified Researcher Just Quit, Saying the Company Is Threatening the Survival of Humankind.",
+    "src": "Futurism",
     "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxONmJFNXZ4TjNEbXZJUFMxOThxTEM2NkhmX2xicHpnXzRNOTY5TkFJdy04eV9ucTlWYzdObnpRdlF5QW44bkZYRUpmT1BKSl9maS1xR19HLTVMS0wtWDhlbHRqNkw0VWlmV3hTZTlkOUY3Um1JS0NSUkNPWFh4QmRqNkNMX3hfcTlFRFhkdjBCb3c?oc=5"
+    "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE84VWhETThIZER2WXNobHJrelZtNzBES1dzejN6czhTdGZ4elJPcW5EaUlQTy1iOFcyUVlWVlluYmhyQTFEbmFmN3ZHaUNGbGRzMGJFQzItRUJzd3A1RzFTX1Q1TVJ6WTNMX045WHE1SVlOM3ZmUGRFZHVMR1hyZFE?oc=5"
   }
 ]
