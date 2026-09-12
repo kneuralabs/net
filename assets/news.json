@@ -1,6 +1,38 @@
 [
   {
     "date": "12 SEP 2026",
+    "chip": "Industry",
+    "title": "The trailblazer in enterprise AI: Wonderful's $550M Series C",
+    "src": "Bessemer Venture Partners",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQenZaY3l0YTB5QkJhc2ZHMXZ4WU84Rm16SEpMaUxQSjZJYldyR0NzNW5qMVpBQTNrOGwydVB5UHZRdE5BWmhFWE5oRi1wckRveEF4WmFoRTV4NEwwc05yeW5hR3YxeU9tUndRX216aV9FVENxbE5KUHVpQ1p2NXpVVWF1SmNTSUxyVkY1U2ZLVQ?oc=5"
+  },
+  {
+    "date": "12 SEP 2026",
+    "chip": "Regulation",
+    "title": "Andrew Yang says AI regulation must come from Congress",
+    "src": "NewsNation",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOZE1jcHZCOVc1UGJ5TDdSRHI0V0E1d1FwNGItUmpXTjhic1BnZ3RkelRzOFl0TTJWc0NMX1M1eklHMjB6Sm0yR19TRlJwNG9LOXI5TUdVQzFqOWVaVDFPMEttMklfT3NiRFpYd29FM0xub3pOMkV1bV81TW9MVE9MV1hyMmFJZ3psb0NtaF8waFZBaW55TDJzMWpsdWN6RmlnOHZMZjZEVjZ2eFB6a2RlM1paYWlUZjg?oc=5"
+  },
+  {
+    "date": "12 SEP 2026",
+    "chip": "Modernization",
+    "title": "Ottawa launches Digital Transformation Canada to modernize federal services",
+    "src": "WestCentralOnline",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPWGRtVm5Xb2J3bVRyMmJXVW5BUXhTUTdoejBZZS1Xbl9NeVYxb3FXdzZoTEE2QUQyaEhidmN3RHI5S1JBdGdqQWVZYld3cmlwWlVNY0JHRm9iQktRd0owNmJlMTk5OGFNOUl6Sk0za25lVmUzek8yeHRaaTRsMm1hcXdoMEJUX2dDVzdteGlxYzQwZkRvcEo3RlU2RHBoSkNfaTBuUHI0c3ZhSVl1SWM5dDIwMFE?oc=5"
+  },
+  {
+    "date": "12 SEP 2026",
+    "chip": "Regulation",
+    "title": "'This Is Idiotic': Trump Torched For Answer About The Future Of AI Regulation",
+    "src": "Yahoo News New Zealand",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxOQkxDN01RQW92cVhGM05TakhfT0t0M2ZQaUVZbGxEMWVJeFF6a2MzZnJNb3VqbEFxYXZ1N1ZQVmFIckhBWVF2N1puUjBiMng5ZkhPUE5IWmU3cnBlTEJsYlkwalRSQXlnWHdXWkZRZHhIQXJ2SV9MdjRLellTUDVSZ3NB?oc=5"
+  },
+  {
+    "date": "12 SEP 2026",
     "chip": "Regulation",
     "title": "Belarus abandons own AI regulation after 18 months and hands control to Moscow and Beijing",
     "src": "Belsat",
@@ -14,37 +46,5 @@
     "src": "The Tribune",
     "tag": "Google News",
     "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQUm5TQ0lRS0RRZkQ3ckRUMTZXejRLd25kamhVWjk5S2x3YUstTmpGZ1ZCdzliTVdtTlRZT3h6WlNLbDZPb3VIclMzdDM1eVJaZWNhOS1yNzg4OTNrRnBqUU9adzdpZ3M0ZXN6TDVpZkEzR3g0cWZRUnU4ZUYwTVMtNmRjR0pFQzcyNTdzN1V6ZFNCZE5FSkhwNHNjck84V1lMNE1oZ2E2WUZ6SF9kNVFVMnlJMC02M25wcUdYSXZfMGRBeE9oRTdBa0ljRdIBzwFBVV95cUxOcm1kdkhWTmRoSVAxMk1KVDg4aTdIN19PODQzX2NBbWw4dHFZVm5DbFpZMU9nc0l4anlrMGktazJNdmZSdGFsQTRJM0xuQ3E4R1hqTmR4c2d3VnA1WDJYaURfd2xQUlFMWFZZS3R2MlRHbnBBVEFNZmt5RUlOb1dxaU5oMFJHMlEzcmZkb1J1enVZbTJBdmxtZUl0S1BsWDgyZFlreV9Dems1OGQ3a19tbE5LcFp2SUNRWG5Gb1hkak93d245NU1MbHF6eXF0UjA?oc=5"
-  },
-  {
-    "date": "12 SEP 2026",
-    "chip": "Release",
-    "title": "Altruist Launches AI-Powered Financial Planning Agent In Hazel",
-    "src": "Pulse 2.0",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxQUGpnTmVmV1F6UXlJY2J1N0I0REJlWEZNR21ndWVfU2Rxd01RU0pkeWc2TzdPcEtmRVVBTG9talZKaE1JS0owQWFLdWNreTU2clVYUHZ3c21pcDExb3E1b252YkFJWWVmb0Z3NXVXdmpfNmQyclZrV0NVSS1HTUNvSFc3b3RWM20zcFHSAY8BQVVfeXFMTS11N3FWZXo2cGs2TkdCRzZqSGQtM1JPWDY5OWZoYnp5M1lLdW9JcEhMOFpVYldVSGw1a1BrS0VPcnVXOGV0WERRVjJ3Mko5VUhFT3l4MlIzZFh6OFdpQWpCUVhFM2Rac2lKYl9WNGdPR19oMUd1aUpkT0Q5UWtOaHdveUozeklyMlphLTkzaDQ?oc=5"
-  },
-  {
-    "date": "12 SEP 2026",
-    "chip": "Release",
-    "title": "Snap Launches AI-Recommended Ads In Chat, Expands Optimization 09/11/2026",
-    "src": "MediaPost",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQYmN6ZmpTNkthS2xIRGhRWl9KazJOcE1vOGQ5ZjlLX1huLXVTZjRmdmV5VEd2N2RjN25VVHpBd2cxVjh6RzFFSXNieEJ5cWRvSnozcXd0NkVwSW1JSXY5T0FZM2QtbFNydGUwNVNJZ1JqczBWN2taY0I3NkxXYUxiSlphcTJaYlNGQmlFTFl3cndhWE5oZUFvZEhUR0txU0pqTDNJUXpuSk5xMkE?oc=5"
-  },
-  {
-    "date": "12 SEP 2026",
-    "chip": "Release",
-    "title": "NASA, IBM launch new AI model for studying the moon",
-    "src": "Space",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNWVBaUVBqTU51Q0JpYnMwcjdCS2VIVFEwa0dldDdVLXpQTm5Nd2NtMkk3Z3pfMkFnUFRmQnM0bzU2TEZ4OVlYNEt5VEgybFZVaU9WT2NYN3NEM3h2ZlVQcTNJSlpVOXlUY3NtNnhMbHl4NzVSTGR4MURtQ192Rks5eXZEYldvcmRWWGoya0VNTkM?oc=5"
-  },
-  {
-    "date": "12 SEP 2026",
-    "chip": "Modernization",
-    "title": "M&T Bank expands enterprise AI after years of technology overhaul",
-    "src": "AI News",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxONmJFNXZ4TjNEbXZJUFMxOThxTEM2NkhmX2xicHpnXzRNOTY5TkFJdy04eV9ucTlWYzdObnpRdlF5QW44bkZYRUpmT1BKSl9maS1xR19HLTVMS0wtWDhlbHRqNkw0VWlmV3hTZTlkOUY3Um1JS0NSUkNPWFh4QmRqNkNMX3hfcTlFRFhkdjBCb3c?oc=5"
   }
 ]
