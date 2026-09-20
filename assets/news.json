@@ -1,6 +1,30 @@
 [
   {
     "date": "20 SEP 2026",
+    "chip": "Modernization",
+    "title": "What the Industrial Revolution Can Teach Us About Digital Transformation Today",
+    "src": "Nasscom",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOUnZIb19mQUhBNm5TTWh2VXZaNjJOQTJaQzZRSk1uZGNaQzR6aXgzaDMxR2dJbk12c2JQNFFnYWlQTnlxVjdRQm9BTllxSG9OXzFjS2hfSVk5MWVlSUFlZEo2T2k2SVlCREJxaTdxWWRhQ2dfU0xpNUVhSUxNanQzcTFNQktBTlNTMEEwTzFJQUpKOV9ZaHNNZEJXMzV0Y3BkZ3Y1eWdDQ3AxS0xKLTB0dk1ueWJha2NB?oc=5"
+  },
+  {
+    "date": "20 SEP 2026",
+    "chip": "Modernization",
+    "title": "'Digital transformation for sustainable, resilient digital system '",
+    "src": "The Rising Nepal",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE5veTJfSmFRRS1LeWw1R2cwY0dLcjlEMjk0OW9VMzllc2VBdlk2dUxnUjNKWmlaYXZFRWlfdmRHQ3RRWmtLUWY5OGhWdHhIU1Bo?oc=5"
+  },
+  {
+    "date": "20 SEP 2026",
+    "chip": "Industry",
+    "title": "Why Enterprise AI Must Shift to Specialised Vertical Agents",
+    "src": "Technology Magazine",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQRXJoUE44MEtleWdlLTJMTkFVTGhfbWNqVEtIVWVUckktYzVoTEt5Mk1GSWhvelhJWFo0c0hDdWtIc2tRU2ZweXRJOGVkUm1ld0xNTkpTQzdmV2tsRXFnMjFDZXBxaUh6WWtaZ0JmY3hhOTN4dDhtZzVwQzNkdVF5U3RwSm1JazFzWHpZVllUTG9xbmVzQnBpbmNB?oc=5"
+  },
+  {
+    "date": "20 SEP 2026",
     "chip": "Regulation",
     "title": "Australia seeks big tech support for internet safety, AI regulation",
     "src": "aljazeera.com",
@@ -22,29 +46,5 @@
     "src": "NBC News",
     "tag": "Google News",
     "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOdEdhUDBzSTFIQUdhdmFhRENpMmVEb0VEOWY4VmQyYmZyTVJrRHhJNmUwcVVYb1dkRHZzajRYZmdWUnBGXzEtLVNqbFVBV0pDQnQ2ZG5HX1pWVnV4ZldpUHdick1ONE9UeE1NcE9OTkdZY3dYUXJoYXgyWlNqcnVTRWRWQXVucUJ6MmFUeVp6TlNLZG96ZUVDSG56YmV2eFZNOXc?oc=5"
-  },
-  {
-    "date": "19 SEP 2026",
-    "chip": "Regulation",
-    "title": "Can Democrats Unite on AI Regulation?",
-    "src": "The Lever",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5zZ05zdDlUc0FCLXg1eHBhdlVjSG1XUkljWHRwTEVWVXJJcTRmci1ZaG03dHJDblFDa2hrUjFGYzFza0xFQVIydnFWZExqWjBvWU80a2x6RGVQMGNnUmFVVzAweEhZX3QxaUZnajRWZEc?oc=5"
-  },
-  {
-    "date": "19 SEP 2026",
-    "chip": "Industry",
-    "title": "UC AI policy",
-    "src": "LAist",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNUFFCdGpLMWU0RndzVGJhZG9oV0F4R1RpQ2gyajZNMmVhM0x1c0VfVXZwcGlZMHVHOG1NMXVqZm9XTkdsX004R2FhVE1OR1E0b0JpWGJxQnlaT0kwWlZmeHFrcXpXUXdDM1dTT0VfNG54b3d0Yzl0dFFQVzcwWldrVkJfNHpUaWU4VVRTS0tn?oc=5"
-  },
-  {
-    "date": "19 SEP 2026",
-    "chip": "Industry",
-    "title": "Cisco (CSCO) Leans on Splunk to Broaden Its Share of Enterprise AI Spending. It Faces a Big Test",
-    "src": "Yahoo Finance",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOdThoV19KZXNRVHJsdUtjRW5vb0l0cHZvYlFPems2OFk3MW01bXl1YTF4RUd1ZkE1X25HTlhSay1ESzFUdVdfU21Lb0hJdDAwYmloUG1nc2JSOW1aWTR6R0tqNXVaV2FLRG1ybUNzZllmbDNBVFFzYzFLNFFRYmdCN0duNU9DSkc0NVVVSklZZHNqQ2ozaV9wbUE2QQ?oc=5"
   }
 ]
