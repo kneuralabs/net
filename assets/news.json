@@ -1,6 +1,14 @@
 [
   {
     "date": "25 SEP 2026",
+    "chip": "Release",
+    "title": "Optigo Networks launches AI Assistant to address building automation network expertise gap",
+    "src": "Industrial Cyber",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOSklCMWVveXZXMWdxOXZ6SU9mZ3NrX2I2a3BSMEZtVDBnZDJ3T1dwa1NZUjZubGM2ckRQeUJXeG1NTmZEMnNsNkxYSmM1MVhXN19FUXF0WjlZREJuSWZZT3ktSHVTTXYzWHA3ekJKcFFtaEhSQkZVZGtzM1V5bWVFTzF4VTE1MEpSYWdWRnQxT3lleC1jN1ZhWEtmTnB2WTh2LW53M2NXal9PNTVGTFIwR3hsZVFMNFZHY2tWVlJIdFI?oc=5"
+  },
+  {
+    "date": "25 SEP 2026",
     "chip": "Industry",
     "title": "The cheap new AI model taking aim at OpenAI and Anthropic",
     "src": "Financial Times",
@@ -9,42 +17,34 @@
   },
   {
     "date": "25 SEP 2026",
+    "chip": "Regulation",
+    "title": "Argentine President levies strong condemnations against UN on Falklands dispute, AI regulation, and COVID-19 overreach",
+    "src": "Jurist.org",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxQX3lIVzVCSVlVNEN4Wkk5SldKd01uNDFWNHZ0dTlzNnNNb3U2T2tkVklUT1NfTFNhc0pkTjc4aGdVQnBnSWlsam9XZ1FFNElGeWZ4aFRNTlpqUUoycVBqQXM3OFVoOXVEQWwyMGI4Vk5Ma1I2MmlHT3Izd2FhUENrS3UtRm9OY0d2Ri0yaDc2YmRUV2pyd1poM2ZRa25KZWhvb0syM3R1WHE2Rmc4SWN4bXBmWWNLXzZHSDFfeUstSGJKZEZMZXFJSlBienZuZHduUlZvMDNkU0ZobjNsZDBUNktzUWE?oc=5"
+  },
+  {
+    "date": "25 SEP 2026",
+    "chip": "Industry",
+    "title": "Almost half of US companies skip their AI governance policies to speed up deployment - EY study",
+    "src": "The Global Legal Post",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxOMDkwS0JSSXc1dmp3RFRrSzVyRDBYQVo1T1RsS0tfaU1wOWdRNlpHZ1o2bXdIUmI4RzRLeGlxQkR1SnJ0ajFQZV9aWjl1U1dNcWUzc0l6NmxheW43YzBXWmc3aXFmN09HZzhPMmZ1OWNtb1JMSVg4aXhDQkJHeUxXMWg5TEtXYmNZOTJ5c3VMWEhobjNSckZYaFhJMXlCV1FnY2diaTBXYW9oQUIzVEh1QjlVaDE1Y0ZsOGtQRWRYMEtsb3Z6MldnTXljLUVtVHJkVFg4Y0RrWQ?oc=5"
+  },
+  {
+    "date": "25 SEP 2026",
     "chip": "Modernization",
-    "title": "Vietnam Airlines signs digital transformation agreements with Visa and AWS",
-    "src": "Vietnam Investment Review - VIR",
+    "title": "Safaricom CEO Peter Ndegwa Named Champion of GABI Digital Transformation Pathway",
+    "src": "TechAfrica News",
     "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPNUxxclFiSG91MklfWjZGMUVRem1vRG1yaXhZSGljdlEwZlpoX0haUTlJdi1rZmtTeGt3cGxZQ1NXQ01ybjdybUkwSnRpNUQwQnNJUzUxWmlUbDJrYjk5ZDFBNmFVY2VpUVcwdmF3TEt2UTZMdVY1Vy1DRE5LVHpTSFVkYm95QlQ3ZFNBWHFrWEFZcnNWekR3ZWRhXzZpaFVUdEZpemItdWk?oc=5"
+    "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQTkVWdlRCbEM2OVNuVkNZTExxUi1XM2hsVGxXZ0JfMkZjeGt3N1p6cXlYTmdISDJCUTJiYmEzZmNOZVhIVWRwdnlzb1hfRThjUTJkVG5rNzR1YnhtV1BQMzhNb3V4am9sV1JZNi1ZZWt2bDVRMW9WTHdiY2ZWR2RjNm9GcmRCSXZ5NGdJb2ZEdXJIQkRrc1BMLU5MTFVsMndHR05n?oc=5"
   },
   {
     "date": "25 SEP 2026",
-    "chip": "Industry",
-    "title": "What is an enterprise reasoning substrate for AI?",
-    "src": "PwC",
+    "chip": "Regulation",
+    "title": "AI Regulation Was Coming. Then Trump Killed It.",
+    "src": "The Lever",
     "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNYTY0WEFvU3hYSnBxNFhMOVZINThpaFJHYlR6bDRoT05BZzIzM0tSaFhtSGR2S0FWVFFoczRlcXZUNHJtdVBhdnUxdVhicUJRbHdNZW9ySWszclVKTzlYZ1d4d3I2Vjl3LWZXS2stWWZDZjl4aDNyR0oxeU5hcmxaSGhNR01uN0ptSjBHTG1HZ1lQLU43UVR1UjVNMFhTeU9LNm5HNUQtcHpzdw?oc=5"
-  },
-  {
-    "date": "25 SEP 2026",
-    "chip": "Modernization",
-    "title": "J-DEL Group selects Adrenalin to power group-wide HR digital transformation across 4,500+ employees",
-    "src": "EIN Presswire",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPaXE2WDY3Vm5pMmpBdWtHT1FnaUNGMjlHQTZZUjZaRGdzTmplcnE2VFZnUmFsX0xGWUFtU2xKR1dfemU4RHJpUGhKMjZkMEVKX0V5a2FUUkhDV3Z2MU9NRWhWdDVHbURBSlpPZFI5VmUxai1hWE5raENyem50SUVpV0tUYWRzQlhoOV80NHNDbENxbE96Wm9pYlhtQTlYMmx5b3NNTVN4TkZ6R0Rva0tueVV2WGtfME5JNkZmTEc5b3BZcnJGNjBZMXlVbVlnZkhmb00zcWpWZUhCZmpiRGc?oc=5"
-  },
-  {
-    "date": "25 SEP 2026",
-    "chip": "Industry",
-    "title": "Building AI Literacy for Responsible AI Usage in Healthcare",
-    "src": "wolterskluwer.com",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOWnF1eENUa21WT1ZFRVNFbmV6bC1HSVVXRl9PV29fYzVlTlRhQUZSYTIyRFJIUVVLcHlrRmxtTHFaWVoyQnFMY19JdXVqTWRzekZDZVJ1XzQtdUN2X255c2JUeUhBRDU4SFVsVkg0RWJJcG9yM3FEdUNrUUpWYldSVVNpdXZjbFFqRXU1d0EyNjRhX2xRbEtiLUVlOG1BSV9RejU2S1dYcEZyNFo5?oc=5"
-  },
-  {
-    "date": "24 SEP 2026",
-    "chip": "Industry",
-    "title": "5 Things to Know as Banks Connect Tokenized Deposits",
-    "src": "PYMNTS.com",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQQ3VLYzJaekg4NGd5c2hrTW03ODRWcFZRcVdVTlNOejVkN3BXS1loZ1RJMDFxTW1DSExqV0hrV3BZY0ZXZ3lBVWx1MHFWVEs5T3dINUxBMVZnQ1FNdjBmWXphNFVHb09FNDF3U0dGLW9uaVh5LTY4bElOd01VVW1CcmpVUW8tOXBaRmlFa1JjNnhlaGhXaG5YaA?oc=5"
+    "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE92WUMyQ1dPa2V6X2tXcVlXVDlrX3poVWgxOU9VNW43VTR6RllYeFRVenRGMWNZU3hYRDVraEZWS2lvREFmVC1XVHVRN1ZHbDgtcWVtWjFzZzItVUN0TExVcG1ubkE0ZzZ6U2hWcDlrcXJfb2F6ZEJJTXB0bUo?oc=5"
   }
 ]
