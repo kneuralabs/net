@@ -1,11 +1,35 @@
 [
   {
+    "date": "26 SEP 2026",
+    "chip": "Modernization",
+    "title": "Digital Transformation ROI: How to Measure the Financial Impact",
+    "src": "nerdbot",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQRy1xemxvbnRVZXlteVBMM1hHb0lRTWdab1JqM1BZdEJ5MnFyV3FISXpPRkNhd2l5Z1BqOHgzMzJWOWtNUnlaZ3EwY2Z6Q014MENGU3ZlWEJzMFA1T083YWt0MmRjdXZtSmtLTTViVXQ2R0RPVzVrLV9iYmJoUlVpb25tSndMMVIyclFOZks4ellKZFBITFl2bkM5UGZ1bmlVX3FTbFFscHJsbkJieGI1a1c4NmhXNU0?oc=5"
+  },
+  {
+    "date": "26 SEP 2026",
+    "chip": "Regulation",
+    "title": "Torrez calls for federal AI regulation in wake of reported UNM breach",
+    "src": "Santa Fe New Mexican",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxORlhjakJHbkVxc25xTlg2Mk5ySDRWbEotaWpBQ3I4YTZzX3BWeEluMUxCaFg2dnlDTG0xTVdhQ2RUN253UGJsa1NPTzdaT0hVcTYxNUJfbERhU1ZSTWVOcTZ4TkpCUVQ0b3VEb0U1c1p5YVhBMXpncGdQaTZwRGR2cS1VdlQzamFMMUNCQmFPTEZzLUh1b1pzWGxGbkZzRXNjVTd4Q1lURDVBNVNxREw2QlFfNVp0Zjk2Mkhya1lScE92bGZvLWJGQXpvSlRxSGNWUkowRkk2UDVQNUYtV1VQa1Rjbng5Z1prLW4xQnNISmR6b211WnhZM25wVUJOQQ?oc=5"
+  },
+  {
     "date": "25 SEP 2026",
     "chip": "Regulation",
     "title": "Oregon Is Latest State to Move on Frontier AI Regulation",
     "src": "GovTech",
     "tag": "Google News",
     "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOWUtESzN4VU5MbkV0NWhCRUJQb1hKTGlGZDVzY0tqRE9NbTdIZUhwMGktaGllTDdOMURqd0doc1ZpQ3hmdFFNRngzSEtRbWdsZF9KZUl6NHJsSllackV0bXpVVVJieUNnRnY3ZDFPVXEzb042c2JkVm0yQ1UtREo5UmZUMndmUzlmbHJUNG9WWUJOVmEzb2tnZWh5b2JHc2p4ZDBpVG0zYw?oc=5"
+  },
+  {
+    "date": "25 SEP 2026",
+    "chip": "Industry",
+    "title": "The new CIO reality: Five pressures quietly reshaping how enterprise AI gets done",
+    "src": "kpmg.com",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBscUlKaThaMWJ3bG43dDJBNUtHQTZyRG9QR2dYZ2VneTNRbWd1ZDd2ZmNtNnZISmk3SEF6eXcxOC0xYnhvX0J5MTRrVE5LeUl4LVV1Q0ZhWEJMM1o2SWxOb29XSnYzU1pKRFZMT2dSWkdtbFJHbmJVeXIzZHlYRmc?oc=5"
   },
   {
     "date": "25 SEP 2026",
@@ -22,29 +46,5 @@
     "src": "Yahoo Finance",
     "tag": "Google News",
     "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxPbW1wMU1vNGM4cTgxY0xnWXJ6Sm1ac2xtcmg5VTlnUjJ2c1piWUFBVUdhelY3VEo2ZVBkYWI1X3E2RTktUjE1eEpRSTJMYm00VXhkRWVlRjk1ZDAyb1pkbVRfNktNcWRQVHZEQ2F6OUFMUWx2ejQ4NGNuZlZTU3dCV1psNDlRQTJuTzVoVGV6MGpXOHRZNEpNM3psZkUwVjNz?oc=5"
-  },
-  {
-    "date": "25 SEP 2026",
-    "chip": "Industry",
-    "title": "Is the world moving toward a global agreement on AI governance?",
-    "src": "GZERO Media",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNdHhTbWcxaGNTYjY4eExwU01manRyMkg4MmJFa1IzbEtGMkhtSXl4WXpXUFF0NVZuamc0Q2xQMXBpaXZJMEhKV3VoN25WdFNFbkhVYy1heWE0LVBYZkJyMXMxMmIxTFlsVXdITGxBdUFyMDJ3X3lRUUJZTUVTYUxGOFJXN0hUOWFBbWRaY0p6QklhdDZMYnRXcUF0dWNsX1I3MEZtUnNGRlhQV1RNVHN0YzVVMThMVzlESVJKcURpbw?oc=5"
-  },
-  {
-    "date": "25 SEP 2026",
-    "chip": "Industry",
-    "title": "5 reasons why enterprise AI implementations fail",
-    "src": "KRDO",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQR1ZoS0xVa0tYbEhheXlrU1hEdnBRNVZtWW5qZ3JQZUQzOUszeG10REtVV1RRaUQ0RTlMTDhoZmxUcEFRLVl2NDZMWld6N3dPa0RyNXVMWklQRkw1NmxrRDJVTUJTZFZfZGxpS3pvc2xkYTdBQ254ZlZMc0xqaUF2OHJLT2Y4cTZ1X2F3a01fMXhhUQ?oc=5"
-  },
-  {
-    "date": "25 SEP 2026",
-    "chip": "Release",
-    "title": "LinkDaddy Launches AI Verified Gold Business Identity Registry",
-    "src": "markets.businessinsider.com",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPY041UklSZkRldVkta2ozdl81WEpjQWhDUWFVV2dQUUtJSWdoYUc3d1AxcEQzalRvMktybWEtVlFtNFpzN1lRZ1l0VHRxVXo2ZzIxNkZWeUppaTI1N0VfbmQ3TDRNcEdtcDEyamdfSEJwbnJhVjJOYlNQU0NQNVN2RzRlT3Z1WjlKV2VYcFRET2hIdGNubE54MkIwTzVJZ3V4TkFmcmNsVE03aHNyUzY4YmJUMzlTM0swVmZrZXhR?oc=5"
   }
 ]
