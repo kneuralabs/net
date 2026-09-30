@@ -1,50 +1,50 @@
 [
   {
-    "date": "29 SEP 2026",
+    "date": "30 SEP 2026",
+    "chip": "Regulation",
+    "title": "EU states urged to ‘go beyond’ AI Act to protect people from abusive surveillance",
+    "src": "EUobserver",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQVlZZcDVqRzR4eDJjQV9aNnNXR21YSnNuOFJObjdTU0ltWXVad185QTljeFdpSFZpOUNBNDdVQXFSUm82WjRjRGNhbXU5MzNzNTBKSWY5elhiUGhiY0JJamJYbG9tcVBvOENDdDBLV3lBUzBFZ3dqV3oyYTlfT0hXTGc3b01TODUyRDlnc2ptcUlZX2ZIQThuV0YwN3NRYjNQeEFPbFJPYl80OFc4ZlJr?oc=5"
+  },
+  {
+    "date": "30 SEP 2026",
+    "chip": "Release",
+    "title": "Federal government launches AI-powered website to streamline passports, federal services",
+    "src": "fox10tv.com",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPREVWUGpwRjBKX2NBRTk1ZWFIME1EVUR5SFZOX21sY2xPTlJkOGtoY2pqVTdXV05odUVNQlRNVmVuMjFHdnF2V19ReEplWVhkY1pCTWZDQkdweXUzY1lVVTh6OXRJTFJEclAzMFNBS0pZU2lmazZ0UTZwVl92cFN5a0ZubkNuZy1jUXNaWGdJMzdVTVVfMjNDM0lWOHNMT0pmLTJyeTJwZW1ra0RwUFE1aXh2dURCMmxmeUEydNIB0AFBVV95cUxOckxfa0ZLNEFQYVVpU3BkdzRFa0dhNmdHRHNNdlJOOGpYVkk0VER3TUp6dlQyb0tOOFFWNHJlcFpxN2VzUTRtcGxIbE5BSU14MTdGX21peFI4V0hCN1F6eEl6STdZakIzWGJHUW15c2RzUVByZU9udkhSWUY3MUVOYVFVUFA0bEkxbnM1ZVlEV2wxRFlma0RWcWZpWk51Q1BsaEtvc3J3V3kzRlROV0tibGRpb1lIMWpCVGUtTDJ2Z2piWU54SmR3MmNoUkFSMm9R?oc=5"
+  },
+  {
+    "date": "30 SEP 2026",
+    "chip": "Industry",
+    "title": "Breakingviews - COMMENTARY: Chinese labs are wild cards in AI governance",
+    "src": "Reuters",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOelhGY1ptX29PNm90RUlrME9ybTY1b3Zjekx1eEhRU3hRVHVDb3Jhdm85ZGp3RS1vc0JIaDJtbTdQNE0teThpWHVaVUI0bElyVXFqMk5sUUNLbms4MFdKN0ExTEF4V1hKNENwOU8tQnVSVmxQQ0h2VzBaQ2FYMkw3YVFwdlVyQlQtSUk1YXdNLVkyOFZaSGdEM01pcTB4dFRHSUd3RA?oc=5"
+  },
+  {
+    "date": "30 SEP 2026",
+    "chip": "Modernization",
+    "title": "GridEx launches to drive the digital transformation of Europe’s electricity grids",
+    "src": "edie.net",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNUGFsbnAyS0hJd2FIU2ozWlhsdDREZVpZVFhtUDY4TXBUdDM5YkU2ejRPWC03c0JBOHVYU3Q3YjJVRzJUNFJ5Y0R6M1JkZ3hYMDdNUVBueVNOTFZEYkJqb0NEUWRIVEZfcS1NRV90MXc5eXZEakFlamsxb3FWRGVaOU1TLXNNanhhazhVczB6OHJZVGlMNWZTSWNqSXpZamJDU0szetIBsAFBVV95cUxOa3hmb29HemRZVUZfSHZ2a1FrUjRDal80eUR1RENNQXpFbGJkaVhleTJhWkFxZzVyQkVSTGpCYm5nd2FhaUNTRFZPVnloQzl1UGpCblFXc2gyazh6WE8wd1FKNVZMWGdDM0pLTVVrWVhZQ25aYkVHTS1wTFlLaG9ITi1qMDI3Rm5SYXFZNXBQTmIyMlQwY0RPTThZQl9MTUJYc1FzRkMyc2JJbXJIQXE1SQ?oc=5"
+  },
+  {
+    "date": "30 SEP 2026",
+    "chip": "Release",
+    "title": "Trump launches AI-fueled America.gov in bid to tie government services together",
+    "src": "FedScoop",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBNQlZaYkh1YklXSTY4NG8zS1pyX2ZoSVltVjgwVXo5cGpYYzNLMWJ3TTJCQks2UEU2WlR1aVJsTEVGRWtMMkFuaWo3ekVGeTl3U2o0d2NZT1dENi1EQksxREpOUDBKbms?oc=5"
+  },
+  {
+    "date": "30 SEP 2026",
     "chip": "Release",
     "title": "OpenAI announces ‘dots’ agent after scrapping launch of new AI model over safety concerns",
     "src": "The Guardian",
     "tag": "Google News",
     "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNUjJKXy1xWWNFX3hLZktkaW5tZ2Q3cHoyZ3FnTDRHM2hQSlFjRVJ5X253RUNmZTg5VjJtOUFnMlhpZHN5VU5meVFGTWRFbWprUnBrb3pnMjl1bjJIUWdjQ2ZXa0w5V2g0X3E4ODloa0FmTXc3MTlHMDBQZFh6LXpYbTUwbVBYcTZSMEh1MXRQbFdyRFdBbzhPbmFn?oc=5"
-  },
-  {
-    "date": "29 SEP 2026",
-    "chip": "Industry",
-    "title": "AI Infrastructure Tops Enterprise AI Challenges, Survey Finds",
-    "src": "Virtualization Review",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNbE9jNHhQTWpLN080VTVxUnRMcnlpSV9RdVhLOXpqelNqZHFBOGtJdi1JYnlfUGkyakdTMjdOS0FFcTRBR0w2c2E5RUNxV1ZWSFpRbC1WZlcxMEQ3cmlkNEt1dl9nRmNwOVRLMVJPR2Fwb1Fua1RjMXkxMWFWQ2Utd3lJSFdlX2k2MjlmTnlrZWFBcEUwMDlMVkRWZ3ZNRVV5YnJWWmdFQWlja0hFVng3T0lxSnIyaHlfUkE?oc=5"
-  },
-  {
-    "date": "29 SEP 2026",
-    "chip": "Policy",
-    "title": "OIG Says SBA Advances Federal AI Governance Efforts",
-    "src": "ExecutiveGov",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPZ0NSbjc4WTAtdllLYW1hbnRpMEFCUjZJcHFxSHZPVTZQWFZRMDZYUVRrbmVOV1RNVkJjNGlLdFI1Vmd5aDVtTmNJdE92Z3ZJQW5JWDZJOXo4WnRKemg4bVNSOUFiZjlfdU5tdDdVOWxaNzFpcWw3cEk5MGw4SXRsZl93OEllVGt0Xzg0bA?oc=5"
-  },
-  {
-    "date": "29 SEP 2026",
-    "chip": "Release",
-    "title": "Trump Launches AI-Powered Chatbot to Spur Tech, Ease Search for Federal Services",
-    "src": "The Well News",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQRWR3X0ZielB1T3BRbEFSTHUwVzk4dzNCSGo0VW5QX0Z3RjZpYkJQa3h5UTFjX2RmWjZma1g0TEZYcTNGcVJCWFFFLTNvZGtET2VrOUt1cnpOWlptMTVZTkdodnBYcTZTUW92NThVMDVlTTFVaVcyV0VER19PTjQwUW1XRTdnSUJqUW1YcUlIM3ZYbGgwZHJrZk9VbWdfb0hKbkdqNXN0SzFidnVoWUFQR2lIMnQ3aWVsX0ZfUg?oc=5"
-  },
-  {
-    "date": "29 SEP 2026",
-    "chip": "Industry",
-    "title": "Scaling Laws: Child Safety AI Policy at Scale with Vaishnavi J and Dave Willner",
-    "src": "Lawfare",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOTGhOYlJ5TEZxdWViTmVHNTcybFBwNFJXUG45MkoxM1NMNm1oYlBhUGdoSl9kaV9DWmk1ZFMwMU45MjQwMHFmQ0N2OXpqSTJ5QUN4X3AwcGJvelBwTUlXNXBnUDktNGxYNkQ2MzROTi1nV2RJRlBCeE9GVU5jdWRwTnlqTGZobDB5czhrNXVxSGMtMm1DRENVVDZPdVVyMTJjTmxNNUV0U204SDlENDZCd0VHQ1JJdw?oc=5"
-  },
-  {
-    "date": "29 SEP 2026",
-    "chip": "Industry",
-    "title": "OpenAI takes on Meta with dots agent in enterprise AI push",
-    "src": "Reuters",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxOdHpSWDN2U2FHZk9uM2NIZVVkQjVWQXBudENFN09DM3ZWdWlBdVdCdndKTFlQa2duMmpYcDVYamdOSGNhTnBkQmQ1dG01T3ZYU2Zyb2VEXzg1VG05N1dwR0FWZlNqWDlNNldWS2VEcGlDby1TQ1JUMy1La1R1TncwQkN1OVRIN2lEeDJpQTQ2VkNXZ2lmVG12bHBPOU5sZW9sX2FvSlk5VGhTU3c?oc=5"
   }
 ]
