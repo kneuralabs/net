@@ -1,22 +1,6 @@
 [
   {
     "date": "02 OCT 2026",
-    "chip": "Modernization",
-    "title": "Accenture Lost 15% Over a Year: One Analyst Says It Will Rise 30% on AI and Digital Transformation",
-    "src": "24/7 Wall St.",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxOQm5KZV9nYnlzc1ZPWVIzYkR4MDNEakcwSUVkUGhmeTlOR1Zxc1VmbE5sVzE3RVlMWEc1SHhoRkFHX3QxdFpva19ST20yZTVGMnhrRk9TNGhsdkNYMDBVTFEwb1dhUFRJYm1hdkRPVDJOb19DU3RRbVN1UUJZOWZaQmZ1VEczem1iRFFSeUJ0ZXE5WDVtcmtJSkNsMDZVZWhIWVBJVHF3MXdvSlVlNGpsVEdTeEhrZ1BibHl1b1d6aUJyUl9tNVBxdnN0cEk5bElKRFkwTzJR?oc=5"
-  },
-  {
-    "date": "02 OCT 2026",
-    "chip": "Modernization",
-    "title": "A Guide to Digital Transformation in Lending",
-    "src": "Oracle NetSuite",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxOQ1ZYT2Y0UEoxN19neTRBa0RhVWtUcFZNZDlMZWUwekpDbEtIYWhiTkxqY1F3aFNEcmZTRi1MTlFNYUpFbUFPakVKODFiQnZiM2xtczNBa1ZPUlVMRTh4bUlxa1FKLXYwN0ExMVBST1ZYYy1abS1oQWNmeHVJZjg3RXBTaWJWckdNWGhiYUYzRThpZE9yS01DMw?oc=5"
-  },
-  {
-    "date": "02 OCT 2026",
     "chip": "Industry",
     "title": "Reco Lands $55M to Extend AI Governance Into Agents",
     "src": "BankInfoSecurity",
@@ -25,26 +9,42 @@
   },
   {
     "date": "02 OCT 2026",
-    "chip": "Industry",
-    "title": "WorkFusion opens AI compliance agents to partner delivery",
-    "src": "FinTech Global",
+    "chip": "Release",
+    "title": "Biz Briefs: Luminator Launches AI Technology to Monitor Bus Stop Conditions and More",
+    "src": "Metro Magazine",
     "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxOSC1CdG1BQzN6T0ZRcHI3TFBIOUJ6SjljUzYyalBpR25ITE9MMWkwTVdicF82bjU4SER1TDEzNEROTXhJNzZGRUExX0FNZmdZSGg2R0ZZcTRHQWpRV0o4WUhFcEFWbllsd2pmd1dpdkFWWW9LQTlUanQ2ZmRwQkNIOHhDWW5INzJHS0l3U3VZcHJoam1scDFr?oc=5"
+    "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNLUdfQ1doZldvLTU0LTFzdmlHRVJNaUZ0MlY3M2c3a18ydU82TVVRcS10eFJYQUZhZWVWcjVEcnFhV0ZvZ2VRRlVTeFpDT055aElsbVBlY2xjb2lYTWhmZGlWeERqcFBxYm4tQWtkd0g0MTBLVF83WlZrYU01OHc0YXh2c3VpV1lBRXdYczRtSHBTWnFNTXoyOE1wN1BLWFF2dDVMcUxIQnI1eFF2RnY0eUFMdXc2WEstR0F3?oc=5"
   },
   {
     "date": "02 OCT 2026",
     "chip": "Industry",
-    "title": "The little known Democrat with big influence over AI policy",
-    "src": "politico.com",
+    "title": "Claude Frontier Academy: $100M to train 10,000 engineers",
+    "src": "Anthropic",
     "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxQdGIxSkg2MkttSm9kem1wcUNKbFBlTXh0NU02V2RxYng1MW1sMTRTbXg2U3RTd1lNWVVmdWU2N04yMUpWc2ZGN2plRXFpMHU1NEpOTFo0QmFkcXo0c1NCLTFTbVdLUTUycXJHb2xpNWZ0OWplVEhudFhFd2hBNTBBb3hhbVpGdGtHQmNF?oc=5"
+    "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9FNlFxVHBSRkl5bVF0c253UE5sUEFac3dDZmQ4bzFjc2lER0hNcjFmUUxPVFI5T0xQcldFTXhsd1diR2h4UUVoRnl4TWxEVnp5WXpCMFdkZHNKdlA1bFV4QTVqUDI?oc=5"
   },
   {
     "date": "02 OCT 2026",
     "chip": "Industry",
-    "title": "Tokayev Calls for Responsible AI Development, Stronger Technology Cooperation at AI & Digital Bridge 2026",
-    "src": "The Astana Times",
+    "title": "TOTVS grounds enterprise AI foundation in business data",
+    "src": "SiliconANGLE",
     "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxOMUpRbGtyamdPQVYtdGxnVlN0YTN0NVBRUkNNcVhxNVNYREt0Y1JOX2xMNlp4T1h3Q3NPZUhnU2pVY3RYNTdScTMwRFAxYWJIdnFGVmUyc1VVazZrUm5lMmlBRk92Q25md3F1eWpyZ3BBMF8zTWNhLUE0MGptR2pfcDBqN2x6MG9DUFM4LUNJRS1hX3BQSUhiamF2UnlTVkF0eDlLZGo2bXpSV09VWEV2alg5bnBmZUU3LUY1TU92RjV4dXY1OUlUV2dtVXRrVEt4?oc=5"
+    "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPa3lsQjFVLUl0NDFDUzNoODFURVRrd2pBZTZUVklsQ1h5d2J6SWhwMk5lVkRWdnVTT0lyaC10Zmw3MFBISE93Vms2NE9aZ0dxSmt5R3VfbXdzMzB3Yi04R2lZTkMxLWNoaG9ZYUdBa0c4OGg4RUI0aU96T0VBZ0hzejBJU3piejVjYktMczdkSkdjWUdsTEd3bGJNS1drSkxTekc3bXZPZDB3UTBERUhMc2w0RXd3WTJvWmR4T1lWUG53ckE?oc=5"
+  },
+  {
+    "date": "02 OCT 2026",
+    "chip": "Modernization",
+    "title": "AWS Launches AI Agent to Audit Customer Cloud Environments",
+    "src": "PYMNTS.com",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNbDZoUV9zOS1YeUtwclBNREJFX1l5NUhmRjhsNmRDRDZYcEtwcmRLZmVpNWtqV2g1Vk9jZXhLRm0yQmN0Wm5tOHpwNlZjVnI5LUQ3Z25oYnE2NFM5MlUwZzlJelRMYktwaThLM005OTJXM0p4T0NTT01ObC1sZVpZTXZiM3JEcEQtN3FobFlNS2ZqWF9NRWs2OWpOUTVwcFZCWFhlTjZGMzJoWjZiNWkxdFBaZ3I3Zk0?oc=5"
+  },
+  {
+    "date": "02 OCT 2026",
+    "chip": "Release",
+    "title": "University of Memphis launches AI institute",
+    "src": "FOX13 Memphis",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOSHVNM3BJSldHWU5zcTRxd09BOTdwTWV4bzlaXzBLNmtFYzVnSDg2MXpMV2N3N1NKYXRKbkJDSnFjZjNBenRWVjV5a0w4ck9BM1ZKUkg3djVMZ2pJWjhxRFpBdURGWUl5N3NBS2x1QmcyX19iSG5VYXl0TXBRTG9RanBuX3BpcFNWTjJLaTNYcVZEQlh0TXZnOXFnQzRBNHlRcEtjZU9Qdkx2aElMTEc4cEVrYXFfTEpEaDhTYnNWbDBzbXNZOVE?oc=5"
   }
 ]
