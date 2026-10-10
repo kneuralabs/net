@@ -1,6 +1,38 @@
 [
   {
     "date": "09 OCT 2026",
+    "chip": "Industry",
+    "title": "IBM brings enterprise AI orchestration to TechXchange’s agenda",
+    "src": "SiliconANGLE",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxORFY1ZFhfMUpqV3lpYnVfa2FkdUFQbmx6RmI0c2U0eFVnM1RSOUNxeWRpYzRmLTBVWHBDYU9FR2dZaUYtQzhxalJxanBkOEdOYkNrRUJNcnZULWlCZ2VlUkFVTmdCd01meEt2Si1ESE5NRTJjRlgxRk90VlFTcGZrenBRNDRkMWx1Qm1XOVdOY3Vqc2YtQ0dUdW9QSTk2bUdrUmx0cFpfQ0RsOHBaSjJTZjcwNUlEbGNlTEE?oc=5"
+  },
+  {
+    "date": "09 OCT 2026",
+    "chip": "Industry",
+    "title": "Letter From the Editor: A Review of our AI Policy",
+    "src": "The Appalachian Online",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNTzNoT3FfOGRqNXZCWXJUTWZNSXZoWTBJT2VRZlVuU3JSR2xjZ0tlVFhmZ3dmQXpMQUx6M3lhVXpkLVNKeXJzSWw2VnlGWm1XdzkycmFzUmY2eFd3ZGw4Y2ZYdlFMdE9ub0pJencwZ3pjQUMzeW5kQWpueldISF9ucks3XzEyS1BIakE?oc=5"
+  },
+  {
+    "date": "09 OCT 2026",
+    "chip": "Release",
+    "title": "Recorded Future Introduces AI Infrastructure Indicator Lists, Strengthening AI Governance​​",
+    "src": "Recorded Future",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE9fc19QdER3ZlJQcFBvcXBWMXpwVS1lczNFbDdNeURjLXJLYTRNZ1U5eDRCYzRZOTJsRW84bm0tYWFyZXJ0ZWNDTVRVNWhncFVXUkFOUXlvV0tMUTFCa1VvTVlhWGNrTnZoNjU3LXI3bXg3ckR4WVVYeTc0UGk?oc=5"
+  },
+  {
+    "date": "09 OCT 2026",
+    "chip": "Modernization",
+    "title": "Digital Transformation - Print, AI and the unfinished business of transformation",
+    "src": "Business Reporter",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQR2VXMEozYXFWaTV2T3E3MzFmQW5acElaNGRIcEpnQ1dYQ3lHclRsaUZpQldtTHRvYzFpRE9sRFRVTURxUzI4NzJzSmEtZjFKZUpUUjVFc2dPTjFQTkFIUEkxcUhSNFN1TGxSdEZJWGUtZzNpYjRGRjBmOGowUDhZNXNDZDlqQ1NnSS1QdllWcHZoNTBHbmM3X3E4UUFVY2VHenBTaF9fVmEzc05POS1oS3NYYw?oc=5"
+  },
+  {
+    "date": "09 OCT 2026",
     "chip": "Release",
     "title": "SERHANT launches AI avatar; PLACE acquires mortgage tech firm",
     "src": "RealEstateNews.com",
@@ -9,42 +41,10 @@
   },
   {
     "date": "09 OCT 2026",
-    "chip": "Release",
-    "title": "Recorded Future Introduces AI Infrastructure Indicator Lists, Strengthening AI Governance​​",
-    "src": "Recorded Future",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE12RE85N01nT0ctWGZvQlprNVpIYlRXcF9oM1JnTU9CUVJvTDRJQ2RFRjVOUkJ1UlNqb2k1N0tfMHkxY04wTXQwUW82S1pnakxyTlczRXkzLTNPa2NwLXI1NmN6cHV6dkkxUFpPQUxrUHY5M1gtOVBDM3hJSS0?oc=5"
-  },
-  {
-    "date": "09 OCT 2026",
     "chip": "Industry",
     "title": "Governed context: The key to scaling enterprise AI",
     "src": "CIO",
     "tag": "Google News",
     "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOc2RUdDREREpmbmtRRGJLcWJENEZ0X2Q5S3AtbE5OWXYwd01lRW1Velg3all2bWRQUUIyWHhUeUpIZEN1VGY2MnN2SHVQNk1wXy1JTnRxMFNVQjV3S2p1b0dMWmh4cHI4WVgwY2dfVGkxeGpBRnJ2YmJnSGJCZGhkNmJRX1BxejAyTGozZU9NV05aaUM4?oc=5"
-  },
-  {
-    "date": "09 OCT 2026",
-    "chip": "Modernization",
-    "title": "Debra Patt: Honored to Work Alongside Texas Oncology on Digital Transformation",
-    "src": "Oncodaily",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE4xd3FQMWdVZExmSmQ2QndMNWJKWEk0ZFhmZ0d4eEJYTnR5SmpWVzY5a0VWbjYxZDh2SDF2ZmNYT0R1UVJ2WkthQkxNQ0VXMkprUWxYU0FFRlQ4UQ?oc=5"
-  },
-  {
-    "date": "09 OCT 2026",
-    "chip": "Industry",
-    "title": "AI Without The Chaos: What Responsible AI Actually Looks Like For Lenders",
-    "src": "National Mortgage Professional",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPcjdYMk5fc0ZoUV96anJaN3RrQkpWMGczcmZkQVM3dGw4d1pSVVhzczBaUUtPZ2JFV1VMNzhMeThqRzJCX0pxcjcyal9Ja1E5OU96TFZkdDlSNm9pb2IwTy1EbXhlRVRXRTRQQmlqWk1FRGt3TmZLeHpRMkJ2Tm1jcldYWHFVbzRLVlluWk5PNEhmXzB0X3h1Vk42VGFXRHVNSFFNNmNxNmQ?oc=5"
-  },
-  {
-    "date": "09 OCT 2026",
-    "chip": "Policy",
-    "title": "Sen. Patty Murray hosts Transparency Coalition for AI policy talk, predicts federal action in 2027",
-    "src": "Transparency Coalition",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxPblpnbDJVTG1jRHNFWW8tR2Z4TGZ6cU5iS3o5Sk5fTF9WWGFzTU1CN2VVZVdkM1hiSW9YVzZMTGRobnozalJFOU1fNWRxZHJEM3BQTzQzOXFncDZSLVo5TThoN2Zwc2d1NDF1SzY0V09zQkRwQUxPLXAtSDNvLUtkdURLNE8tMEppYnExWURTaXFWN0E2aWJidFZCSjIxTWNTYXhiblF4WEdBOEFuZlYzYVhDb1BTVmswYlFxOUNNUnZUbVQ2ZVN5ZUxBX2Q4dHNh?oc=5"
   }
 ]
