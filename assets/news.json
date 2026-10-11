@@ -1,5 +1,37 @@
 [
   {
+    "date": "11 OCT 2026",
+    "chip": "Release",
+    "title": "Omnissa introduces Omnissa Elara, a new authority layer for AI governance and high-impact enterprise actions",
+    "src": "Cybersecurity Insiders",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxPV3NlT1NPRldEcU5rN193RUltMFBSLWxCc1kwM1dTdFlpOEFnazdSZ3BOejk1Z3ZUQWFfY3R5aEFfNjVUZFlFRElXTVdHcjdRRzRnbjc5bkNQNTg5NWhXcHpoX3dVX3NaMEY2MXlfdVoyb05aSG13Wl9FeUI2ZXNIQmxFUE5QQnhFSTJ3QUE4Snh5RzJXeVh1YmlWNXhwak96UFdHWVY1NTBTUVJLYUQ2WEFfMkt0OXJ3S01BbkJNTFNia2FEWDd3VGpDWUxMbnlhOVZyMkNZU3kxaFB2TFFYWQ?oc=5"
+  },
+  {
+    "date": "11 OCT 2026",
+    "chip": "Industry",
+    "title": "Your AI Policy Assumes the Work Is Happening on a Laptop You Own",
+    "src": "Cybersecurity Insiders",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQY0RyLTZkQXNTMXJfbFBQSVdrVUt3dGhOVVdfR3lXSTdJYXk4NFZUSkFrb1dsSlNwMFJIYU14QTA1OEpFbkF1TnpvX2N0VlZHVl85a256ZVBtY1RFQk9CTGpfZTV0eVZKSzIydk9XUWlaclQzTG90NXNpcUlVdkdDMTEtY2luREVlS05QRXNNc0JXUzBPcmpDQWNEWlZtOU9UNVBlUmZDQQ?oc=5"
+  },
+  {
+    "date": "11 OCT 2026",
+    "chip": "Modernization",
+    "title": "MCIT Honors Entities Excellence in Digital Transformation Adoption",
+    "src": "Fana News -",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQTWU3M29jdDVIWlNTMW1zQ2FKbi1RWGMyUXQyUUlXSGFFZVRvNFZFZ0ZQYVMtX2FuRXFKd291eWxXWGlZZDdHdnZ1MmlxbHhDY3RMMnlOUS1iYWNZRFZ2SEdCaGNiVnNYWm1iZjVKRG5mUEphakw2SUxBTnRJV29ULUJ0T3FZTjQ1U3ozb0FyRmtxRHJiMEdyU2hJTzJlQ0xJUzRxcFV2TQ?oc=5"
+  },
+  {
+    "date": "11 OCT 2026",
+    "chip": "Modernization",
+    "title": "MegazoneCloud Partners with Portal26 to Strengthen Generative AI Governance and Security in Korea",
+    "src": "Cybersecurity Insiders",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNdHpTSEhWNnlILUliR0RPc09Sek5LV3daYzQzOVlSblVmSWxsdkFRUVdtUUFxeHNvS1VDeWNwdkVteWtETUsxR0RndEVmN2U3VnBfR2RCdDVCRFJ0eVRLU2RmQ1loV2lQb0xuVTZ5c2RoMi1SXy1JVXo0cUxfaDhkUVc5Tmd6VmVoSDlIczVQbDlmdmx6S2ZGc19kMnZ6aEtUYWJzMWRpZmhhMEg0MjN1R0JhNWRjWkRieGlsbzVLbXV0WmM4Qk85c3VkaDhtQ1BrdDZR?oc=5"
+  },
+  {
     "date": "10 OCT 2026",
     "chip": "Modernization",
     "title": "SC releases report on judicial reforms, case disposal, digital transformation",
@@ -10,41 +42,9 @@
   {
     "date": "10 OCT 2026",
     "chip": "Industry",
-    "title": "Anthropic Enterprise AI Engineering, Governed at Scale",
-    "src": "Deloitte",
+    "title": "AI overload: Governance gaps that can swallow CIOs",
+    "src": "Information Week",
     "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNenJIb0tqWGF0aXNZdFFkRHQwR0lsRFd0SWZ1Mml3bkdUb3RCZlRJcVlIMjgwbzJyTUhKelNCQndHS2p0MUU0SGtmdXJhQTlpV3ZTcDFRRDl6ODFxQms2eDhTWG1ZT1lZZnVyOGw5RVNYNnFKZEN3d3lrVnBqZWJrR0NyckYtUW00Yi0yNzdYU2ZhWGFuVWJNTUJYbV9DX25yQnhaUVprZl83QXdw?oc=5"
-  },
-  {
-    "date": "10 OCT 2026",
-    "chip": "Modernization",
-    "title": "Orders.co Launches AI Menu Migration for GloriaFood Restaurants Ahead of March 2027 Shutdown",
-    "src": "RestaurantNews.com",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNSE1VYzRFajY2a3U3czhQRVVWV21KbXg1QmVySXo1ajNlcGx3VkhjRm9lZzNlc2Rxa2JpUjZKWkhnUWtTMFF4NkNIRlZMYzVDcGdQYlprdmVhNXVldDBkY1BUdzI4NWdKazJtTkNoYmVCSW9OZmZBTzVDNXp0YVFfTHZuZHd3bGk4NDl3aHZXM1dnUQ?oc=5"
-  },
-  {
-    "date": "09 OCT 2026",
-    "chip": "Industry",
-    "title": "IBM brings enterprise AI orchestration to TechXchange’s agenda",
-    "src": "SiliconANGLE",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxORFY1ZFhfMUpqV3lpYnVfa2FkdUFQbmx6RmI0c2U0eFVnM1RSOUNxeWRpYzRmLTBVWHBDYU9FR2dZaUYtQzhxalJxanBkOEdOYkNrRUJNcnZULWlCZ2VlUkFVTmdCd01meEt2Si1ESE5NRTJjRlgxRk90VlFTcGZrenBRNDRkMWx1Qm1XOVdOY3Vqc2YtQ0dUdW9QSTk2bUdrUmx0cFpfQ0RsOHBaSjJTZjcwNUlEbGNlTEE?oc=5"
-  },
-  {
-    "date": "09 OCT 2026",
-    "chip": "Industry",
-    "title": "Letter From the Editor: A Review of our AI Policy",
-    "src": "The Appalachian Online",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNTzNoT3FfOGRqNXZCWXJUTWZNSXZoWTBJT2VRZlVuU3JSR2xjZ0tlVFhmZ3dmQXpMQUx6M3lhVXpkLVNKeXJzSWw2VnlGWm1XdzkycmFzUmY2eFd3ZGw4Y2ZYdlFMdE9ub0pJencwZ3pjQUMzeW5kQWpueldISF9ucks3XzEyS1BIakE?oc=5"
-  },
-  {
-    "date": "09 OCT 2026",
-    "chip": "Regulation",
-    "title": "5th District race: Spartz and Ford agree on need for AI regulation",
-    "src": "WISH-TV",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPWVM2UXlUeHZnTmZTYklBWGh4bDJmQlMtS0VOOVlSQklqUUN3QjRiOE1GR2VQRTFDTjdINS1zbEFHSTh6VzRyOHdGbnZubV9DNnNCSWs5UUdmMXdKaVlBZkREUWZXTXBOVjhZc2huRnVHczJBYTFVU2ZsRWFZd20yRFRGb0ZqWXlELXBWTml1OHJVckhiRW1Iak5ia0tfRDhtaE5LZ2loUGFidlc3VWJveU9RTQ?oc=5"
+    "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNRUhUNW1Qa1ZaUEdJN2NmMG56RkZBNXhsQUxsa01iWjVjSTAyUmVmSmhYaWxlenV0cUhYcnZyX2FCNVZWSF9pM3M2d29rZEkxcVZRa0lGNWFDNHBHSjZNVVktQ3dPb1ZrQUFQNUlFRnQ1aXU2MUZhQTRLLVNxQllMN0F5TFh3eTAxWjE4cF9VclI5cTdKSzBWSmhHNU5FSGpKVFM4?oc=5"
   }
 ]
