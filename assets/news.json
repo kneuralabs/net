@@ -1,6 +1,30 @@
 [
   {
     "date": "11 OCT 2026",
+    "chip": "Regulation",
+    "title": "EU Tech Chief Says AI Act Can Contain Rogue Agents",
+    "src": "PYMNTS.com",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQMHlXWnB4a1dLaXh4RGdHNW90QTEzRGItMU5acHhOQ0FibmFQZzdoSURxTi1rTDl4WElkOVZqMGdEX1dfdS1qdUV2c2JSSlBWeWR6UlpQejAtRlk3S1Qzc05QSGpxTUs2R2Z3eHBORmZzbnVveGxlSzc3WU9kLUlmVldHY0dDaDdXWE80Z2ZDTHJDX2dHV2xfbVlNYVpnMGJpd24wbllSWkFucGNt?oc=5"
+  },
+  {
+    "date": "11 OCT 2026",
+    "chip": "Release",
+    "title": "Hack The Box Launches AI Range Enterprise Edition to Measure AI Agent Competence in Cybersecurity",
+    "src": "Cybersecurity Insiders",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQdkoySlV2SEk4Nk56dmxiOXJvUi1qSHVLeVBma190T2I0Qy1JSEVrNnRDRVJ5ZHJKUzdyYlBKU21PcnJCQUYxZThtbTlOYlItYmV0d25kcFdjU2JTQnZ0dzgtWlphTHdiZllVSGNjZU1IM0lfSE1JZEVvYTQ4SEpRQ0pkQk9OcFFMV0ZqVlpwQjlqRXh6RjNxNVUxQUZKVVhaMGcwT0tlN0NZbldVclZSbkkybmZGell1aVVVQXRUMFhFcVZXbXJiNnVJbmV6VFAzbnhz?oc=5"
+  },
+  {
+    "date": "11 OCT 2026",
+    "chip": "Industry",
+    "title": "The hidden tax on enterprise AI: Why data architecture is the ROI problem nobody budgeted for",
+    "src": "SiliconANGLE",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxOdmVBWEtFUE9WOXk2M0xtN20wdGVibHVzSzJKcERvU3YxcTc3cDA0S29pODJ5cDdNd0h2VVNkZ2c1WlBWaWxyNGNEUF9NbFFBZU1ndmFQajFrQ0JBZ0ktY2kzT2ZoeFl3bFZSRnJYUGVSRm5Rak1vRWZka0JXbmxZaXlEWmFHMHR3ZWVwbmotcWZMdlB5bElSR3hUWFNMM0xjbVFZUGZ6SWtBaWpOWWhOOWNfdy1hZGZvOGh5b3BDaThGTjFNUk81TA?oc=5"
+  },
+  {
+    "date": "11 OCT 2026",
     "chip": "Release",
     "title": "Omnissa introduces Omnissa Elara, a new authority layer for AI governance and high-impact enterprise actions",
     "src": "Cybersecurity Insiders",
@@ -18,33 +42,9 @@
   {
     "date": "11 OCT 2026",
     "chip": "Modernization",
-    "title": "MCIT Honors Entities Excellence in Digital Transformation Adoption",
-    "src": "Fana News -",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQTWU3M29jdDVIWlNTMW1zQ2FKbi1RWGMyUXQyUUlXSGFFZVRvNFZFZ0ZQYVMtX2FuRXFKd291eWxXWGlZZDdHdnZ1MmlxbHhDY3RMMnlOUS1iYWNZRFZ2SEdCaGNiVnNYWm1iZjVKRG5mUEphakw2SUxBTnRJV29ULUJ0T3FZTjQ1U3ozb0FyRmtxRHJiMEdyU2hJTzJlQ0xJUzRxcFV2TQ?oc=5"
-  },
-  {
-    "date": "11 OCT 2026",
-    "chip": "Modernization",
     "title": "MegazoneCloud Partners with Portal26 to Strengthen Generative AI Governance and Security in Korea",
     "src": "Cybersecurity Insiders",
     "tag": "Google News",
     "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNdHpTSEhWNnlILUliR0RPc09Sek5LV3daYzQzOVlSblVmSWxsdkFRUVdtUUFxeHNvS1VDeWNwdkVteWtETUsxR0RndEVmN2U3VnBfR2RCdDVCRFJ0eVRLU2RmQ1loV2lQb0xuVTZ5c2RoMi1SXy1JVXo0cUxfaDhkUVc5Tmd6VmVoSDlIczVQbDlmdmx6S2ZGc19kMnZ6aEtUYWJzMWRpZmhhMEg0MjN1R0JhNWRjWkRieGlsbzVLbXV0WmM4Qk85c3VkaDhtQ1BrdDZR?oc=5"
-  },
-  {
-    "date": "10 OCT 2026",
-    "chip": "Modernization",
-    "title": "SC releases report on judicial reforms, case disposal, digital transformation",
-    "src": "The News Pakistan",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPbVQzSmV4eTZOZ2thSF9hajhYRU9rX0ZCY3l6c3o4MGsyOFV1OElXQXV1elBzX1hiNVBUV052ME8xaDk2UXdZYV9DZFdhWlFxanJTNUROUGxPNEdqYkxSY3F4RTRYS3IzNEhkSnNnX2VHdGxMTEFuWkNyNGhpTkdiRXVXb285cmFXMndVQi1fRHdiOERrTFYySXMxUjllbUZwQWtlSzlGdTcwUHF1NWVsQUV3?oc=5"
-  },
-  {
-    "date": "10 OCT 2026",
-    "chip": "Industry",
-    "title": "AI overload: Governance gaps that can swallow CIOs",
-    "src": "Information Week",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNRUhUNW1Qa1ZaUEdJN2NmMG56RkZBNXhsQUxsa01iWjVjSTAyUmVmSmhYaWxlenV0cUhYcnZyX2FCNVZWSF9pM3M2d29rZEkxcVZRa0lGNWFDNHBHSjZNVVktQ3dPb1ZrQUFQNUlFRnQ1aXU2MUZhQTRLLVNxQllMN0F5TFh3eTAxWjE4cF9VclI5cTdKSzBWSmhHNU5FSGpKVFM4?oc=5"
   }
 ]
