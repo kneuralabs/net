@@ -1,5 +1,29 @@
 [
   {
+    "date": "15 OCT 2026",
+    "chip": "Industry",
+    "title": "AI Governance Challenge: Point-in-Time Snapshots Go Stale",
+    "src": "BankInfoSecurity",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNYmRXZi1Ud09aamxac2syQVd0V1c1cW9GZGdjb2hCZXVYZVZ3b3IzMzVpYnZ1X3JUQVBKckF5SXZuYnczbE1kMm1YWW9lYzdKMGtwT0JIcnZFZnktZnNkTW5ESWE2aWxXd0tVQkV2aThmOXROZWwxSHU1STduYTNwRURoeEtpbHc1WHBVRFRZVjZPSnZhdVhpS3Z3aHhLQQ?oc=5"
+  },
+  {
+    "date": "15 OCT 2026",
+    "chip": "Regulation",
+    "title": "What role should the government play in AI regulation?",
+    "src": "Fox Business",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5RSlY4dkY5OUN5aElMX1B5aHZnRExfdEduVEtJRzQ4RnF3NkJkQ1k2MTNMRk5IZ1c5YUFzeTZ1eC1XWGwwR0RoRnNRdF80U0FhRXNBZUFQQWo0MVU?oc=5"
+  },
+  {
+    "date": "15 OCT 2026",
+    "chip": "Modernization",
+    "title": "University of New Haven Research Team Presents Digital Transformation Study at Major International Conference",
+    "src": "University of New Haven",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE1LdTEtUUlQT1hZamhOdEpDV3RCa0FuazBhYVVvS3RlWUt5TTlOX0g2SXJWUU42bGs2bWVOMGxvMTlvOHlDT3F0NE04U28zdU5YOWtDMC1HX3ZraF9Dbi1NZllzdG9zaER5T1Y4blotWHFQem96YWlIeVpfTVM1QQ?oc=5"
+  },
+  {
     "date": "14 OCT 2026",
     "chip": "Modernization",
     "title": "Inside Minnesota’s $40 Million bet on IT modernization",
@@ -10,41 +34,17 @@
   {
     "date": "14 OCT 2026",
     "chip": "Industry",
+    "title": "Labelbox raises $100 Million+ in Series E funding to advance reinforcement learning and enterprise AI agents",
+    "src": "PR Newswire",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxQVW01SVVoLXRIa1hDMU0xcjkyRUE0ekJ6dFBLUGxoNVVBdzdmd0NCcURQWl9PMkpFU25Zb2ZMNFR1YVZmMnNMdVpYWlczYVZhcnFad2k1V3YyZmI4TnlSM1RfWXgzV1JlckZwdDBPUnVDaTdieU96M2lvT0FiMDRZekhOT2Y5VjZXZWNpT3FuZXFzenhqWTRmSVV0REI2ZXl2X2NXVEFSYko3dmRHZF9salFnMlRrWjdERV8ydFhMM0gwOEVPTmxXaTgycE1yTllJUmJpWGhVMUVRWWhfYmxoenRRUXZ5Yk94RHdFelZzUTNyd2JK?oc=5"
+  },
+  {
+    "date": "14 OCT 2026",
+    "chip": "Industry",
     "title": "The AI Governance Gap CX Leaders Cannot Afford to Inherit",
     "src": "CMSWire",
     "tag": "Google News",
     "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPei1zTGt1ek9nbmhBTW9veVhIdTFjQ3M3VFk4RVBKczRRaWFsSDJ0aDhEankzNjF0UjlqUXI3VWVhbmpSZURQSDlrcHVBQzc3eVRpeUZpRXRYNGJSVjh0LVpWQ2RIcjVGMk9neTFJaVBaWi1zbDJfaVZ3M1hPeGpTRTU4OEJNdDVNaGdWSnZpVWJIUThzN05XN3JjcG1SUzljWGtNLXZ5d1ppMmV3dlNVdjR6VWhOUFZB?oc=5"
-  },
-  {
-    "date": "14 OCT 2026",
-    "chip": "Industry",
-    "title": "Anthropic IPO: Market forces and enterprise AI effects",
-    "src": "TechTarget",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQV0pWQUNBZUNjUzNjclNwTXJkWTIwV21RbmVTczlib19yck03NXBJWk5qRENtWW5KYXNzLWQtQm1DQmg3SkU1TGhjRE55WUFPM2JqNUpta0VyLTFqMTYyY0NOTjl3MmVHaXQ1U3JSUFNIZGZQMW9GeDJlR3pnc1ZnSjN6NEoza0RaUG15YWxLUnlLclNfR0E?oc=5"
-  },
-  {
-    "date": "14 OCT 2026",
-    "chip": "Standards",
-    "title": "The assurance gap: Enforcing ISO 42001 and operational resilience in automated financial crime pipelines",
-    "src": "ACAMS",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPa3ZJdWRLYTEweVltSHdhRVNKSmFneVF2NHh3WXV0ODRFb3JvUmVHU3hPYW1YMmVqZklhd1ROTzNsbTlXVnZSQXNaZDA1Ui1Ga1hCRlNVQWNQcjFWOVV6V2xtem5FdHRXNUY5Z0tJU3VmcU5kTnFSeC1mWkFkcnIzczlaTVd0dEJjeVRqVTkzejZLN1djZFRCc2NoUzBxNnVYMTd4UEVsQTliMVJMbUR4YS1UM1VJVE5YWC1N?oc=5"
-  },
-  {
-    "date": "14 OCT 2026",
-    "chip": "Industry",
-    "title": "Dell stock plunges 11%, leading data center sell-off as fears mount about 'enterprise AI timing'",
-    "src": "CNBC",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE5MU3k5MHljanJnWGZ4dWlBa2JEc3RVWVRZWlVWOFUwS20wQUI1WS13M3U0OE5LN2lVYzhlLUxOMFNvMWhrc1hKNmVUSHlyMkRjTU5ESmM5Mnp1SWxHbTI4b3haS0FVWmY0ajlzWUx4VVZvVDFJb0hBZnV30gF_QVVfeXFMUDdHd3I2ekpybVo4MXdMOUlTSEVhZHhQYmNSTFhGcG5uOV93N190NXhieWlqYWduZmJGUzJ5bHF5TkNsREVycUo4M1BKVUY3ejAtaVpyeXo3QnJXSWY5TEVjRWRGUE14RGhZY3hzNDBic3pJSGlRZlNicFJrQk1wMA?oc=5"
-  },
-  {
-    "date": "14 OCT 2026",
-    "chip": "Industry",
-    "title": "Lessons From Boot Camp About Responsible AI Rollout",
-    "src": "GovTech",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxOV2ZFcGlIa1RIWUw0eVJZSHRDTHltZFFiTkZYXzRzTFZmVEZqT2VFdkxqeFZBanZVdGt2WExPZ0otbTJpUkZPOUZ1RDJGR1dhMk9MYldFTzdtbnV2RmRDcjRHc1VRVWlnWHc1MzRYZVV1bzZfS1I4cFB2cDJ2Ymt5b3hNMEFORTFyVkE?oc=5"
   }
 ]
