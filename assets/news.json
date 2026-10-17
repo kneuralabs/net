@@ -1,11 +1,35 @@
 [
   {
     "date": "16 OCT 2026",
+    "chip": "Standards",
+    "title": "Proposed AI Governance Framework: Risk-Mitigation Recommendations for Health Plans",
+    "src": "Crowell & Moring LLP",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPamtFUUlTdmVhMVBuVFgyUTJpNUFycUQ2LWpJUXZsUnc3b2Z2Qlc3bnNtU25LTjl3ZTZlX3JNV2FLbXJzY2o0QU5NaXUwZHdtRG81TkRpRVEyMlkzMUFJekFFekRkLUNldWh2b2EyelJad0hwVzhlSXFmbUxFdDVQem5rMFdWdENpLTlJczNmeldlejFDNlZOMURjWEh5MFBXMXlQX3FXNlJHVXdPbVJpV1ZJWGZOaHNSbUkyVGFPYWRzYnZReFVjdy1tWQ?oc=5"
+  },
+  {
+    "date": "16 OCT 2026",
+    "chip": "Policy",
+    "title": "Morocco Creates First-Ever AI Ministry, Targets $10 Billion in Economic Gains by 2030",
+    "src": "Morocco World News",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQeTlzMWZHYjE5dTcxLUZKcnRlOEJlX2VWeExXZW9XYmg5Z0RmYTYtWkNMZXV2dFg4X0dGWnc3RDFyb2NORmM4NlZpS2UxQjdVV0VUQkpKRUV1QVIxVjJFY0IyN1VCVTFrNV9Ic2xzTFk0S1JKazFjYkQySDNFWFNLa3R4SzZpNDRKZHFYVmpGTnBXRHJfTEh5TFMweTdhNkx1emtwc0k4c1ppV2tyS2hBcFRobWYzeDFQU3V0UmY4Y3Q1LW1XeGF1TUFQNHg?oc=5"
+  },
+  {
+    "date": "16 OCT 2026",
     "chip": "Industry",
     "title": "Data protection and cyber resilience anchor enterprise AI",
     "src": "SiliconANGLE",
     "tag": "Google News",
     "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNdGdQRElqWEM2ejcyN1dpdERfTEp4ZTZ1Uk4wQVo4eHEzdjlPZUQ1OFVXcnNDSVBlTndlTnJHR19ZekgwUHBKUTJISFllWnBMeXBrMzVmS20xR2lFeXJpX3g0bGI2X2JLb3g2TTFTVGNrdVZ4dDVmRHlYSG5MbkdQVTJwM3dPWlVKbUdzYWQtMUJxZlo4LTF4ZzRUUVE2enMzelNoQTUyLVVWbVN5VGJ3dERzVC16c0F1dG1fSHdPdWRySkJVZm8w?oc=5"
+  },
+  {
+    "date": "16 OCT 2026",
+    "chip": "Industry",
+    "title": "Carroll Schools has an AI policy for students, families and staff. Here’s what it says.",
+    "src": "Capital Gazette",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOR0tiQU14aEY5OGNLTFA5RkZHeXlRVHdac0dEU09vTE5BZnR6WHhzQzBkekNZSk9OX3JjUGlxNi1VYTlQdUdhTDBCQVRzTjNsZnFqbC1saWo0SzB5cDZMcWNyN3RZWTdQZDdnQlk0THV4VTZnZEx5Y3ZsOUpBQWtrYWpQVlhGTmJHM0JoSG16cjNFMzl3OVdnZVpNWQ?oc=5"
   },
   {
     "date": "16 OCT 2026",
@@ -22,29 +46,5 @@
     "src": "The EDU Ledger",
     "tag": "Google News",
     "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPMVY5c01VbUp1XzlpazA0ZllfblZ4dmtJbDhfQXhQRnZXWWxCR3lEZEdmcE9SZWRyM3NlVEFFTURzS0lhbkRCbVBwVWZYcDRwQ29aTVBVLVQ5Z0d0bG1peXJIYkNXRkhJTE5EVVc0MEpGTktKMkUtTll0VXp4UHhkUHZOam5UdF9f?oc=5"
-  },
-  {
-    "date": "16 OCT 2026",
-    "chip": "Industry",
-    "title": "New AI Tools Aim to Identify Tissue Samples at Risk of Failed Molecular Testing",
-    "src": "Clinical Lab Products",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOcHh4Z1hfLWt1c0pVRzBhbEtrRGVxUkFQTTFEOTNxT1BjWWsyR1NWUThKWE15aFNTUE9IdVpwOEJFdkF0SW1pdFBJLUxZdnJHb1FGRGtTOXZfY05ZcmtvVEFpQmc0U0htaVB4WkExOVBOelB3U2dVQ1o5VkhYT0FuV0VoUEo2RmpPQjlkRTdMRGpjZ1RaNXpDX3N5WDRuTS1pVlo0dw?oc=5"
-  },
-  {
-    "date": "16 OCT 2026",
-    "chip": "Release",
-    "title": "Miami luxury car company launches AI tool for buyers, sellers",
-    "src": "The Business Journals",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOeHoyczllZHlTUmRheVlqbzdVb3psVWR5c01pMjdIOWVRS0VNOVdHZnNMbF9UZEkwUDh6MWNVTnd1TzE1TDRIN0NrOEwyTE1pcEw4X1M3Wk9LR21wYTB0eWEwcThwR1NfZVQxd3NZNTRTUDFSbXVvLVc0SjF2SGwtdU1qYko5V1N6NDlGTDBEb1gxRmtZYk4tMHVUUVY4MUw3YS1TQlFSWllxMkZZemE0cWJB?oc=5"
-  },
-  {
-    "date": "16 OCT 2026",
-    "chip": "Industry",
-    "title": "Northeastern expert wants to move AI governance from principles to practice",
-    "src": "Northeastern University",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQVEtjZUcyaXdXSThySk1VYW5XS2lXLWtJYjNIQ3ZHUG02SnZwWGNkQ0F4aUpsNU41Z1Z2SXNNaHFzMWxMXzlzLVdNY05wcUNqWi1LdWdCWnFUMDFqWWcxS3o5aERnWmE5RFpVUXpZcGtVRHg4SlpYM0xPeVFMWXBrQ3VRMG9OSFF3REY0VDVuS2UtcVgya1JIdHNFaElwdVB2RG5IYWNYNy1oUQ?oc=5"
   }
 ]
