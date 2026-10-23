@@ -1,30 +1,6 @@
 [
   {
     "date": "23 OCT 2026",
-    "chip": "Release",
-    "title": "Legaltech Rundown: Goodwin Launches AI Governance Program, Legora Announces Integrations With iManage, Blue J and More",
-    "src": "Law.com",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxPQkdLNVZiam03YjZZbGFOX1VYVnJheHRISmJnNlVWenpUZVFOUEo5QzJNeWZmOElTcnlsS2JwUUR2T3B6bDFTc3hEdWVIOFl6T2k0NFpCTHlhblRTRWVuVmZnS01LQnE3M01FUGdXdHY5blBOeEFRTkRPWGZNS1BuU3hzQjVtTUQxQ0Q3SHkycHNYSVJEWmNEbEJxQWZEQ1FaODFnU0xFOEJ3ZGJyb2ZvbnBkR01OdlpNRGxXakc0bTgxekJPNVNrcGoxOEpOaHZaOWlNNU5oZkpWaXFCVHhXYWlHeWJrd2JWSkU4MUFxMDNwcDA?oc=5"
-  },
-  {
-    "date": "23 OCT 2026",
-    "chip": "Release",
-    "title": "TD Bank U.S. Launches AI-Powered 'Credit Assist' to Slash Commercial Underwriting Time",
-    "src": "FF News",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNYXlJUURNWkZwOEc0WGczdmt2TlFnNGxueW95VkZlQjl3SDJEU3pwTlJqVTNnYTRMN3FXbFpzbGRQWmdLQTlIWjA1U1c1NWROYW8zcWhQYTZoRlZISjN2amNkN2hGOUtqTkUzbnpFRVRYLTAwckdrUjR1YlJyUlhxT052QzlYSzdNZVhtcmxacWtqUnp1SnVVWF9NRFVEQWM4MHRUd3FOc0F0Mm1PS05zRw?oc=5"
-  },
-  {
-    "date": "23 OCT 2026",
-    "chip": "Regulation",
-    "title": "Exclusive / Democratic pro-AI regulation PAC spends against Senate Republicans",
-    "src": "Semafor",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOSFB1U2pTdE44QVNiUGVFZTBxODN6S054Ukk0TVZUMFoxWEd1d1QwMlI4RnVIRVc2c2szdEdDRHc0UUNhc0dzaUZ5cDNBaE1CeVE2czE1MEFQYkoyVXQ4V2VwRl94d2piRFpmQ0JtMkR2RDgzSmhWWDVFbU9KLTNUZ08yRDA1eGVNdDlvMlZ1cEI2QV9KeXhFNk11LU1iM0k?oc=5"
-  },
-  {
-    "date": "23 OCT 2026",
     "chip": "Industry",
     "title": "IBM Think: 5 thoughts on tokens, AI governance, and quantum",
     "src": "SDxCentral",
@@ -33,18 +9,42 @@
   },
   {
     "date": "23 OCT 2026",
-    "chip": "Regulation",
-    "title": "Wall Street regulator to focus on AI, private assets in corporate exams",
-    "src": "Reuters",
+    "chip": "Industry",
+    "title": "Responsible AI Adoption Key to Workforce Retention",
+    "src": "Hospice News",
     "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQYmktYzhnbk9rRktmb0pOaE1ORnQyWDNtU1RldG8wNHJiMzh1UlVUYl8tOFZUdlRmbmtLNl9STTVKRzV5SF9aVXlRd1RBZ1hhdHFSY0kxUDJrcDZ1WVlXUm9mcWdtNElwblJWTW11WVltWDNYMlN1ZDltWG85WmMxd3EwUEtuMWFTbHRINS1SbzRreFJyM1VxLVNjd0lYbEd4MjRweXZhMzN1RVYtMVRFeXliaWs?oc=5"
+    "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPZlE1cjRPOGY5WHlfeXE0YUZwOFJaeXo3emRjWkJya3hoODl5TWJRUVpORGFyN25ZNVEycndLYjdvU3Y2cnh2Z2N6NDB1RzRlV0w1NWh0Ti01N2VsUURLNHdUOEc2QkU5R0hKa1plT0ZBQUhKRjJabUE4b2EzRndOMV9wM2gwNno4eENvNk45cw?oc=5"
+  },
+  {
+    "date": "23 OCT 2026",
+    "chip": "Release",
+    "title": "Territory Group Launches AI-Native Studio Lux Meridian",
+    "src": "Animation World Network",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxPQzd5TzVYcG5Mb2p6aUFiOVVuTWdtUmVvczlnb1dIeEw1R2ZtdGdGMnlEUlVibGU5TjZkNlZZWGhJZjh3Qm1VelhGb1A4Q3JxTWV4enJOQWlhNjZZT1d4R0ZNeVItbWlodE4wLW1zVi1wWDVEQVlYVVFUa0pFUkVLU2Y0VmwxZw?oc=5"
+  },
+  {
+    "date": "23 OCT 2026",
+    "chip": "Standards",
+    "title": "The Pentagon’s guidelines for “responsible AI” aren’t always followed, report shows",
+    "src": "NPR",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE55X1ktWGd3RFRucWtlM1lRVG1RbVBUZEwxMnNUUXpFaE12Q0ZFaHFZS1UzN243TGVhbTdPVmlWYVFwM1pYYUt1SkpsNkY1OTZZMWRtN0lrdDFJRzh5Y2dxNkU2VlhZRDhRdmg2ZkV2eUJDRjRFV2lNTXpMWllxdw?oc=5"
+  },
+  {
+    "date": "23 OCT 2026",
+    "chip": "Standards",
+    "title": "The Pentagon's guidelines for \"responsible AI\" aren't always followed, report shows",
+    "src": "WFDD",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNVzFtSWZYRkhnUnB0NzVCMUtBZnU3blBBUS1CMnZkQkpRTUJGLWdBdzZtX2wzeUZDUlAxRXpRZWE5ZEdnUlkwTTRobWdxTXBIOUFXVGw0VDIxREwzNzlFUjlVU0FObzhYZU1jQmR0NHlSTk14N1d0cmEtUUV4MlVXUnRjNU9kWGxGdGFKNG5sTm9OV3Fpd29famkzaENka1hmVWFLYkZHVlFMUnBSOXQ0ZENlSEtzOU0xNzZV?oc=5"
   },
   {
     "date": "23 OCT 2026",
     "chip": "Industry",
-    "title": "Why the enterprise AI security gap starts below the model",
-    "src": "VentureBeat",
+    "title": "Voxel Acquires Ventral AI, Expands Enterprise Software Capabilities",
+    "src": "Supply & Demand Chain Executive",
     "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOTE5YeTg2dFR6WjZqWmlIUXluVkJ4d2dUM3VqdEFqOGs2bXdTRmk1WDRnZ3kwUlRZTG1aOGdlY0VWV0tWZUwxNXJyTXlhUzEwVExTQjJqem0ybDBtajRaWmhOTXdxc0xvSndERkx0MzRNbk1VcnpjaDVXaC1EWWRTM1BhakZfcjl2V1VuaW5OMkw?oc=5"
+    "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNb2xxTFBidFVNakhhWm1oeDg5WnhUR0FhSlNsem5mbVR3VUtYeXdEdlpSRDBwLVd6XzIxUXJPMjF5Y1lCOTZpNmpXRGZPOGszTElpTnU1VmtIR0J4eEgzQjdURXltY2pGYmNETV8xcUFvc2FTS1lHN2ppcC13VGQ3N29UaGJmaDBEMmd4WnlabGQ4azBIZGduSkQxZDFMeklnQzZmUG80MlRya1RpQTRUeUl1bFh3VWd5X3F6MjJuSQ?oc=5"
   }
 ]
