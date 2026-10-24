@@ -1,14 +1,6 @@
 [
   {
     "date": "24 OCT 2026",
-    "chip": "Modernization",
-    "title": "Irembo engages South Korean institutions to explore digital transformation opportunities",
-    "src": "Tech Review Africa",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQY0VuWVdDRmZNS1VYbkhBSnBpa0ZRV0t5WlllRUNYWVRnRFMxSVFFQ19nVEtSUGVZRHZMZFRldXFESjE1UVk1d0NUM3N5THNSbFhjMEg5OWhTS1BXSHFicFNNTGVIZ1hOT1ZEZ1BCSk44YmlKbzFPY0ZzdWVZbEhNNnZiTW9SMWR5ZlRlUDlVUC1QLWt0ZEptcUR4RDZrZGFOaFRDeEJEWnZyNk9QUFR3WjRCQzNUUllCajFKaDY1NGVUWmhFV3c?oc=5"
-  },
-  {
-    "date": "24 OCT 2026",
     "chip": "Industry",
     "title": "IBM Think: 5 thoughts on tokens, AI governance, and quantum",
     "src": "SDxCentral",
@@ -18,26 +10,18 @@
   {
     "date": "24 OCT 2026",
     "chip": "Industry",
-    "title": "Process Context for Enterprise AI | ARIS Platform",
-    "src": "Supply & Demand Chain Executive",
+    "title": "AI governance",
+    "src": "PPC Land",
     "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQQkVTYUhoS0NLSmV5bC1rcWx2WnBLZU81TU94eVRKWi1ScVJlWWhwaUEtN0tVS0VQRXluWW9jd2pQZlFfR05fM3pldUp5NENlZVdhSVpnYzkwa2gwNUROVkRTUk1mZFJQbDBFSmVpbHlXbTBqd2lVMFdGMW5tWFR0blE0MTZScUJHUVVQMXhTMXZiR3g0bE5HVHhwdE5peEFqQm5UMHR0QVpqNHB0XzRiSDdRYko1Z00?oc=5"
-  },
-  {
-    "date": "24 OCT 2026",
-    "chip": "Industry",
-    "title": "Block's new AI model Dessa was trained entirely on human speech to catch emotions text-based models miss",
-    "src": "The Decoder",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPdUlndTg1cW93RFItdEluLVQxSmU3Rllab05RaGRuZ19iUndqMHdFaE1SSmNEUGRWMzNwVlRmQU1FeU9oNGRQUmRtbFNDVkN4bS1CbnZ6OU9fSVpWNmpCZE9DVjZXZU5HVkQtRUhSSGVVNG9JRG9jcU5veGM0djVQdzY1ZzlCUWQtbmItQ3ZEbms0b3RqelZqSG5OdENDbGg2SkZadEVsdGpNbWlTWFpiZWhzQ3RlM0xoczd3UHJxXzFkYWtSS0Vj?oc=5"
+    "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE12UnpFSWFwSXo4SEtuSnlSbElXWHZ3ZGo1YW9SMm9WWjVWODFSdzJBc1pBYWV5Qm9yWmVMOERqaVVUenIydkE?oc=5"
   },
   {
     "date": "24 OCT 2026",
     "chip": "Regulation",
-    "title": "North Carolina joins 25 states in urging Congress for AI regulation",
-    "src": "The Daily Tar Heel",
+    "title": "EU AI Act",
+    "src": "PPC Land",
     "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNc0lmT2lYZ0RCTkU4Uk9YX2pld20wZzBZTVhRaUZRZU9vTks3SW5DelhPY3FULVdMLTRPNWoyYzNRdDREejR4ZHVHcTU3b0tyZ1JpSUhzbVNHMkFQREFDcXdoX3RELUJPUGIzN2RrdXBMVDkxZUtoNEdPYXh5NFQ1bVNXWGFYeXBISWd4cg?oc=5"
+    "url": "https://news.google.com/rss/articles/CBMiQEFVX3lxTE5pWU1pdjR5Q0ltQjhFeEJueXpkSGhfa1JtU3hfVjhsNVFGWmkxbkhoSVYtSnZPb2xDbzhaUjJWemQ?oc=5"
   },
   {
     "date": "24 OCT 2026",
@@ -46,5 +30,21 @@
     "src": "BankInfoSecurity",
     "tag": "Google News",
     "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNdjRkckRoYXFwb1RTRzFIaGxTeHAzaWxNV2lIcWZ3dWFhcVZ4Uml4OXEzM3cwTDdySnlnSlNBelJndXpqYWdQZVN4VUVtOFh0U19KdlVDam1lQUhmbk56eDJlVTNQNWlBQWFsRVZjMUtSUjkyN1Z2QTdiWjA2cDZfa0NpU1dkalI1cVV3YU9B?oc=5"
+  },
+  {
+    "date": "24 OCT 2026",
+    "chip": "Modernization",
+    "title": "Irembo engages South Korean institutions to explore digital transformation opportunities",
+    "src": "Tech Review Africa",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQY0VuWVdDRmZNS1VYbkhBSnBpa0ZRV0t5WlllRUNYWVRnRFMxSVFFQ19nVEtSUGVZRHZMZFRldXFESjE1UVk1d0NUM3N5THNSbFhjMEg5OWhTS1BXSHFicFNNTGVIZ1hOT1ZEZ1BCSk44YmlKbzFPY0ZzdWVZbEhNNnZiTW9SMWR5ZlRlUDlVUC1QLWt0ZEptcUR4RDZrZGFOaFRDeEJEWnZyNk9QUFR3WjRCQzNUUllCajFKaDY1NGVUWmhFV3c?oc=5"
+  },
+  {
+    "date": "24 OCT 2026",
+    "chip": "Industry",
+    "title": "Process Context for Enterprise AI | ARIS Platform",
+    "src": "Supply & Demand Chain Executive",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQQkVTYUhoS0NLSmV5bC1rcWx2WnBLZU81TU94eVRKWi1ScVJlWWhwaUEtN0tVS0VQRXluWW9jd2pQZlFfR05fM3pldUp5NENlZVdhSVpnYzkwa2gwNUROVkRTUk1mZFJQbDBFSmVpbHlXbTBqd2lVMFdGMW5tWFR0blE0MTZScUJHUVVQMXhTMXZiR3g0bE5HVHhwdE5peEFqQm5UMHR0QVpqNHB0XzRiSDdRYko1Z00?oc=5"
   }
 ]
