@@ -1,14 +1,6 @@
 [
   {
     "date": "25 OCT 2026",
-    "chip": "Modernization",
-    "title": "Tourism digital transformation: Efficiency as the benchmark",
-    "src": "en.qdnd.vn",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPQTBjbGw1ZjE5cUJPdzZnaHdqNjZYYzBacG5oTDZad2xtWHp5ZUY3dzVSS3JBRmxJcUNRT3FkZ1NlbkZ6d2R3VFMzS1hFWFF1VC15aE52Yzh3TlJNdDRTajVzcXdYZC1UR1ZkMlA4M1FMTTdIZDFWNjl0MzkwQnJEYWFRUkdaUFZ2TEZ1WVBDRVlvNUcwNHlOc25YMnI?oc=5"
-  },
-  {
-    "date": "25 OCT 2026",
     "chip": "Industry",
     "title": "IBM Think: 5 thoughts on tokens, AI governance, and quantum",
     "src": "SDxCentral",
@@ -25,11 +17,11 @@
   },
   {
     "date": "25 OCT 2026",
-    "chip": "Modernization",
-    "title": "La Union develops 3-year digital transformation plan",
-    "src": "The Chronicle PH",
+    "chip": "Industry",
+    "title": "AI as force multiplier: Practical AI governance for HCLS security teams",
+    "src": "Amazon Web Services (AWS)",
     "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNYjFzRENPNlFRcUx3cktia0hpSElqUmRaMUxlYzFia3ZkcEROd0hRTll2M0tYQnRmNExOdm5RY082bTV1OW1MZW53Ujk0M3otUkFReXpaTXZCZHhLYXRMcER3UzN2cFdoY3VyY01vcGt5MENkRUFsbkJCLVUwTDZHRktLbHhTT0I1?oc=5"
+    "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxOTk1Bd2luMVczd09tYmV4WXJQMHVJQmJLOENGZWFPZEphWEp1TjRqQzBkOVhsbzVLd0VrZTVpUzVjSlJjLWR6MVB1c0dYcjNlcll1RzZYWVQ5NjRwS282b3JaNWMyY1ptaTdJdmR0UHR6WWNWTGlCaXhOcEVYM3JOUGxoT3RhVmh4RkRJbnJfcEtqMlMyNk5feGxvVkVQZzlKQmp2TndkLS0xNFZsZGJJOUM3WQ?oc=5"
   },
   {
     "date": "25 OCT 2026",
@@ -37,7 +29,7 @@
     "title": "How AI Regulation Could Help the Public—and Investors Too",
     "src": "WSJ",
     "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxNUDhKY05RNmdWcC1qQU9sRE93R09fUjdJVEMwbmNpZ2l1QXRBMTIzYXE4Qmdtd0NzWTZWbGxEdlJmZGNCSGtsTkh3RVEwWFJ3SmZHM0paVzA4QjlKZWd3dzJpLTA3RU90X09JZG9wOTJyekhha05QZGZvVFZTN1BRTzBNcXlkRlBPaVd1cWo4WWM4YTZVdkhEZjVabjhiVENkVEFMRGZfeEVBNG1CQ3ZFNWE0UE1LOVp1cE1xRWY2UkU5ZFJqeHRtQ19OODJ1YnBTaS1na3pqWHJHMXZIMmFhRQ?oc=5"
+    "url": "https://news.google.com/rss/articles/CBMiiwJBVV95cUxPLWxlYkFDZlMzbWllRFZjUUtVTW9XVEZwdG1qQnI1R2MwTWdNa0pUMzlxdFdHNjNVT3dSZ1UtMjcyOXJoQ0JXUDR2aENwNmJuc1h0eDFHN3c0WmNMSEV1QVpMM3BHelJjaHBmWDV4czFCQ1hlWmpDWC1jYlViaXJoSXlZZnZ3YWkxVTk1cUpQSjZwM2lRRjlVNVlGWVBTSHk4by1hQzNIa0h1b2dSUDBMWm5QcGlUNFNESTQ5QWh3Y2kxWE9MdHR3S3l6cVdyc3NqRXVYWnM3ZDV2V2hjcEhES2EzQThNX0FGTzJtSFhCOWwwRUREbzkzMTg1a1BYMmgyLUQwcnIzTWRXN3M?oc=5"
   },
   {
     "date": "25 OCT 2026",
@@ -46,5 +38,13 @@
     "src": "China Daily",
     "tag": "Google News",
     "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE80cEZSUm04VUJyZFF4T3V2QnhLNHRmY3JOdm4tZFBrTEljMlVPaDQ5eUEwalNyNW42dFNWOElSYTdsdUxtNmhLQlloSjhkVldrdkYzSUpwUGsyV1RLY2xQVC1pRFRHODFxb19oN24zUG9ZZDBjUEJjWXFyVlctdw?oc=5"
+  },
+  {
+    "date": "25 OCT 2026",
+    "chip": "Release",
+    "title": "SF tech workers launches AI matchmaker for ambitious 'girlies' to find friends",
+    "src": "New York Post",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQTHkydk4tdzByY2w5aHU3a2kxWGhyUHYzVVNIcEplZ1MxN2l5b2daNU9aVmhXYlBaRldrUHhYNTJpSDNtUGRaM2JXNFBZTFNGS1VzNnpyNnBrVDF0WnJyYmp2aDF1TEJJMGJtbEVIdUVSMWFsNnpBb3FGQnhsQThyYnhrdVNtS2dKVmVmV25IMF81eXlNUUR0SUV2dkU0SkJEbGpBcDNLd0JtNXNNeDloZlUwUjUtLUht?oc=5"
   }
 ]
