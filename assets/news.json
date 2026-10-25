@@ -1,11 +1,19 @@
 [
   {
-    "date": "24 OCT 2026",
+    "date": "25 OCT 2026",
     "chip": "Industry",
     "title": "IBM Think: 5 thoughts on tokens, AI governance, and quantum",
     "src": "SDxCentral",
     "tag": "Google News",
     "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxOakIwbXhFWjc1QmhuMEg4bDZ1ZjdaTFFNUUZNUllPTFFFem91ZlNKUmpleXdhRVJQc3JuSjRhTHZnRFk0MVk3TUFrVFg4TTNKX0o0VHV1R09qLU9TcEYtRk9uTmZoSnJiNnZjYWM5QWh3ZUtVcVRaN20yMFljU0NVcmpkTnRGaEJVRFFEbHd1cVQyU09CaHRhNw?oc=5"
+  },
+  {
+    "date": "25 OCT 2026",
+    "chip": "Modernization",
+    "title": "NASA CIO Ties IT Modernization to Mission Goals",
+    "src": "BankInfoSecurity",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNdjRkckRoYXFwb1RTRzFIaGxTeHAzaWxNV2lIcWZ3dWFhcVZ4Uml4OXEzM3cwTDdySnlnSlNBelJndXpqYWdQZVN4VUVtOFh0U19KdlVDam1lQUhmbk56eDJlVTNQNWlBQWFsRVZjMUtSUjkyN1Z2QTdiWjA2cDZfa0NpU1dkalI1cVV3YU9B?oc=5"
   },
   {
     "date": "24 OCT 2026",
@@ -25,11 +33,11 @@
   },
   {
     "date": "24 OCT 2026",
-    "chip": "Modernization",
-    "title": "NASA CIO Ties IT Modernization to Mission Goals",
-    "src": "BankInfoSecurity",
+    "chip": "Industry",
+    "title": "Enterprise AI doesn’t just need larger models, it needs to learn from the business itself",
+    "src": "Enrique Dans – Medium",
     "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNdjRkckRoYXFwb1RTRzFIaGxTeHAzaWxNV2lIcWZ3dWFhcVZ4Uml4OXEzM3cwTDdySnlnSlNBelJndXpqYWdQZVN4VUVtOFh0U19KdlVDam1lQUhmbk56eDJlVTNQNWlBQWFsRVZjMUtSUjkyN1Z2QTdiWjA2cDZfa0NpU1dkalI1cVV3YU9B?oc=5"
+    "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPalJmSXdHQ0NnalQxTlVtbl9GcFRzWGZYbXp4STBEVlZWbElQSVhCVkdUd0g3TTJNcDRpSTBGWS1KUjBDS0N2QmRPRkJtdUZaR0ZMd3BodGs5NS1HTFpLSl9SRjJ6LWdiVXVIb3hDX3FVU2RNLVEyTFdrMjdHNkJmZVgwNDB6VTZ4d0piSi1iSDRzSjNCeVlYT2pRcVNrc2FZX3dvRVRZVHlWWHoycG9jZXVNRTY3ZV9BVms1dE1VY3g0X2M?oc=5"
   },
   {
     "date": "24 OCT 2026",
@@ -38,13 +46,5 @@
     "src": "Tech Review Africa",
     "tag": "Google News",
     "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQY0VuWVdDRmZNS1VYbkhBSnBpa0ZRV0t5WlllRUNYWVRnRFMxSVFFQ19nVEtSUGVZRHZMZFRldXFESjE1UVk1d0NUM3N5THNSbFhjMEg5OWhTS1BXSHFicFNNTGVIZ1hOT1ZEZ1BCSk44YmlKbzFPY0ZzdWVZbEhNNnZiTW9SMWR5ZlRlUDlVUC1QLWt0ZEptcUR4RDZrZGFOaFRDeEJEWnZyNk9QUFR3WjRCQzNUUllCajFKaDY1NGVUWmhFV3c?oc=5"
-  },
-  {
-    "date": "24 OCT 2026",
-    "chip": "Industry",
-    "title": "Process Context for Enterprise AI | ARIS Platform",
-    "src": "Supply & Demand Chain Executive",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQQkVTYUhoS0NLSmV5bC1rcWx2WnBLZU81TU94eVRKWi1ScVJlWWhwaUEtN0tVS0VQRXluWW9jd2pQZlFfR05fM3pldUp5NENlZVdhSVpnYzkwa2gwNUROVkRTUk1mZFJQbDBFSmVpbHlXbTBqd2lVMFdGMW5tWFR0blE0MTZScUJHUVVQMXhTMXZiR3g0bE5HVHhwdE5peEFqQm5UMHR0QVpqNHB0XzRiSDdRYko1Z00?oc=5"
   }
 ]
