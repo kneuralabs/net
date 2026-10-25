@@ -1,6 +1,14 @@
 [
   {
     "date": "25 OCT 2026",
+    "chip": "Modernization",
+    "title": "Tourism digital transformation: Efficiency as the benchmark",
+    "src": "en.qdnd.vn",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPQTBjbGw1ZjE5cUJPdzZnaHdqNjZYYzBacG5oTDZad2xtWHp5ZUY3dzVSS3JBRmxJcUNRT3FkZ1NlbkZ6d2R3VFMzS1hFWFF1VC15aE52Yzh3TlJNdDRTajVzcXdYZC1UR1ZkMlA4M1FMTTdIZDFWNjl0MzkwQnJEYWFRUkdaUFZ2TEZ1WVBDRVlvNUcwNHlOc25YMnI?oc=5"
+  },
+  {
+    "date": "25 OCT 2026",
     "chip": "Industry",
     "title": "IBM Think: 5 thoughts on tokens, AI governance, and quantum",
     "src": "SDxCentral",
@@ -18,33 +26,25 @@
   {
     "date": "25 OCT 2026",
     "chip": "Modernization",
+    "title": "La Union develops 3-year digital transformation plan",
+    "src": "The Chronicle PH",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNYjFzRENPNlFRcUx3cktia0hpSElqUmRaMUxlYzFia3ZkcEROd0hRTll2M0tYQnRmNExOdm5RY082bTV1OW1MZW53Ujk0M3otUkFReXpaTXZCZHhLYXRMcER3UzN2cFdoY3VyY01vcGt5MENkRUFsbkJCLVUwTDZHRktLbHhTT0I1?oc=5"
+  },
+  {
+    "date": "25 OCT 2026",
+    "chip": "Regulation",
+    "title": "How AI Regulation Could Help the Public—and Investors Too",
+    "src": "WSJ",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxNUDhKY05RNmdWcC1qQU9sRE93R09fUjdJVEMwbmNpZ2l1QXRBMTIzYXE4Qmdtd0NzWTZWbGxEdlJmZGNCSGtsTkh3RVEwWFJ3SmZHM0paVzA4QjlKZWd3dzJpLTA3RU90X09JZG9wOTJyekhha05QZGZvVFZTN1BRTzBNcXlkRlBPaVd1cWo4WWM4YTZVdkhEZjVabjhiVENkVEFMRGZfeEVBNG1CQ3ZFNWE0UE1LOVp1cE1xRWY2UkU5ZFJqeHRtQ19OODJ1YnBTaS1na3pqWHJHMXZIMmFhRQ?oc=5"
+  },
+  {
+    "date": "25 OCT 2026",
+    "chip": "Modernization",
     "title": "China to accelerate digital transformation of water management",
     "src": "China Daily",
     "tag": "Google News",
     "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE80cEZSUm04VUJyZFF4T3V2QnhLNHRmY3JOdm4tZFBrTEljMlVPaDQ5eUEwalNyNW42dFNWOElSYTdsdUxtNmhLQlloSjhkVldrdkYzSUpwUGsyV1RLY2xQVC1pRFRHODFxb19oN24zUG9ZZDBjUEJjWXFyVlctdw?oc=5"
-  },
-  {
-    "date": "25 OCT 2026",
-    "chip": "Industry",
-    "title": "Businesses need a foundation for double transformation.",
-    "src": "Vietnam.vn",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE1DbE1oRVI0UHBJM2JGRE5CZnYtV1hnY0dWVmFiWkR3RGdNTVdBcUdXYmhaajNVQ3MtazhKWExTMm5Eb0c2TFVpcG1nc0ZndzBPMHNUdXNJZURDY2FNY1dxTkpQOVQ1NW5ZZTF1UDRXNDJMVVQ5VU5La3AtOVc?oc=5"
-  },
-  {
-    "date": "24 OCT 2026",
-    "chip": "Modernization",
-    "title": "Digital transformation in tourism: Efficiency is the measure.",
-    "src": "Vietnam.vn",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTFBxMUdNSHhSeUhXUzRMMHJ6LWpDdHZvM0RTLTNxQzh4OVpDVXJsZDdqRkpjMVRNaEFUX2pnQV9VaklzM2RBd2hGUWRnbGd4TndPb2tDcml1bGR6WXBUb1BtclI5NDFwSThZUHBXLXI1dnc1LTNNNTZv?oc=5"
-  },
-  {
-    "date": "24 OCT 2026",
-    "chip": "Industry",
-    "title": "AI governance",
-    "src": "PPC Land",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE12UnpFSWFwSXo4SEtuSnlSbElXWHZ3ZGo1YW9SMm9WWjVWODFSdzJBc1pBYWV5Qm9yWmVMOERqaVVUenIydkE?oc=5"
   }
 ]
