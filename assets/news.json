@@ -1,6 +1,30 @@
 [
   {
     "date": "27 NOV 2026",
+    "chip": "Industry",
+    "title": "LAUSD Blocks Google’s AI Overview Despite New AI Policy",
+    "src": "LAmag",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNeHg2T09iaURrWGVzdFFYWkVvNHpLZFRocVNPNHBxQURWVmpiLWZzR3NZRnlwamdWNzJCWVRrWHV0bWR5eFdUZDd1LVdrMC1xZjNXQlREaUVrUGFwZ0xXQm1DYkZBelNTUjVsdEJGRXVMQlpoVm1kb1IxWV9tN2l0SjBxMGtVTloyQk54MEc3R01jNHBZS0M3WURYVmJpREtKSmc?oc=5"
+  },
+  {
+    "date": "27 NOV 2026",
+    "chip": "Industry",
+    "title": "GNOME's AI Policy Was Retracted After Red Hat Warned It Would Push Partners to KDE, Broady Robertson Says",
+    "src": "BigGo Finance",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9McWhDaTI5Q2E5Rm50bVVDZVpXanMxM0JDUkEtbklnRFRNRGJaV1ZIU2NobEViM0xIaTF5OG0tU1B6SWtua2p3aWpycEFYQ1p6dVR6OE9PbXhOM3M?oc=5"
+  },
+  {
+    "date": "27 NOV 2026",
+    "chip": "Release",
+    "title": "AMCAP Global Launches AI Education and Builder Program to Power Capital Management Industry",
+    "src": "WBOC TV",
+    "tag": "Google News",
+    "url": "https://news.google.com/rss/articles/CBMingJBVV95cUxQYWNVdW1fbHc2QTVORkExUDRKa1JhOEpHYW5fanJwYmJKZG9ZTHVRQkFxM0x2dnBJX2p0VGdHbnd6OEFOVGxnRnQ3b09KR2xzUjh1bGJCNGFORnFsZURfVEtWVGRNTmxOQnQ3MFRmbFFJcF9kRVBNa29Yd2ZwZGE3Tk9peVpPd1hYaXQ2S3dXSWQ2SS1qeExTM1RMSzAxS09qTlZLdXgxZDg2ZVZyUU1VX19Db01zS2E4cVJoM1FubUR2Z1d6ZW5TWmQ4TTZkT1FGM2gxUFIzRUNLdElvNHlMT3FISVV2OWtyaDRLLTlGYlFLb241Z3hsaGFhV0lHNkg5aWpXY2I4ckpjREdZVmhWS19BWlpfeHZaNDIyMldR?oc=5"
+  },
+  {
+    "date": "27 NOV 2026",
     "chip": "Regulation",
     "title": "Global AI Regulation: EU AI Act, U.S., UK, China, And Key Compliance Risks For Companies",
     "src": "Legal 500",
@@ -10,41 +34,17 @@
   {
     "date": "27 NOV 2026",
     "chip": "Regulation",
-    "title": "AI Regulation Is Evolving: 4 Governance Questions",
-    "src": "shattered.io",
+    "title": "Opinion: Trump’s role in reinstalling Jensen Huang signals AI regulation in U.S. is a non-starter",
+    "src": "The Globe and Mail",
     "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPWTBWVWZFRVNySTBaYk00dTZXdUgzTjJBUjRWM2xobWtwc3lpTlVXWkhwbXdYR1BMdDVPLWZyVEh6ZGp5X2RjRjVTbUtYNnRkMWFISm5pRGo1UjRYcVJPQzZUWUx0QnlSNmYwN0NuRTNfc20tN3hPRFdWWTFfbDJyV3pBWVRJUzFsSm1xUlRn?oc=5"
+    "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQMDNfY2pRT3JyRldIdnNQN2NpV0xmc3dkMGdwUFFJcWozVlg3TFREclE0ckFaMEZSUlpCZGVZQVV5OHZuWnpzSEoya1ZqNDA1SnRZS3R6cVFZc1BTN2pfY0dqVjdtU08weERYT01MdG5pMFp3QVpDVVBrelBoWE12VHk2dUN6bWNlU1dZal9LNUs1cXkyaDRLVlZKbnVDR3YybFE?oc=5"
   },
   {
     "date": "27 NOV 2026",
-    "chip": "Modernization",
-    "title": "Prajavani wins national award for digital transformation excellence",
-    "src": "The Hindu",
+    "chip": "Industry",
+    "title": "AI Governance Must Get Technical as Agents Gain Autonomy",
+    "src": "BankInfoSecurity",
     "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxOUWszVU5fUzQ5X1BmRFRUdlpYbWtsbTFJczVsOTNPSWxkcGV1bURsNDJEdmRMQTl2VFd3S2pMZ1U3TGx3MFU0YkNrb0lGeTdvV3JyX2tNN3RxcU9lZ3NvR2h4R0RrNFlvYkhLYkF0c1RBNk1oU25GaFp4U2VVOE5xRkgydUJrcUdWdDhDanZFUDk0ZUxRX2hjZG9Bbl83NUMxdkRzbnNYejFZd2s5SmZCTUw1OVdqeS0tS0xsQVpmT3hkR1REd3Awam8yWThGWUEwRWfSAdgBQVVfeXFMTzF2cDlTdVU1bkFobmk1eXU5SGpmTEozTnNuMFR5UU5yZVI1cG5HT3JWX0FoRDhnNnhYdzVBZEVMRC1aNUh6R0NKVXNQUGdOc21ZbkFsbEtwbWcybVowREROV3lVMlRSd3BveVYxUllySDVHdC16VVJWUUdmWXlTUXpGUmhrSzJBOVZpaWgtd0hScm9aV29zc1BpQUlidG1HNHFLdUxHa3U5eTZxdU5rSk5qeDlMZzdCbjRQN2kzZE00TGUzOW0wMXdNa1lKN0R3ZjUxRE5sd3pJ?oc=5"
-  },
-  {
-    "date": "27 NOV 2026",
-    "chip": "Release",
-    "title": "Slate Launches AI Travel Expense Reports for Israeli Businesses",
-    "src": "Detroit Free Press",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNcmZwU093anNEMnJHUTlpanV1alpvQTdtVjZHUmFGdllmMEVOeWZZRU1zd0otYTFFaFJqdTVJTU1JdFJCSkEzZTRGSlVyQ2FPNW9ZZHF2MXlYZEtMSWp6OGE2N0lVb2U2TmlHMHNtWVZEaEpIQXNaSmdYYnBXeVdRSjNhdVhPT2EzZVZpQ2IwNTRiY3hnelpSQ25adlBaLW9qRExJQ0Jnc3BPMWVhd2tsUlgydw?oc=5"
-  },
-  {
-    "date": "27 NOV 2026",
-    "chip": "Modernization",
-    "title": "Digital transformation in Thuong Lam",
-    "src": "Vietnam.vn",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE1OeGpsRFNKZkJ5R1d2cWIxZEF4UHNET0xrOUhsU1V0WTNMU29pTGtKZEllakFIVHpxaW40endOcDJuOGlnNEpTWnlBNlVxRjcwb3h0Ui1QMTZ2NE5EMlc5U2FB?oc=5"
-  },
-  {
-    "date": "27 NOV 2026",
-    "chip": "Modernization",
-    "title": "Senegal signs MoU with Presight to promote AI, data analytics and digital transformation",
-    "src": "Tech Review Africa",
-    "tag": "Google News",
-    "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQc1dZa0lGU0R4MTJoQXIzRzd5SG9wTXg0VFp6LXcwNUl2ZG9sR2Jvb1VOYTBGVFVKWmMtcUlabWZZYmhLbjFvVEo5eDlrcFlQZVpKUlYwczZkal9yZ25XZkpLZ0xzVXpicThuZEdkRVJra3NpWUhONzU4UXAxcTFLVFlXdDVuc3M3b3pFMHlxUno3Q3ZGdGdFQ0hOTGluUUg3bHFnWGlSd2I1UHFxa2hQQmVvWlNJWnY2TzVINWtZVmJJTURP?oc=5"
+    "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNZm1CUDNGTVJrQm5WMWd0RXVaY3d2ekxnWTNtSDJIMnZXQkJCZ3o4RmhGcEQzWlFfVjJyNEVpTjU2U3htdUVjUHpPSzZRYkZaYUZOc3lVbkY0N25KT1RDZmVsanE1ZFRPcVBzREFfQmRUM0l1U2RlTkhDQktTMm9uaS1LeWc0dHQ4OGlJZEdqcTdra3pGUjJEWHBvY3N6UQ?oc=5"
   }
 ]
